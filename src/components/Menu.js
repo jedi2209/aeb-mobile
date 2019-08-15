@@ -1,17 +1,30 @@
 import React from "react";
 import { theme } from "../core/themeProvider";
 
-import { Text, FlatList } from "react-native";
+import { Text, SectionList, Dimensions } from "react-native";
+
+const menuItems = ["news", "events", "publications", "committees", "contacts"];
+
+const menuItemsBottom = ["settings"];
+
+const { width } = Dimensions.get('window');
 
 class Menu extends React.Component {
   render() {
     return (
-      <FlatList
+      <SectionList
         style={styles.linklList}
-        data={[{ key: "news" }, { key: "events" }, { key: "publications" }]}
-        renderItem={({ item }) => (
-          <Text style={[styles.link, theme.whiteLink]}>{item.key}</Text>
+        sections={[
+          { title: "", data: menuItems },
+          { title: "", data: menuItemsBottom }
+        ]}
+        renderSectionHeader={() => (
+          <Text style={{ height: width * 0.15 }}>{}</Text>
         )}
+        renderItem={({ item }) => (
+          <Text style={[styles.link, theme.whiteLink]}>{item}</Text>
+        )}
+        keyExtractor={(item, index) => item + index}
       />
     );
   }
@@ -19,26 +32,12 @@ class Menu extends React.Component {
 
 const styles = {
   linklList: {
-    // maxHeight: 200,
-    borderColor: "red",
-    borderStyle: "solid",
-    borderWidth: 1,
-    height: "100%",
-    // height: 200
+    height: "100%"
   },
   link: {
     textAlign: "center",
-    textTransform: "capitalize",
-    lineHeight: 50
+    textTransform: "capitalize"
   }
 };
-
-
-// font-family: Helvetica;
-// font-size: 20px;
-// color: #FFFFFF;
-// letter-spacing: 0.32px;
-// text-align: center;
-// line-height: 50px;
 
 export default Menu;

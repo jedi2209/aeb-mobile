@@ -1,10 +1,10 @@
 import React from "react";
 import { theme } from "../core/themeProvider";
 
-import { Image, StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
 
-import Close from "../images/Close.svg";
 import Menu from "../components/Menu";
+import CloseButton from "../components/CloseButton";
 
 class MenuScreen extends React.Component {
   static navigationOptions = {
@@ -16,18 +16,15 @@ class MenuScreen extends React.Component {
     return (
       <View style={[style.container, theme.blueScreen]}>
         <TouchableOpacity
-          style={[theme.whiteButton, style.whiteButton]}
           onPress={() => navigate("Login")}
+          style={{ marginTop: "10%", width: 305, height: 50 }}
         >
-          <Text style={theme.whiteButtonText}>Sign In</Text>
+          <View style={[theme.whiteButton]}>
+            <Text style={theme.whiteButtonText}>Sign In</Text>
+          </View>
         </TouchableOpacity>
         <Menu />
-        <TouchableOpacity
-          style={[theme.goBackButton, style.goBack]}
-          onPress={() => navigate("Home")}
-        >
-          <Close />
-        </TouchableOpacity>
+        <CloseButton style={style.goBack} onPress={() => navigate("Home")} />
       </View>
     );
   }
@@ -38,13 +35,10 @@ const style = StyleSheet.create({
     height: "100%",
     flex: 1,
     flexDirection: "column",
-    alignItems: "center",
-  },
-  whiteButton: {
-    marginTop: 100
+    alignItems: "center"
   },
   goBack: {
-    marginBottom: 200
+    marginBottom: "15%"
   }
 });
 
