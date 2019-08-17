@@ -15,14 +15,32 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const MainNavigator = createStackNavigator(
   {
-    Home: { screen: HomeScreen },
-    Menu: { screen: MenuScreen }
+    Home: { screen: HomeScreen }
   },
   {
     initialRouteName: "Home"
   }
 );
 
-const App = createAppContainer(MainNavigator);
+const RootStack = createStackNavigator(
+  {
+    Main: {
+      screen: MainNavigator
+    },
+    Menu: {
+      screen: MenuScreen
+    }
+  },
+  {
+    mode: "modal",
+    headerMode: "none"
+  }
+);
 
-export default App;
+const AppContainer = createAppContainer(RootStack);
+
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}

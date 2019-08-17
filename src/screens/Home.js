@@ -21,8 +21,19 @@ import {
 } from "react-native/Libraries/NewAppScreen";
 
 class HomeScreen extends React.Component {
-  static navigationOptions = {
-    title: "News"
+  static navigationOptions = ({ navigation }) => {
+    const params = navigation.state.params || {};
+
+    return {
+      headerLeft: (
+        <Button
+          onPress={() => navigation.navigate('Menu')}
+          title="Info"
+          color="#000"
+        />
+      )
+      /* the rest of this config is unchanged */
+    };
   };
 
   render() {

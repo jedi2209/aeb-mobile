@@ -7,17 +7,13 @@ import Menu from "../components/Menu";
 import CloseButton from "../components/CloseButton";
 
 class MenuScreen extends React.Component {
-  static navigationOptions = {
-    title: "Menu"
-  };
-
   render() {
     const { navigate } = this.props.navigation;
     return (
       <View style={[style.container, theme.blueScreen]}>
         <TouchableOpacity
           onPress={() => navigate("Login")}
-          style={{ marginTop: "10%", width: 305, height: 50 }}
+          style={{ marginTop: "20%", width: 305, height: 50 }}
         >
           <View style={[theme.whiteButton]}>
             <Text style={theme.whiteButtonText}>Sign In</Text>

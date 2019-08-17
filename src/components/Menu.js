@@ -7,7 +7,7 @@ const menuItems = ["news", "events", "publications", "committees", "contacts"];
 
 const menuItemsBottom = ["settings"];
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 
 class Menu extends React.Component {
   render() {
