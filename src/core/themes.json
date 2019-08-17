@@ -33,5 +33,16 @@
         "height": 40,
         "textAlign": "center",
         "verticalAlign": "middle"
+    },
+    "burger": {
+        "width": 18,
+        "height": 15
+    },
+    "pageTitle": {
+        "fontSize": 15,
+        "color": "#ACB1C0",
+        "marginBottom": 10,
+        "marginTop": 20,
+        "textTransform": "uppercase"
     }
 }

@@ -1,38 +1,35 @@
 import React from "react";
 import { theme } from "../core/themeProvider";
 
+import Moment from "moment";
+import Header from "../components/Header";
+import Title from "../components/Title";
+import { CarouselArticles } from "../components/CarouselArticles";
+import ThumbList from "../components/ThumbList";
+
 import {
-  Button,
   SafeAreaView,
   ScrollView,
   View,
   Text,
-  StatusBar,
   Image,
   StyleSheet
 } from "react-native";
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors
-  // DebugInstructions,
-  // ReloadInstructions
-} from "react-native/Libraries/NewAppScreen";
-
 class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
-    const params = navigation.state.params || {};
-
     return {
       headerLeft: (
-        <Button
-          onPress={() => navigation.navigate('Menu')}
-          title="Info"
-          color="#000"
+        <Header
+          onPress={() => navigation.navigate("Menu")}
+          title="News"
+          date={Moment().format("MMMM Do, YYYY H:mma")}
         />
-      )
-      /* the rest of this config is unchanged */
+      ),
+      // headerRight: <Text>avatar</Text>,
+      headerStyle: {
+        height: 100
+      }
     };
   };
 
@@ -43,33 +40,19 @@ class HomeScreen extends React.Component {
       <View
         style={[styles.container, { backgroundColor: theme.backgroundColor }]}
       >
-        <StatusBar barStyle="dark-content" />
         <SafeAreaView>
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
             style={styles.scrollView}
           >
-            <Header />
             <View style={styles.body}>
-              <View style={styles.sectionContainer}>
-                <Text>Привет, мир!</Text>
-              </View>
-              <View style={styles.sectionContainer}>
-                <Image
-                  source={require("../images/aeblogo.png")}
-                  // style={{ width: 40, height: 40 }}
-                />
-              </View>
-              <View style={styles.sectionContainer}>
-                <Button
-                  title="Go to menu"
-                  onPress={() => navigate("Menu", { name: "Anna" })}
-                />
-                <Text style={styles.sectionDescription}>
-                  А тут будет еще более замечательный текст
-                </Text>
-              </View>
-              <LearnMoreLinks />
+              <Title style={theme.pageTitle} text="Featured News" />
+              <CarouselArticles />
+              <Title
+                style={[theme.pageTitle, { fontSize: 15 }]}
+                text="Last news"
+              />
+              <ThumbList />
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -79,29 +62,10 @@ class HomeScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter
-  },
+  scrollView: {},
   body: {
-    backgroundColor: Colors.white
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: "600",
-    color: Colors.black
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: "400",
-    color: Colors.dark
-  },
-  highlight: {
-    fontWeight: "700"
+    backgroundColor: "#fff",
+    paddingLeft: 14
   }
 });
 
