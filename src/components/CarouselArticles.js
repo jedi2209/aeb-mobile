@@ -3,16 +3,14 @@ import { theme } from "../core/themeProvider";
 import {
   View,
   StyleSheet,
-  Text,
   Dimensions,
-  Image,
   ScrollView,
   Animated
 } from "react-native";
 
 const deviceWidth = Dimensions.get("window").width;
 const BAR_SPACE = 14;
-import Moment from "moment";
+import Card from "../components/Card"
 
 const data = [
   {
@@ -43,7 +41,6 @@ const data = [
 
 export class CarouselArticles extends React.Component {
   numItems = data.length;
-  //itemWidth = FIXED_BAR_WIDTH / this.numItems - (this.numItems - 1) * BAR_SPACE;
   animVal = new Animated.Value(0);
 
   render() {
@@ -52,16 +49,14 @@ export class CarouselArticles extends React.Component {
 
     data.forEach((item, i) => {
       const thisImage = (
-        <View key={`image${i}`} style={styles.slide}>
-          <Image
-            source={{ uri: item.uri }}
-            style={{ width: deviceWidth - 14 - BAR_SPACE, height: 200 }}
-          />
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.date}>
-            {Moment().format("MMMM Do, YYYY H:mma")}
-          </Text>
-        </View>
+        <Card
+          key={`image${i}`}
+          data={item}
+          width={deviceWidth - 14 - BAR_SPACE}
+          height={200}
+          deviceWidth={deviceWidth}
+          BAR_SPACE={BAR_SPACE}
+        />
       );
       imageArray.push(thisImage);
     });
@@ -96,30 +91,5 @@ const styles = StyleSheet.create({
     zIndex: 2,
     top: 40,
     flexDirection: "row"
-  },
-  slide: {
-    width: deviceWidth - 14 - BAR_SPACE,
-    marginRight: BAR_SPACE,
-    borderBottomColor: "#D7D8DA",
-    borderBottomWidth: 1,
-    borderStyle: "solid",
-    paddingBottom: 20
-  },
-  image: {
-    borderRadius: 4
-  },
-  title: {
-    fontSize: 20,
-    color: "#000000",
-    letterSpacing: 0.25,
-    textAlign: "left",
-    lineHeight: 32,
-    fontWeight: "bold"
-  },
-  date: {
-    fontSize: 17,
-    color: "#8C8C8C",
-    letterSpacing: 0.32,
-    lineHeight: 22
   }
 });

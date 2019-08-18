@@ -48,6 +48,8 @@ class HomeScreen extends React.Component {
             <View style={styles.body}>
               <Title style={theme.pageTitle} text="Featured News" />
               <CarouselArticles />
+            </View>
+            <View style={styles.body}>
               <Title
                 style={[theme.pageTitle, { fontSize: 15 }]}
                 text="Last news"
