@@ -47,7 +47,7 @@ class HomeScreen extends React.Component {
           >
             <View style={styles.body}>
               <Title style={theme.pageTitle} text="Featured News" />
-              <CarouselArticles />
+              <CarouselArticles navigation={this.props.navigation} />
             </View>
             <View style={styles.body}>
               <Title

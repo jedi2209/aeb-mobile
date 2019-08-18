@@ -42,6 +42,7 @@ const data = [
 export class CarouselArticles extends React.Component {
   numItems = data.length;
   animVal = new Animated.Value(0);
+  navigation = this.props.navigation;
 
   render() {
     let imageArray = [];
@@ -50,6 +51,7 @@ export class CarouselArticles extends React.Component {
     data.forEach((item, i) => {
       const thisImage = (
         <Card
+          navigation={this.navigation}
           key={`image${i}`}
           data={item}
           width={deviceWidth - 14 - BAR_SPACE}

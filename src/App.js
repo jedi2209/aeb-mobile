@@ -10,12 +10,14 @@ import React from "react";
 
 import HomeScreen from "./screens/Home";
 import MenuScreen from "./screens/Menu";
+import NewsScreen from "./screens/News";
 
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
 const MainNavigator = createStackNavigator(
   {
-    Home: { screen: HomeScreen }
+    Home: { screen: HomeScreen },
+    News: { screen: NewsScreen }
   },
   {
     initialRouteName: "Home"
