@@ -1,13 +1,19 @@
-import React from 'react';
-import { TouchableOpacity, Image, Text, StyleSheet } from 'react-native';
+import React, { Fragment } from 'react';
+import {
+  TouchableWithoutFeedback,
+  Image,
+  Text,
+  StyleSheet,
+  View,
+} from 'react-native';
 import Moment from 'moment';
 
 class Card extends React.Component {
   render() {
     return (
-      <TouchableOpacity
+      <TouchableWithoutFeedback
         onPress={() => {
-          this.props.navigation.navigate("News", {
+          this.props.navigation.navigate("Article", {
             itemId: 86,
             otherParam: "anything you want here"
           });
@@ -20,18 +26,25 @@ class Card extends React.Component {
           },
         ]}
       >
-        <Image
-          source={{ uri: this.props.data.uri }}
-          style={[
-            styles.image,
-            { width: this.props.width, height: this.props.height },
-          ]}
-        />
-        <Text style={styles.title}>{this.props.data.title}</Text>
-        <Text style={styles.date}>
-          {Moment().format('MMMM Do, YYYY H:mma')}
-        </Text>
-      </TouchableOpacity>
+        <View
+          style={{
+            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE,
+            marginRight: this.props.BAR_SPACE
+          }}
+        >
+          <Image
+            source={{ uri: this.props.data.uri }}
+            style={[
+              styles.image,
+              { width: this.props.width, height: this.props.height },
+            ]}
+          />
+          <Text style={styles.title}>{this.props.data.title}</Text>
+          <Text style={styles.date}>
+            {Moment().format('MMMM Do, YYYY H:mma')}
+          </Text>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

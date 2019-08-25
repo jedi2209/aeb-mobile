@@ -19,7 +19,7 @@ class MenuScreen extends React.Component {
             <Text style={theme.whiteButtonText}>Sign In</Text>
           </View>
         </TouchableOpacity>
-        <Menu />
+        <Menu navigation={this.props.navigation} />
         <CloseButton style={style.goBack} onPress={() => navigate("Home")} />
       </View>
     );

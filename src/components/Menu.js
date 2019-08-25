@@ -1,9 +1,9 @@
 import React from "react";
 import { theme } from "../core/themeProvider";
 
-import { Text, SectionList, Dimensions } from "react-native";
+import { Text, SectionList, Dimensions, TouchableOpacity } from "react-native";
 
-const menuItems = ["news", "events", "publications", "committees", "contacts"];
+const menuItems = ["News", "Events", "Publications", "Releases" ,"Committees", "Contacts"];
 
 const menuItemsBottom = ["settings"];
 
@@ -11,6 +11,8 @@ const { width } = Dimensions.get("window");
 
 class Menu extends React.Component {
   render() {
+    const { navigate } = this.props.navigation;
+
     return (
       <SectionList
         style={styles.linklList}
@@ -22,7 +24,9 @@ class Menu extends React.Component {
           <Text style={{ height: width * 0.15 }}>{}</Text>
         )}
         renderItem={({ item }) => (
-          <Text style={[styles.link, theme.whiteLink]}>{item}</Text>
+          <TouchableOpacity onPress={() => navigate(item)}>
+            <Text style={[styles.link, theme.whiteLink]}>{item}</Text>
+          </TouchableOpacity>
         )}
         keyExtractor={(item, index) => item + index}
       />

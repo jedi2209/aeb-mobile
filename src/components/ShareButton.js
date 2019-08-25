@@ -1,17 +1,17 @@
 import React from "react";
 import { theme } from "../core/themeProvider";
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { TouchableWithoutFeedback, StyleSheet } from "react-native";
 import Share from "../images/share.svg";
 
 class ShareButton extends React.Component {
   render() {
     return (
-      <TouchableOpacity
+      <TouchableWithoutFeedback
         onPress={this.props.onPress}
         style={[this.props.style, theme.goBackButton]}
       >
         <Share style={style.close} />
-      </TouchableOpacity>
+      </TouchableWithoutFeedback>
     );
   }
 }

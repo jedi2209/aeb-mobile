@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="12px" viewBox="0 0 20 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 56.3 (81716) - https://sketch.com -->
+    <title>Icons / Arrow-dropdown</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M21.7211725,9.37608555 L14,16.8103646 L6.27882754,9.37608555 C5.75802898,8.87463815 4.91139748,8.87463815 4.39059892,9.37608555 C3.86980036,9.87753294 3.86980036,10.6927064 4.39059892,11.1941538 L13.0518795,19.5336097 C13.3136142,19.7856191 13.6581425,19.9116239 14,19.9090909 C14.3445283,19.9090909 14.6863858,19.7856191 14.9481205,19.5336097 L23.6094011,11.1941538 C24.1301996,10.6927064 24.1301996,9.87753294 23.6094011,9.37608555 C23.0886025,8.87463815 22.241971,8.87463815 21.7211725,9.37608555 Z" id="path-1"></path>
+    </defs>
+    <g id="AEB-APP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="20.-Press-Releases" transform="translate(-339.000000, -166.000000)">
+            <g id="Icons-/-Arrow-dropdown" transform="translate(335.000000, 157.500000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Shape" fill="#000000" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>
