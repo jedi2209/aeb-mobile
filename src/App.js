@@ -12,7 +12,9 @@ import NewsScreen from "./screens/News";
 import MenuScreen from "./screens/Menu";
 import ArticleScreen from "./screens/Article";
 import ReleasesScreen from "./screens/Releases";
-import PublicationsScreen from './screens/Publications'
+import PublicationsScreen from './screens/Publications';
+import CommitteesScreen from './screens/Committees';
+import CommitteesPage  from './screens/CommitteesPage';
 
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
@@ -21,8 +23,10 @@ const MainNavigator = createStackNavigator(
     Home: { screen: NewsScreen },
     News: { screen: NewsScreen },
     Article: { screen: ArticleScreen },
+    CommitteesPage: { screen: CommitteesPage },
     Releases: { screen: ReleasesScreen },
-    Publications: { screen: PublicationsScreen }
+    Publications: { screen: PublicationsScreen },
+    Committees: { screen: CommitteesScreen }
   },
   {
     initialRouteName: "Home"

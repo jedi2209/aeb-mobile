@@ -11,6 +11,7 @@ import {
 
 import ReleasesCard from '../components/ReleasesCard';
 import PublicationCard from '../components/PublicationCard';
+import CommitteesCard from '../components/CommitteesCard';
 
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -31,7 +32,7 @@ export default class AllBeersScreen extends Component {
     loading: true,
     loadingMore: false,
     fullList: false,
-    refreshing: false,
+    refreshing: false
   };
 
   componentDidMount() {
@@ -143,6 +144,33 @@ export default class AllBeersScreen extends Component {
                   BAR_SPACE={BAR_SPACE}
                 />
               </View>
+            );
+          }
+          if (this.props.type === 'committees') {
+            return (
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.navigate('CommitteesPage', {
+                    itemId: 86,
+                    otherParam: 'anything you want here',
+                  });
+                }}
+              >
+                <View
+                  style={{
+                    marginTop: 25,
+                    width: "50%"
+                  }}
+                >
+                  <CommitteesCard
+                    data={item}
+                    width={deviceWidth - 14 - BAR_SPACE}
+                    height={200}
+                    deviceWidth={deviceWidth}
+                    BAR_SPACE={BAR_SPACE}
+                  />
+                </View>
+              </TouchableOpacity>
             );
           } else {
             return (
