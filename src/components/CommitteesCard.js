@@ -1,11 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
   StyleSheet,
-  Image,
-  TouchableWithoutFeedback,
-} from "react-native";
+  Image
+} from 'react-native';
 
 class CommitteesCard extends React.Component {
   render() {
@@ -14,7 +13,7 @@ class CommitteesCard extends React.Component {
         style={[
           styles.slide,
           {
-            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE,
+            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE
           }
         ]}
       >
@@ -32,33 +31,33 @@ class CommitteesCard extends React.Component {
 
 const styles = StyleSheet.create({
   slide: {
-    borderBottomColor: "#D7D8DA",
+    borderBottomColor: '#D7D8DA',
     borderBottomWidth: 1,
-    borderStyle: "solid",
+    borderStyle: 'solid',
     paddingBottom: 20,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   image: {
     borderRadius: 4
   },
   title: {
     fontSize: 17,
-    color: "#000000",
+    color: '#000000',
     letterSpacing: 0.32,
-    textAlign: "left",
+    textAlign: 'left',
     lineHeight: 22,
-    fontWeight: "bold"
+    fontWeight: 'bold'
   },
   date: {
     fontSize: 15,
-    color: "#8C8C8C",
+    color: '#8C8C8C',
     letterSpacing: 0.32,
     lineHeight: 20
   },
   commit: {
     color: '#007AFF',
-    fontSize: 15,
-  },
+    fontSize: 15
+  }
 });
 
 export default CommitteesCard;

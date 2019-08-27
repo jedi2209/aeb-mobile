@@ -1,6 +1,6 @@
-import React from "react";
-import { TouchableOpacity, StyleSheet } from "react-native";
-import Arrow from "../images/Arrow";
+import React from 'react';
+import { TouchableOpacity, StyleSheet } from 'react-native';
+import Arrow from '../images/Arrow';
 
 class ArrowButton extends React.Component {
   render() {
@@ -17,10 +17,10 @@ class ArrowButton extends React.Component {
 
 const style = StyleSheet.create({
   arrowBack: {
-    backgroundColor: "#0E4F9F",
+    backgroundColor: '#0E4F9F',
     borderRadius: 4,
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 

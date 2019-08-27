@@ -1,7 +1,7 @@
-import React from "react";
-import { theme } from "../core/themeProvider";
-import { TouchableOpacity, StyleSheet } from "react-native";
-import BurgerIcon from "../images/Burger.svg";
+import React from 'react';
+import { theme } from '../core/themeProvider';
+import { TouchableOpacity } from 'react-native';
+import BurgerIcon from '../images/Burger.svg';
 
 class Burger extends React.Component {
   render() {
@@ -10,14 +10,10 @@ class Burger extends React.Component {
         onPress={this.props.onPress}
         style={[this.props.style, theme.burger]}
       >
-        <BurgerIcon style={style.burger} />
+        <BurgerIcon />
       </TouchableOpacity>
     );
   }
 }
-
-const style = StyleSheet.create({
-  burger: {}
-});
 
 export default Burger;

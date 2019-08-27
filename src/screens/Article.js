@@ -19,18 +19,18 @@ import {
   StatusBar,
   StyleSheet,
   RefreshControl,
-  TouchableOpacity,
+  TouchableOpacity
 } from 'react-native';
 
 const HEADER_MAX_HEIGHT = 406;
-const HEADER_MIN_HEIGHT = Platform.OS === "ios" ? 60 : 73;
+const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
 const data = {
   title:
-    "AEB statement regarding the release of Philippe Delpal from pre-trial imprisonment to house arrest",
+    'AEB statement regarding the release of Philippe Delpal from pre-trial imprisonment to house arrest',
   uri:
-    "https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg",
+    'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
   date: new Date()
 };
 
@@ -41,7 +41,7 @@ class ArticleScreen extends React.Component {
     this.state = {
       scrollY: new Animated.Value(
         // iOS has negative initial scroll value because content inset...
-        Platform.OS === "ios" ? -HEADER_MAX_HEIGHT : 0
+        Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0
       ),
       refreshing: false
     };
@@ -51,30 +51,27 @@ class ArticleScreen extends React.Component {
     return {
       headerRight: (
         <Fragment>
-          <FavoritesButton onPress={() => navigation.navigate("Menu")} />
-          <ShareButton onPress={() => navigation.navigate("Menu")} />
+          <FavoritesButton onPress={() => navigation.navigate('Menu')} />
+          <ShareButton onPress={() => navigation.navigate('Menu')} />
         </Fragment>
       ),
-      headerTintColor: "#fff",
+      headerTintColor: '#fff',
       headerStyle: {
-        backgroundColor: "transparent",
+        backgroundColor: 'transparent',
         shadowRadius: 0,
         shadowOffset: {
           height: 0
         },
         elevation: 0,
         borderBottomWidth: 0,
-        shadowColor: "transparent",
+        shadowColor: 'transparent',
       },
-      //   headerBackground: "transparent",
       headerRightStyle: {
         borderWidth: 0,
         borderColor: 'transparent',
-        backgroundColor: 'green',
         elevation: 0,
-        shadowColor: "transparent",
-        backgroundColor: 'red',
-      },
+        shadowColor: 'transparent'
+      }
     };
   };
 
@@ -83,7 +80,7 @@ class ArticleScreen extends React.Component {
       <SafeAreaView>
         <View style={{ paddingHorizontal: 14 }}>
           <Text style={styles.date}>
-            {Moment().format("MMMM Do, YYYY H:mma")}
+            {Moment().format('MMMM Do, YYYY H:mma')}
           </Text>
           <Text style={styles.paragraph}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at
@@ -146,44 +143,44 @@ class ArticleScreen extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    const itemId = navigation.getParam("itemId", "NO-ID");
-    const otherParam = navigation.getParam("otherParam", "some default value");
+    const itemId = navigation.getParam('itemId', 'NO-ID');
+    const otherParam = navigation.getParam('otherParam', 'some default value');
 
     // Because of content inset the scroll value will be negative on iOS so bring
     // it back to 0.
     const scrollY = Animated.add(
       this.state.scrollY,
-      Platform.OS === "ios" ? HEADER_MAX_HEIGHT : 0
+      Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0
     );
 
     const headerTranslate = scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],
       outputRange: [0, -HEADER_SCROLL_DISTANCE],
-      extrapolate: "clamp"
+      extrapolate: 'clamp'
     });
 
     const imageOpacity = scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
       outputRange: [1, 1, 0],
-      extrapolate: "clamp"
+      extrapolate: 'clamp'
     });
 
     const imageTranslate = scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],
       outputRange: [0, 100],
-      extrapolate: "clamp"
+      extrapolate: 'clamp'
     });
 
     const textOpacity = scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
       outputRange: [1, 0, 0],
-      extrapolate: "clamp"
+      extrapolate: 'clamp'
     });
 
     const textOpacityReverd = scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
       outputRange: [0, 0, 1],
-      extrapolate: "clamp"
+      extrapolate: 'clamp'
     });
 
     return (
@@ -208,10 +205,10 @@ class ArticleScreen extends React.Component {
           }
           // iOS offset for RefreshControl
           contentInset={{
-            top: HEADER_MAX_HEIGHT,
+            top: HEADER_MAX_HEIGHT
           }}
           contentOffset={{
-            y: -HEADER_MAX_HEIGHT,
+            y: -HEADER_MAX_HEIGHT
           }}
         >
           {this._renderScrollViewContent()}
@@ -220,7 +217,7 @@ class ArticleScreen extends React.Component {
           pointerEvents="none"
           style={[
             styles.header,
-            { transform: [{ translateY: headerTranslate }] },
+            { transform: [{ translateY: headerTranslate }] }
           ]}
         >
           <Animated.Image
@@ -228,12 +225,12 @@ class ArticleScreen extends React.Component {
               styles.backgroundImage,
               {
                 opacity: imageOpacity,
-                transform: [{ translateY: imageTranslate }],
+                transform: [{ translateY: imageTranslate }]
               }
             ]}
             source={{
               uri:
-                'https://aebrus.ru/upload/resize_cache/iblock/1d1/1200_1200_1/aba_5543.jpg',
+                'https://aebrus.ru/upload/resize_cache/iblock/1d1/1200_1200_1/aba_5543.jpg'
             }}
           />
         </Animated.View>
@@ -254,7 +251,7 @@ class ArticleScreen extends React.Component {
             alignItems: 'center',
             justifyContent: 'center',
             paddingHorizontal: 14,
-            position: "absolute",
+            position: 'absolute',
             top: 0,
             width: deviceWidth,
             left: 0,
@@ -266,7 +263,7 @@ class ArticleScreen extends React.Component {
             style={{
               fontSize: 14,
               color: '#fff',
-              fontWeight: "bold"
+              fontWeight: 'bold'
             }}
           >
             {data.title}
@@ -277,21 +274,21 @@ class ArticleScreen extends React.Component {
   }
 }
 
-const deviceWidth = Dimensions.get("window").width;
+const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   date: {
     fontSize: 11,
-    color: "#1E2432",
+    color: '#1E2432',
     letterSpacing: 0.32,
     lineHeight: 22,
     marginBottom: 10,
-    marginTop: 20,
+    marginTop: 20
   },
   fill: {
-    flex: 1,
+    flex: 1
   },
   content: {
-    flex: 1,
+    flex: 1
   },
   header: {
     position: 'absolute',
@@ -319,7 +316,7 @@ const styles = StyleSheet.create({
     top: -100,
     width: deviceWidth,
     left: 0,
-    right: 0,
+    right: 0
   },
   title: {
     fontSize: 34,
@@ -327,22 +324,22 @@ const styles = StyleSheet.create({
     color: '#fff',
     width: deviceWidth,
     paddingHorizontal: 14,
-    paddingTop: 120,
+    paddingTop: 120
   },
   scrollViewContent: {
     // iOS uses content inset, which acts like padding.
-    paddingTop: Platform.OS !== "ios" ? HEADER_MAX_HEIGHT : 0
+    paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0
   },
   row: {
     height: 40,
     margin: 16,
-    backgroundColor: "#D3D3D3",
-    alignItems: "center",
-    justifyContent: "center"
+    backgroundColor: '#D3D3D3',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   paragraph: {
     fontSize: 15,
-    color: "#1E2432"
+    color: '#1E2432'
   }
 });
 export default ArticleScreen;
