@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 // import { theme } from "../core/themeProvider";
-import { View, Text, StyleSheet } from "react-native";
-import Burger from "../components/Burger";
+import { View, Text, StyleSheet } from 'react-native';
+import Burger from '../components/Burger';
 
 class Header extends React.Component {
   render() {
@@ -24,13 +24,13 @@ const style = StyleSheet.create({
   headerTitle: {
     marginTop: 8,
     fontSize: 34,
-    color: "#1E2432",
-    fontWeight: "bold"
+    color: '#1E2432',
+    fontWeight: 'bold'
   },
   headerDate: {
     marginTop: 5,
     fontSize: 15,
-    color: "#ACB1C0"
+    color: '#ACB1C0'
   }
 });
 

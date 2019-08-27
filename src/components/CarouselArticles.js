@@ -1,40 +1,40 @@
-import React from "react";
-import { theme } from "../core/themeProvider";
+import React from 'react';
+import { theme } from '../core/themeProvider';
 import {
   View,
   StyleSheet,
   Dimensions,
   ScrollView,
   Animated
-} from "react-native";
+} from 'react-native';
 
-const deviceWidth = Dimensions.get("window").width;
+const deviceWidth = Dimensions.get('window').width;
 const BAR_SPACE = 14;
-import Card from "../components/Card"
+import Card from '../components/Card';
 
 const data = [
   {
-    title: "Reliable internet - a regulatory challenge For business",
+    title: 'Reliable internet - a regulatory challenge For business',
     uri:
-      "https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg",
+      'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
     date: new Date()
   },
   {
-    title: "Reliable internet - a regulatory challenge For business",
+    title: 'Reliable internet - a regulatory challenge For business',
     uri:
-      "https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg",
+      'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
     date: new Date()
   },
   {
-    title: "Reliable internet - a regulatory challenge For business",
+    title: 'Reliable internet - a regulatory challenge For business',
     uri:
-      "https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg",
+      'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
     date: new Date()
   },
   {
-    title: "Reliable internet - a regulatory challenge For business",
+    title: 'Reliable internet - a regulatory challenge For business',
     uri:
-      "https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg",
+      'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
     date: new Date()
   }
 ];
@@ -85,13 +85,13 @@ export class CarouselArticles extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center"
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   barContainer: {
-    position: "absolute",
+    position: 'absolute',
     zIndex: 2,
     top: 40,
-    flexDirection: "row"
+    flexDirection: 'row'
   }
 });

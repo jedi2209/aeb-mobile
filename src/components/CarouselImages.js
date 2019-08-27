@@ -1,26 +1,18 @@
 import React from 'react';
 
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  ScrollView,
-  Animated,
-  Image
-} from 'react-native';
+import { View, StyleSheet, ScrollView, Animated, Image } from 'react-native';
 
-const deviceWidth = Dimensions.get('window').width;
 const BAR_SPACE = 14;
 
 const data = [
-  "https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg",
+  'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
   'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
   'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
-  "https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg",
-  "https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg",
   'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
   'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
-  "https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg"
+  'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
+  'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
+  'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg'
 ];
 
 export class CarouselImages extends React.Component {
@@ -36,7 +28,7 @@ export class CarouselImages extends React.Component {
       const thisImage = (
         <Image
           style={{ width: 60, height: 60, marginRight: BAR_SPACE }}
-          key={"image" + i}
+          key={'image' + i}
           source={{ uri: item }}
         />
       );
@@ -51,7 +43,7 @@ export class CarouselImages extends React.Component {
           scrollEventThrottle={10}
           pagingEnabled
           onScroll={Animated.event([
-            { nativeEvent: { contentOffset: { x: this.animVal } } },
+            { nativeEvent: { contentOffset: { x: this.animVal } } }
           ])}
         >
           {imageArray}
@@ -66,12 +58,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'flex-start',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   barContainer: {
     position: 'absolute',
     zIndex: 2,
     top: 40,
-    flexDirection: 'row',
-  },
+    flexDirection: 'row'
+  }
 });

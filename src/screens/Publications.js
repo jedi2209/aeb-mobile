@@ -9,28 +9,33 @@ import Dropdown from '../components/Dropdown';
 
 const ThumbListData = [
   {
-    image: 'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-    title: "Business Quarterly (Spring 2019)",
+    image:
+      'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
+    title: 'Business Quarterly (Spring 2019)',
     url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
   },
   {
-    image: 'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-    title: "How to invest in Russia",
+    image:
+      'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
+    title: 'How to invest in Russia',
     url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
   },
   {
-    image: 'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-    title: "Business Quarterly (Spring 2019)",
+    image:
+      'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
+    title: 'Business Quarterly (Spring 2019)',
     url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
   },
   {
-    image: 'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-    title: "How to invest in Russia",
+    image:
+      'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
+    title: 'How to invest in Russia',
     url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
   },
   {
-    image: 'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-    title: "Business Quarterly (Spring 2019)",
+    image:
+      'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
+    title: 'Business Quarterly (Spring 2019)',
     url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
   }
 ];
@@ -41,7 +46,7 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
+  StyleSheet
 } from 'react-native';
 
 class PublicationsScreen extends React.Component {
@@ -89,7 +94,7 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: '#fff',
     paddingLeft: 14
-  },
+  }
 });
 
 export default PublicationsScreen;

@@ -1,7 +1,7 @@
-import React from "react";
-import { theme } from "../core/themeProvider";
-import { TouchableWithoutFeedback, StyleSheet } from "react-native";
-import Share from "../images/share.svg";
+import React from 'react';
+import { theme } from '../core/themeProvider';
+import { TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import Share from '../images/share.svg';
 
 class ShareButton extends React.Component {
   render() {

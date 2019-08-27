@@ -1,11 +1,11 @@
-import React from "react";
-import { theme } from "../core/themeProvider";
+import React from 'react';
+import { theme } from '../core/themeProvider';
 
-import Moment from "moment";
-import Header from "../components/Header";
-import Title from "../components/Title";
-import { CarouselArticles } from "../components/CarouselArticles";
-import ThumbList from "../components/ThumbList";
+import Moment from 'moment';
+import Header from '../components/Header';
+import Title from '../components/Title';
+import { CarouselArticles } from '../components/CarouselArticles';
+import ThumbList from '../components/ThumbList';
 
 import {
   SafeAreaView,
@@ -14,25 +14,25 @@ import {
   Text,
   Image,
   StyleSheet
-} from "react-native";
+} from 'react-native';
 
 const dataFrom = [
   {
-    title: "Reliable internet - a regulatory challenge For business",
+    title: 'Reliable internet - a regulatory challenge For business',
     uri:
-      "https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg",
+      'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
     date: new Date()
   },
   {
-    title: "Reliable internet - a regulatory challenge For business",
+    title: 'Reliable internet - a regulatory challenge For business',
     uri:
-      "https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg",
+      'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
     date: new Date()
   },
   {
-    title: "Reliable internet - a regulatory challenge For business",
+    title: 'Reliable internet - a regulatory challenge For business',
     uri:
-      "https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg",
+      'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
     date: new Date()
   }
 ];
@@ -41,9 +41,9 @@ class NewsScreen extends React.Component {
     return {
       headerLeft: (
         <Header
-          onPress={() => navigation.navigate("Menu")}
+          onPress={() => navigation.navigate('Menu')}
           title="News"
-          date={Moment().format("MMMM Do, YYYY H:mma")}
+          date={Moment().format('MMMM Do, YYYY H:mma')}
         />
       ),
       // headerRight: <Text>avatar</Text>,
@@ -74,7 +74,7 @@ class NewsScreen extends React.Component {
                 style={[theme.pageTitle, { fontSize: 15 }]}
                 text="Last news"
               />
-              <ThumbList data={dataFrom} type='news' />
+              <ThumbList data={dataFrom} type="news" />
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -86,7 +86,7 @@ class NewsScreen extends React.Component {
 const styles = StyleSheet.create({
   scrollView: {},
   body: {
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     paddingLeft: 14
   }
 });

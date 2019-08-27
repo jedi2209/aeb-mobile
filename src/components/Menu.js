@@ -1,13 +1,20 @@
-import React from "react";
-import { theme } from "../core/themeProvider";
+import React from 'react';
+import { theme } from '../core/themeProvider';
 
-import { Text, SectionList, Dimensions, TouchableOpacity } from "react-native";
+import { Text, SectionList, Dimensions, TouchableOpacity } from 'react-native';
 
-const menuItems = ["News", "Events", "Publications", "Releases" ,"Committees", "Contacts"];
+const menuItems = [
+  'News',
+  'Events',
+  'Publications',
+  'Releases',
+  'Committees',
+  'Contacts'
+];
 
-const menuItemsBottom = ["settings"];
+const menuItemsBottom = ['settings'];
 
-const { width } = Dimensions.get("window");
+const { width } = Dimensions.get('window');
 
 class Menu extends React.Component {
   render() {
@@ -17,8 +24,8 @@ class Menu extends React.Component {
       <SectionList
         style={styles.linklList}
         sections={[
-          { title: "", data: menuItems },
-          { title: "", data: menuItemsBottom }
+          { title: '', data: menuItems },
+          { title: '', data: menuItemsBottom }
         ]}
         renderSectionHeader={() => (
           <Text style={{ height: width * 0.15 }}>{}</Text>
@@ -36,11 +43,11 @@ class Menu extends React.Component {
 
 const styles = {
   linklList: {
-    height: "100%"
+    height: '100%'
   },
   link: {
-    textAlign: "center",
-    textTransform: "capitalize"
+    textAlign: 'center',
+    textTransform: 'capitalize'
   }
 };
 

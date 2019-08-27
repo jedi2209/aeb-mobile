@@ -1,7 +1,7 @@
-import React from "react";
-import { theme } from "../core/themeProvider";
-import { TouchableWithoutFeedback, StyleSheet } from "react-native";
-import Favorites from "../images/favorites.svg";
+import React from 'react';
+import { theme } from '../core/themeProvider';
+import { TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import Favorites from '../images/favorites.svg';
 
 class FavoritesButton extends React.Component {
   render() {

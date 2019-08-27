@@ -11,7 +11,7 @@ class ReleasesCard extends React.Component {
         style={[
           styles.slide,
           {
-            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE,
+            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE
           }
         ]}
       >
@@ -36,10 +36,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderStyle: 'solid',
     paddingBottom: 20,
-    flexDirection: "row"
+    flexDirection: 'row'
   },
   image: {
-    borderRadius: 4,
+    borderRadius: 4
   },
   title: {
     fontSize: 17,
@@ -47,16 +47,16 @@ const styles = StyleSheet.create({
     letterSpacing: 0.32,
     textAlign: 'left',
     lineHeight: 22,
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   date: {
     fontSize: 15,
     color: '#8C8C8C',
     letterSpacing: 0.32,
-    lineHeight: 20,
+    lineHeight: 20
   },
   commit: {
-    color: "#007AFF",
+    color: '#007AFF',
     fontSize: 15
   }
 });

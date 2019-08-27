@@ -64,7 +64,7 @@ class ArticleScreen extends React.Component {
         },
         elevation: 0,
         borderBottomWidth: 0,
-        shadowColor: 'transparent',
+        shadowColor: 'transparent'
       },
       headerRightStyle: {
         borderWidth: 0,

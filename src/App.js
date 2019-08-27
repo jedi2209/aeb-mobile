@@ -6,17 +6,17 @@
  * @flow
  */
 
-import React from "react";
+import React from 'react';
 
-import NewsScreen from "./screens/News";
-import MenuScreen from "./screens/Menu";
-import ArticleScreen from "./screens/Article";
-import ReleasesScreen from "./screens/Releases";
+import NewsScreen from './screens/News';
+import MenuScreen from './screens/Menu';
+import ArticleScreen from './screens/Article';
+import ReleasesScreen from './screens/Releases';
 import PublicationsScreen from './screens/Publications';
 import CommitteesScreen from './screens/Committees';
-import CommitteesPage  from './screens/CommitteesPage';
+import CommitteesPage from './screens/CommitteesPage';
 
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
 const MainNavigator = createStackNavigator(
   {
@@ -29,7 +29,7 @@ const MainNavigator = createStackNavigator(
     Committees: { screen: CommitteesScreen }
   },
   {
-    initialRouteName: "Home"
+    initialRouteName: 'Home'
   }
 );
 
@@ -43,8 +43,8 @@ const RootStack = createStackNavigator(
     }
   },
   {
-    mode: "modal",
-    headerMode: "none"
+    mode: 'modal',
+    headerMode: 'none'
   }
 );
 

@@ -8,30 +8,30 @@ import Dropdown from '../components/Dropdown';
 
 const ThumbListData = [
   {
-    title: "Sales of cars and light commercial vehicles in June 2014",
-    commit: "Automobile Manufacturers Committee",
-    date: Date.now(),
+    title: 'Sales of cars and light commercial vehicles in June 2014',
+    commit: 'Automobile Manufacturers Committee',
+    date: Date.now()
   },
   {
-    title: "Sales of cars and light commercial vehicles in June 2014",
-    commit: "Automobile Manufacturers Committee",
-    date: Date.now(),
+    title: 'Sales of cars and light commercial vehicles in June 2014',
+    commit: 'Automobile Manufacturers Committee',
+    date: Date.now()
   },
   {
-    title: "Sales of cars and light commercial vehicles in June 2014",
-    commit: "Automobile Manufacturers Committee",
-    date: Date.now(),
+    title: 'Sales of cars and light commercial vehicles in June 2014',
+    commit: 'Automobile Manufacturers Committee',
+    date: Date.now()
   },
   {
-    title: "Sales of cars and light commercial vehicles in June 2014",
-    commit: "Automobile Manufacturers Committee",
-    date: Date.now(),
+    title: 'Sales of cars and light commercial vehicles in June 2014',
+    commit: 'Automobile Manufacturers Committee',
+    date: Date.now()
   },
   {
-    title: "Sales of cars and light commercial vehicles in June 2014",
-    commit: "Automobile Manufacturers Committee",
-    date: Date.now(),
-  },
+    title: 'Sales of cars and light commercial vehicles in June 2014',
+    commit: 'Automobile Manufacturers Committee',
+    date: Date.now()
+  }
 ];
 
 import {
@@ -40,7 +40,7 @@ import {
   View,
   Text,
   Image,
-  StyleSheet,
+  StyleSheet
 } from 'react-native';
 
 class ReleasesScreen extends React.Component {
@@ -73,7 +73,7 @@ class ReleasesScreen extends React.Component {
             style={styles.scrollView}
           >
             <View>
-              <Dropdown style={{marginTop: 10}}/>
+              <Dropdown style={{ marginTop: 10 }} />
               <View style={styles.body}>
                 <ThumbList data={ThumbListData} />
               </View>
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: '#fff',
     paddingLeft: 14
-  },
+  }
 });
 
 export default ReleasesScreen;

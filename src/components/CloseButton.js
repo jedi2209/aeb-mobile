@@ -1,7 +1,7 @@
-import React from "react";
-import { theme } from "../core/themeProvider";
-import { TouchableOpacity, StyleSheet } from "react-native";
-import Close from "../images/Close.svg";
+import React from 'react';
+import { theme } from '../core/themeProvider';
+import { TouchableOpacity, StyleSheet } from 'react-native';
+import Close from '../images/Close.svg';
 
 class CloseButton extends React.Component {
   render() {
