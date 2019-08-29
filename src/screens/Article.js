@@ -1,8 +1,6 @@
 import React, { Fragment } from 'react';
-import { theme } from '../core/themeProvider';
 
 import Moment from 'moment';
-import Header from '../components/Header';
 import FavoritesButton from '../components/FavoritesButton';
 import ShareButton from '../components/ShareButton';
 import { CarouselImages } from '../components/CarouselImages';
@@ -10,16 +8,12 @@ import { CarouselImages } from '../components/CarouselImages';
 import {
   Dimensions,
   SafeAreaView,
-  ScrollView,
   View,
   Text,
-  ImageBackground,
   Animated,
   Platform,
-  StatusBar,
   StyleSheet,
-  RefreshControl,
-  TouchableOpacity
+  RefreshControl
 } from 'react-native';
 
 const HEADER_MAX_HEIGHT = 406;
@@ -78,7 +72,7 @@ class ArticleScreen extends React.Component {
   _renderScrollViewContent() {
     return (
       <SafeAreaView>
-        <View style={{ paddingHorizontal: 14 }}>
+        <View style={[styles.scrollViewContent, { paddingHorizontal: 14 }]}>
           <Text style={styles.date}>
             {Moment().format('MMMM Do, YYYY H:mma')}
           </Text>
