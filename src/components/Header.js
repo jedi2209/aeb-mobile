@@ -1,6 +1,6 @@
 import React from 'react';
 // import { theme } from "../core/themeProvider";
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Platform } from 'react-native';
 import Burger from '../components/Burger';
 
 class Header extends React.Component {
@@ -19,7 +19,8 @@ class Header extends React.Component {
 
 const style = StyleSheet.create({
   header: {
-    paddingHorizontal: 14
+    paddingHorizontal: 14,
+    marginTop: Platform.OS !== 'ios' ? 10 : 0
   },
   headerTitle: {
     marginTop: 8,

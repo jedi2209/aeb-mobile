@@ -1,5 +1,6 @@
 import React from 'react';
 import { theme } from '../core/themeProvider';
+import { Platform } from 'react-native';
 
 import Moment from 'moment';
 import Header from '../components/Header';
@@ -40,14 +41,7 @@ const ThumbListData = [
   }
 ];
 
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  StyleSheet
-} from 'react-native';
+import { SafeAreaView, ScrollView, View, StyleSheet } from 'react-native';
 
 class PublicationsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -59,7 +53,7 @@ class PublicationsScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: 100,
+        height: Platform.OS === 'ios' ? 100 : 108,
         borderBottomWidth: 0
       }
     };

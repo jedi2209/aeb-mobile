@@ -29,22 +29,15 @@ export default class Dropdown extends React.Component {
             });
           }}
           style={{
-            inputIOS: {
-              fontSize: 17,
-              color: '#ACB1C0',
-              lineHeight: 20
-            },
-            inputAndroid: {
-              backgroundColor: 'transparent'
-            },
+            ...pickerSelectStyles,
             iconContainer: {
-              top: 5,
-              right: 15
+              top: 15,
+              right: 12
             }
           }}
           value={this.state.favSport3}
           useNativeAndroidPickerStyle={false}
-          textInputProps={{ underlineColorAndroid: 'cyan' }}
+          textInputProps={{ textAlign: 'left' }}
           Icon={() => {
             return <ArrowDropdown />;
           }}
@@ -54,11 +47,35 @@ export default class Dropdown extends React.Component {
   }
 }
 
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 17,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 0,
+    borderColor: '#ACB1C0',
+    borderRadius: 4,
+    color: '#ACB1C0',
+    paddingRight: 30 // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    textAlign: 'left',
+    fontSize: 17,
+    paddingHorizontal: 10,
+    paddingVertical: 8,
+    borderWidth: 0,
+    borderColor: '#ACB1C0',
+    borderRadius: 8,
+    color: '#ACB1C0',
+    paddingRight: 30 // to ensure the text is never behind the icon
+  }
+});
+
 const style = StyleSheet.create({
   dropdown: {
     paddingVertical: 10,
     paddingHorizontal: 14,
-    alignItems: 'center',
+    alignItems: 'stretch',
     backgroundColor: '#FFF',
     fontSize: 17,
     color: '#000',

@@ -38,9 +38,8 @@ import {
   SafeAreaView,
   ScrollView,
   View,
-  Text,
-  Image,
-  StyleSheet
+  StyleSheet,
+  Platform
 } from 'react-native';
 
 class ReleasesScreen extends React.Component {
@@ -54,8 +53,14 @@ class ReleasesScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: 100,
-        borderBottomWidth: 0
+        height: Platform.OS === 'ios' ? 100 : 108,
+        borderBottomWidth: 0,
+        shadowRadius: 0,
+        shadowOffset: {
+          height: 0
+        },
+        elevation: 0,
+        shadowColor: 'transparent'
       }
     };
   };

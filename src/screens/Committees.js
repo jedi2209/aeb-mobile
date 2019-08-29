@@ -1,11 +1,8 @@
 import React from 'react';
 import { theme } from '../core/themeProvider';
 
-import Moment from 'moment';
 import Header from '../components/Header';
-import Title from '../components/Title';
 import ThumbList from '../components/ThumbList';
-import Dropdown from '../components/Dropdown';
 
 const ThumbListData = [
   {
@@ -39,9 +36,8 @@ import {
   SafeAreaView,
   ScrollView,
   View,
-  Text,
-  Image,
-  StyleSheet,
+  Platform,
+  StyleSheet
 } from 'react-native';
 
 class CommitteesScreen extends React.Component {
@@ -54,7 +50,7 @@ class CommitteesScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: 100,
+        height: Platform.OS === 'ios' ? 100 : 108,
         borderBottomWidth: 0
       }
     };

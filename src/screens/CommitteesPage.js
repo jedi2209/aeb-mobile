@@ -44,7 +44,8 @@ import {
   Text,
   Image,
   StyleSheet,
-  ImageBackground
+  ImageBackground,
+  Platform
 } from 'react-native';
 
 class PublicationsScreen extends React.Component {
@@ -53,7 +54,9 @@ class PublicationsScreen extends React.Component {
       headerLeft: <Header onPress={() => navigation.navigate('Menu')} />,
       headerStyle: {
         backgroundColor: 'transparent',
-        borderBottomWidth: 0
+        borderBottomWidth: 0,
+        height: Platform.OS === 'ios' ? 100 : 108
+        // paddingTop: 10
       },
       headerTransparent: true
     };
