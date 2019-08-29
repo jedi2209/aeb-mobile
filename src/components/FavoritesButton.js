@@ -19,7 +19,7 @@ class FavoritesButton extends React.Component {
 const style = StyleSheet.create({
   close: {
     marginTop: 10,
-    marginLeft: 10,
+    marginRight: 20,
     width: 12,
     height: 18
   }

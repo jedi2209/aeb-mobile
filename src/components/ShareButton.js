@@ -19,7 +19,7 @@ class ShareButton extends React.Component {
 const style = StyleSheet.create({
   close: {
     marginTop: 10,
-    marginLeft: 10,
+    marginRight: 20,
     width: 18,
     height: 18
   }

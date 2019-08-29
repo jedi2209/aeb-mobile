@@ -252,7 +252,7 @@ class ArticleScreen extends React.Component {
             justifyContent: 'center',
             paddingHorizontal: 14,
             position: 'absolute',
-            top: 0,
+            top: -5,
             width: deviceWidth,
             left: 0,
             right: 0,

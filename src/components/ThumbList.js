@@ -103,6 +103,7 @@ export default class AllBeersScreen extends Component {
     if (this.props.type === 'news') {
       return (
         <Card
+          extraPadding={this.props.extraPadding}
           data={item}
           width={deviceWidth - 14 - BAR_SPACE}
           height={200}
@@ -113,8 +114,9 @@ export default class AllBeersScreen extends Component {
     } else if (this.props.type === 'publications') {
       return (
         <PublicationCard
+          extraPadding={this.props.extraPadding}
           data={item}
-          width={deviceWidth - 14 - BAR_SPACE}
+          width={deviceWidth - 28 - BAR_SPACE}
           height={200}
           deviceWidth={deviceWidth}
           BAR_SPACE={BAR_SPACE}
@@ -133,6 +135,7 @@ export default class AllBeersScreen extends Component {
         >
           <View style={{ marginTop: 25, width: '50%' }}>
             <CommitteesCard
+              extraPadding={this.props.extraPadding}
               data={item}
               width={deviceWidth - 14 - BAR_SPACE}
               height={200}
@@ -145,6 +148,7 @@ export default class AllBeersScreen extends Component {
     } else {
       return (
         <ReleasesCard
+          extraPadding={this.props.extraPadding}
           data={item}
           width={deviceWidth - 14 - BAR_SPACE}
           height={200}
@@ -158,6 +162,7 @@ export default class AllBeersScreen extends Component {
   render() {
     return !this.state.loading ? (
       <FlatList
+        // eslint-disable-next-line react-native/no-inline-styles
         contentContainerStyle={{
           flex: 1,
           flexDirection: 'column',
@@ -168,6 +173,7 @@ export default class AllBeersScreen extends Component {
         data={this.state.data}
         renderItem={({ item }) => {
           const renderElement = (
+            // eslint-disable-next-line react-native/no-inline-styles
             <View style={{ marginTop: 25, width: '50%' }}>
               {this._renderCard(item)}
             </View>

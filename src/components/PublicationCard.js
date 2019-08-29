@@ -3,16 +3,26 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 
 class PublicationsCard extends React.Component {
   render() {
+    const extraPadding = this.props.extraPadding
+      ? parseInt(this.props.extraPadding, 10)
+      : 0;
     return (
       <View
         style={[
           styles.slide,
+          // eslint-disable-next-line react-native/no-inline-styles
           {
-            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE
+            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE,
+            paddingHorizontal: extraPadding ? extraPadding / 2 : 0,
+            paddingTop: extraPadding ? 20 : 0
           }
         ]}
       >
-        <View style={{ width: this.props.deviceWidth - 64 - 35 }}>
+        <View
+          style={{
+            width: this.props.deviceWidth - 64 - 35 - (extraPadding || 0)
+          }}
+        >
           <Text style={styles.title}>{this.props.data.title}</Text>
         </View>
         <Image
@@ -26,11 +36,13 @@ class PublicationsCard extends React.Component {
 
 const styles = StyleSheet.create({
   slide: {
+    backgroundColor: '#FFFFFF',
     borderBottomColor: '#D7D8DA',
     borderBottomWidth: 1,
     borderStyle: 'solid',
     paddingBottom: 20,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    borderRadius: 4
   },
   image: {
     borderRadius: 4
@@ -40,8 +52,8 @@ const styles = StyleSheet.create({
     color: '#000000',
     letterSpacing: 0.32,
     textAlign: 'left',
-    lineHeight: 22,
-    fontWeight: 'bold'
+    lineHeight: 22
+    // fontWeight: 'bold'
   },
   date: {
     fontSize: 15,

@@ -4,20 +4,32 @@ import Moment from 'moment';
 
 class CardMini extends React.Component {
   render() {
+    const extraPadding = this.props.extraPadding
+      ? parseInt(this.props.extraPadding, 10)
+      : 0;
+
     return (
       <View
         style={[
           styles.slide,
+          // eslint-disable-next-line react-native/no-inline-styles
           {
-            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE
+            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE,
+            paddingHorizontal: extraPadding ? extraPadding / 2 : 0,
+            paddingTop: extraPadding ? 20 : 0
           }
         ]}
       >
         <Image
           source={{ uri: this.props.data.uri }}
+          // eslint-disable-next-line react-native/no-inline-styles
           style={[styles.image, { width: 64, height: 64, marginRight: 10 }]}
         />
-        <View style={{ width: this.props.deviceWidth - 64 - 10 - 15 }}>
+        <View
+          style={{
+            width: this.props.deviceWidth - 64 - 10 - 15 - (extraPadding || 0)
+          }}
+        >
           <Text style={styles.title}>{this.props.data.title}</Text>
           <Text style={styles.date}>
             {Moment().format('MMMM Do, YYYY H:mma')}
@@ -34,7 +46,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderStyle: 'solid',
     paddingBottom: 20,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 4
   },
   image: {
     borderRadius: 4

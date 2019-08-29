@@ -22,6 +22,21 @@ const ThumbListData = [
   }
 ];
 
+const dataFrom = [
+  {
+    title: 'Reliable internet - a regulatory challenge For business',
+    uri:
+      'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
+    date: new Date()
+  },
+  {
+    title: 'Reliable internet - a regulatory challenge For business',
+    uri:
+      'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
+    date: new Date()
+  }
+];
+
 import {
   SafeAreaView,
   ScrollView,
@@ -69,7 +84,12 @@ class PublicationsScreen extends React.Component {
                     Product Conformity Assessment
                   </Text>
                 </View>
-                <ThumbList data={ThumbListData} type="publications" />
+                <ThumbList
+                  data={ThumbListData}
+                  type="publications"
+                  extraPadding="28"
+                />
+                <ThumbList data={dataFrom} type="news" extraPadding="28" />
               </View>
             </View>
           </ScrollView>
