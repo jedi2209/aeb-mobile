@@ -15,6 +15,7 @@ import ReleasesScreen from './screens/Releases';
 import PublicationsScreen from './screens/Publications';
 import CommitteesScreen from './screens/Committees';
 import CommitteesPage from './screens/CommitteesPage';
+import EventsScreen from './screens/Events';
 
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
@@ -26,7 +27,8 @@ const MainNavigator = createStackNavigator(
     CommitteesPage: { screen: CommitteesPage },
     Releases: { screen: ReleasesScreen },
     Publications: { screen: PublicationsScreen },
-    Committees: { screen: CommitteesScreen }
+    Committees: { screen: CommitteesScreen },
+    Events: { screen: EventsScreen }
   },
   {
     initialRouteName: 'Home'
