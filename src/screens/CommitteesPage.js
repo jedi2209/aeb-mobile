@@ -53,12 +53,16 @@ class PublicationsScreen extends React.Component {
     return {
       headerLeft: <Header onPress={() => navigation.navigate('Menu')} />,
       headerStyle: {
+        backgroundImage: '../images/bg.png',
         backgroundColor: 'transparent',
+        shadowRadius: 0,
+        shadowOffset: {
+          height: 0
+        },
+        elevation: 0,
         borderBottomWidth: 0,
-        height: Platform.OS === 'ios' ? 100 : 108
-        // paddingTop: 10
-      },
-      headerTransparent: true
+        shadowColor: 'transparent'
+      }
     };
   };
 
@@ -66,36 +70,51 @@ class PublicationsScreen extends React.Component {
     return (
       <ImageBackground
         source={require('../images/bg.png')}
-        style={[styles.container]}
+        style={[
+          styles.container,
+          // eslint-disable-next-line react-native/no-inline-styles
+          {
+            top: -100,
+            position: 'relative',
+            marginBottom: -100
+          }
+        ]}
       >
         <SafeAreaView>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}
+          <View
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{
+              marginTop: Platform.OS === 'ios' ? 60 + 30 : 73 + 30
+            }}
           >
-            <View>
-              <View style={styles.body}>
-                <View style={styles.header}>
-                  <Image
-                    style={styles.headerImage}
-                    source={{
-                      uri:
-                        'https://aebrus.ru/local/templates/aeb2019en/img/commitet_inner.png'
-                    }}
+            <ScrollView
+              contentInsetAdjustmentBehavior="automatic"
+              style={styles.scrollView}
+            >
+              <View>
+                <View style={styles.body}>
+                  <View style={styles.header}>
+                    <Image
+                      style={styles.headerImage}
+                      source={{
+                        uri:
+                          'https://aebrus.ru/local/templates/aeb2019en/img/commitet_inner.png'
+                      }}
+                    />
+                    <Text style={styles.headerText}>
+                      Product Conformity Assessment
+                    </Text>
+                  </View>
+                  <ThumbList
+                    data={ThumbListData}
+                    type="publications"
+                    extraPadding="28"
                   />
-                  <Text style={styles.headerText}>
-                    Product Conformity Assessment
-                  </Text>
+                  <ThumbList data={dataFrom} type="news" extraPadding="28" />
                 </View>
-                <ThumbList
-                  data={ThumbListData}
-                  type="publications"
-                  extraPadding="28"
-                />
-                <ThumbList data={dataFrom} type="news" extraPadding="28" />
               </View>
-            </View>
-          </ScrollView>
+            </ScrollView>
+          </View>
         </SafeAreaView>
       </ImageBackground>
     );
@@ -109,7 +128,7 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: 'transparent',
     paddingHorizontal: 14,
-    marginTop: 40
+    marginTop: 10
   },
   header: {
     backgroundColor: '#FFFFFF',
@@ -217,4 +236,3 @@ export default PublicationsScreen;
 // letter-spacing: 0.23px;
 // /* Sketch doesnt export pattern fills at this point */
 // border: 1px solid #F5F5F5;
-
