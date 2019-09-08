@@ -7,14 +7,7 @@ import Title from '../components/Title';
 import { CarouselArticles } from '../components/CarouselArticles';
 import ThumbList from '../components/ThumbList';
 
-import {
-  SafeAreaView,
-  ScrollView,
-  View,
-  Text,
-  Image,
-  StyleSheet
-} from 'react-native';
+import { SafeAreaView, ScrollView, View, StyleSheet } from 'react-native';
 
 const dataFrom = [
   {
@@ -43,10 +36,9 @@ class NewsScreen extends React.Component {
         <Header
           onPress={() => navigation.navigate('Menu')}
           title="News"
-          date={Moment().format('MMMM Do, YYYY H:mma')}
+          date={Moment().format('dddd, MMMM DD')}
         />
       ),
-      // headerRight: <Text>avatar</Text>,
       headerStyle: {
         height: 100
       }
@@ -57,24 +49,18 @@ class NewsScreen extends React.Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <View
-        style={[styles.container, { backgroundColor: theme.backgroundColor }]}
-      >
+      <View style={{ backgroundColor: theme.backgroundColor }}>
         <SafeAreaView>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}
-          >
-            <View style={styles.body}>
-              <Title style={theme.pageTitle} text="Featured News" />
-              <CarouselArticles navigation={this.props.navigation} />
-            </View>
-            <View style={styles.body}>
+          <ScrollView contentInsetAdjustmentBehavior="automatic">
+            <View style={theme.body}>
               <Title
-                style={[theme.pageTitle, { fontSize: 15 }]}
-                text="Last news"
+                style={[theme.pageTitle, styles.pageTitle]}
+                text="Featured News"
               />
-              <ThumbList data={dataFrom} type="news" />
+              <CarouselArticles navigation={navigate} />
+            </View>
+            <View style={theme.body}>
+              <ThumbList data={dataFrom} type="news" title="Last news" />
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -84,10 +70,8 @@ class NewsScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  scrollView: {},
-  body: {
-    backgroundColor: '#fff',
-    paddingLeft: 14
+  pageTitle: {
+    marginBottom: 20
   }
 });
 

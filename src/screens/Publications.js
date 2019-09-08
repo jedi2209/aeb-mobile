@@ -2,11 +2,8 @@ import React from 'react';
 import { theme } from '../core/themeProvider';
 import { Platform } from 'react-native';
 
-import Moment from 'moment';
 import Header from '../components/Header';
-import Title from '../components/Title';
 import ThumbList from '../components/ThumbList';
-import Dropdown from '../components/Dropdown';
 
 const ThumbListData = [
   {
@@ -73,7 +70,11 @@ class PublicationsScreen extends React.Component {
           >
             <View>
               <View style={styles.body}>
-                <ThumbList data={ThumbListData} type="publications" />
+                <ThumbList
+                  data={ThumbListData}
+                  type="publications"
+                  extraPadding="28"
+                />
               </View>
             </View>
           </ScrollView>
@@ -86,7 +87,7 @@ class PublicationsScreen extends React.Component {
 const styles = StyleSheet.create({
   scrollView: {},
   body: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FAFAFA',
     paddingLeft: 14
   }
 });

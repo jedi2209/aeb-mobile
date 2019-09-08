@@ -31,9 +31,7 @@ class CardMini extends React.Component {
           }}
         >
           <Text style={styles.title}>{this.props.data.title}</Text>
-          <Text style={styles.date}>
-            {Moment().format('MMMM Do, YYYY H:mma')}
-          </Text>
+          <Text style={styles.date}>{Moment().format('D MMMM YYYY')}</Text>
         </View>
       </View>
     );

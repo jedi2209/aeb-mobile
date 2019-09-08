@@ -1,6 +1,8 @@
 {
     "body": {
-        "fontFamily": "Helvetica"
+        "fontFamily": "Helvetica",
+        "backgroundColor": "#fff",
+        "paddingLeft": 14
     },
     "blueScreen": {
         "backgroundColor": "#0E4F9F"
@@ -41,7 +43,7 @@
     "pageTitle": {
         "fontSize": 15,
         "color": "#ACB1C0",
-        "marginBottom": 10,
+        "marginBottom": 0,
         "marginTop": 20,
         "textTransform": "uppercase"
     }

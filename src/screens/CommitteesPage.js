@@ -80,7 +80,7 @@ class PublicationsScreen extends React.Component {
           }
         ]}
       >
-        <SafeAreaView>
+        <View>
           <View
             // eslint-disable-next-line react-native/no-inline-styles
             style={{
@@ -110,12 +110,19 @@ class PublicationsScreen extends React.Component {
                     type="publications"
                     extraPadding="28"
                   />
-                  <ThumbList data={dataFrom} type="news" extraPadding="28" />
+                  <View style={{backgroundColor:'#fff', marginTop: 14, borderRadius: 8,}}>
+                    <ThumbList
+                      data={dataFrom}
+                      type="news"
+                      extraPadding="28"
+                      title="Committee news"
+                    />
+                  </View>
                 </View>
               </View>
             </ScrollView>
           </View>
-        </SafeAreaView>
+        </View>
       </ImageBackground>
     );
   }
@@ -156,83 +163,3 @@ const styles = StyleSheet.create({
 });
 
 export default PublicationsScreen;
-
-// box-shadow: 0 20px 20px 0 rgba(0,0,0,0.08);
-// border-radius: 8px;
-// background: #D7D8DA;
-// font-family: Helvetica;
-// font-size: 15px;
-// color: #000000;
-// letter-spacing: 0.32px;
-// text-align: left;
-// line-height: 20px;
-// font-family: Helvetica;
-// font-size: 17px;
-// color: #000000;
-// letter-spacing: 0.32px;
-// line-height: 22px;
-// background: #D7D8DA;
-// font-family: Helvetica;
-// font-size: 15px;
-// color: #8C8C8C;
-// letter-spacing: 0.32px;
-// text-align: left;
-// line-height: 20px;
-// font-family: Helvetica;
-// font-size: 17px;
-// color: #000000;
-// letter-spacing: 0.32px;
-// line-height: 22px;
-// background: #D7D8DA;
-// font-family: Helvetica;
-// font-size: 15px;
-// color: #8C8C8C;
-// letter-spacing: 0.32px;
-// text-align: left;
-// line-height: 20px;
-// font-family: Helvetica;
-// font-size: 17px;
-// color: #000000;
-// letter-spacing: 0.32px;
-// line-height: 22px;
-// font-family: Helvetica;
-// font-size: 15px;
-// color: #ACB1C0;
-// letter-spacing: 0.32px;
-// line-height: 22px;
-// /* Sketch doesnt export pattern fills at this point */
-// border-radius: 6px;
-// /* Sketch doesnt export pattern fills at this point */
-// border-radius: 6px;
-// /* Sketch doesnt export pattern fills at this point */
-// border-radius: 6px;
-// background: #FFFFFF;
-// border-radius: 4px;
-// /* Sketch doesnt export pattern fills at this point */
-// border-radius: 4px;
-// background: #0E4F9F;
-// border-radius: 4px;
-
-// font-family: Helvetica;
-// font-size: 17px;
-// color: #000000;
-// letter-spacing: 0.32px;
-// line-height: 22px;
-// background: #FFFFFF;
-// border-radius: 4px;
-// /* Sketch doesnt export pattern fills at this point */
-// border-radius: 4px;
-// background: #0E4F9F;
-// border-radius: 4px;
-
-// font-family: Helvetica;
-// font-size: 17px;
-// color: #000000;
-// letter-spacing: 0.32px;
-// line-height: 22px;
-// font-family: Helvetica;
-// font-size: 20px;
-// color: #1E2432;
-// letter-spacing: 0.23px;
-// /* Sketch doesnt export pattern fills at this point */
-// border: 1px solid #F5F5F5;

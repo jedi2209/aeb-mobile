@@ -1,5 +1,5 @@
 import React from 'react';
-import { theme } from '../core/themeProvider';
+
 import {
   View,
   StyleSheet,
@@ -8,10 +8,10 @@ import {
   Animated
 } from 'react-native';
 
-const deviceWidth = Dimensions.get('window').width;
-const BAR_SPACE = 14;
 import Card from '../components/Card';
 
+const deviceWidth = Dimensions.get('window').width;
+const BAR_SPACE = 14;
 const data = [
   {
     title: 'Reliable internet - a regulatory challenge For business',

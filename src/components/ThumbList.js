@@ -9,6 +9,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import Title from '../components/Title';
 import ReleasesCard from '../components/ReleasesCard';
 import PublicationCard from '../components/PublicationCard';
 import CommitteesCard from '../components/CommitteesCard';
@@ -25,7 +26,7 @@ const BAR_SPACE = 14;
 // screen height and width
 const { width } = Dimensions.get('window');
 
-export default class AllBeersScreen extends Component {
+export default class AllArticlesScreen extends Component {
   state = {
     data: [],
     page: 1,
@@ -36,10 +37,10 @@ export default class AllBeersScreen extends Component {
   };
 
   componentDidMount() {
-    this._fetchAllBeers();
+    this._fetchAllArticles();
   }
 
-  _fetchAllBeers = () => {
+  _fetchAllArticles = () => {
     const { page } = this.state;
 
     if (page > 3) {
@@ -64,7 +65,7 @@ export default class AllBeersScreen extends Component {
         refreshing: true
       },
       () => {
-        this._fetchAllBeers();
+        this._fetchAllArticles();
       }
     );
   };
@@ -76,7 +77,7 @@ export default class AllBeersScreen extends Component {
         loadingMore: true
       }),
       () => {
-        this._fetchAllBeers();
+        this._fetchAllArticles();
       }
     );
   };
@@ -161,38 +162,43 @@ export default class AllBeersScreen extends Component {
 
   render() {
     return !this.state.loading ? (
-      <FlatList
-        // eslint-disable-next-line react-native/no-inline-styles
-        contentContainerStyle={{
-          flex: 1,
-          flexDirection: 'column',
-          height: '100%',
-          width: '100%'
-        }}
-        numColumns={1}
-        data={this.state.data}
-        renderItem={({ item }) => {
-          const renderElement = (
-            // eslint-disable-next-line react-native/no-inline-styles
-            <View style={{ marginTop: 25, width: '50%' }}>
-              {this._renderCard(item)}
-            </View>
-          );
+      <View>
+        {this.props.title && (
+          <Title style={[theme.pageTitle]} text={this.props.title} />
+        )}
+        <FlatList
+          // eslint-disable-next-line react-native/no-inline-styles
+          contentContainerStyle={{
+            flex: 1,
+            flexDirection: 'column',
+            height: '100%',
+            width: '100%'
+          }}
+          numColumns={1}
+          data={this.state.data}
+          renderItem={({ item }) => {
+            const renderElement = (
+              // eslint-disable-next-line react-native/no-inline-styles
+              <View style={{ marginTop: 25, width: '50%' }}>
+                {this._renderCard(item)}
+              </View>
+            );
 
-          return renderElement;
-        }}
-        keyExtractor={item =>
-          (item.date || item.url).toString + getRandomInt(1, 1000)
-        }
-        ListFooterComponent={this._renderFooter}
-        onRefresh={this._handleRefresh}
-        refreshing={this.state.refreshing}
-        onScroll={this._scrolled}
-        initialNumToRender={3}
-      />
+            return renderElement;
+          }}
+          keyExtractor={item =>
+            (item.date || item.url).toString + getRandomInt(1, 1000)
+          }
+          ListFooterComponent={this._renderFooter}
+          onRefresh={this._handleRefresh}
+          refreshing={this.state.refreshing}
+          onScroll={this._scrolled}
+          initialNumToRender={3}
+        />
+      </View>
     ) : (
       <View>
-        <Text style={{ alignSelf: 'center' }}>Loading beers</Text>
+        <Text style={{ alignSelf: 'center' }}>Loading Articles</Text>
         <ActivityIndicator />
       </View>
     );
