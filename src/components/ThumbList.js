@@ -1,5 +1,9 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { Component } from 'react';
+import Moment from 'moment';
+
 import { theme } from '../core/themeProvider';
+
 import {
   Dimensions,
   View,
@@ -103,14 +107,23 @@ export default class AllArticlesScreen extends Component {
   _renderCard = item => {
     if (this.props.type === 'news') {
       return (
-        <Card
-          extraPadding={this.props.extraPadding}
-          data={item}
-          width={deviceWidth - 14 - BAR_SPACE}
-          height={200}
-          deviceWidth={deviceWidth}
-          BAR_SPACE={BAR_SPACE}
-        />
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Article', {
+              itemId: 86,
+              otherParam: 'anything you want here'
+            });
+          }}
+        >
+          <Card
+            extraPadding={this.props.extraPadding}
+            data={item}
+            width={deviceWidth - 14 - BAR_SPACE}
+            height={200}
+            deviceWidth={deviceWidth}
+            BAR_SPACE={BAR_SPACE}
+          />
+        </TouchableOpacity>
       );
     } else if (this.props.type === 'publications') {
       return (
@@ -147,19 +160,49 @@ export default class AllArticlesScreen extends Component {
         </TouchableOpacity>
       );
     } else {
-      return (
-        <ReleasesCard
-          extraPadding={this.props.extraPadding}
-          data={item}
-          width={deviceWidth - 14 - BAR_SPACE}
-          height={200}
-          deviceWidth={deviceWidth}
-          BAR_SPACE={BAR_SPACE}
-        />
-      );
+      return this._renderRealesCards(item);
     }
   };
 
+  _renderRealesCards(item) {
+    return (
+      <View key={item.date.toString + getRandomInt(1, 1000)}>
+        <View
+          style={{
+            borderColor: '#D7D8DA',
+            borderBottomWidth: 1,
+            borderBottomStyle: 'solid',
+            width: deviceWidth,
+            paddingLeft: 14,
+            paddingVertical: 5,
+            marginTop: 5,
+            marginBottom: 10
+          }}
+        >
+          <Text
+            style={{
+              color: '#8C8C8C',
+              fontSize: 15
+            }}
+          >
+            {Moment(item.date).format('MMMM YYYY')}
+          </Text>
+        </View>
+        {item.items.map(value => {
+          return (
+            <ReleasesCard
+              extraPadding={this.props.extraPadding}
+              data={value}
+              width={deviceWidth - 14 - BAR_SPACE}
+              height={200}
+              deviceWidth={deviceWidth}
+              BAR_SPACE={BAR_SPACE}
+            />
+          );
+        })}
+      </View>
+    );
+  }
   render() {
     return !this.state.loading ? (
       <View>

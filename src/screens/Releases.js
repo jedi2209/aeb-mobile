@@ -8,29 +8,49 @@ import Dropdown from '../components/Dropdown';
 
 const ThumbListData = [
   {
-    title: 'Sales of cars and light commercial vehicles in June 2014',
-    commit: 'Automobile Manufacturers Committee',
-    date: Date.now()
+    date: '2019-10-01',
+    items: [
+      {
+        title: 'Sales of cars and light commercial vehicles in June 2014',
+        commit: 'Automobile Manufacturers Committee',
+        date: Date.now(),
+        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
+      },
+      {
+        title: 'Sales of cars and light commercial vehicles in June 2014',
+        commit: 'Automobile Manufacturers Committee',
+        date: Date.now(),
+        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
+      }
+    ]
   },
   {
-    title: 'Sales of cars and light commercial vehicles in June 2014',
-    commit: 'Automobile Manufacturers Committee',
-    date: Date.now()
+    date: '2019-09-01',
+    items: [
+      {
+        title: 'Sales of cars and light commercial vehicles in June 2014',
+        commit: 'Automobile Manufacturers Committee',
+        date: Date.now(),
+        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
+      }
+    ]
   },
   {
-    title: 'Sales of cars and light commercial vehicles in June 2014',
-    commit: 'Automobile Manufacturers Committee',
-    date: Date.now()
-  },
-  {
-    title: 'Sales of cars and light commercial vehicles in June 2014',
-    commit: 'Automobile Manufacturers Committee',
-    date: Date.now()
-  },
-  {
-    title: 'Sales of cars and light commercial vehicles in June 2014',
-    commit: 'Automobile Manufacturers Committee',
-    date: Date.now()
+    date: '2019-08-01',
+    items: [
+      {
+        title: 'Sales of cars and light commercial vehicles in June 2014',
+        commit: 'Automobile Manufacturers Committee',
+        date: Date.now(),
+        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
+      },
+      {
+        title: 'Sales of cars and light commercial vehicles in June 2014',
+        commit: 'Automobile Manufacturers Committee',
+        date: Date.now(),
+        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
+      }
+    ]
   }
 ];
 
@@ -49,7 +69,6 @@ class ReleasesScreen extends React.Component {
         <Header
           onPress={() => navigation.navigate('Menu')}
           title="Press Releases"
-          date={Moment().format('MMMM Do, YYYY H:mma')}
         />
       ),
       headerStyle: {
@@ -80,7 +99,7 @@ class ReleasesScreen extends React.Component {
             <View>
               <Dropdown style={{ marginTop: 10 }} />
               <View style={styles.body}>
-                <ThumbList data={ThumbListData} />
+                <ThumbList data={ThumbListData} extraPadding="28" />
               </View>
             </View>
           </ScrollView>
@@ -93,8 +112,7 @@ class ReleasesScreen extends React.Component {
 const styles = StyleSheet.create({
   scrollView: {},
   body: {
-    backgroundColor: '#fff',
-    paddingLeft: 14
+    backgroundColor: '#fff'
   }
 });
 

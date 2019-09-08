@@ -46,8 +46,6 @@ class NewsScreen extends React.Component {
   };
 
   render() {
-    const { navigate } = this.props.navigation;
-
     return (
       <View style={{ backgroundColor: theme.backgroundColor }}>
         <SafeAreaView>
@@ -57,10 +55,15 @@ class NewsScreen extends React.Component {
                 style={[theme.pageTitle, styles.pageTitle]}
                 text="Featured News"
               />
-              <CarouselArticles navigation={navigate} />
+              <CarouselArticles navigation={this.props.navigation} />
             </View>
             <View style={theme.body}>
-              <ThumbList data={dataFrom} type="news" title="Last news" />
+              <ThumbList
+                data={dataFrom}
+                type="news"
+                title="Last news"
+                navigation={this.props.navigation}
+              />
             </View>
           </ScrollView>
         </SafeAreaView>
