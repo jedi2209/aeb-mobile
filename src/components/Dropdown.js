@@ -31,7 +31,7 @@ export default class Dropdown extends React.Component {
           style={{
             ...pickerSelectStyles,
             iconContainer: {
-              top: 15,
+              top: 6,
               right: 12
             }
           }}
@@ -50,7 +50,7 @@ export default class Dropdown extends React.Component {
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     fontSize: 17,
-    paddingVertical: 12,
+    paddingVertical: 2,
     paddingHorizontal: 10,
     borderWidth: 0,
     borderColor: '#ACB1C0',
@@ -62,7 +62,7 @@ const pickerSelectStyles = StyleSheet.create({
     textAlign: 'left',
     fontSize: 17,
     paddingHorizontal: 10,
-    paddingVertical: 8,
+    paddingVertical: 2,
     borderWidth: 0,
     borderColor: '#ACB1C0',
     borderRadius: 8,

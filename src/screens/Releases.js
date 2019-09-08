@@ -1,7 +1,6 @@
 import React from 'react';
 import { theme } from '../core/themeProvider';
 
-import Moment from 'moment';
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
 import Dropdown from '../components/Dropdown';
@@ -85,12 +84,8 @@ class ReleasesScreen extends React.Component {
   };
 
   render() {
-    const { navigate } = this.props.navigation;
-
     return (
-      <View
-        style={[styles.container, { backgroundColor: theme.backgroundColor }]}
-      >
+      <View style={styles.body}>
         <SafeAreaView>
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
@@ -98,7 +93,7 @@ class ReleasesScreen extends React.Component {
           >
             <View>
               <Dropdown style={{ marginTop: 10 }} />
-              <View style={styles.body}>
+              <View>
                 <ThumbList data={ThumbListData} extraPadding="28" />
               </View>
             </View>
@@ -112,7 +107,7 @@ class ReleasesScreen extends React.Component {
 const styles = StyleSheet.create({
   scrollView: {},
   body: {
-    backgroundColor: '#fff'
+    backgroundColor: '#FAFAFA'
   }
 });
 

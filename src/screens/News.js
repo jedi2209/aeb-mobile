@@ -7,7 +7,13 @@ import Title from '../components/Title';
 import { CarouselArticles } from '../components/CarouselArticles';
 import ThumbList from '../components/ThumbList';
 
-import { SafeAreaView, ScrollView, View, StyleSheet } from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  View,
+  StyleSheet,
+  Platform
+} from 'react-native';
 
 const dataFrom = [
   {
@@ -40,7 +46,7 @@ class NewsScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: 100
+        height: Platform.OS === 'ios' ? 100 : 108
       }
     };
   };

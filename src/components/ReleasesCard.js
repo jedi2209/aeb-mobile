@@ -22,14 +22,17 @@ class ReleasesCard extends React.Component {
         <View
           style={[
             styles.slide,
+            // eslint-disable-next-line react-native/no-inline-styles
             {
               width: this.props.deviceWidth - 14 - this.props.BAR_SPACE,
-              paddingHorizontal: extraPadding ? extraPadding / 2 : 0,
-              paddingTop: extraPadding ? 20 : 0
+              paddingHorizontal: 14,
+              marginHorizontal: extraPadding ? extraPadding / 2 : 0,
+              paddingVertical: 10,
+              marginBottom: 10
             }
           ]}
         >
-          <View style={{ width: this.props.deviceWidth - 64 - 35 }}>
+          <View style={{ width: this.props.deviceWidth - 64 - 35 - 14 }}>
             <Text style={styles.title}>{this.props.data.title}</Text>
             <Text style={styles.commit}>{this.props.data.commit}</Text>
             <Text style={styles.date}>
@@ -47,8 +50,9 @@ class ReleasesCard extends React.Component {
 
 const styles = StyleSheet.create({
   slide: {
-    paddingBottom: 20,
-    flexDirection: 'row'
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+    borderRadius: 8
   },
   image: {
     borderRadius: 4

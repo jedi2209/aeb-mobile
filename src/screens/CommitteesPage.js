@@ -3,9 +3,7 @@ import { theme } from '../core/themeProvider';
 
 import Moment from 'moment';
 import Header from '../components/Header';
-import Title from '../components/Title';
 import ThumbList from '../components/ThumbList';
-import Dropdown from '../components/Dropdown';
 
 const ThumbListData = [
   {
@@ -38,7 +36,6 @@ const dataFrom = [
 ];
 
 import {
-  SafeAreaView,
   ScrollView,
   View,
   Text,
@@ -110,8 +107,16 @@ class PublicationsScreen extends React.Component {
                     type="publications"
                     extraPadding="28"
                   />
-                  <View style={{backgroundColor:'#fff', marginTop: 14, borderRadius: 8,}}>
+                  <View
+                    // eslint-disable-next-line react-native/no-inline-styles
+                    style={{
+                      backgroundColor: '#fff',
+                      marginTop: 14,
+                      borderRadius: 8
+                    }}
+                  >
                     <ThumbList
+                      navigation={this.props.navigation}
                       data={dataFrom}
                       type="news"
                       extraPadding="28"

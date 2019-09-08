@@ -1,5 +1,11 @@
 import React from 'react';
-import { View, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import {
+  View,
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  Platform
+} from 'react-native';
 
 import { theme } from '../core/themeProvider';
 import Header from '../components/Header';
@@ -107,7 +113,15 @@ class EventsScreen extends React.Component {
 
   static navigationOptions = ({ navigation }) => {
     return {
-      headerLeft: <Header onPress={() => navigation.navigate('Menu')} />
+      headerLeft: (
+        <Header
+          onPress={() => navigation.navigate('Menu')}
+          title="Events"
+        />
+      ),
+      headerStyle: {
+        height: Platform.OS === 'ios' ? 100 : 108
+      }
     };
   };
 
@@ -164,6 +178,7 @@ class EventsScreen extends React.Component {
             />
             <View style={styles.body}>
               <ThumbList
+                navigation={this.props.navigation}
                 data={this.state.dataForThumbList}
                 type="news"
                 title="Upcoming events"
@@ -184,199 +199,3 @@ const styles = StyleSheet.create({
 });
 
 export default EventsScreen;
-
-
-// background: #FFFFFF;
-// box-shadow: 0 2px 23px 0 #EDEDED;
-// border-radius: 6px;
-// font-family: Helvetica;
-// font-size: 15px;
-// color: #6B7897;
-// letter-spacing: 0.59px;
-// text-align: center;
-// background: #4A90E2;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #E1E4E7;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #E1E4E7;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #FFFFFF;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #E1E4E7;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #E1E4E7;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 14.54px;
-// color: #7C86A2;
-// text-align: center;
-// font-family: HelveticaNeue-Medium;
-// font-size: 15.65px;
-// color: rgba(52,72,94,0.54);
-// text-align: center;
-// line-height: 19.01px;
-// font-family: HelveticaNeue-Medium;
-// font-size: 15.65px;
-// color: rgba(52,72,94,0.54);
-// text-align: center;
-// line-height: 19.01px;
-// font-family: HelveticaNeue-Medium;
-// font-size: 15.65px;
-// color: rgba(52,72,94,0.54);
-// text-align: center;
-// line-height: 19.01px;
-// font-family: HelveticaNeue-Medium;
-// font-size: 15.65px;
-// color: rgba(52,72,94,0.54);
-// text-align: center;
-// line-height: 19.01px;
-// font-family: HelveticaNeue-Medium;
-// font-size: 15.65px;
-// color: rgba(52,72,94,0.54);
-// text-align: center;
-// line-height: 19.01px;
-// font-family: HelveticaNeue-Medium;
-// font-size: 15.65px;
-// color: rgba(52,72,94,0.54);
-// text-align: center;
-// line-height: 19.01px;
-// font-family: HelveticaNeue-Medium;
-// font-size: 15.65px;
-// color: rgba(52,72,94,0.54);
-// text-align: center;
-// line-height: 19.01px;
-// background: #F7F8FC;
-// border-radius: 70.59px;
-// opacity: 0.26;
-// transform: scaleX(-1) rotate(-92deg);
-// background: #8C96AB;
-// background: #F7F8FC;
-// border-radius: 70.59px;
-// opacity: 0.25;
-// transform: rotate(-92deg);
-// background: #8C96AB;

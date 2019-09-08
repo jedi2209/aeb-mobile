@@ -175,7 +175,7 @@ export default class AllArticlesScreen extends Component {
             width: deviceWidth,
             paddingLeft: 14,
             paddingVertical: 5,
-            marginTop: 5,
+            marginTop: 0,
             marginBottom: 10
           }}
         >
@@ -207,7 +207,17 @@ export default class AllArticlesScreen extends Component {
     return !this.state.loading ? (
       <View>
         {this.props.title && (
-          <Title style={[theme.pageTitle]} text={this.props.title} />
+          <Title
+            style={[
+              theme.pageTitle,
+              {
+                paddingHorizontal: this.props.extraPadding
+                  ? this.props.extraPadding / 2
+                  : 0
+              }
+            ]}
+            text={this.props.title}
+          />
         )}
         <FlatList
           // eslint-disable-next-line react-native/no-inline-styles
