@@ -1,0 +1,8 @@
+json_key_file("android/fastlane/api-XXXX-XXXX-XXXX.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("com.aebrus.app")
+
+app_identifier("com.aebrus.app") # The bundle identifier of your app
+apple_id("app@aebrus.ru") # Your Apple email address
+
+itc_team_id("XXXX") # iTunes Connect Team ID
+team_id("YNA37LTZ5W") # Developer Portal Team ID
