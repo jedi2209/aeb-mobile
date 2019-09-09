@@ -1,0 +1,132 @@
+fastlane_version '2.129.0'
+
+fastlane_require 'dotenv'
+
+before_all do
+  Dotenv.overload '.env'
+  ensure_git_branch(
+    branch: 'master'
+  )
+  # git_pull
+end
+
+platform :ios do
+  desc "Prepare the iOS app for dev or build"
+  lane :prepare do
+    puts "SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER: #{ENV['SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER']}"
+    ensure_git_status_clean
+    # produce(
+    #     app_identifier: "com.atlant-m.OneSignalNotificationServiceExtension",
+    #     app_name: "atlant-m OneSignalNotificationServiceExtension",
+    #     skip_itc: true
+    # )
+  end
+
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    get_certificates           # invokes cert
+    get_provisioning_profile   # invokes sigh
+    increment_build_number(
+        xcodeproj: "ios/AwesomeProject.xcodeproj"
+    )
+    build_app(
+	workspace: "ios/AwesomeProject.xcodeproj",
+	scheme: "atlantm",
+	export_method: "app-store",
+	export_options: {
+     		provisioningProfiles: {
+        		"com.atlant-m" => "com.atlant-m AppStore",
+      		}
+    	}
+    )
+    # Generate the changelog based on commit messages since your last tag
+    changelog_from_git_commits(
+        pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
+        date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
+        match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
+        merge_commit_filtering: "exclude_merges" # Optional, lets you filter out merge commits
+    )
+    upload_to_testflight(
+        skip_waiting_for_build_processing: true,
+        skip_submission: true
+    )
+    commit_version_bump(
+        message: "Version Bump iOS",    # create a commit with a custom message
+        xcodeproj: "ios/atlantm.xcodeproj"
+    )
+    add_git_tag(
+        grouping: "builds",
+        prefix: "v"
+    )
+    push_to_git_remote
+  end
+end
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    changelog_from_git_commits(
+        pretty: "- (%ae) %s",# Optional, lets you provide a custom format to apply to each commit when generating the changelog text
+        date_format: "short",# Optional, lets you provide an additional date format to dates within the pretty-formatted string
+        match_lightweight_tag: false,  # Optional, lets you ignore lightweight (non-annotated) tags when searching for the last tag
+        merge_commit_filtering: "exclude_merges", # Optional, lets you filter out merge commits
+        tag_match_pattern: "builds/android"
+    )
+    gradle(
+        project_dir: "./android/",
+        task: "clean assemble",
+        build_type: "Release",
+        flags: "-PbuildType=debug",
+        print_command_output: true
+    )
+  end
+
+  desc "Submit a new Internal Build to Google Play"
+  lane :internal do
+    ensure_git_status_clean
+#     increment_version_code(
+#         gradle_file_path: "./android/build.gradle",
+#         #ext_constant_name: "test"
+#         #app_folder_name:"app"
+#     )
+    gradle(
+        project_dir: "./android/",
+        task: "clean assemble",
+        build_type: "Release",
+        flags: "-PbuildType=release",
+        print_command_output: true
+    )
+    puts "AABs: #{Actions.lane_context[SharedValues::GRADLE_ALL_AAB_OUTPUT_PATHS]}"
+    puts "AAB: #{Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]}"
+    upload_to_play_store(
+        track: 'internal'
+    )
+    git_commit(
+        path: ['./android/app/versioning/app_version.properties'],
+        message: 'Version Bump Android'
+    )
+    add_git_tag(
+        grouping: "builds",
+        prefix: "v"
+    )
+    push_to_git_remote
+  end
+
+  desc "Make a new release build"
+  lane :release do
+#     increment_version_code(
+#         gradle_file_path: "./android/build.gradle",
+#         #ext_constant_name: "test"
+#         #app_folder_name:"app"
+#     )
+    gradle(
+        project_dir: "./android/",
+        task: "clean assemble",
+        build_type: "Release",
+        flags: "-PbuildType=release",
+        print_command_output: true
+    )
+    puts "AABs: #{Actions.lane_context[SharedValues::GRADLE_ALL_AAB_OUTPUT_PATHS]}"
+    puts "AAB: #{Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]}"
+  end
+end
