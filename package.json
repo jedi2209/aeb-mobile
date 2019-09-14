@@ -9,7 +9,9 @@
     "iphone": "react-native run-ios --simulator=\"iPhone 8\"",
     "iphonex": "react-native run-ios --simulator=\"iPhone X\"",
     "iphonexr": "react-native run-ios --simulator=\"iPhone Xʀ\"",
-    "react": "react-native start --reset-cache"
+    "react": "react-native start --reset-cache",
+    "android-release": "cd ./android; bundle exec fastlane android internal; cd ../",
+    "android-build": "cd ./android; bundle exec fastlane android build; cd ../; open ./android/app/build/outputs/apk/release;"
   },
   "dependencies": {
     "lodash": "^4.17.15",
