@@ -26,11 +26,11 @@ Runs all the tests
 fastlane android internal
 ```
 Submit a new Internal Build to Google Play
-### android deploy
+### android build
 ```
-fastlane android deploy
+fastlane android build
 ```
-Deploy a new version to the Google Play
+Make a new release build
 
 ----
 
