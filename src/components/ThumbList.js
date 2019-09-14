@@ -125,6 +125,26 @@ export default class AllArticlesScreen extends Component {
           />
         </TouchableOpacity>
       );
+    } else if (this.props.type === 'events') {
+      return (
+        <TouchableOpacity
+          onPress={() => {
+            this.props.navigation.navigate('Event', {
+              itemId: 86,
+              otherParam: 'anything you want here'
+            });
+          }}
+        >
+          <Card
+            extraPadding={this.props.extraPadding}
+            data={item}
+            width={deviceWidth - 14 - BAR_SPACE}
+            height={200}
+            deviceWidth={deviceWidth}
+            BAR_SPACE={BAR_SPACE}
+          />
+        </TouchableOpacity>
+      );
     } else if (this.props.type === 'publications') {
       return (
         <PublicationCard

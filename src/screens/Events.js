@@ -114,10 +114,7 @@ class EventsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       headerLeft: (
-        <Header
-          onPress={() => navigation.navigate('Menu')}
-          title="Events"
-        />
+        <Header onPress={() => navigation.navigate('Menu')} title="Events" />
       ),
       headerStyle: {
         height: Platform.OS === 'ios' ? 100 : 108
@@ -180,7 +177,7 @@ class EventsScreen extends React.Component {
               <ThumbList
                 navigation={this.props.navigation}
                 data={this.state.dataForThumbList}
-                type="news"
+                type="events"
                 title="Upcoming events"
               />
             </View>

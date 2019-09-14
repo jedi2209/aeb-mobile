@@ -16,6 +16,7 @@ import PublicationsScreen from './screens/Publications';
 import CommitteesScreen from './screens/Committees';
 import CommitteesPage from './screens/CommitteesPage';
 import EventsScreen from './screens/Events';
+import EventPage from './screens/EventPage';
 
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 
@@ -24,6 +25,7 @@ const MainNavigator = createStackNavigator(
     Home: { screen: NewsScreen },
     News: { screen: NewsScreen },
     Article: { screen: ArticleScreen },
+    Event: { screen: EventPage },
     CommitteesPage: { screen: CommitteesPage },
     Releases: { screen: ReleasesScreen },
     Publications: { screen: PublicationsScreen },
