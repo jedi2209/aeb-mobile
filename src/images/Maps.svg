@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="18px" height="22px" viewBox="0 0 18 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Icons / Line / Maps</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15,4.28857197 C12.7224615,4.23052827 10.5178143,5.05680197 9.00096323,6.75780626 C7.28029728,8.0998045 6.38858923,10.1838528 6.42994747,12.5193529 C6.43142237,19.0897928 14.3686311,25.3291076 15,25.6886025 C14.8711214,25.7228468 15.1198591,25.7228468 15,25.6886025 C15.6403884,25.286314 23.5685776,18.4222118 23.5700525,12.5193529 C23.6114108,10.1838528 22.7197027,8.0998045 20.9990368,6.75780626 C19.4821857,5.05680197 17.2775385,4.23052827 15,4.28857197 Z M15,15.8265856 C12.4493841,15.8265856 10.6977123,14.1655091 10.6977123,11.6962748 C10.6977123,9.22704055 12.433535,7.5829943 15,7.5829943 C17.566465,7.5829943 19.3021308,9.22935144 19.3021308,11.6962748 C19.3021308,14.1860559 17.5837788,15.8265856 15,15.8265856 Z" id="path-1"></path>
+    </defs>
+    <g id="AEB-APP" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="50.-Events---full" transform="translate(-21.000000, -328.000000)">
+            <g id="Address" transform="translate(15.000000, 324.000000)">
+                <g id="Icons-/-Filled-/-Locations">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Location_Pin" fill-opacity="0.920000017" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

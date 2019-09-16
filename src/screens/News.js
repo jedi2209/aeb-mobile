@@ -40,6 +40,7 @@ class NewsScreen extends React.Component {
     return {
       headerLeft: (
         <Header
+          screen="wide"
           onPress={() => navigation.navigate('Menu')}
           title="News"
           date={Moment().format('dddd, MMMM DD')}
