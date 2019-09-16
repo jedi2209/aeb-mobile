@@ -7,7 +7,7 @@ class Header extends React.Component {
   render() {
     return (
       <View style={style.header}>
-        <Burger onPress={this.props.onPress} />
+        <Burger screen={this.props.screen} onPress={this.props.onPress} />
         <Text style={[style.headerTitle]}>{this.props.title}</Text>
         {this.props.date && (
           <Text style={style.headerDate}>{this.props.date}</Text>

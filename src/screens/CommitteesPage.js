@@ -48,7 +48,12 @@ import {
 class PublicationsScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
-      headerLeft: <Header onPress={() => navigation.navigate('Menu')} />,
+      headerLeft: (
+        <Header
+          screen="committees"
+          onPress={() => navigation.navigate('Menu')}
+        />
+      ),
       headerStyle: {
         backgroundImage: '../images/bg.png',
         backgroundColor: 'transparent',
