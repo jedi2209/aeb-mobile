@@ -84,7 +84,6 @@ class PublicationsScreen extends React.Component {
       >
         <View>
           <View
-            // eslint-disable-next-line react-native/no-inline-styles
             style={{
               marginTop: Platform.OS === 'ios' ? 60 + 30 : 73 + 30
             }}

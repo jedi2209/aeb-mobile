@@ -228,6 +228,7 @@ class ArticleScreen extends React.Component {
           />
         </Animated.View>
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.bar,
             {
@@ -243,6 +244,7 @@ class ArticleScreen extends React.Component {
           <Maps text="AZIMUT Hotel Smolenskaya Moscow, Smolenskaya st.8, Moscow" />
         </Animated.View>
         <Animated.View
+          pointerEvents="none"
           style={{
             marginTop: 5,
             alignItems: 'center',

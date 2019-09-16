@@ -229,6 +229,7 @@ class ArticleScreen extends React.Component {
           />
         </Animated.View>
         <Animated.View
+          pointerEvents="none"
           style={[
             styles.bar,
             {
@@ -240,6 +241,7 @@ class ArticleScreen extends React.Component {
           <Text style={[styles.title]}>{data.title}</Text>
         </Animated.View>
         <Animated.View
+          pointerEvents="none"
           style={{
             marginTop: 5,
             alignItems: 'center',
