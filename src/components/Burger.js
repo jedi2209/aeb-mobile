@@ -23,7 +23,7 @@ class Burger extends React.Component {
             width: 80,
             height: 50,
             paddingLeft: 14,
-            paddingTop: 8,
+            paddingTop: 14,
             zIndex: 100
           }
         ]}
