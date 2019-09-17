@@ -7,6 +7,7 @@ import SegmentedControlTab from 'react-native-segmented-control-tab';
 import Maps from '../components/Maps';
 import Press from '../components/Press';
 import Translation from '../components/Translation';
+import CalendarIcon from '../components/CalendarIcon';
 
 import {
   Dimensions,
@@ -242,6 +243,9 @@ class ArticleScreen extends React.Component {
             {Moment().format('DD MM YYYY, HH:MM')}
           </Text>
           <Maps text="AZIMUT Hotel Smolenskaya Moscow, Smolenskaya st.8, Moscow" />
+          <View style={{position: 'relative'}}>
+            <CalendarIcon />
+          </View>
         </Animated.View>
         <Animated.View
           pointerEvents="none"
