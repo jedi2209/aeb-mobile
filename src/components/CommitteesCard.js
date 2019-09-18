@@ -8,11 +8,17 @@ class CommitteesCard extends React.Component {
         style={[
           styles.slide,
           {
-            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE
+            width:
+              this.props.width ||
+              this.props.deviceWidth - 14 - this.props.BAR_SPACE
           }
         ]}
       >
-        <View style={{ width: this.props.deviceWidth - 64 - 35 }}>
+        <View
+          style={{
+            width: (this.props.width || this.props.deviceWidth) - 64 - 35
+          }}
+        >
           <Text style={styles.title}>{this.props.data.title}</Text>
         </View>
         <Image
