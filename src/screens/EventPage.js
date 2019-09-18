@@ -8,6 +8,7 @@ import Maps from '../components/Maps';
 import Press from '../components/Press';
 import Translation from '../components/Translation';
 import CalendarIcon from '../components/CalendarIcon';
+import CommitteesCard from '../components/CommitteesCard';
 
 import {
   Dimensions,
@@ -17,8 +18,15 @@ import {
   Animated,
   Platform,
   StyleSheet,
-  RefreshControl
+  RefreshControl,
+  TouchableOpacity
 } from 'react-native';
+
+const CommitData = {
+  image: 'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
+  title: 'Business Quarterly (Spring 2019)',
+  url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
+};
 
 const HEADER_MAX_HEIGHT = 406;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
@@ -74,7 +82,6 @@ class ArticleScreen extends React.Component {
   };
 
   handleIndexChange = index => {
-    alert(index);
     //handle tab selection for custom Tab Selection SegmentedControlTab
     this.setState(prevState => ({ ...prevState, selectedIndex: index }));
   };
@@ -126,10 +133,65 @@ class ArticleScreen extends React.Component {
             </View>
           )}
           {this.state.selectedIndex === 1 && (
-            <Text style={styles.paragraph}>tab2</Text>
+            <View style={{ marginTop: 20 }}>
+              <View style={{ paddingLeft: 24 }}>
+                <Text style={[styles.paragraph, { fontWeight: 'bold' }]}>
+                  Attendance fees
+                </Text>
+              </View>
+              <View style={styles.table}>
+                <Text style={styles.tableText}>Assigned member</Text>
+                <Text>18 000</Text>
+              </View>
+              <View style={styles.table}>
+                <Text style={styles.tableText}>Additional member</Text>
+                <Text>20 000</Text>
+              </View>
+              <View style={styles.table}>
+                <Text style={styles.tableText}>Non-member</Text>
+                <Text>24 000</Text>
+              </View>
+
+              <TouchableOpacity
+                style={{ marginBottom: 150 }}
+                onPress={() => {
+                  this.props.navigation.navigate('CommitteesPage', {
+                    itemId: 86,
+                    otherParam: 'anything you want here'
+                  });
+                }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    width: deviceWidth - 28,
+                    marginTop: 25,
+                    shadowColor: '#000',
+                    shadowOffset: {
+                      width: 0,
+                      height: 2
+                    },
+                    shadowOpacity: 0.23,
+                    shadowRadius: 2.62,
+                    elevation: 4
+                  }}
+                >
+                  <CommitteesCard
+                    extraPadding={28}
+                    data={CommitData}
+                    height={200}
+                    deviceWidth={deviceWidth}
+                    BAR_SPACE={0}
+                  />
+                </View>
+              </TouchableOpacity>
+            </View>
           )}
           {this.state.selectedIndex === 2 && (
-            <Text style={styles.paragraph}>tab3</Text>
+            <View style={{ marginTop: 20 }}>
+              <Text style={styles.paragraph}>tab3</Text>
+            </View>
           )}
         </View>
       </SafeAreaView>
@@ -243,7 +305,7 @@ class ArticleScreen extends React.Component {
             {Moment().format('DD MM YYYY, HH:MM')}
           </Text>
           <Maps text="AZIMUT Hotel Smolenskaya Moscow, Smolenskaya st.8, Moscow" />
-          <View style={{position: 'relative'}}>
+          <View style={{ position: 'relative' }}>
             <CalendarIcon />
           </View>
         </Animated.View>
@@ -344,6 +406,19 @@ const styles = StyleSheet.create({
   paragraph: {
     fontSize: 15,
     color: '#1E2432'
+  },
+  table: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomColor: '#D8D8D8',
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
+    marginHorizontal: 24,
+    paddingVertical: 14
+  },
+  tableText: {
+    color: '#D8D8D8'
   }
 });
 export default ArticleScreen;
