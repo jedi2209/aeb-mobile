@@ -31,7 +31,7 @@ export default class Dropdown extends React.Component {
           style={{
             ...pickerSelectStyles,
             iconContainer: {
-              top: 6,
+              top: 10,
               right: 12
             }
           }}
