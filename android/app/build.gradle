@@ -106,7 +106,7 @@ android {
 }
 
 // Map for the version code that gives each ABI a value.
-ext.abiCodes = [x86:1, x86_64:2, "armeabi-v7a":3, "arm64-v8a":4]
+ext.abiCodes = [x86:1, x86_64:2, "armeabi-v7a":3, "arm64-v8a":4, "universal":5]
 
 import com.android.build.OutputFile
 
