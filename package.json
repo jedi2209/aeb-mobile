@@ -1,6 +1,6 @@
 {
   "name": "Aebrus",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "start": "react-native start",
@@ -11,7 +11,8 @@
     "iphonexr": "react-native run-ios --simulator=\"iPhone Xʀ\"",
     "react": "react-native start --reset-cache",
     "android-release": "cd ./android; bundle exec fastlane android internal; cd ../",
-    "android-build": "cd ./android; bundle exec fastlane android build; cd ../; open ./android/app/build/outputs/apk/release;"
+    "android-build": "cd ./android; bundle exec fastlane android build; cd ../; open ./android/app/build/outputs/apk/release;",
+    "version": "./version.sh"
   },
   "dependencies": {
     "lodash": "^4.17.15",
