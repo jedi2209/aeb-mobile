@@ -9,6 +9,7 @@ import Press from '../components/Press';
 import Translation from '../components/Translation';
 import CalendarIcon from '../components/CalendarIcon';
 import CommitteesCard from '../components/CommitteesCard';
+import ThumbList from '../components/ThumbList';
 
 import {
   Dimensions,
@@ -27,6 +28,54 @@ const CommitData = {
   title: 'Business Quarterly (Spring 2019)',
   url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
 };
+
+const ThumbListData = [
+  {
+    date: '2019-10-01',
+    items: [
+      {
+        title: 'Sales of cars and light commercial vehicles in June 2014',
+        commit: 'Automobile Manufacturers Committee',
+        date: Date.now(),
+        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
+      },
+      {
+        title: 'Sales of cars and light commercial vehicles in June 2014',
+        commit: 'Automobile Manufacturers Committee',
+        date: Date.now(),
+        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
+      }
+    ]
+  },
+  {
+    date: '2019-09-01',
+    items: [
+      {
+        title: 'Sales of cars and light commercial vehicles in June 2014',
+        commit: 'Automobile Manufacturers Committee',
+        date: Date.now(),
+        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
+      }
+    ]
+  },
+  {
+    date: '2019-08-01',
+    items: [
+      {
+        title: 'Sales of cars and light commercial vehicles in June 2014',
+        commit: 'Automobile Manufacturers Committee',
+        date: Date.now(),
+        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
+      },
+      {
+        title: 'Sales of cars and light commercial vehicles in June 2014',
+        commit: 'Automobile Manufacturers Committee',
+        date: Date.now(),
+        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
+      }
+    ]
+  }
+];
 
 const HEADER_MAX_HEIGHT = 406;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
@@ -190,7 +239,41 @@ class ArticleScreen extends React.Component {
           )}
           {this.state.selectedIndex === 2 && (
             <View style={{ marginTop: 20 }}>
-              <Text style={styles.paragraph}>tab3</Text>
+              <TouchableOpacity
+                style={{ marginBottom: 20 }}
+                onPress={() => {
+                  this.props.navigation.navigate('CommitteesPage', {
+                    itemId: 86,
+                    otherParam: 'anything you want here'
+                  });
+                }}
+              >
+                <View
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    width: deviceWidth - 28,
+                    marginTop: 25,
+                    shadowColor: '#000',
+                    shadowOffset: {
+                      width: 0,
+                      height: 2
+                    },
+                    shadowOpacity: 0.23,
+                    shadowRadius: 2.62,
+                    elevation: 4
+                  }}
+                >
+                  <CommitteesCard
+                    extraPadding={28}
+                    data={CommitData}
+                    height={200}
+                    deviceWidth={deviceWidth}
+                    BAR_SPACE={0}
+                  />
+                </View>
+              </TouchableOpacity>
+              <ThumbList data={ThumbListData} extraPadding="0" />
             </View>
           )}
         </View>
