@@ -61,6 +61,12 @@ def getIncrementBuild() {
     return versionCode
 }
 
+private void saveChanges(Integer versionCode) {
+    def versionProps = getVersionProps()
+    versionProps['versionCode'] = versionCode.toString()
+    versionProps.store(getVersionFile().newWriter(), null)
+}
+
 def getNpmVersionArray() { // major [0], minor [1], patch [2]
     def (major, minor, patch) = getNpmVersion().tokenize('.')
     return [Integer.parseInt(major), Integer.parseInt(minor), Integer.parseInt(patch)] as int[]
