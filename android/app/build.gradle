@@ -60,7 +60,7 @@ android {
         abi {
             reset()
             enable enableSeparateBuildPerCPUArchitecture
-            universalApk true  // If true, also generate a universal APK
+            universalApk false  // If true, also generate a universal APK
             include "armeabi-v7a", "x86", "arm64-v8a", "x86_64"
         }
     }
@@ -88,6 +88,11 @@ android {
             signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            if (project.hasProperty('buildType')) {
+                if (buildType != "debug") {
+                    saveChanges(project.ext.version.incr)
+                }
+            }
         }
     }
     // // applicationVariants are e.g. debug, release

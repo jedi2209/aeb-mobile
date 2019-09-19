@@ -26,9 +26,9 @@ platform :android do
     # ensure_git_status_clean
 #     increment_version_code(
 #         gradle_file_path: "./android/build.gradle",
-#         #ext_constant_name: "test"
-#         #app_folder_name:"app"
-#     )
+#         ext_constant_name: "test",
+#         app_folder_name:"app"
+#    )
     gradle(
         # project_dir: "./android/",
         task: "clean assemble",
