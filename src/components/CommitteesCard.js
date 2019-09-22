@@ -8,21 +8,21 @@ class CommitteesCard extends React.Component {
         style={[
           styles.slide,
           {
-            width:
-              this.props.width ||
-              this.props.deviceWidth - 14 - this.props.BAR_SPACE
+            // 14 это отсупы
+            width: this.props.deviceWidth - 28 - this.props.BAR_SPACE
           }
         ]}
       >
         <View
           style={{
-            width: (this.props.width || this.props.deviceWidth) - 64 - 35
+            width: this.props.deviceWidth - 28 - 70 - this.props.BAR_SPACE
           }}
         >
           <Text style={styles.title}>{this.props.data.title}</Text>
         </View>
         <Image
           source={{ uri: this.props.data.image }}
+          // eslint-disable-next-line react-native/no-inline-styles
           style={[styles.image, { width: 60, height: 60, marginLeft: 10 }]}
         />
       </View>
