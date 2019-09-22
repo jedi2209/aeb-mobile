@@ -1,16 +1,38 @@
 import React from 'react';
 import { theme } from '../core/themeProvider';
-import { TouchableWithoutFeedback, StyleSheet } from 'react-native';
-import Share from '../images/share.svg';
+import { TouchableWithoutFeedback, StyleSheet, Share } from 'react-native';
+import ShareImage from '../images/share.svg';
 
 class ShareButton extends React.Component {
+  onShare = async () => {
+    try {
+      const result = await Share.share({
+        url: 'https://aebrus.ru',
+        message:
+          'React Native | A framework for building native apps using React'
+      });
+
+      if (result.action === Share.sharedAction) {
+        if (result.activityType) {
+          // shared with activity type of result.activityType
+        } else {
+          // shared
+        }
+      } else if (result.action === Share.dismissedAction) {
+        // dismissed
+      }
+    } catch (error) {
+      // alert(error.message);
+    }
+  };
+
   render() {
     return (
       <TouchableWithoutFeedback
-        onPress={this.props.onPress}
+        onPress={this.onShare}
         style={[this.props.style, theme.goBackButton]}
       >
-        <Share style={style.close} />
+        <ShareImage style={style.close} />
       </TouchableWithoutFeedback>
     );
   }
