@@ -2,9 +2,12 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:AwesomeProject.xcodeproj">
+      location = "group:/Users/akvasha/Sites/AEB/aeb-mobile/ios/Aebrus.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Aebrus.xcodeproj">
    </FileRef>
 </Workspace>
