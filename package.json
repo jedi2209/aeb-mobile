@@ -17,6 +17,9 @@
     "version": "./version.sh"
   },
   "dependencies": {
+    "appcenter": "2.5.0",
+    "appcenter-analytics": "2.5.0",
+    "appcenter-crashes": "2.5.0",
     "i18n-js": "^3.3.0",
     "lodash": "^4.17.15",
     "lodash.memoize": "^4.1.2",

@@ -12,6 +12,7 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		3A58419E2364E86D0017250A /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A58419D2364E86D0017250A /* AppCenter-Config.plist */; };
 		9518AD8D4823CC10B6ADCF61 /* libPods-Aebrus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D0D20FD6E3D9893B21695AB /* libPods-Aebrus.a */; };
 		DD5FD1CD21784C8D5FCCCB82 /* libPods-AebrusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FC25E0FDC037E283E28A8E /* libPods-AebrusTests.a */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,7 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Aebrus/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Aebrus/main.m; sourceTree = "<group>"; };
 		1D0D20FD6E3D9893B21695AB /* libPods-Aebrus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aebrus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A58419D2364E86D0017250A /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppCenter-Config.plist"; sourceTree = "<group>"; };
 		4BE843024ED8418DBC2D08F7 /* Pods-AebrusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AebrusTests.debug.xcconfig"; path = "Target Support Files/Pods-AebrusTests/Pods-AebrusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		583983F4C930B3031A90576F /* Pods-AebrusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AebrusTests.release.xcconfig"; path = "Target Support Files/Pods-AebrusTests/Pods-AebrusTests.release.xcconfig"; sourceTree = "<group>"; };
 		716EAE6FC8489351ABEE987C /* Pods-Aebrus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aebrus.debug.xcconfig"; path = "Target Support Files/Pods-Aebrus/Pods-Aebrus.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				3A58419D2364E86D0017250A /* AppCenter-Config.plist */,
 				13B07FAE1A68108700A75B9A /* Aebrus */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* AebrusTests */,
@@ -246,6 +249,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				3A58419E2364E86D0017250A /* AppCenter-Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
