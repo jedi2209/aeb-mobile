@@ -9,6 +9,7 @@
     "iphone": "react-native run-ios --simulator=\"iPhone 11\"",
     "iphonePro": "react-native run-ios --simulator=\"iPhone 11 Pro\"",
     "iphoneProMax": "react-native run-ios --simulator=\"iPhone 11 Pro Max\"",
+    "iphone-release": "fastlane ios beta;",
     "react": "react-native start --reset-cache",
     "android": "open -a Terminal ./android/dev.sh & adb wait-for-device; sleep 10; react-native run-android",
     "android-release": "cd ./android; bundle exec fastlane android internal; cd ../",
