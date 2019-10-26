@@ -424,7 +424,7 @@
 			baseConfigurationReference = 716EAE6FC8489351ABEE987C /* Pods-Aebrus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = XXXX;
 				INFOPLIST_FILE = Aebrus/Info.plist;
@@ -445,7 +445,7 @@
 			baseConfigurationReference = CDA59B04D11B8914B1B3E783 /* Pods-Aebrus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = XXXX;
 				INFOPLIST_FILE = Aebrus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
