@@ -39,13 +39,3 @@ target 'Aebrus' do
 
   use_native_modules!
 end
-
-target 'Aebrus-tvOS' do
-  # Pods for Aebrus-tvOS
-
-  target 'Aebrus-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
-end
