@@ -5,4 +5,4 @@ app_identifier("com.aebrus.app") # The bundle identifier of your app
 apple_id("app@aebrus.ru") # Your Apple email address
 
 itc_team_id("118773703") # iTunes Connect Team ID
-team_id("YNA37LTZ5W") # Developer Portal Team ID
+team_id("55L6B9JG7R") # Developer Portal Team ID

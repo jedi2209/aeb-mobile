@@ -21,6 +21,7 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+*dSYM.zip
 
 # Android/IntelliJ
 #
@@ -48,7 +49,11 @@ buck-out/
 # For more information about the recommended setup visit:
 # https://docs.fastlane.tools/best-practices/source-control/
 
+*fastlane/report.xml
 */fastlane/report.xml
+*fastlane/README.md
+*/fastlane/README.md
+
 */fastlane/Preview.html
 */fastlane/screenshots
 
