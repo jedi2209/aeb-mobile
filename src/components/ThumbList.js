@@ -247,7 +247,7 @@ export default class AllArticlesScreen extends Component {
             width: '100%'
           }}
           numColumns={1}
-          data={this.state.data}
+          data={this.props.data}
           renderItem={({ item }) => {
             const renderElement = (
               // eslint-disable-next-line react-native/no-inline-styles
