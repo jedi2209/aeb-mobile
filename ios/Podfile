@@ -32,6 +32,8 @@ target 'Aebrus' do
 
   pod 'RNLocalize', :path => '../node_modules/react-native-localize'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
   target 'AebrusTests' do
     inherit! :search_paths
     # Pods for testing

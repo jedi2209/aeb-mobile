@@ -12,49 +12,28 @@ import Card from '../components/Card';
 
 const deviceWidth = Dimensions.get('window').width;
 const BAR_SPACE = 14;
-const data = [
-  {
-    title: 'Reliable internet - a regulatory challenge For business',
-    uri:
-      'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
-    date: new Date()
-  },
-  {
-    title: 'Reliable internet - a regulatory challenge For business',
-    uri:
-      'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
-    date: new Date()
-  },
-  {
-    title: 'Reliable internet - a regulatory challenge For business',
-    uri:
-      'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
-    date: new Date()
-  },
-  {
-    title: 'Reliable internet - a regulatory challenge For business',
-    uri:
-      'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
-    date: new Date()
-  }
-];
+const PADDING = 14;
 
 export class CarouselArticles extends React.Component {
-  numItems = data.length;
-  animVal = new Animated.Value(0);
-  navigation = this.props.navigation;
+  state = {
+    data: this.props.data,
+    numItems: this.props.data.length,
+    animVal: new Animated.Value(0),
+    navigation: this.props.navigation
+  };
 
   render() {
+    console.log('show me data >>>', this.props.data);
     let imageArray = [];
     let barArray = [];
 
-    data.forEach((item, i) => {
+    this.props.data.forEach((item, i) => {
       const thisImage = (
         <Card
           navigation={this.navigation}
           key={`image${i}`}
           data={item}
-          width={deviceWidth - 14 - BAR_SPACE}
+          width={deviceWidth - PADDING - BAR_SPACE}
           height={200}
           deviceWidth={deviceWidth}
           BAR_SPACE={BAR_SPACE}
