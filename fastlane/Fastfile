@@ -36,7 +36,8 @@ platform :ios do
       export_xcargs: "-allowProvisioningUpdates",
       export_options: {
      		provisioningProfiles: {
-        		"com.aebrus.app" => "com.aebrus.app AppStore",
+            "com.aebrus.app" => "com.aebrus.app AppStore 1572205176",
+            "com.aebrus.app.OneSignalNotificationServiceExtension" => "com.aebrus.app.OneSignalNotificationService"
       		}
     	}
     )
