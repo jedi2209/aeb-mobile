@@ -21,7 +21,8 @@ import OneSignal from 'react-native-onesignal'; // Import package from node modu
 
 const translationGetters = {
   // lazy requires (metro bundler does not support symlinks)
-  en: () => require('./translations/en.json')
+  en: () => require('./translations/en.json'),
+  rus: () => require('./translations/ru.json')
 };
 
 const translate = memoize(
@@ -124,6 +125,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    return <AppContainer />;
+    return <AppContainer screenProps={{ translate }} />;
   }
 }
