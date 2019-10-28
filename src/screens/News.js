@@ -48,7 +48,9 @@ const NewsScreen = props => {
     fxFetchCountFromAsyncStorage();
   }, []);
 
-  console.log('>>> data at screen', count);
+  console.log('props ====>', props);
+  console.log('translate ====>', props.translate);
+
   return (
     <View style={{ backgroundColor: theme.backgroundColor }}>
       <SafeAreaView>
@@ -56,7 +58,7 @@ const NewsScreen = props => {
           <View style={theme.body}>
             <Title
               style={[theme.pageTitle, styles.pageTitle]}
-              text="Featured News"
+              text={props.screenProps.translate('news')} //"Featured News"
             />
             <CarouselArticles data={count} navigation={props.navigation} />
           </View>
