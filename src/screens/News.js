@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { theme } from '../core/themeProvider';
-import AsyncStorage from '@react-native-community/async-storage';
 
-import { createStore, createEvent, createEffect } from 'effector';
+import { createStore, createEffect } from 'effector';
 import { useStore } from 'effector-react';
 
 import Moment from 'moment';
@@ -12,7 +11,6 @@ import { CarouselArticles } from '../components/CarouselArticles';
 import ThumbList from '../components/ThumbList';
 
 import {
-  Text,
   SafeAreaView,
   ScrollView,
   View,
@@ -27,8 +25,7 @@ const fxFetchCountFromAsyncStorage = createEffect({
   handler: async () => {
     const api = new API({ lang: 'rus', platform: Platform.OS });
     const data = await api.getNews();
-    console.log(data, data);
-    return data;
+    return data || [];
   }
 });
 
@@ -37,19 +34,14 @@ const $counter = createStore([])
   // Подписываем стор на состояние эффекта когда он будет в статусе done, по дефолту все эффекты имеют 3 статуса pending, done, fail
   .on(fxFetchCountFromAsyncStorage.done, (_, { result }) => result);
 
-fxFetchCountFromAsyncStorage.done.watch(({ result }) => {
-  console.log('>>> result', result[0]);
-});
+fxFetchCountFromAsyncStorage.done.watch(({ result }) => {});
 
 const NewsScreen = props => {
-  const count = useStore($counter);
+  const dataFromServer = useStore($counter);
 
   useEffect(() => {
     fxFetchCountFromAsyncStorage();
   }, []);
-
-  console.log('props ====>', props);
-  console.log('translate ====>', props.translate);
 
   return (
     <View style={{ backgroundColor: theme.backgroundColor }}>
@@ -58,16 +50,18 @@ const NewsScreen = props => {
           <View style={theme.body}>
             <Title
               style={[theme.pageTitle, styles.pageTitle]}
-              text={props.screenProps.translate('news')} //"Featured News"
+              text={props.screenProps.translate('featured_news')} // "Featured News"
             />
-            <CarouselArticles data={count} navigation={props.navigation} />
+            <CarouselArticles
+              data={dataFromServer}
+              navigation={props.navigation}
+            />
           </View>
           <View style={theme.body}>
-            <Text>{count.length}</Text>
             <ThumbList
-              data={count}
+              data={dataFromServer}
               type="news"
-              title="Last news"
+              title={props.screenProps.translate('last_news')} // "Last news"
               navigation={props.navigation}
             />
           </View>

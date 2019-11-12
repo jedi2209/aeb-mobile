@@ -8,6 +8,7 @@ export const API = class AebApi {
     const { platform, lang = 'rus' } = opts;
 
     this._url = `http://api.aebrus.ru/${lang}`;
+    console.log(lang);
     this._headers = {
       'x-api-key': apiKeys[platform]
     };
@@ -15,6 +16,7 @@ export const API = class AebApi {
 
   async getNews() {
     try {
+      console.log('this._url', this._url); // http://api.aebrus.ru/rus
       const response = await fetch(this._url + '/news/', {
         method: 'GET',
         headers: {
@@ -24,7 +26,9 @@ export const API = class AebApi {
         }
       });
 
-      const responseJson = await response.json();
+      const responseJson = await response; //.json();
+      console.log(responseJson);
+
       return responseJson.data;
     } catch (error) {
       console.log(error);

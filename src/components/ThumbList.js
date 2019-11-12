@@ -1,3 +1,4 @@
+// todo: extraPadding lets refactor
 /* eslint-disable react-native/no-inline-styles */
 import React, { Component } from 'react';
 import Moment from 'moment';
@@ -22,7 +23,6 @@ function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-// presentational components
 import Card from '../components/CardMini';
 const deviceWidth = Dimensions.get('window').width;
 const BAR_SPACE = 14;
@@ -50,11 +50,15 @@ export default class AllArticlesScreen extends Component {
     if (page > 3) {
       this.setState({ fullList: true });
     } else {
+      console.log('this.props.data !!!!!!!!!!', this.props.data);
+      const calc =
+        page === 1
+          ? Array.from(this.props.data || [])
+          : [...this.state.data, ...this.props.data];
+
+      console.log('calc', calc);
       this.setState((prevState, nextProps) => ({
-        data:
-          page === 1
-            ? Array.from(this.props.data)
-            : [...this.state.data, ...this.props.data],
+        data: calc,
         loading: false,
         loadingMore: false,
         refreshing: false
@@ -63,15 +67,9 @@ export default class AllArticlesScreen extends Component {
   };
 
   _handleRefresh = () => {
-    this.setState(
-      {
-        page: 1,
-        refreshing: true
-      },
-      () => {
-        this._fetchAllArticles();
-      }
-    );
+    this.setState({ page: 1, refreshing: true }, () => {
+      this._fetchAllArticles();
+    });
   };
 
   _handleLoadMore = () => {
@@ -105,87 +103,108 @@ export default class AllArticlesScreen extends Component {
   };
 
   _renderCard = item => {
-    if (this.props.type === 'news') {
-      return (
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate('Article', {
-              itemId: 86,
-              otherParam: 'anything you want here'
-            });
-          }}
-        >
-          <Card
-            extraPadding={this.props.extraPadding}
-            data={item}
-            width={deviceWidth - 14 - BAR_SPACE}
-            height={200}
-            deviceWidth={deviceWidth}
-            BAR_SPACE={BAR_SPACE}
-          />
-        </TouchableOpacity>
-      );
-    } else if (this.props.type === 'events') {
-      return (
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate('Event', {
-              itemId: 86,
-              otherParam: 'anything you want here'
-            });
-          }}
-        >
-          <Card
-            extraPadding={this.props.extraPadding}
-            data={item}
-            width={deviceWidth - 14 - BAR_SPACE}
-            height={200}
-            deviceWidth={deviceWidth}
-            BAR_SPACE={BAR_SPACE}
-          />
-        </TouchableOpacity>
-      );
-    } else if (this.props.type === 'publications') {
-      return (
-        <PublicationCard
+    console.log('_renderCard', item);
+    // if (this.props.type === 'news') {
+    //   return (
+    //     <TouchableOpacity
+    //       onPress={() => {
+    //         this.props.navigation.navigate('Article', {
+    //           itemId: 86,
+    //           otherParam: 'anything you want here'
+    //         });
+    //       }}
+    //     >
+    //       <Card
+    //         extraPadding={this.props.extraPadding}
+    //         data={item}
+    //         width={deviceWidth - 14 - BAR_SPACE}
+    //         height={200}
+    //         deviceWidth={deviceWidth}
+    //         BAR_SPACE={BAR_SPACE}
+    //       />
+    //     </TouchableOpacity>
+    //   );
+    // } else if (this.props.type === 'events') {
+    //   console.log('tyt ????????????????')
+    //   return (
+    //     <TouchableOpacity
+    //       onPress={() => {
+    //         this.props.navigation.navigate('Event', {
+    //           itemId: 86,
+    //           otherParam: 'anything you want here'
+    //         });
+    //       }}
+    //     >
+    //       <Card
+    //         extraPadding={this.props.extraPadding}
+    //         data={item}
+    //         width={deviceWidth - 14 - BAR_SPACE}
+    //         height={200}
+    //         deviceWidth={deviceWidth}
+    //         BAR_SPACE={BAR_SPACE}
+    //       />
+    //     </TouchableOpacity>
+    //   );
+    // } else if (this.props.type === 'publications') {
+    //   return (
+    //     <PublicationCard
+    //       extraPadding={this.props.extraPadding}
+    //       data={item}
+    //       width={deviceWidth - 28 - BAR_SPACE}
+    //       height={200}
+    //       deviceWidth={deviceWidth}
+    //       BAR_SPACE={BAR_SPACE}
+    //     />
+    //   );
+    // } else if (this.props.type === 'committees') {
+    //   return (
+    //     <TouchableOpacity
+    //       onPress={() => {
+    //         this.props.navigation.navigate('CommitteesPage', {
+    //           itemId: 86,
+    //           otherParam: 'anything you want here'
+    //         });
+    //       }}
+    //     >
+    //       <View style={{ marginTop: 25, width: '50%' }}>
+    //         <CommitteesCard
+    //           extraPadding={this.props.extraPadding}
+    //           data={item}
+    //           height={200}
+    //           deviceWidth={deviceWidth}
+    //           BAR_SPACE={BAR_SPACE}
+    //         />
+    //       </View>
+    //     </TouchableOpacity>
+    //   );
+    // } else {
+    //   return this._renderRealesCards(item);
+    // }
+
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          this.props.navigation.navigate('Article', {
+            itemId: 86,
+            otherParam: 'anything you want here'
+          });
+        }}
+      >
+        <Card
           extraPadding={this.props.extraPadding}
           data={item}
-          width={deviceWidth - 28 - BAR_SPACE}
+          width={deviceWidth - 14 - BAR_SPACE}
           height={200}
           deviceWidth={deviceWidth}
           BAR_SPACE={BAR_SPACE}
         />
-      );
-    }
-    if (this.props.type === 'committees') {
-      return (
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate('CommitteesPage', {
-              itemId: 86,
-              otherParam: 'anything you want here'
-            });
-          }}
-        >
-          <View style={{ marginTop: 25, width: '50%' }}>
-            <CommitteesCard
-              extraPadding={this.props.extraPadding}
-              data={item}
-              height={200}
-              deviceWidth={deviceWidth}
-              BAR_SPACE={BAR_SPACE}
-            />
-          </View>
-        </TouchableOpacity>
-      );
-    } else {
-      return this._renderRealesCards(item);
-    }
+      </TouchableOpacity>
+    );
   };
 
   _renderRealesCards(item) {
     return (
-      <View key={item.date.toString + getRandomInt(1, 1000)}>
+      <View key={item.created.toString + getRandomInt(1, 1000)}>
         <View
           style={{
             borderColor: '#D7D8DA',
@@ -204,7 +223,7 @@ export default class AllArticlesScreen extends Component {
               fontSize: 15
             }}
           >
-            {Moment(item.date).format('MMMM YYYY')}
+            {Moment(item.created).format('MMMM YYYY')}
           </Text>
         </View>
         {item.items.map(value => {
@@ -222,24 +241,27 @@ export default class AllArticlesScreen extends Component {
       </View>
     );
   }
+
   render() {
+    const { title, extraPadding, data } = this.props;
+
+    console.log('data =============>', data, title, extraPadding);
+    console.log(' ====> data', this.state.data);
+
     return !this.state.loading ? (
       <View>
-        {this.props.title && (
+        {title && (
           <Title
             style={[
               theme.pageTitle,
               {
-                paddingHorizontal: this.props.extraPadding
-                  ? this.props.extraPadding / 2
-                  : 0
+                paddingHorizontal: extraPadding ? extraPadding / 2 : 0
               }
             ]}
-            text={this.props.title}
+            text={title}
           />
         )}
         <FlatList
-          // eslint-disable-next-line react-native/no-inline-styles
           contentContainerStyle={{
             flex: 1,
             flexDirection: 'column',
@@ -249,18 +271,17 @@ export default class AllArticlesScreen extends Component {
           numColumns={1}
           data={this.props.data}
           renderItem={({ item }) => {
-            const renderElement = (
-              // eslint-disable-next-line react-native/no-inline-styles
+            console.log('item =========>', item);
+            return (
               <View style={{ marginTop: 25, width: '50%' }}>
                 {this._renderCard(item)}
               </View>
             );
-
-            return renderElement;
           }}
-          keyExtractor={item =>
-            (item.date || item.url).toString + getRandomInt(1, 1000)
-          }
+          keyExtractor={item => {
+            //todo cerf tyt!!!
+            return (item.date || item.uri).toString + getRandomInt(1, 1000);
+          }}
           ListFooterComponent={this._renderFooter}
           onRefresh={this._handleRefresh}
           refreshing={this.state.refreshing}
