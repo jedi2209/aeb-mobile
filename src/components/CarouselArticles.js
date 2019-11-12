@@ -23,8 +23,6 @@ export class CarouselArticles extends React.Component {
   };
 
   render() {
-    console.log('show me data >>>', this.props.data);
-    console.log('=====> carousel', this.props.navigation);
     let imageArray = [];
     let barArray = [];
 

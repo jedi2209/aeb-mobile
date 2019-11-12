@@ -10,10 +10,29 @@ import Moment from 'moment';
 
 class Card extends React.Component {
   render() {
+    const {
+      navigation,
+      deviceWidth,
+      BAR_SPACE,
+      data,
+      height,
+      width
+    } = this.props;
+
+    console.log(
+      'card ===>',
+      navigation,
+      deviceWidth,
+      BAR_SPACE,
+      data,
+      height,
+      width
+    );
+
     return (
       <TouchableWithoutFeedback
         onPress={() => {
-          this.props.navigation.navigate('Article', {
+          navigation.navigate('Article', {
             itemId: 86,
             otherParam: 'anything you want here'
           });
@@ -21,27 +40,24 @@ class Card extends React.Component {
         style={[
           styles.slide,
           {
-            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE,
-            marginRight: this.props.BAR_SPACE
+            width: deviceWidth - 14 - BAR_SPACE,
+            marginRight: BAR_SPACE
           }
         ]}
       >
         <View
           style={{
-            width: this.props.deviceWidth - 14 - this.props.BAR_SPACE,
-            marginRight: this.props.BAR_SPACE
+            width: deviceWidth - 14 - BAR_SPACE,
+            marginRight: BAR_SPACE
           }}
         >
           <Image
-            source={{ uri: this.props.data.uri }}
-            style={[
-              styles.image,
-              { width: this.props.width, height: this.props.height }
-            ]}
+            source={{ uri: data.uri }}
+            style={[styles.image, { width: width, height: height }]}
           />
-          <Text style={styles.title}>{this.props.data.title}</Text>
+          <Text style={styles.title}>{data.name}</Text>
           <Text style={styles.date}>
-            {Moment().format('MMMM Do, YYYY H:mma')}
+            {Moment(data.created).format('MMMM Do, YYYY H:mma')}
           </Text>
         </View>
       </TouchableWithoutFeedback>
