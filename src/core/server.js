@@ -26,7 +26,7 @@ export const API = class AebApi {
         }
       });
 
-      const responseJson = await response; //.json();
+      const responseJson = await response.json();
       console.log(responseJson);
 
       return responseJson.data;

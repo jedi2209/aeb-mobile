@@ -7,7 +7,7 @@ import { useStore } from 'effector-react';
 import Moment from 'moment';
 import Header from '../components/Header';
 import Title from '../components/Title';
-import { CarouselArticles } from '../components/CarouselArticles';
+import CarouselArticles from '../components/CarouselArticles';
 import ThumbList from '../components/ThumbList';
 
 import {
@@ -37,11 +37,13 @@ const $counter = createStore([])
 fxFetchCountFromAsyncStorage.done.watch(({ result }) => {});
 
 const NewsScreen = props => {
-  const dataFromServer = useStore($counter);
+  const items = useStore($counter);
 
   useEffect(() => {
     fxFetchCountFromAsyncStorage();
   }, []);
+
+  const { screenProps, navigation } = props;
 
   return (
     <View style={{ backgroundColor: theme.backgroundColor }}>
@@ -50,19 +52,16 @@ const NewsScreen = props => {
           <View style={theme.body}>
             <Title
               style={[theme.pageTitle, styles.pageTitle]}
-              text={props.screenProps.translate('featured_news')} // "Featured News"
+              text={screenProps.translate('featured_news')} // "Featured News"
             />
-            <CarouselArticles
-              data={dataFromServer}
-              navigation={props.navigation}
-            />
+            <CarouselArticles data={items} navigation={navigation} />
           </View>
           <View style={theme.body}>
             <ThumbList
-              data={dataFromServer}
+              data={items}
               type="news"
-              title={props.screenProps.translate('last_news')} // "Last news"
-              navigation={props.navigation}
+              title={screenProps.translate('last_news')} // "Last news"
+              navigation={navigation}
             />
           </View>
         </ScrollView>
