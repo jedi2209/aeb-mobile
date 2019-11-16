@@ -22,25 +22,25 @@ import { API } from '../core/server';
 
 // Есть конвеншен что эффекты начинаются с fx -> (fxFetchData), а сторы с $ -> ($data)
 const fxFetchCountFromAsyncStorage = createEffect({
-  handler: async () => {
+  handler: async page => {
     const api = new API({ lang: 'rus', platform: Platform.OS });
-    const data = await api.getNews();
-    return data || [];
+    const data = await api.getNews(page);
+    return data || { items: [], paginations: {} };
   }
 });
 
 // Создаем стор у которого по дефолту пустой массив
-const $counter = createStore([])
+const $counter = createStore({ items: [], paginations: {} })
   // Подписываем стор на состояние эффекта когда он будет в статусе done, по дефолту все эффекты имеют 3 статуса pending, done, fail
   .on(fxFetchCountFromAsyncStorage.done, (_, { result }) => result);
 
 fxFetchCountFromAsyncStorage.done.watch(({ result }) => {});
 
 const NewsScreen = props => {
-  const items = useStore($counter);
+  const { items, paginations } = useStore($counter);
 
   useEffect(() => {
-    fxFetchCountFromAsyncStorage();
+    fxFetchCountFromAsyncStorage(1);
   }, []);
 
   const { screenProps, navigation } = props;
@@ -58,7 +58,6 @@ const NewsScreen = props => {
           </View>
           <View style={theme.body}>
             <ThumbList
-              data={items}
               type="news"
               title={screenProps.translate('last_news')} // "Last news"
               navigation={navigation}

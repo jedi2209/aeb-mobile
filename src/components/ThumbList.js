@@ -1,42 +1,38 @@
-// todo: extraPadding lets refactor
-/* eslint-disable react-native/no-inline-styles */
 import React, { Component } from 'react';
 import Moment from 'moment';
-
-import { theme } from '../core/themeProvider';
-
 import {
   Dimensions,
   View,
   FlatList,
   ActivityIndicator,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  StyleSheet,
+  Platform
 } from 'react-native';
+
+import { theme } from '../core/themeProvider';
+import { API } from '../core/server';
 
 import Title from '../components/Title';
 import ReleasesCard from '../components/ReleasesCard';
 import PublicationCard from '../components/PublicationCard';
 import CommitteesCard from '../components/CommitteesCard';
+import Card from '../components/CardMini';
 
 // TODO: move to lib/rng.js
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-import Card from '../components/CardMini';
 const { width: deviceWidth } = Dimensions.get('window');
 const BAR_SPACE = 14;
-
-// screen height and width
-// TODO: duplicate
-const { width } = Dimensions.get('window');
 
 // TODO: use named export for better DX
 export default class AllArticlesScreen extends Component {
   state = {
     data: [],
-    page: 1,
+    page: 2,
     loading: true,
     loadingMore: false,
     fullList: false,
@@ -44,29 +40,29 @@ export default class AllArticlesScreen extends Component {
   };
 
   componentDidMount() {
+    this.api = new API({ lang: 'rus', platform: Platform.OS });
     this._fetchAllArticles();
   }
 
-  _fetchAllArticles = () => {
+  _fetchAllArticles = async () => {
     const { page } = this.state;
+    let responsedData;
+    let calc;
 
-    if (page > 3) {
+    responsedData = await this.api.getNews(page);
+    calc = [...this.state.data, ...responsedData.items];
+    console.log(responsedData.pagination);
+
+    if (responsedData.pagination.pages.next === null) {
       this.setState({ fullList: true });
-    } else {
-      console.log('this.props.data !!!!!!!!!!', this.props.data);
-      const calc =
-        page === 1
-          ? Array.from(this.props.data || [])
-          : [...this.state.data, ...this.props.data];
-
-      console.log('calc', calc);
-      this.setState((prevState, nextProps) => ({
-        data: calc,
-        loading: false,
-        loadingMore: false,
-        refreshing: false
-      }));
     }
+
+    this.setState((prevState, nextProps) => ({
+      data: calc,
+      loading: false,
+      loadingMore: false,
+      refreshing: false
+    }));
   };
 
   _handleRefresh = () => {
@@ -91,11 +87,13 @@ export default class AllArticlesScreen extends Component {
     if (this.state.fullList) {
       return null;
     }
+
     return (
       <View>
         <TouchableOpacity
           onPress={this._handleLoadMore}
-          style={{ marginTop: 10, width: width - 28, height: 50 }}
+          // eslint-disable-next-line react-native/no-inline-styles
+          style={{ marginTop: 10, width: deviceWidth - 28, height: 50 }}
         >
           <View style={[theme.whiteButton]}>
             <Text style={theme.whiteButtonText}>Load more</Text>
@@ -105,105 +103,58 @@ export default class AllArticlesScreen extends Component {
     );
   };
 
-  _renderCard = item => {
-    console.log('_renderCard', item);
-    // if (this.props.type === 'news') {
-    //   return (
-    //     <TouchableOpacity
-    //       onPress={() => {
-    //         this.props.navigation.navigate('Article', {
-    //           itemId: 86,
-    //           otherParam: 'anything you want here'
-    //         });
-    //       }}
-    //     >
-    //       <Card
-    //         extraPadding={this.props.extraPadding}
-    //         data={item}
-    //         width={deviceWidth - 14 - BAR_SPACE}
-    //         height={200}
-    //         deviceWidth={deviceWidth}
-    //         BAR_SPACE={BAR_SPACE}
-    //       />
-    //     </TouchableOpacity>
-    //   );
-    // } else if (this.props.type === 'events') {
-    //   console.log('tyt ????????????????')
-    //   return (
-    //     <TouchableOpacity
-    //       onPress={() => {
-    //         this.props.navigation.navigate('Event', {
-    //           itemId: 86,
-    //           otherParam: 'anything you want here'
-    //         });
-    //       }}
-    //     >
-    //       <Card
-    //         extraPadding={this.props.extraPadding}
-    //         data={item}
-    //         width={deviceWidth - 14 - BAR_SPACE}
-    //         height={200}
-    //         deviceWidth={deviceWidth}
-    //         BAR_SPACE={BAR_SPACE}
-    //       />
-    //     </TouchableOpacity>
-    //   );
-    // } else if (this.props.type === 'publications') {
-    //   return (
-    //     <PublicationCard
-    //       extraPadding={this.props.extraPadding}
-    //       data={item}
-    //       width={deviceWidth - 28 - BAR_SPACE}
-    //       height={200}
-    //       deviceWidth={deviceWidth}
-    //       BAR_SPACE={BAR_SPACE}
-    //     />
-    //   );
-    // } else if (this.props.type === 'committees') {
-    //   return (
-    //     <TouchableOpacity
-    //       onPress={() => {
-    //         this.props.navigation.navigate('CommitteesPage', {
-    //           itemId: 86,
-    //           otherParam: 'anything you want here'
-    //         });
-    //       }}
-    //     >
-    //       <View style={{ marginTop: 25, width: '50%' }}>
-    //         <CommitteesCard
-    //           extraPadding={this.props.extraPadding}
-    //           data={item}
-    //           height={200}
-    //           deviceWidth={deviceWidth}
-    //           BAR_SPACE={BAR_SPACE}
-    //         />
-    //       </View>
-    //     </TouchableOpacity>
-    //   );
-    // } else {
-    //   return this._renderRealesCards(item);
-    // }
-
+  _renderCardNews = item => {
     return (
-      <TouchableOpacity
-        onPress={() => {
-          this.props.navigation.navigate('Article', {
-            itemId: 86,
-            otherParam: 'anything you want here'
-          });
-        }}
-      >
-        <Card
+      <Card
+        extraPadding={this.props.extraPadding}
+        navigation={this.props.navigation}
+        key={`carousel-article-${item.id}`}
+        data={item}
+        width={deviceWidth - 14 - BAR_SPACE}
+        height={200}
+        deviceWidth={deviceWidth}
+        BAR_SPACE={BAR_SPACE}
+      />
+    );
+  };
+
+  _renderCardEvent = item => {
+    return (
+      <Card
+        extraPadding={this.props.extraPadding}
+        data={item}
+        width={deviceWidth - 14 - BAR_SPACE}
+        height={200}
+        deviceWidth={deviceWidth}
+        BAR_SPACE={BAR_SPACE}
+      />
+    );
+  };
+
+  _renderCardPublication = item => {
+    return (
+      <PublicationCard
+        extraPadding={this.props.extraPadding}
+        data={item}
+        width={deviceWidth - 28 - BAR_SPACE}
+        height={200}
+        deviceWidth={deviceWidth}
+        BAR_SPACE={BAR_SPACE}
+      />
+    );
+  };
+
+  _renderCardCommittee = item => {
+    return (
+      <View style={{ marginTop: 25, width: '50%' }}>
+        <CommitteesCard
           extraPadding={this.props.extraPadding}
-          navigation={this.props.navigation}
-          key={`carousel-article-${item.id}`}
           data={item}
-          width={deviceWidth - 14 - BAR_SPACE}
           height={200}
           deviceWidth={deviceWidth}
           BAR_SPACE={BAR_SPACE}
         />
-      </TouchableOpacity>
+      </View>
     );
   };
 
@@ -247,11 +198,66 @@ export default class AllArticlesScreen extends Component {
     );
   }
 
-  render() {
-    const { title, extraPadding, data } = this.props;
+  _renderCard = item => {
+    const navigation = this.props.navigation;
+    let component;
 
-    console.log('data =============>', data, title, extraPadding);
-    console.log(' ====> data', this.state.data);
+    switch (this.props.type) {
+      case 'news':
+        component = (
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => {
+              navigation.navigate('Article', {
+                itemId: item.id,
+                otherParam: item
+              });
+            }}
+          >
+            {this._renderCardNews(item)}
+          </TouchableOpacity>
+        );
+        break;
+      case 'events':
+        component = (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('Event', {
+                itemId: item.id,
+                otherParam: item
+              });
+            }}
+          >
+            {this._renderCardEvent(item)}
+          </TouchableOpacity>
+        );
+        break;
+      case 'publications':
+        component = this._renderCardPublication(item);
+        break;
+      case 'committees':
+        component = (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate('CommitteesPage', {
+                itemId: item.id,
+                otherParam: item
+              });
+            }}
+          >
+            {this._renderCardCommittee(item)}
+          </TouchableOpacity>
+        );
+        break;
+      default:
+        component = this._renderRealesCards(item);
+    }
+
+    return component;
+  };
+
+  render() {
+    const { title, extraPadding } = this.props;
 
     return !this.state.loading ? (
       <View>
@@ -259,6 +265,7 @@ export default class AllArticlesScreen extends Component {
           <Title
             style={[
               theme.pageTitle,
+              // eslint-disable-next-line react-native/no-inline-styles
               {
                 paddingHorizontal: extraPadding ? extraPadding / 2 : 0
               }
@@ -267,24 +274,15 @@ export default class AllArticlesScreen extends Component {
           />
         )}
         <FlatList
-          contentContainerStyle={{
-            flex: 1,
-            flexDirection: 'column',
-            height: '100%',
-            width: '100%'
-          }}
+          contentContainerStyle={styles.flatlist}
           numColumns={1}
-          data={this.props.data}
+          data={this.state.data}
           renderItem={({ item }) => {
-            console.log('item =========>', item);
             return (
-              <View style={{ marginTop: 25, width: '50%' }}>
-                {this._renderCard(item)}
-              </View>
+              <View style={styles.flatlistview}>{this._renderCard(item)}</View>
             );
           }}
           keyExtractor={item => {
-            //todo cerf tyt!!!
             return (item.id || item.created).toString + getRandomInt(1, 1000);
           }}
           ListFooterComponent={this._renderFooter}
@@ -296,9 +294,27 @@ export default class AllArticlesScreen extends Component {
       </View>
     ) : (
       <View>
-        <Text style={{ alignSelf: 'center' }}>Loading Articles</Text>
         <ActivityIndicator />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  card: {
+    marginTop: 20
+  },
+  flatlist: {
+    flex: 1,
+    flexDirection: 'column',
+    height: '100%',
+    width: '100%'
+  },
+  fllatlistview: {
+    marginTop: 25,
+    width: '50%'
+  },
+  loading: {
+    alignSelf: 'center'
+  }
+});
