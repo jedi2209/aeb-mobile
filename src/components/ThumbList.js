@@ -19,17 +19,20 @@ import ReleasesCard from '../components/ReleasesCard';
 import PublicationCard from '../components/PublicationCard';
 import CommitteesCard from '../components/CommitteesCard';
 
+// TODO: move to lib/rng.js
 function getRandomInt(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
 import Card from '../components/CardMini';
-const deviceWidth = Dimensions.get('window').width;
+const { width: deviceWidth } = Dimensions.get('window');
 const BAR_SPACE = 14;
 
 // screen height and width
+// TODO: duplicate
 const { width } = Dimensions.get('window');
 
+// TODO: use named export for better DX
 export default class AllArticlesScreen extends Component {
   state = {
     data: [],

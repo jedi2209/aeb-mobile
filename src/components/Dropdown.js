@@ -38,9 +38,7 @@ export default class Dropdown extends React.Component {
           value={this.state.favSport3}
           useNativeAndroidPickerStyle={false}
           textInputProps={{ textAlign: 'left' }}
-          Icon={() => {
-            return <ArrowDropdown />;
-          }}
+          Icon={() => <ArrowDropdown />}
         />
       </View>
     );

@@ -26,6 +26,7 @@ export class CarouselArticles extends React.Component {
     let imageArray = [];
     let barArray = [];
 
+    // TODO: use map instead forEach + push for better DX
     this.props.data.forEach((item, i) => {
       const thisImage = (
         <Card
