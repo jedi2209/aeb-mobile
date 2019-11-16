@@ -8,62 +8,42 @@ import {
 } from 'react-native';
 import Moment from 'moment';
 
-class Card extends React.Component {
-  render() {
-    const {
-      navigation,
-      deviceWidth,
-      BAR_SPACE,
-      data,
-      height,
-      width
-    } = this.props;
+const DEFAULT_IMAGE =
+  'https://aebrus.ru/local/templates/aeb2019en/img/contacts_image.jpg';
+const PADDING = 14;
 
-    console.log(
-      'card ===>',
-      navigation,
-      deviceWidth,
-      BAR_SPACE,
-      data,
-      height,
-      width
-    );
+const Card = props => {
+  const { navigation, deviceWidth, BAR_SPACE, data, height, width } = props;
+  const cardWidth = deviceWidth - PADDING - BAR_SPACE;
 
-    return (
-      <TouchableWithoutFeedback
-        onPress={() => {
-          navigation.navigate('Article', {
-            itemId: 86,
-            otherParam: 'anything you want here'
-          });
+  return (
+    <TouchableWithoutFeedback
+      onPress={() => {
+        navigation.navigate('Article', {
+          itemId: data.id,
+          otherParam: data
+        });
+      }}
+      style={[styles.slide, { width: cardWidth, marginRight: BAR_SPACE }]}
+    >
+      <View
+        style={{
+          width: cardWidth,
+          marginRight: BAR_SPACE
         }}
-        style={[
-          styles.slide,
-          {
-            width: deviceWidth - 14 - BAR_SPACE,
-            marginRight: BAR_SPACE
-          }
-        ]}
       >
-        <View
-          style={{
-            width: deviceWidth - 14 - BAR_SPACE,
-            marginRight: BAR_SPACE
-          }}
-        >
-          <Image
-            source={{ uri: data.uri }}
-            style={[styles.image, { width: width, height: height }]}
-          />
-          <Text style={styles.title}>{data.name}</Text>
-          <Text style={styles.date}>
-            {Moment(data.created).format('MMMM Do, YYYY H:mma')}
-          </Text>
-        </View>
-      </TouchableWithoutFeedback>
-    );
-  }
-}
+        <Image
+          source={{ uri: (data.img && data.img.preview[0]) || DEFAULT_IMAGE }}
+          style={[styles.image, { width, height }]}
+        />
+        <Text style={styles.title}>{data.name}</Text>
+        <Text style={styles.date}>
+          {Moment(data.created * 1000).format('MMMM Do, YYYY H:mma')}
+        </Text>
+      </View>
+    </TouchableWithoutFeedback>
+  );
+};
 
 const styles = StyleSheet.create({
   slide: {

@@ -195,6 +195,8 @@ export default class AllArticlesScreen extends Component {
       >
         <Card
           extraPadding={this.props.extraPadding}
+          navigation={this.props.navigation}
+          key={`carousel-article-${item.id}`}
           data={item}
           width={deviceWidth - 14 - BAR_SPACE}
           height={200}
@@ -283,7 +285,7 @@ export default class AllArticlesScreen extends Component {
           }}
           keyExtractor={item => {
             //todo cerf tyt!!!
-            return (item.date || item.uri).toString + getRandomInt(1, 1000);
+            return (item.id || item.created).toString + getRandomInt(1, 1000);
           }}
           ListFooterComponent={this._renderFooter}
           onRefresh={this._handleRefresh}
