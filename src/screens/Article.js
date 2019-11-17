@@ -18,7 +18,6 @@ import {
   StyleSheet,
   RefreshControl
 } from 'react-native';
-import { red } from 'ansi-colors';
 
 const deviceWidth = Dimensions.get('window').width;
 const HEADER_MAX_HEIGHT = 406;
@@ -39,10 +38,12 @@ class ArticleScreen extends React.Component {
   }
 
   static navigationOptions = ({ navigation }) => {
+    const data = navigation.getParam('otherParam', '');
+
     return {
       headerRight: (
         <Fragment>
-          <ShareButton onPress={() => navigation.navigate('Menu')} />
+          <ShareButton data={data} />
         </Fragment>
       ),
       headerTintColor: '#fff',
@@ -82,8 +83,6 @@ class ArticleScreen extends React.Component {
   render() {
     const { navigation } = this.props;
     const data = navigation.getParam('otherParam', {});
-
-    console.log(data, '======>');
 
     // Because of content inset the scroll value will be negative on iOS so bring
     // it back to 0.
@@ -174,6 +173,7 @@ class ArticleScreen extends React.Component {
           <Animated.View
             style={[
               styles.backgroundImage,
+              // eslint-disable-next-line react-native/no-inline-styles
               {
                 backgroundColor: 'rgba(0,0,0,.4)',
                 opacity: imageOpacity,
