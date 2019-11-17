@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Moment from 'moment';
+
 import {
   Dimensions,
   View,
@@ -13,17 +14,14 @@ import {
 
 import { theme } from '../core/themeProvider';
 import { API } from '../core/server';
+import getRandomInt from '../lib/getRandomInt';
 
 import Title from '../components/Title';
+
 import ReleasesCard from '../components/ReleasesCard';
 import PublicationCard from '../components/PublicationCard';
 import CommitteesCard from '../components/CommitteesCard';
 import Card from '../components/CardMini';
-
-// TODO: move to lib/rng.js
-function getRandomInt(min, max) {
-  return Math.floor(Math.random() * (max - min)) + min;
-}
 
 const { width: deviceWidth } = Dimensions.get('window');
 const BAR_SPACE = 14;
@@ -32,7 +30,8 @@ const BAR_SPACE = 14;
 export default class AllArticlesScreen extends Component {
   state = {
     data: [],
-    page: 2,
+    // для новостей начинаем со 2 страницы, т.к рендерим первую страницу в карусели
+    page: this.props.type === 'news' ? 2 : 1,
     loading: true,
     loadingMore: false,
     fullList: false,
@@ -41,28 +40,56 @@ export default class AllArticlesScreen extends Component {
 
   componentDidMount() {
     this.api = new API({ lang: 'rus', platform: Platform.OS });
+
     this._fetchAllArticles();
   }
 
   _fetchAllArticles = async () => {
-    const { page } = this.state;
+    const { page = 1 } = this.state;
+
     let responsedData;
     let calc;
 
-    responsedData = await this.api.getNews(page);
-    calc = [...this.state.data, ...responsedData.items];
-    console.log(responsedData.pagination);
+    try {
+      switch (this.props.type) {
+        case 'news':
+          responsedData = await this.api.getNews(page);
+          break;
+        case 'events':
+          responsedData = await this.api.getEvents(page);
+          break;
+        case 'publications':
+          responsedData = await this.api.getPublications(page);
+          break;
+        case 'committees':
+          responsedData = await this.api.getCommittees(page);
+          break;
+        default:
+          responsedData = await this.api.getReales(page);
+      }
 
-    if (responsedData.pagination.pages.next === null) {
-      this.setState({ fullList: true });
+      calc = [...this.state.data, ...responsedData.items];
+
+      if (responsedData.pagination.pages.next === null) {
+        this.setState({ fullList: true });
+      }
+
+      this.setState((prevState, nextProps) => ({
+        data: calc,
+        loading: false,
+        loadingMore: false,
+        refreshing: false
+      }));
+    } catch (err) {
+      console.error('error during load data:', err);
+
+      this.setState({
+        fullList: true,
+        loading: false,
+        loadingMore: false,
+        refreshing: false
+      });
     }
-
-    this.setState((prevState, nextProps) => ({
-      data: calc,
-      loading: false,
-      loadingMore: false,
-      refreshing: false
-    }));
   };
 
   _handleRefresh = () => {
@@ -108,7 +135,7 @@ export default class AllArticlesScreen extends Component {
       <Card
         extraPadding={this.props.extraPadding}
         navigation={this.props.navigation}
-        key={`carousel-article-${item.id}`}
+        key={`thumb-list-article-${item.id}`}
         data={item}
         width={deviceWidth - 14 - BAR_SPACE}
         height={200}
@@ -124,6 +151,7 @@ export default class AllArticlesScreen extends Component {
         extraPadding={this.props.extraPadding}
         data={item}
         width={deviceWidth - 14 - BAR_SPACE}
+        key={`thumb-list-event-${item.id}`}
         height={200}
         deviceWidth={deviceWidth}
         BAR_SPACE={BAR_SPACE}
@@ -221,6 +249,7 @@ export default class AllArticlesScreen extends Component {
       case 'events':
         component = (
           <TouchableOpacity
+            style={styles.card}
             onPress={() => {
               navigation.navigate('Event', {
                 itemId: item.id,

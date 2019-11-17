@@ -39,26 +39,51 @@ export const API = class AebApi {
   }
 
   async getEvents() {
-    return [
-      {
-        title: 'Reliable internet - a regulatory challenge For business',
-        uri:
-          'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
-        date: new Date()
-      },
-      {
-        title: 'Reliable internet - a regulatory challenge For business',
-        uri:
-          'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
-        date: new Date()
-      },
-      {
-        title: 'Reliable internet - a regulatory challenge For business',
-        uri:
-          'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
-        date: new Date()
+    const response = await fetch(this._url + '/news/?page=' + 1, {
+      method: 'GET',
+      headers: {
+        ...this._headers,
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
       }
-    ];
+    });
+
+    return {
+      items: [
+        {
+          created: 1572598800,
+          name: 'Reliable internet - a regulatory challenge For business',
+          img: {
+            preview: [
+              'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg'
+            ]
+          }
+        },
+        {
+          created: 1572598800,
+          name: 'Reliable internet - a regulatory challenge For business',
+          img: {
+            preview: [
+              'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg'
+            ]
+          }
+        },
+        {
+          created: 1572598800,
+          name: 'Reliable internet - a regulatory challenge For business',
+          img: {
+            preview: [
+              'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg'
+            ]
+          }
+        }
+      ],
+      pagination: {
+        pages: {
+          next: null
+        }
+      }
+    };
   }
   async getPublications() {
     return [
