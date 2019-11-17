@@ -7,9 +7,8 @@ class ShareButton extends React.Component {
   onShare = async () => {
     try {
       const result = await Share.share({
-        url: 'https://aebrus.ru',
-        message:
-          'React Native | A framework for building native apps using React'
+        url: this.props.data.url,
+        message: this.props.data.name
       });
 
       if (result.action === Share.sharedAction) {
