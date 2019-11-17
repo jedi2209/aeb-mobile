@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 
 import Moment from 'moment';
 
-import FavoritesButton from '../components/FavoritesButton';
 import ShareButton from '../components/ShareButton';
 import WebViewAutoHeight from '../components/WebViewAutoHeight';
 
@@ -19,6 +18,7 @@ import {
   StyleSheet,
   RefreshControl
 } from 'react-native';
+import { red } from 'ansi-colors';
 
 const deviceWidth = Dimensions.get('window').width;
 const HEADER_MAX_HEIGHT = 406;
@@ -81,10 +81,9 @@ class ArticleScreen extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    const itemId = navigation.getParam('itemId', 0);
     const data = navigation.getParam('otherParam', {});
 
-    console.log(data, itemId);
+    console.log(data, '======>');
 
     // Because of content inset the scroll value will be negative on iOS so bring
     // it back to 0.
@@ -112,14 +111,14 @@ class ArticleScreen extends React.Component {
     });
 
     const textOpacity = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [1, 0, 0],
+      inputRange: [0, 5, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+      outputRange: [1, 0, 0, 0],
       extrapolate: 'clamp'
     });
 
     const textOpacityReverd = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, 0, 1],
+      inputRange: [0, 5, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+      outputRange: [0, 1, 1, 1],
       extrapolate: 'clamp'
     });
 
@@ -171,6 +170,16 @@ class ArticleScreen extends React.Component {
             source={{
               uri: (data.img && data.img.full[0]) || DEFAULT_IMAGE
             }}
+          />
+          <Animated.View
+            style={[
+              styles.backgroundImage,
+              {
+                backgroundColor: 'rgba(0,0,0,.4)',
+                opacity: imageOpacity,
+                transform: [{ translateY: imageTranslate }]
+              }
+            ]}
           />
         </Animated.View>
         <Animated.View
@@ -240,7 +249,7 @@ const styles = StyleSheet.create({
     right: 0
   },
   title: {
-    fontSize: 34,
+    fontSize: 32,
     fontWeight: 'bold',
     color: '#fff',
     width: deviceWidth,
@@ -249,7 +258,7 @@ const styles = StyleSheet.create({
   },
   titlemini: {
     marginTop: 5,
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
     paddingHorizontal: 14,
     position: 'absolute',
