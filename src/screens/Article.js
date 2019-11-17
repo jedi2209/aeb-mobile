@@ -1,9 +1,13 @@
 import React, { Fragment } from 'react';
 
 import Moment from 'moment';
+
 import FavoritesButton from '../components/FavoritesButton';
 import ShareButton from '../components/ShareButton';
-import { CarouselImages } from '../components/CarouselImages';
+import WebViewAutoHeight from '../components/WebViewAutoHeight';
+
+const DEFAULT_IMAGE =
+  'https://aebrus.ru/local/templates/aeb2019en/img/contacts_image.jpg';
 
 import {
   Dimensions,
@@ -16,17 +20,10 @@ import {
   RefreshControl
 } from 'react-native';
 
+const deviceWidth = Dimensions.get('window').width;
 const HEADER_MAX_HEIGHT = 406;
-const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
+const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 75 : 73;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
-
-const data = {
-  title:
-    'AEB statement regarding the release of Philippe Delpal from pre-trial imprisonment to house arrest',
-  uri:
-    'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
-  date: new Date()
-};
 
 class ArticleScreen extends React.Component {
   constructor(props) {
@@ -34,7 +31,7 @@ class ArticleScreen extends React.Component {
 
     this.state = {
       scrollY: new Animated.Value(
-        // iOS has negative initial scroll value because content inset...
+        // iOS has negative initial scroll value because content inset
         Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0
       ),
       refreshing: false
@@ -45,7 +42,6 @@ class ArticleScreen extends React.Component {
     return {
       headerRight: (
         <Fragment>
-          <FavoritesButton onPress={() => navigation.navigate('Menu')} />
           <ShareButton onPress={() => navigation.navigate('Menu')} />
         </Fragment>
       ),
@@ -69,67 +65,15 @@ class ArticleScreen extends React.Component {
     };
   };
 
-  _renderScrollViewContent() {
+  _renderScrollViewContent(item) {
     return (
       <SafeAreaView>
-        <View style={[styles.scrollViewContent, { paddingHorizontal: 14 }]}>
+        <View style={[styles.scrollViewContent]}>
           <Text style={styles.date}>
-            {Moment().format('MMMM Do, YYYY H:mma')}
+            {Moment(item.created * 1000).format('MMMM Do, YYYY H:mma')}
           </Text>
-          <Text style={styles.paragraph}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at
-            urna ipsum. Mauris eu faucibus nulla. Fusce vel consectetur ipsum.
-            Sed non erat sodales, finibus ligula vitae, facilisis neque. In
-            fringilla massa leo, vehicula lobortis est efficitur eu. Praesent
-            magna risus, suscipit at enim blandit, gravida pharetra sapien. Sed
-            volutpat interdum varius.
-          </Text>
-          <CarouselImages />
-          <Text>
-            Vivamus tincidunt, neque ac aliquet viverra, turpis ex dignissim
-            tellus, sit amet iaculis mi massa id nulla. Suspendisse rhoncus
-            ultrices nibh. Aliquam aliquet, eros vitae sollicitudin semper, sem
-            ipsum finibus turpis, sit amet sagittis libero metus nec tellus.
-            Aenean molestie vestibulum maximus. Sed non tellus ac lorem
-            vestibulum vulputate eu id ante. Maecenas diam massa, euismod nec
-            gravida ac, porttitor at libero. Proin tellus enim, porttitor vel
-            risus nec, congue vehicula felis. Fusce ut euismod dui. Nunc
-            fringilla purus dui, in cursus eros mattis eu. Curabitur ut lacus
-            nisl. Donec congue mattis dolor, non venenatis ante vestibulum eu.
-            Aenean elementum, lorem nec tempus facilisis, erat justo facilisis
-            nunc, et varius nibh velit vel mi. Cras id convallis est. Quisque
-            accumsan condimentum placerat. Mauris fringilla tellus et ornare
-            suscipit. Nullam venenatis, risus eget hendrerit scelerisque, purus
-            lorem hendrerit ex, id lobortis turpis sapien nec ante. Integer
-            consequat libero enim, non aliquet dui ornare ac. Fusce ac risus
-            eget urna luctus elementum vel eget tortor. Suspendisse sagittis
-            ornare odio. Proin ac odio ut urna iaculis placerat ultrices
-            convallis quam. Aenean non feugiat turpis. Praesent at nisi in
-            libero suscipit gravida. Sed vitae tincidunt eros, a tincidunt
-            nulla. Ut porta turpis vel elit posuere aliquam. Vestibulum ante
-            ipsum primis in faucibus orci luctus et ultrices posuere cubilia
-            Curae; In hac habitasse platea dictumst. Quisque luctus at ante sit
-            amet suscipit. Quisque a odio eu est maximus convallis. Praesent
-            pulvinar vestibulum ullamcorper. Phasellus bibendum, purus ut
-            interdum efficitur, dui sapien sollicitudin lectus, lectus, ut
-            bibendum dui velit et lectus. Orci varius natoque penatibus et
-            magnis dis parturient montes, nascetur ridiculus mus. Phasellus
-            tincidunt nisi ut hendrerit ornare. Mauris mollis ligula nec nulla
-            luctus, sit amet tempor nulla varius. Mauris ornare tincidunt elit
-            sed hendrerit. Donec ultrices convallis felis eu dictum. Cras
-            sagittis vel ligula sed sodales. Aenean id purus ut sem mattis
-            dictum vitae non est. Maecenas magna nisi, consequat ut elit tempus,
-            aliquet ultrices sem. Aliquam sit amet nibh ut enim ornare lacinia.
-            Morbi non mauris tortor. Maecenas accumsan turpis ac diam accumsan
-            tempor non ac velit. Mauris eget ultricies lacus. Aenean magna
-            ligula, venenatis eget dui sed, vestibulum dapibus mi. In ac porta
-            leo. Nunc urna arcu, dignissim non euismod ac, tempor id ligula.
-            Aenean id odio auctor mi ultrices elementum. Vestibulum vitae elit
-            purus. Donec imperdiet lectus arcu, a fermentum erat vestibulum
-            eget. Aenean a eros ornare, condimentum orci vel, vel, efficitur
-            risus. Vestibulum id rhoncus odio. Fusce vitae justo sit amet nibh
-            blandit luctus.
-          </Text>
+          <WebViewAutoHeight text={item.descr} />
+          <WebViewAutoHeight text={item.text} />
         </View>
       </SafeAreaView>
     );
@@ -137,8 +81,10 @@ class ArticleScreen extends React.Component {
 
   render() {
     const { navigation } = this.props;
-    const itemId = navigation.getParam('itemId', 'NO-ID');
-    const otherParam = navigation.getParam('otherParam', 'some default value');
+    const itemId = navigation.getParam('itemId', 0);
+    const data = navigation.getParam('otherParam', {});
+
+    console.log(data, itemId);
 
     // Because of content inset the scroll value will be negative on iOS so bring
     // it back to 0.
@@ -205,7 +151,7 @@ class ArticleScreen extends React.Component {
             y: -HEADER_MAX_HEIGHT
           }}
         >
-          {this._renderScrollViewContent()}
+          {this._renderScrollViewContent(data)}
         </Animated.ScrollView>
         <Animated.View
           pointerEvents="none"
@@ -223,8 +169,7 @@ class ArticleScreen extends React.Component {
               }
             ]}
             source={{
-              uri:
-                'https://aebrus.ru/upload/resize_cache/iblock/1d1/1200_1200_1/aba_5543.jpg'
+              uri: (data.img && data.img.full[0]) || DEFAULT_IMAGE
             }}
           />
         </Animated.View>
@@ -238,39 +183,19 @@ class ArticleScreen extends React.Component {
             }
           ]}
         >
-          <Text style={[styles.title]}>{data.title}</Text>
+          <Text style={[styles.title]}>{data.name}</Text>
         </Animated.View>
         <Animated.View
           pointerEvents="none"
-          style={{
-            marginTop: 5,
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingHorizontal: 14,
-            position: 'absolute',
-            top: -5,
-            width: deviceWidth,
-            left: 0,
-            right: 0,
-            opacity: textOpacityReverd
-          }}
+          style={[styles.titlemini, { opacity: textOpacityReverd }]}
         >
-          <Text
-            style={{
-              fontSize: 14,
-              color: '#fff',
-              fontWeight: 'bold'
-            }}
-          >
-            {data.title}
-          </Text>
+          <Text style={styles.titleminitext}>{data.name}</Text>
         </Animated.View>
       </View>
     );
   }
 }
 
-const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   date: {
     fontSize: 11,
@@ -322,9 +247,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingTop: 120
   },
+  titlemini: {
+    marginTop: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 14,
+    position: 'absolute',
+    top: -5,
+    width: deviceWidth,
+    left: 0,
+    right: 0
+  },
+  titleminitext: {
+    fontSize: 14,
+    color: '#fff',
+    fontWeight: 'bold'
+  },
   scrollViewContent: {
     // iOS uses content inset, which acts like padding.
-    paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0
+    paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0,
+    paddingHorizontal: 14
   },
   row: {
     height: 40,
@@ -338,4 +280,5 @@ const styles = StyleSheet.create({
     color: '#1E2432'
   }
 });
+
 export default ArticleScreen;

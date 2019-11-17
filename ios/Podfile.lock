@@ -10,13 +10,13 @@ PODS:
     - AppCenter/Crashes
     - AppCenterReactNativeShared
     - React
-  - AppCenter/Analytics (2.5.0):
+  - AppCenter/Analytics (2.5.1):
     - AppCenter/Core
-  - AppCenter/Core (2.5.0)
-  - AppCenter/Crashes (2.5.0):
+  - AppCenter/Core (2.5.1)
+  - AppCenter/Crashes (2.5.1):
     - AppCenter/Core
-  - AppCenterReactNativeShared (2.5.0):
-    - AppCenter/Core (= 2.5.0)
+  - AppCenterReactNativeShared (2.6.0):
+    - AppCenter/Core (= 2.5.1)
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
   - Folly (2018.10.22.00):
@@ -79,6 +79,8 @@ PODS:
   - react-native-onesignal (3.5.0):
     - OneSignal (= 2.11.2)
     - React (< 1.0.0, >= 0.13.0)
+  - react-native-webview (7.5.1):
+    - React
   - React-RCTActionSheet (0.60.0):
     - React-Core (= 0.60.0)
   - React-RCTAnimation (0.60.0):
@@ -132,6 +134,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-onesignal (from `../node_modules/react-native-onesignal`)
+  - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -187,6 +190,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-onesignal:
     :path: "../node_modules/react-native-onesignal"
+  react-native-webview:
+    :path: "../node_modules/react-native-webview"
   React-RCTActionSheet:
     :path: "../node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
@@ -221,11 +226,11 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AppCenter: 637f180deefc61e8ab3f94223869ee50f61dabea
+  AppCenter: fddcbac6e4baae3d93a196ceb0bfe0e4ce407dec
   appcenter: bde9923b687332a25607fc1aa9577c9361cfed85
   appcenter-analytics: 0ee7a35def715d4bce58ec435f54161770195166
   appcenter-crashes: 9f9c5647dba19026ff09509576fb7233f69697ff
-  AppCenterReactNativeShared: 99e7f662ec66b1cb41306ecf357aabac35931c08
+  AppCenterReactNativeShared: d5e360f8a4cb5126d29e31ab98051d2f070ba631
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
@@ -240,6 +245,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 7a3554f703a58963ec80b860144ea0f0e9b910e1
   React-jsinspector: d4ed52225912efe0019bb7f1a225aec20f23049a
   react-native-onesignal: 50f5a70d2b8a94e0eda8c4e1b9ba0b82dec29a7a
+  react-native-webview: b7ad1323338cb52e370bb07d6141308953ff2440
   React-RCTActionSheet: b27ff3cf3a68f917c46d2b94abf938b625b96570
   React-RCTAnimation: 9e4708e5bd65fca8285ce7c0aa076f3f4fa5c2f8
   React-RCTBlob: 6eafcc3a24f33785692a7be24918ade607bc8719
