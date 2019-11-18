@@ -1,4 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
+// todo: refactor this!!
 import React from 'react';
 import { theme } from '../core/themeProvider';
 import { TouchableOpacity } from 'react-native';
@@ -19,7 +20,7 @@ class Burger extends React.Component {
                 ? -7
                 : -35,
             position: 'absolute',
-            left: 0,
+            left: 2,
             width: 80,
             height: 50,
             paddingLeft: 14,

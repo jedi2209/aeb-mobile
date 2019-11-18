@@ -132,7 +132,7 @@ export default class AllArticlesScreen extends Component {
           style={{ marginTop: 10, width: deviceWidth - 28, height: 50 }}
         >
           <View style={[theme.whiteButton]}>
-            <Text style={theme.whiteButtonText}>Load more</Text>
+            <Text style={theme.whiteButtonText}>{this.props.screenProps.translate('load_more')}</Text>
           </View>
         </TouchableOpacity>
       </View>

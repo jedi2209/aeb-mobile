@@ -2,5 +2,7 @@
     "news": "News",
     "featured_news" : "Featured News",
     "last_news": "Last news",
-    "publications": "Publications"
+    "publications": "Publications",
+    "load_more": "Show more",
+    "realeses": "Press Releases"
 }
