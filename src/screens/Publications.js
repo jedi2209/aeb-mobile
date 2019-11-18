@@ -71,6 +71,7 @@ class PublicationsScreen extends React.Component {
             <View>
               <View style={styles.body}>
                 <ThumbList
+                  screenProps={this.props.screenProps}
                   data={ThumbListData}
                   type="publications"
                   extraPadding="28"

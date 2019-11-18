@@ -213,7 +213,8 @@ const styles = StyleSheet.create({
     letterSpacing: 0.32,
     lineHeight: 22,
     marginBottom: 10,
-    marginTop: 20
+    marginTop: 20,
+    fontWeight: 'bold'
   },
   fill: {
     flex: 1

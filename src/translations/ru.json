@@ -2,5 +2,7 @@
     "news": "Новости",
     "featured_news" : "Новости",
     "last_news": "Последние новости",
-    "publications": "Публикации"
+    "publications": "Публикации",
+    "load_more": "Показать еще",
+    "realeses": "Пресс релизы"
 }

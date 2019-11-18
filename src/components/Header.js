@@ -23,13 +23,13 @@ const style = StyleSheet.create({
     marginTop: Platform.OS !== 'ios' ? 10 : 0
   },
   headerTitle: {
-    marginTop: 8,
+    marginTop: 10,
     fontSize: 34,
     color: '#1E2432',
     fontWeight: 'bold'
   },
   headerDate: {
-    marginTop: 5,
+    marginTop: 0,
     fontSize: 15,
     color: '#ACB1C0'
   }

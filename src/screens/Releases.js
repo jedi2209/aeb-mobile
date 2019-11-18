@@ -62,12 +62,12 @@ import {
 } from 'react-native';
 
 class ReleasesScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = ({ navigation, screenProps }) => {
     return {
       headerLeft: (
         <Header
           onPress={() => navigation.navigate('Menu')}
-          title="Press Releases"
+          title={screenProps.translate('realeses')}
         />
       ),
       headerStyle: {
@@ -135,7 +135,11 @@ class ReleasesScreen extends React.Component {
                 ]}
               />
               <View>
-                <ThumbList data={ThumbListData} extraPadding="28" />
+                <ThumbList
+                  screenProps={this.props.screenProps}
+                  data={ThumbListData}
+                  extraPadding="28"
+                />
               </View>
             </View>
           </ScrollView>

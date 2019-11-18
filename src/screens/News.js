@@ -54,7 +54,6 @@ const NewsScreen = props => {
 
   const { screenProps, navigation } = props;
 
-  console.log(screenProps);
   return (
     <View style={{ backgroundColor: theme.backgroundColor }}>
       <SafeAreaView>
@@ -64,6 +63,7 @@ const NewsScreen = props => {
           </View>
           <View style={theme.body}>
             <ThumbList
+              screenProps={screenProps}
               type="news"
               title={screenProps.translate('last_news')} // "Last news"
               navigation={navigation}
