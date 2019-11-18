@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-import Moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 
 import ShareButton from '../components/ShareButton';
 import WebViewAutoHeight from '../components/WebViewAutoHeight';
@@ -67,11 +67,12 @@ class ArticleScreen extends React.Component {
   };
 
   _renderScrollViewContent(item) {
+    moment.locale(this.props.screenProps.locale);
     return (
       <SafeAreaView>
         <View style={[styles.scrollViewContent]}>
           <Text style={styles.date}>
-            {Moment(item.created * 1000).format('MMMM Do, YYYY H:mma')}
+            {moment(item.created * 1000).format('dddd, DD MMMM')}
           </Text>
           <WebViewAutoHeight text={item.descr} />
           <WebViewAutoHeight text={item.text} />
@@ -207,7 +208,7 @@ class ArticleScreen extends React.Component {
 
 const styles = StyleSheet.create({
   date: {
-    fontSize: 11,
+    fontSize: 14,
     color: '#1E2432',
     letterSpacing: 0.32,
     lineHeight: 22,

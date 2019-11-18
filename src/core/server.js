@@ -8,7 +8,6 @@ export const API = class AebApi {
     const { platform, lang = 'rus' } = opts;
 
     this._url = `http://api.aebrus.ru/${lang}`;
-    console.log(lang);
     this._headers = {
       'x-api-key': apiKeys[platform]
     };
@@ -16,8 +15,8 @@ export const API = class AebApi {
 
   async getNews(page) {
     try {
-      console.log('this._url', this._url); // http://api.aebrus.ru/rus
-      const response = await fetch(this._url + '/news/?page=' + page, {
+      console.log(this._url);
+      const response = await fetch(this._url + '/news/list/?page=' + page, {
         method: 'GET',
         headers: {
           ...this._headers,
@@ -27,7 +26,6 @@ export const API = class AebApi {
       });
 
       const responseJson = await response.json();
-      console.log(responseJson);
 
       return {
         items: responseJson.data,
@@ -85,39 +83,30 @@ export const API = class AebApi {
       }
     };
   }
-  async getPublications() {
-    return [
-      ({
-        image:
-          'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-        title: 'Business Quarterly (Spring 2019)',
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        image:
-          'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-        title: 'How to invest in Russia',
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        image:
-          'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-        title: 'Business Quarterly (Spring 2019)',
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        image:
-          'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-        title: 'How to invest in Russia',
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        image:
-          'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-        title: 'Business Quarterly (Spring 2019)',
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      })
-    ];
+  async getPublications(page) {
+    try {
+      const response = await fetch(
+        this._url + '/publications/list/?page=' + page,
+        {
+          method: 'GET',
+          headers: {
+            ...this._headers,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      const responseJson = await response.json();
+      console.log(responseJson);
+
+      return {
+        items: responseJson.data,
+        pagination: responseJson.info
+      };
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async getCommittees() {
@@ -155,53 +144,26 @@ export const API = class AebApi {
     ];
   }
 
-  async getReales() {
-    return [
-      {
-        date: '2019-10-01',
-        items: [
-          {
-            title: 'Sales of cars and light commercial vehicles in June 2014',
-            commit: 'Automobile Manufacturers Committee',
-            date: Date.now(),
-            url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-          },
-          {
-            title: 'Sales of cars and light commercial vehicles in June 2014',
-            commit: 'Automobile Manufacturers Committee',
-            date: Date.now(),
-            url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-          }
-        ]
-      },
-      {
-        date: '2019-09-01',
-        items: [
-          {
-            title: 'Sales of cars and light commercial vehicles in June 2014',
-            commit: 'Automobile Manufacturers Committee',
-            date: Date.now(),
-            url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-          }
-        ]
-      },
-      {
-        date: '2019-08-01',
-        items: [
-          {
-            title: 'Sales of cars and light commercial vehicles in June 2014',
-            commit: 'Automobile Manufacturers Committee',
-            date: Date.now(),
-            url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-          },
-          {
-            title: 'Sales of cars and light commercial vehicles in June 2014',
-            commit: 'Automobile Manufacturers Committee',
-            date: Date.now(),
-            url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-          }
-        ]
-      }
-    ];
+  async getReales(page) {
+    try {
+      const response = await fetch(this._url + '/press/list/?page=' + page, {
+        method: 'GET',
+        headers: {
+          ...this._headers,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const responseJson = await response.json();
+
+      console.log(responseJson);
+      return {
+        items: responseJson.data,
+        pagination: responseJson.info
+      };
+    } catch (error) {
+      console.log(error);
+    }
   }
 };

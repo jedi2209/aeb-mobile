@@ -1,17 +1,19 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
-import Moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 
 const DEFAULT_IMAGE =
   'https://aebrus.ru/local/templates/aeb2019en/img/contacts_image.jpg';
 const PADDING = 14;
 
 const CardMini = props => {
-  const { deviceWidth, BAR_SPACE, data } = props;
+  const { deviceWidth, BAR_SPACE, data, locale } = props;
   const cardWidth = deviceWidth - PADDING - BAR_SPACE;
   const extraPadding = props.extraPadding
     ? parseInt(this.props.extraPadding, 10)
     : 0;
+
+  moment.locale(locale);
 
   return (
     <View
@@ -39,7 +41,7 @@ const CardMini = props => {
       >
         <Text style={styles.title}>{data.name}</Text>
         <Text style={styles.date}>
-          {Moment(data.created * 1000).format('D MMMM YYYY')}
+          {moment(data.created * 1000).format('dddd, DD MMMM')}
         </Text>
       </View>
     </View>

@@ -7,35 +7,28 @@ export default class Dropdown extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      favSport3: 'football'
+      filter: ''
     };
   }
+
   render() {
     return (
       <View style={[this.props.style, style.dropdown]}>
         <RNPickerSelect
-          items={[
-            {
-              label: 'Automobile Manufacturers Committee',
-              value: 'football',
-              key: 'drop-1'
-            },
-            { label: 'Baseball', value: 'baseball', key: 'drop-2' },
-            { label: 'Hockey', value: 'hockey', key: 'drop-3' }
-          ]}
+          items={this.props.options}
           onValueChange={value => {
             this.setState({
-              favSport3: value
+              filter: value
             });
           }}
           style={{
             ...pickerSelectStyles,
             iconContainer: {
-              top: 10,
+              top: 8,
               right: 12
             }
           }}
-          value={this.state.favSport3}
+          value={this.state.filter}
           useNativeAndroidPickerStyle={false}
           textInputProps={{ textAlign: 'left' }}
           Icon={() => <ArrowDropdown />}

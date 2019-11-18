@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
 
 import {
   Dimensions,
@@ -9,7 +9,8 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Platform
+  Platform,
+  NativeModules
 } from 'react-native';
 
 import { theme } from '../core/themeProvider';
@@ -39,7 +40,15 @@ export default class AllArticlesScreen extends Component {
   };
 
   componentDidMount() {
-    this.api = new API({ lang: 'rus', platform: Platform.OS });
+    const deviceLanguage =
+      Platform.OS === 'ios'
+        ? NativeModules.SettingsManager.settings.AppleLocale ||
+          NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+        : NativeModules.I18nManager.localeIdentifier;
+
+    this.lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
+
+    this.api = new API({ lang: this.lang, platform: Platform.OS });
 
     this._fetchAllArticles();
   }
@@ -166,6 +175,7 @@ export default class AllArticlesScreen extends Component {
         data={item}
         width={deviceWidth - 28 - BAR_SPACE}
         height={200}
+        key={`publication-card-${item.id}`}
         deviceWidth={deviceWidth}
         BAR_SPACE={BAR_SPACE}
       />
@@ -174,6 +184,7 @@ export default class AllArticlesScreen extends Component {
 
   _renderCardCommittee = item => {
     return (
+      // eslint-disable-next-line react-native/no-inline-styles
       <View style={{ marginTop: 25, width: '50%' }}>
         <CommitteesCard
           extraPadding={this.props.extraPadding}
@@ -187,9 +198,12 @@ export default class AllArticlesScreen extends Component {
   };
 
   _renderRealesCards(item) {
+    moment.locale(this.lang);
+
     return (
       <View key={item.created.toString + getRandomInt(1, 1000)}>
         <View
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             borderColor: '#D7D8DA',
             borderBottomWidth: 1,
@@ -202,17 +216,19 @@ export default class AllArticlesScreen extends Component {
           }}
         >
           <Text
+            // eslint-disable-next-line react-native/no-inline-styles
             style={{
               color: '#8C8C8C',
               fontSize: 15
             }}
           >
-            {Moment(item.created).format('MMMM YYYY')}
+            {moment(item.created * 1000).format('YYYY MMMM')}
           </Text>
         </View>
         {item.items.map(value => {
           return (
             <ReleasesCard
+              key={`release-card-${value.id}`}
               extraPadding={this.props.extraPadding}
               data={value}
               width={deviceWidth - 14 - BAR_SPACE}

@@ -6,15 +6,26 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-import Moment from 'moment';
+
+import moment from 'moment/min/moment-with-locales';
 
 const DEFAULT_IMAGE =
   'https://aebrus.ru/local/templates/aeb2019en/img/contacts_image.jpg';
 const PADDING = 14;
 
 const Card = props => {
-  const { navigation, deviceWidth, BAR_SPACE, data, height, width } = props;
+  const {
+    navigation,
+    deviceWidth,
+    BAR_SPACE,
+    data,
+    height,
+    width,
+    locale
+  } = props;
   const cardWidth = deviceWidth - PADDING - BAR_SPACE;
+
+  moment.locale(locale);
 
   return (
     <TouchableWithoutFeedback
@@ -38,7 +49,7 @@ const Card = props => {
         />
         <Text style={styles.title}>{data.name}</Text>
         <Text style={styles.date}>
-          {Moment(data.created * 1000).format('MMMM Do, YYYY H:mma')}
+          {moment(data.created * 1000).format('dddd, DD MMMM')}
         </Text>
       </View>
     </TouchableWithoutFeedback>
