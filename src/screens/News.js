@@ -4,9 +4,9 @@ import { theme } from '../core/themeProvider';
 import { createStore, createEffect } from 'effector';
 import { useStore } from 'effector-react';
 
-import Moment from 'moment';
+import moment from 'moment/min/moment-with-locales';
+
 import Header from '../components/Header';
-import Title from '../components/Title';
 import CarouselArticles from '../components/CarouselArticles';
 import ThumbList from '../components/ThumbList';
 
@@ -15,7 +15,8 @@ import {
   ScrollView,
   View,
   StyleSheet,
-  Platform
+  Platform,
+  NativeModules
 } from 'react-native';
 
 import { API } from '../core/server';
@@ -23,7 +24,15 @@ import { API } from '../core/server';
 // Есть конвеншен что эффекты начинаются с fx -> (fxFetchData), а сторы с $ -> ($data)
 const fxFetchCountFromAsyncStorage = createEffect({
   handler: async page => {
-    const api = new API({ lang: 'rus', platform: Platform.OS });
+    const deviceLanguage =
+      Platform.OS === 'ios'
+        ? NativeModules.SettingsManager.settings.AppleLocale ||
+          NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+        : NativeModules.I18nManager.localeIdentifier;
+
+    const lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
+
+    const api = new API({ lang, platform: Platform.OS });
     const data = await api.getNews(page);
     return data || { items: [], paginations: {} };
   }
@@ -45,15 +54,12 @@ const NewsScreen = props => {
 
   const { screenProps, navigation } = props;
 
+  console.log(screenProps);
   return (
     <View style={{ backgroundColor: theme.backgroundColor }}>
       <SafeAreaView>
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View style={theme.body}>
-            <Title
-              style={[theme.pageTitle, styles.pageTitle]}
-              text={screenProps.translate('featured_news')} // "Featured News"
-            />
+          <View style={[theme.body, { marginTop: 10 }]}>
             <CarouselArticles data={items} navigation={navigation} />
           </View>
           <View style={theme.body}>
@@ -69,14 +75,16 @@ const NewsScreen = props => {
   );
 };
 
-NewsScreen.navigationOptions = ({ navigation }) => {
+NewsScreen.navigationOptions = ({ navigation, screenProps }) => {
+  moment.locale(screenProps.locale);
+
   return {
     headerLeft: (
       <Header
         screen="wide"
         onPress={() => navigation.navigate('Menu')}
-        title="News"
-        date={Moment().format('dddd, MMMM DD')}
+        title={screenProps.translate('news')} // Новости
+        date={moment().format('dddd, DD MMMM')}
       />
     ),
     headerStyle: {

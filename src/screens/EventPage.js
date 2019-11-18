@@ -384,9 +384,7 @@ class ArticleScreen extends React.Component {
           ]}
         >
           <Text style={[styles.title]}>{data.title}</Text>
-          <Text style={styles.date}>
-            {Moment().format('DD MM YYYY, HH:MM')}
-          </Text>
+          <Text style={styles.date}>{Moment().format('dddd, DD MMMM')}</Text>
           <Maps text="AZIMUT Hotel Smolenskaya Moscow, Smolenskaya st.8, Moscow" />
           <View style={{ position: 'relative' }}>
             <CalendarIcon />
@@ -394,6 +392,7 @@ class ArticleScreen extends React.Component {
         </Animated.View>
         <Animated.View
           pointerEvents="none"
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             marginTop: 5,
             alignItems: 'center',

@@ -41,12 +41,12 @@ const ThumbListData = [
 import { SafeAreaView, ScrollView, View, StyleSheet } from 'react-native';
 
 class PublicationsScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = ({ navigation, screenProps }) => {
     return {
       headerLeft: (
         <Header
           onPress={() => navigation.navigate('Menu')}
-          title="Publications"
+          title={screenProps.translate('publications')}
         />
       ),
       headerStyle: {

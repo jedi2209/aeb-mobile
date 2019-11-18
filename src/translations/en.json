@@ -1,4 +1,6 @@
 {
+    "news": "News",
     "featured_news" : "Featured News",
-    "last_news": "Last news"
+    "last_news": "Last news",
+    "publications": "Publications"
 }
