@@ -1,41 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { theme } from '../core/themeProvider';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
-
-const ThumbListData = [
-  {
-    image:
-      'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-    title: 'Business Quarterly (Spring 2019)',
-    url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-  },
-  {
-    image:
-      'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-    title: 'How to invest in Russia',
-    url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-  },
-  {
-    image:
-      'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-    title: 'Business Quarterly (Spring 2019)',
-    url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-  },
-  {
-    image:
-      'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-    title: 'How to invest in Russia',
-    url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-  },
-  {
-    image:
-      'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-    title: 'Business Quarterly (Spring 2019)',
-    url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-  }
-];
+import SegmentedControlTab from 'react-native-segmented-control-tab';
 
 import {
   SafeAreaView,
@@ -46,12 +15,26 @@ import {
 } from 'react-native';
 
 class CommitteesScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      selectedIndex: 0
+    };
+    this.ids = [32, 30, 31];
+  }
+
+  handleIndexChange = index => {
+    //handle tab selection for custom Tab Selection SegmentedControlTab
+    this.setState(prevState => ({ ...prevState, selectedIndex: index }));
+  };
+
+  static navigationOptions = ({ navigation, screenProps }) => {
     return {
       headerLeft: (
         <Header
           onPress={() => navigation.navigate('Menu')}
-          title="Committees"
+          title={screenProps.translate('committees')} //committees
         />
       ),
       headerStyle: {
@@ -62,8 +45,6 @@ class CommitteesScreen extends React.Component {
   };
 
   render() {
-    const { navigate } = this.props.navigation;
-
     return (
       <View
         style={[styles.container, { backgroundColor: theme.backgroundColor }]}
@@ -74,9 +55,27 @@ class CommitteesScreen extends React.Component {
             style={styles.scrollView}
           >
             <View>
+              <View style={{ backgroundColor: '#FAFAFA', paddingVertical: 14 }}>
+                <SegmentedControlTab
+                  tabsContainerStyle={{ marginTop: 0 }}
+                  tabStyle={{
+                    backgroundColor: '#FAFAFA',
+                    borderColor: '#FAFAFA'
+                  }}
+                  tabTextStyle={{ color: '#D8D8D8', fontSize: 11 }}
+                  activeTabStyle={{
+                    backgroundColor: '#FAFAFA',
+                    borderColor: '#FAFAFA'
+                  }}
+                  activeTabTextStyle={{ color: '#000', fontSize: 11 }}
+                  values={['CROSS-SECTORAL', 'INDUSTRIAL', 'WORKING GROUPS']}
+                  selectedIndex={this.state.selectedIndex}
+                  onTabPress={this.handleIndexChange}
+                />
+              </View>
               <View style={styles.body}>
                 <ThumbList
-                  data={ThumbListData}
+                  paramsForFetch={{ type: this.ids[this.state.selectedIndex] }}
                   type="committees"
                   navigation={this.props.navigation}
                 />
@@ -92,8 +91,9 @@ class CommitteesScreen extends React.Component {
 const styles = StyleSheet.create({
   scrollView: {},
   body: {
-    backgroundColor: '#fff',
-    paddingLeft: 14
+    backgroundColor: '#FAFAFA',
+    paddingLeft: 14,
+    marginTop: -20
   }
 });
 

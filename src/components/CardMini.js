@@ -8,10 +8,11 @@ const PADDING = 14;
 
 const CardMini = props => {
   const { deviceWidth, BAR_SPACE, data, locale } = props;
-  const cardWidth = deviceWidth - PADDING - BAR_SPACE;
   const extraPadding = props.extraPadding
-    ? parseInt(this.props.extraPadding, 10)
+    ? parseInt(props.extraPadding, 10)
     : 0;
+
+  const cardWidth = deviceWidth - PADDING - BAR_SPACE - extraPadding;
 
   moment.locale(locale);
 

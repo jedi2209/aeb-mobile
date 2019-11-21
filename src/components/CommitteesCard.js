@@ -15,13 +15,13 @@ class CommitteesCard extends React.Component {
       >
         <View
           style={{
-            width: this.props.deviceWidth - 28 - 70 - this.props.BAR_SPACE
+            width: this.props.deviceWidth - 28 - 28 - 70 - this.props.BAR_SPACE
           }}
         >
-          <Text style={styles.title}>{this.props.data.title}</Text>
+          <Text style={styles.title}>{this.props.data.name}</Text>
         </View>
         <Image
-          source={{ uri: this.props.data.image }}
+          source={{ uri: this.props.data.img.preview[0] }}
           // eslint-disable-next-line react-native/no-inline-styles
           style={[styles.image, { width: 60, height: 60, marginLeft: 10 }]}
         />
@@ -32,10 +32,8 @@ class CommitteesCard extends React.Component {
 
 const styles = StyleSheet.create({
   slide: {
-    borderBottomColor: '#D7D8DA',
-    borderBottomWidth: 1,
-    borderStyle: 'solid',
-    paddingBottom: 20,
+    backgroundColor: '#fff',
+    padding: 14,
     flexDirection: 'row'
   },
   image: {
