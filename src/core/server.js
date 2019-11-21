@@ -13,17 +13,26 @@ export const API = class AebApi {
     };
   }
 
-  async getNews(page) {
+  async getNews(page, paramsForFetch = {}) {
     try {
-      console.log(this._url);
-      const response = await fetch(this._url + '/news/list/?page=' + page, {
-        method: 'GET',
-        headers: {
-          ...this._headers,
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        }
+      const params = Object.keys(paramsForFetch).map(param => {
+        return `&${param}=${paramsForFetch[param]}`;
       });
+
+      console.log(
+        `${this._url}/news/list/?page=${page}${params.map(value => value)}`
+      );
+      const response = await fetch(
+        `${this._url}/news/list/?page=${page}${params.map(value => value)}`,
+        {
+          method: 'GET',
+          headers: {
+            ...this._headers,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
+      );
 
       const responseJson = await response.json();
 
@@ -83,10 +92,23 @@ export const API = class AebApi {
       }
     };
   }
-  async getPublications(page) {
+
+  async getPublications(page, paramsForFetch = {}) {
+    const params = Object.keys(paramsForFetch).map(param => {
+      return `&${param}=${paramsForFetch[param]}`;
+    });
+
+    console.log(
+      `${this._url}/publications/list/?page=${page}${params.map(
+        value => value
+      )}`
+    );
+
     try {
       const response = await fetch(
-        this._url + '/publications/list/?page=' + page,
+        `${this._url}/publications/list/?page=${page}${params.map(
+          value => value
+        )}`,
         {
           method: 'GET',
           headers: {
@@ -109,39 +131,31 @@ export const API = class AebApi {
     }
   }
 
-  async getCommittees() {
-    return [
-      {
-        image:
-          'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-        title: 'Business Quarterly (Spring 2019)',
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        image:
-          'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-        title: 'How to invest in Russia',
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        image:
-          'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-        title: 'Business Quarterly (Spring 2019)',
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        image:
-          'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-        title: 'How to invest in Russia',
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        image:
-          'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-        title: 'Business Quarterly (Spring 2019)',
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      }
-    ];
+  async getCommittees(page, { type }) {
+    try {
+      console.log(this._url + '/committees/list/' + type + '/?page=' + page);
+      const response = await fetch(
+        this._url + '/committees/list/' + type + '/?page=' + page,
+        {
+          method: 'GET',
+          headers: {
+            ...this._headers,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      const responseJson = await response.json();
+
+      console.log(responseJson);
+      return {
+        items: responseJson.data,
+        pagination: responseJson.info
+      };
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async getReales(page) {

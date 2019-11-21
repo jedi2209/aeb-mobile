@@ -55,6 +55,9 @@ export default class AllArticlesScreen extends Component {
 
   _fetchAllArticles = async () => {
     const { page = 1 } = this.state;
+    const paramsForFetch = this.props.paramsForFetch || [];
+
+    console.log('paramsForFetch', paramsForFetch);
 
     let responsedData;
     let calc;
@@ -62,16 +65,19 @@ export default class AllArticlesScreen extends Component {
     try {
       switch (this.props.type) {
         case 'news':
-          responsedData = await this.api.getNews(page);
+          responsedData = await this.api.getNews(page, paramsForFetch);
           break;
         case 'events':
           responsedData = await this.api.getEvents(page);
           break;
         case 'publications':
-          responsedData = await this.api.getPublications(page);
+          responsedData = await this.api.getPublications(page, paramsForFetch);
           break;
         case 'committees':
-          responsedData = await this.api.getCommittees(page);
+          responsedData = await this.api.getCommittees(
+            page,
+            this.props.paramsForFetch
+          );
           break;
         default:
           responsedData = await this.api.getReales(page);
@@ -90,7 +96,7 @@ export default class AllArticlesScreen extends Component {
         refreshing: false
       }));
     } catch (err) {
-      console.error('error during load data:', err);
+      console.log('error during load data:', err);
 
       this.setState({
         fullList: true,
@@ -120,6 +126,10 @@ export default class AllArticlesScreen extends Component {
   };
 
   _renderFooter = () => {
+    const translate =
+      (this.props.screenProps && this.props.screenProps.translate) ||
+      this.props.translate;
+
     if (this.state.fullList) {
       return null;
     }
@@ -132,7 +142,7 @@ export default class AllArticlesScreen extends Component {
           style={{ marginTop: 10, width: deviceWidth - 28, height: 50 }}
         >
           <View style={[theme.whiteButton]}>
-            <Text style={theme.whiteButtonText}>{this.props.screenProps.translate('load_more')}</Text>
+            <Text style={theme.whiteButtonText}>{translate('load_more')}</Text>
           </View>
         </TouchableOpacity>
       </View>
