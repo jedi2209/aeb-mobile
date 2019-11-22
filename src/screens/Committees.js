@@ -14,6 +14,13 @@ import {
   StyleSheet
 } from 'react-native';
 
+const CATEGORIES = {
+  // TODO: Описать? что это за херня
+  0: 32,
+  1: 30,
+  2: 31,
+};
+
 class CommitteesScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -21,12 +28,13 @@ class CommitteesScreen extends React.Component {
     this.state = {
       selectedIndex: 0
     };
-    this.ids = [32, 30, 31];
+    // this.ids = [32, 30, 31];
   }
 
-  handleIndexChange = index => {
+  handleIndexChange = selectedIndex => {
     //handle tab selection for custom Tab Selection SegmentedControlTab
-    this.setState(prevState => ({ ...prevState, selectedIndex: index }));
+    // this.setState(prevState => ({ ...prevState, selectedIndex: index }));
+    this.setState({ selectedIndex });
   };
 
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -75,7 +83,9 @@ class CommitteesScreen extends React.Component {
               </View>
               <View style={styles.body}>
                 <ThumbList
-                  paramsForFetch={{ type: this.ids[this.state.selectedIndex] }}
+                  paramsForFetch={{
+                    type: CATEGORIES[this.state.selectedIndex]
+                  }}
                   type="committees"
                   navigation={this.props.navigation}
                 />

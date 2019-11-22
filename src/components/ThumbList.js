@@ -53,11 +53,18 @@ export default class AllArticlesScreen extends Component {
     this._fetchAllArticles();
   }
 
-  _fetchAllArticles = async () => {
-    const { page = 1 } = this.state;
-    const paramsForFetch = this.props.paramsForFetch || [];
+  componentDidUpdate(nextProps) {
+    // console.log('>>> np', nextProps)
+    if (this.props.paramsForFetch !== nextProps.paramsForFetch) {
+      this._fetchAllArticles({ force: true });
+    }
+  }
 
-    console.log('paramsForFetch', paramsForFetch);
+  _fetchAllArticles = async ({ force } = {}) => {
+    const { page = 1 } = this.state;
+    const paramsForFetch = this.props.paramsForFetch || {};
+
+    // console.log('>>> paramsForFetch', paramsForFetch);
 
     let responsedData;
     let calc;
@@ -74,27 +81,29 @@ export default class AllArticlesScreen extends Component {
           responsedData = await this.api.getPublications(page, paramsForFetch);
           break;
         case 'committees':
-          responsedData = await this.api.getCommittees(
-            page,
-            this.props.paramsForFetch
-          );
+          responsedData = await this.api.getCommittees(page, paramsForFetch);
           break;
         default:
           responsedData = await this.api.getReales(page);
       }
 
-      calc = [...this.state.data, ...responsedData.items];
+      if (force) {
+        console.log('====> force');
+        calc = responsedData.items;
+      } else {
+        calc = [...this.state.data, ...responsedData.items];
+      }
 
       if (responsedData.pagination.pages.next === null) {
         this.setState({ fullList: true });
       }
 
-      this.setState((prevState, nextProps) => ({
+      this.setState({
         data: calc,
         loading: false,
         loadingMore: false,
         refreshing: false
-      }));
+      });
     } catch (err) {
       console.log('error during load data:', err);
 
@@ -338,7 +347,7 @@ export default class AllArticlesScreen extends Component {
             );
           }}
           keyExtractor={item => {
-            return (item.id || item.created).toString + getRandomInt(1, 1000);
+            return (item.id || item.created).toString() + getRandomInt(1, 1000);
           }}
           ListFooterComponent={this._renderFooter}
           onRefresh={this._handleRefresh}
