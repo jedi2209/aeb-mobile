@@ -106,7 +106,7 @@ class EventsScreen extends React.Component {
     super(props);
 
     this.state = {
-      selected: Moment().format('dddd, DD MMMM'),
+      selected: Moment().format("YYYY-MM-DD"),
       dataForThumbList: dataFrom
     };
   }
@@ -123,7 +123,7 @@ class EventsScreen extends React.Component {
   };
 
   render() {
-    const current = Moment().format('dddd, DD MMMM');
+    const current = Moment().format("YYYY-MM-DD");
 
     return (
       <View>
