@@ -1,5 +1,4 @@
 import React from 'react';
-// import { theme } from "../core/themeProvider";
 import { View, Text, StyleSheet, Platform } from 'react-native';
 import Burger from '../components/Burger';
 

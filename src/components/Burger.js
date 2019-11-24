@@ -13,12 +13,12 @@ class Burger extends React.Component {
         style={[
           theme.burger,
           {
-            top:
-              this.props.screen === 'wide'
-                ? -20
+            bottom:
+              this.props.screen === 'news'
+                ? 39
                 : this.props.screen === 'committees'
-                ? -7
-                : -35,
+                ? -2
+                : 20,
             position: 'absolute',
             left: 2,
             width: 80,

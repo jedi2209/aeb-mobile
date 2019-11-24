@@ -71,15 +71,18 @@ class ReleasesScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: Platform.OS === 'ios' ? 100 : 108,
-        borderBottomWidth: 0,
-        shadowRadius: 0,
-        shadowOffset: {
-          height: 0
-        },
-        elevation: 0,
-        shadowColor: 'transparent'
+        height: Platform.OS === 'ios' ? 60 : 68
       }
+      // headerStyle: {
+      //   height: Platform.OS === 'ios' ? 100 : 108,
+      //   borderBottomWidth: 0,
+      //   shadowRadius: 0,
+      //   shadowOffset: {
+      //     height: 0
+      //   },
+      //   elevation: 0,
+      //   shadowColor: 'transparent'
+      // }
     };
   };
 

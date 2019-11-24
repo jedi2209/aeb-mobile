@@ -18,7 +18,7 @@ const CATEGORIES = {
   // TODO: Описать? что это за херня
   0: 32,
   1: 30,
-  2: 31,
+  2: 31
 };
 
 class CommitteesScreen extends React.Component {
@@ -46,8 +46,7 @@ class CommitteesScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: Platform.OS === 'ios' ? 100 : 108,
-        borderBottomWidth: 0
+        height: Platform.OS === 'ios' ? 60 : 68
       }
     };
   };
