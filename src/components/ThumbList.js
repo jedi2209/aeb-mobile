@@ -64,8 +64,6 @@ export default class AllArticlesScreen extends Component {
     const { page = 1 } = this.state;
     const paramsForFetch = this.props.paramsForFetch || {};
 
-    // console.log('>>> paramsForFetch', paramsForFetch);
-
     let responsedData;
     let calc;
 
@@ -75,7 +73,7 @@ export default class AllArticlesScreen extends Component {
           responsedData = await this.api.getNews(page, paramsForFetch);
           break;
         case 'events':
-          responsedData = await this.api.getEvents(page);
+          responsedData = await this.api.getEvents(page, paramsForFetch);
           break;
         case 'publications':
           responsedData = await this.api.getPublications(page, paramsForFetch);
