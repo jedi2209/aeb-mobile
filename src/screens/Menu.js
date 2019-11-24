@@ -1,7 +1,14 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { theme } from '../core/themeProvider';
 
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+  Platform
+} from 'react-native';
 
 import Menu from '../components/Menu';
 import CloseButton from '../components/CloseButton';
@@ -13,7 +20,11 @@ class MenuScreen extends React.Component {
       <View style={[style.container, theme.blueScreen]}>
         <TouchableOpacity
           onPress={() => navigate('Login')}
-          style={{ marginTop: '20%', width: 305, height: 50 }}
+          style={{
+            marginTop: Platform.OS === 'ios' ? '20%' : '10%',
+            width: 305,
+            height: 50
+          }}
         >
           <View style={[theme.whiteButton]}>
             <Text style={theme.whiteButtonText}>Sign In</Text>
@@ -31,7 +42,8 @@ const style = StyleSheet.create({
     height: '100%',
     flex: 1,
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'space-around'
   },
   goBack: {
     marginBottom: '15%'

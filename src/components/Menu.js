@@ -1,7 +1,13 @@
 import React from 'react';
 import { theme } from '../core/themeProvider';
 
-import { Text, SectionList, Dimensions, TouchableOpacity } from 'react-native';
+import {
+  Text,
+  SectionList,
+  Dimensions,
+  TouchableOpacity,
+  View
+} from 'react-native';
 
 const menuItems = [
   'News',
@@ -21,30 +27,28 @@ class Menu extends React.Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <SectionList
-        style={styles.linklList}
-        sections={[
-          { title: '', data: menuItems },
-          { title: '', data: menuItemsBottom }
-        ]}
-        renderSectionHeader={() => (
-          <Text style={{ height: width * 0.15 }}>{}</Text>
-        )}
-        renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigate(item)}>
-            <Text style={[styles.link, theme.whiteLink]}>{item}</Text>
-          </TouchableOpacity>
-        )}
-        keyExtractor={(item, index) => item + index}
-      />
+      // eslint-disable-next-line react-native/no-inline-styles
+      <View style={{ height: 300 }}>
+        <SectionList
+          style={styles.linklList}
+          sections={[
+            { title: '', data: menuItems },
+            { title: '', data: menuItemsBottom }
+          ]}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => navigate(item)}>
+              <Text style={[styles.link, theme.whiteLink]}>{item}</Text>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(item, index) => item + index}
+        />
+      </View>
     );
   }
 }
 
 const styles = {
-  linklList: {
-    height: '100%'
-  },
+  linklList: {},
   link: {
     textAlign: 'center',
     textTransform: 'capitalize'

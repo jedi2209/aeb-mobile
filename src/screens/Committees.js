@@ -15,10 +15,9 @@ import {
 } from 'react-native';
 
 const CATEGORIES = {
-  // TODO: Описать? что это за херня
-  0: 32,
-  1: 30,
-  2: 31
+  0: 32, //'CROSS-SECTORAL'
+  1: 30, //'INDUSTRIAL'
+  2: 31 //'WORKING GROUPS'
 };
 
 class CommitteesScreen extends React.Component {
@@ -28,7 +27,6 @@ class CommitteesScreen extends React.Component {
     this.state = {
       selectedIndex: 0
     };
-    // this.ids = [32, 30, 31];
   }
 
   handleIndexChange = selectedIndex => {
@@ -75,7 +73,11 @@ class CommitteesScreen extends React.Component {
                     borderColor: '#FAFAFA'
                   }}
                   activeTabTextStyle={{ color: '#000', fontSize: 11 }}
-                  values={['CROSS-SECTORAL', 'INDUSTRIAL', 'WORKING GROUPS']}
+                  values={[
+                    this.props.screenProps.translate('cross_sectoral'), //'CROSS-SECTORAL'
+                    this.props.screenProps.translate('industrial'), //'INDUSTRIAL',
+                    this.props.screenProps.translate('working_groups') //'WORKING GROUPS'
+                  ]}
                   selectedIndex={this.state.selectedIndex}
                   onTabPress={this.handleIndexChange}
                 />
