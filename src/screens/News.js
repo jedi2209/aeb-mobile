@@ -81,14 +81,14 @@ NewsScreen.navigationOptions = ({ navigation, screenProps }) => {
   return {
     headerLeft: (
       <Header
-        screen="wide"
+        screen="news"
         onPress={() => navigation.navigate('Menu')}
         title={screenProps.translate('news')} // Новости
         date={moment().format('dddd, DD MMMM')}
       />
     ),
     headerStyle: {
-      height: Platform.OS === 'ios' ? 100 : 108
+      height: Platform.OS === 'ios' ? 80 : 88
     }
   };
 };

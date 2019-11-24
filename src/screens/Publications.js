@@ -50,8 +50,7 @@ class PublicationsScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: Platform.OS === 'ios' ? 100 : 108,
-        borderBottomWidth: 0
+        height: Platform.OS === 'ios' ? 60 : 68
       }
     };
   };

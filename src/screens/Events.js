@@ -117,7 +117,7 @@ class EventsScreen extends React.Component {
         <Header onPress={() => navigation.navigate('Menu')} title="Events" />
       ),
       headerStyle: {
-        height: Platform.OS === 'ios' ? 100 : 108
+        height: Platform.OS === 'ios' ? 60 : 68
       }
     };
   };
