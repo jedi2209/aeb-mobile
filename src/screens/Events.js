@@ -4,19 +4,20 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
-  Platform
+  Platform,
+  NativeModules
 } from 'react-native';
 
-import { theme } from '../core/themeProvider';
-import Header from '../components/Header';
+import { API } from '../core/server';
 
+import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
 import Moment from 'moment';
 
 import { Calendar } from 'react-native-calendars';
 import { LocaleConfig } from 'react-native-calendars';
 
-LocaleConfig.locales.en = {
+LocaleConfig.locales.eng = {
   monthNames: [
     'January',
     'February',
@@ -55,59 +56,74 @@ LocaleConfig.locales.en = {
     'Sunday'
   ],
   dayNamesShort: ['Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.', 'Sun.'],
-  today: "Aujourd'hui"
+  today: 'Today'
 };
-LocaleConfig.defaultLocale = 'en';
 
-const dataFrom = [
-  {
-    title: 'Reliable internet - a regulatory challenge For business',
-    uri:
-      'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
-    date: new Date()
-  },
-  {
-    title: 'Reliable internet - a regulatory challenge For business',
-    uri:
-      'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
-    date: new Date()
-  },
-  {
-    title: 'Reliable internet - a regulatory challenge For business',
-    uri:
-      'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
-    date: new Date()
-  }
-];
-
-const dataFromAjax = [
-  {
-    title: 'ajax Reliable internet - a regulatory challenge For business',
-    uri:
-      'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
-    date: new Date()
-  },
-  {
-    title: 'ajax Reliable internet - a regulatory challenge For business',
-    uri:
-      'https://aebrus.ru/upload/iblock/245/whatsapp-image-2019_07_12-at-17.41.49.jpeg',
-    date: new Date()
-  },
-  {
-    title: 'ajax Reliable internet - a regulatory challenge For business',
-    uri:
-      'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg',
-    date: new Date()
-  }
-];
+LocaleConfig.locales.rus = {
+  monthNames: [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь'
+  ],
+  monthNamesShort: [
+    'янв.',
+    'фев.',
+    'мар',
+    'апр',
+    'май',
+    'июн',
+    'июл.',
+    'авг',
+    'сен.',
+    'окт.',
+    'ноя.',
+    'дек.'
+  ],
+  dayNames: [
+    'Понедельник',
+    'Вторник',
+    'Среда',
+    'Четверг',
+    'Пятница',
+    'Суббота',
+    'Воскресенье'
+  ],
+  dayNamesShort: ['Пн.', 'Вт.', 'Ср.', 'Чт.', 'Пт.', 'Сб.', 'Вс.'],
+  today: 'Сегодня'
+};
 
 class EventsScreen extends React.Component {
   constructor(props) {
     super(props);
 
+    const deviceLanguage =
+      Platform.OS === 'ios'
+        ? NativeModules.SettingsManager.settings.AppleLocale ||
+          NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+        : NativeModules.I18nManager.localeIdentifier;
+
+    this.lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
+    LocaleConfig.defaultLocale = this.lang;
+
     this.state = {
-      selected: Moment().format("YYYY-MM-DD"),
-      dataForThumbList: dataFrom
+      current: Moment().format('YYYY-MM-DD'),
+      title: this.props.screenProps.translate('upcoming_events'),
+      now: Moment().format('YYYY-MM-DD'),
+      responsedData: [],
+      selected: Moment().format('YYYY-MM-DD'),
+      markedDates: {},
+      params: {
+        date_from: Moment().format('YYYY-MM-DD')
+      }
     };
   }
 
@@ -122,26 +138,97 @@ class EventsScreen extends React.Component {
     };
   };
 
-  render() {
-    const current = Moment().format("YYYY-MM-DD");
+  async componentDidMount() {
+    this.api = new API({ lang: this.lang, platform: Platform.OS });
 
+    const data = await this._fetchMarkedDates(Moment().format('YYYY-MM'));
+
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({
+      responsedData: data.responsedData,
+      markedDates: Object.assign(data.markedDates, {
+        [this.state.now]: { selected: true }
+      })
+    });
+  }
+
+  _fetchMarkedDates = async date => {
+    const responsedData = await this.api.getAllEventsByMonth(date);
+
+    const markedDates = responsedData.items
+      ? responsedData.items.reduce((acc, item) => {
+          acc[item] = { marked: true };
+          return acc;
+        }, {})
+      : {};
+
+    return {
+      responsedData: responsedData.items,
+      markedDates
+    };
+  };
+
+  render() {
     return (
       <View>
         <SafeAreaView>
           <ScrollView>
             <Calendar
-              markedDates={{ [this.state.selected]: { selected: true } }}
+              markedDates={this.state.markedDates}
               // Initially visible month. Default = Date()
-              current={current}
+              current={this.state.current}
               // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
               // minDate={'2012-05-10'}
               // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
               // maxDate={'2012-05-30'}
               // Handler which gets executed on day press. Default = undefined
               onDayPress={day => {
-                this.setState({ selected: day.dateString });
-                // WTF ???
-                this.setState({ dataForThumbList: dataFromAjax });
+                // изначальные данные с сервера
+                const responsedData = this.state.responsedData;
+                const selectedDay = day.dateString;
+
+                if (!responsedData.includes(selectedDay)) {
+                  return;
+                }
+
+                // снова их приводим к сооответсвующему объекту
+                const markedDates = responsedData
+                  ? responsedData.reduce((acc, item) => {
+                      acc[item] = { marked: true };
+                      return acc;
+                    }, {})
+                  : {};
+
+                // то что запишем в markedDates в итоге
+                const calculated = Object.assign(markedDates, {
+                  [selectedDay]: { selected: true }
+                });
+
+                let params;
+                let title;
+
+                if (selectedDay === this.state.now) {
+                  params = {
+                    date_from: selectedDay
+                  };
+                  title = this.props.screenProps.translate('upcoming_events');
+                } else {
+                  params = {
+                    date_from: selectedDay,
+                    date_to: selectedDay
+                  };
+
+                  title = `${this.props.screenProps.translate(
+                    'upcoming_events_on'
+                  )} ${selectedDay}`;
+                }
+
+                this.setState({
+                  selected: selectedDay,
+                  markedDates: calculated,
+                  params,
+                  title
+                });
               }}
               // Handler which gets executed on day long press. Default = undefined
               // onDayLongPress={day => {
@@ -150,8 +237,16 @@ class EventsScreen extends React.Component {
               // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
               monthFormat={'MMMM yyyy'}
               // Handler which gets executed when visible month changes in calendar. Default = undefined
-              onMonthChange={month => {
-                // тут что-то нужно будет сделать? Может здесь загружать events?
+              onMonthChange={async month => {
+                const data = await this._fetchMarkedDates(
+                  `${month.year}-${month.month}`
+                );
+
+                this.setState({
+                  current: `${month.year}-${month.month}-${month.day}`,
+                  responsedData: data.responsedData,
+                  markedDates: Object.assign(data.markedDates)
+                });
               }}
               // Hide month navigation arrows. Default = false
               // hideArrows={true}
@@ -175,10 +270,11 @@ class EventsScreen extends React.Component {
             />
             <View style={styles.body}>
               <ThumbList
+                paramsForFetch={this.state.params}
+                translate={this.props.screenProps.translate}
                 navigation={this.props.navigation}
-                data={this.state.dataForThumbList}
                 type="events"
-                title="Upcoming events"
+                title={this.state.title}
               />
             </View>
           </ScrollView>

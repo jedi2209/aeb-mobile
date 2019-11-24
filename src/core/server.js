@@ -15,15 +15,15 @@ export const API = class AebApi {
 
   async getNews(page, paramsForFetch = {}) {
     try {
-      const params = Object.keys(paramsForFetch).map(param => {
-        return `&${param}=${paramsForFetch[param]}`;
-      });
+      const params = Object.keys(paramsForFetch).reduce((acc, param) => {
+        return acc + `&${param}=${paramsForFetch[param]}`;
+      }, '');
 
-      console.log(
-        `${this._url}/news/list/?page=${page}${params.map(value => value)}`
-      );
+      console.log('params', params);
+      console.log(`${this._url}/news/list/?page=${page}${params}`);
+
       const response = await fetch(
-        `${this._url}/news/list/?page=${page}${params.map(value => value)}`,
+        `${this._url}/news/list/?page=${page}${params}`,
         {
           method: 'GET',
           headers: {
@@ -45,70 +45,50 @@ export const API = class AebApi {
     }
   }
 
-  async getEvents() {
-    const response = await fetch(this._url + '/news/?page=' + 1, {
-      method: 'GET',
-      headers: {
-        ...this._headers,
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    });
+  async getEvents(page, paramsForFetch = {}) {
+    const params = Object.keys(paramsForFetch).reduce((acc, param) => {
+      return acc + `&${param}=${paramsForFetch[param]}`;
+    }, '');
 
-    return {
-      items: [
-        {
-          created: 1572598800,
-          name: 'Reliable internet - a regulatory challenge For business',
-          img: {
-            preview: [
-              'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg'
-            ]
-          }
-        },
-        {
-          created: 1572598800,
-          name: 'Reliable internet - a regulatory challenge For business',
-          img: {
-            preview: [
-              'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg'
-            ]
-          }
-        },
-        {
-          created: 1572598800,
-          name: 'Reliable internet - a regulatory challenge For business',
-          img: {
-            preview: [
-              'https://aebrus.ru/upload/resize_cache/iblock/905/1200_1200_1/mec-meeting.png.jpg'
-            ]
-          }
-        }
-      ],
-      pagination: {
-        pages: {
-          next: null
-        }
-      }
-    };
-  }
-
-  async getPublications(page, paramsForFetch = {}) {
-    const params = Object.keys(paramsForFetch).map(param => {
-      return `&${param}=${paramsForFetch[param]}`;
-    });
-
-    console.log(
-      `${this._url}/publications/list/?page=${page}${params.map(
-        value => value
-      )}`
-    );
+    console.log('params', params);
+    console.log(`${this._url}/events/list/?page=${page}${params}`);
 
     try {
       const response = await fetch(
-        `${this._url}/publications/list/?page=${page}${params.map(
-          value => value
-        )}`,
+        `${this._url}/events/list/?page=${page}${params}`,
+        {
+          method: 'GET',
+          headers: {
+            ...this._headers,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
+      );
+
+      const responseJson = await response.json();
+      console.log(responseJson);
+
+      return {
+        items: responseJson.data,
+        pagination: responseJson.info
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getPublications(page, paramsForFetch = {}) {
+    const params = Object.keys(paramsForFetch).reduce((acc, param) => {
+      return acc + `&${param}=${paramsForFetch[param]}`;
+    }, '');
+
+    console.log('params', params);
+    console.log(`${this._url}/publications/list/?page=${page}${params}`);
+
+    try {
+      const response = await fetch(
+        `${this._url}/publications/list/?page=${page}${params}`,
         {
           method: 'GET',
           headers: {
@@ -168,6 +148,32 @@ export const API = class AebApi {
           'Content-Type': 'application/json'
         }
       });
+
+      const responseJson = await response.json();
+
+      console.log(responseJson);
+      return {
+        items: responseJson.data,
+        pagination: responseJson.info
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async getAllEventsByMonth(month) {
+    try {
+      const response = await fetch(
+        this._url + `/events/calendar/?month=${month}`,
+        {
+          method: 'GET',
+          headers: {
+            ...this._headers,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }
+      );
 
       const responseJson = await response.json();
 
