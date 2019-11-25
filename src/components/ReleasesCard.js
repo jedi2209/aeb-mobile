@@ -38,9 +38,11 @@ class ReleasesCard extends React.Component {
           <View style={{ width: this.props.deviceWidth - 64 - 35 - 14 }}>
             <Text style={styles.title}>{this.props.data.name}</Text>
             <Text style={styles.commit}>{this.props.data.descr}</Text>
-            <Text style={styles.date}>
-              {moment(this.props.data.created * 1000).format('dddd, DD MMMM')}
-            </Text>
+            {this.props.data.date && (
+              <Text style={styles.date}>
+                {moment(this.props.data.created * 1000).format('dddd, DD MMMM')}
+              </Text>
+            )}
           </View>
           <ArrowButton
             style={[styles.image, { width: 60, height: 60, marginLeft: 10 }]}

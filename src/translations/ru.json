@@ -11,5 +11,16 @@
     "industrial": "ОТРАСЛЕВЫЕ",
     "working_groups": "РАБОЧИЕ ГРУППЫ",
     "upcoming_events": "Предстоящие события",
-    "upcoming_events_on": "События на"
+    "upcoming_events_on": "События на",
+    "attendance_fees": "Стоимость",
+    "assigned_member": "Assigned member",
+    "additional_member": "Additional member",
+    "non_member": "Non member",
+    "press": "Открыто для прессы",
+    "translation_avail": "Рус / Анг, Перевод",
+    "about": "Информация",
+    "files": "Файлы",
+    "registration": "Регистрация",
+    "open": "Открыто",
+    "events": "Мероприятия"
 }
