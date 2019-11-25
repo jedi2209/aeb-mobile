@@ -22,5 +22,12 @@
     "files": "Files",
     "registration": "Registration",
     "open": "Open",
-    "events": "Events"
+    "events": "Events",
+    "login": "Sign In",
+    "News": "News",
+    "Events": "Events",
+    "Publications": "Publications",
+    "Releases": "Releases",
+    "Committees": "Committees",
+    "Contacts": "Contacts"
 }
