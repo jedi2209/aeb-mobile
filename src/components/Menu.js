@@ -18,12 +18,13 @@ const menuItems = [
   'Contacts'
 ];
 
-const menuItemsBottom = ['settings'];
+// const menuItemsBottom = ['settings'];
 
 const { width } = Dimensions.get('window');
 
 class Menu extends React.Component {
   render() {
+    const { translate } = this.props;
     const { navigate } = this.props.navigation;
 
     return (
@@ -32,12 +33,14 @@ class Menu extends React.Component {
         <SectionList
           style={styles.linklList}
           sections={[
-            { title: '', data: menuItems },
-            { title: '', data: menuItemsBottom }
+            { title: '', data: menuItems }
+            // { title: '', data: menuItemsBottom }
           ]}
           renderItem={({ item }) => (
             <TouchableOpacity onPress={() => navigate(item)}>
-              <Text style={[styles.link, theme.whiteLink]}>{item}</Text>
+              <Text style={[styles.link, theme.whiteLink]}>
+                {translate(item)}
+              </Text>
             </TouchableOpacity>
           )}
           keyExtractor={(item, index) => item + index}
