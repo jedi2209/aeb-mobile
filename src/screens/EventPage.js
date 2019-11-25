@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, { Fragment } from 'react';
 
 import Moment from 'moment';
@@ -8,10 +9,13 @@ import Maps from '../components/Maps';
 import Press from '../components/Press';
 import Translation from '../components/Translation';
 import CalendarIcon from '../components/CalendarIcon';
-import CommitteesCard from '../components/CommitteesCard';
-import ThumbList from '../components/ThumbList';
+import ReleasesCard from '../components/ReleasesCard';
+import WebViewAutoHeight from '../components/WebViewAutoHeight';
+
+const BAR_SPACE = 14;
 
 import {
+  TouchableOpacity,
   Dimensions,
   SafeAreaView,
   View,
@@ -20,77 +24,20 @@ import {
   Platform,
   StyleSheet,
   RefreshControl,
-  TouchableOpacity
+  FlatList,
+  Linking
 } from 'react-native';
-
-const CommitData = {
-  image: 'https://aebrus.ru/upload/resize_cache/iblock/950/269_386_0/cover.jpg',
-  title: 'Business Quarterly (Spring 2019)',
-  url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-};
-
-const ThumbListData = [
-  {
-    date: '2019-10-01',
-    items: [
-      {
-        title: 'Sales of cars and light commercial vehicles in June 2014',
-        commit: 'Automobile Manufacturers Committee',
-        date: Date.now(),
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        title: 'Sales of cars and light commercial vehicles in June 2014',
-        commit: 'Automobile Manufacturers Committee',
-        date: Date.now(),
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      }
-    ]
-  },
-  {
-    date: '2019-09-01',
-    items: [
-      {
-        title: 'Sales of cars and light commercial vehicles in June 2014',
-        commit: 'Automobile Manufacturers Committee',
-        date: Date.now(),
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      }
-    ]
-  },
-  {
-    date: '2019-08-01',
-    items: [
-      {
-        title: 'Sales of cars and light commercial vehicles in June 2014',
-        commit: 'Automobile Manufacturers Committee',
-        date: Date.now(),
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        title: 'Sales of cars and light commercial vehicles in June 2014',
-        commit: 'Automobile Manufacturers Committee',
-        date: Date.now(),
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      }
-    ]
-  }
-];
 
 const HEADER_MAX_HEIGHT = 406;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
-const data = {
-  title:
-    'Strategies and Prospects for European Companies in Russia: Survey and Case Studies',
-  uri: 'https://aebrus.ru/local/templates/aeb2019en/img/bg_inner.jpg',
-  date: new Date()
-};
-
 class ArticleScreen extends React.Component {
   constructor(props) {
     super(props);
+
+    const { navigation } = this.props;
+    const data = navigation.getParam('otherParam', {});
 
     this.state = {
       selectedIndex: 0,
@@ -100,13 +47,16 @@ class ArticleScreen extends React.Component {
       ),
       refreshing: false
     };
+
+    this.data = data;
+    this.translate = this.props.screenProps.translate;
+    console.log(this.data);
   }
 
   static navigationOptions = ({ navigation }) => {
     return {
       headerRight: (
         <Fragment>
-          <FavoritesButton onPress={() => navigation.navigate('Menu')} />
           <ShareButton onPress={() => navigation.navigate('Menu')} />
         </Fragment>
       ),
@@ -138,142 +88,115 @@ class ArticleScreen extends React.Component {
   _renderScrollViewContent() {
     return (
       <SafeAreaView>
-        <View style={[styles.scrollViewContent, { paddingHorizontal: 14 }]}>
-          <Translation text="RUS / ENG, Translation available" />
-          <Press text="Available for Press" />
+        <View style={[styles.scrollViewContent]}>
+          {this.data.translation && (
+            <Translation text={this.translate('translation_avail')} />
+          )}
+          {this.data.registration.press && (
+            <Press text={this.translate('press')} />
+          )}
+          {/* нельзя почему то передать стили ввиде объекта */}
           <SegmentedControlTab
+            // eslint-disable-next-line react-native/no-inline-styles
             tabsContainerStyle={{ marginTop: 0 }}
+            // eslint-disable-next-line react-native/no-inline-styles
             tabStyle={{ backgroundColor: '#F1F2F6', borderColor: '#F1F2F6' }}
+            // eslint-disable-next-line react-native/no-inline-styles
             tabTextStyle={{ color: '#D8D8D8', fontSize: 16 }}
+            // eslint-disable-next-line react-native/no-inline-styles
             activeTabStyle={{ backgroundColor: '#fff', borderColor: '#F1F2F6' }}
+            // eslint-disable-next-line react-native/no-inline-styles
             activeTabTextStyle={{ color: '#000', fontSize: 16 }}
-            values={['About', 'Attendance', 'Files']}
+            values={[
+              this.translate('about'),
+              this.translate('attendance_fees'),
+              this.translate('files')
+            ]}
             selectedIndex={this.state.selectedIndex}
             onTabPress={this.handleIndexChange}
           />
           {this.state.selectedIndex === 0 && (
-            // eslint-disable-next-line react-native/no-inline-styles
-            <View style={{ marginTop: 20 }}>
-              <Text>Text about</Text>
-              <Text style={styles.paragraph}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                at urna ipsum. Mauris eu faucibus nulla. Fusce vel consectetur
-                ipsum. Sed non erat sodales, finibus ligula vitae, facilisis
-                neque. In fringilla massa leo, vehicula lobortis est efficitur
-                eu. Praesent magna risus, suscipit at enim blandit, gravida
-                pharetra sapien. volutpat interdum varius.
-              </Text>
-              <Text style={styles.paragraph}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                at urna ipsum. Mauris eu faucibus nulla. Fusce vel consectetur
-                ipsum. Sed non erat sodales, finibus ligula vitae, facilisis
-                neque. In fringilla massa leo, vehicula lobortis est efficitur
-                eu. Praesent magna risus, suscipit at enim blandit, gravida
-                pharetra sapien. volutpat interdum varius.
-              </Text>
-              <Text style={styles.paragraph}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-                at urna ipsum. Mauris eu faucibus nulla. Fusce vel consectetur
-                ipsum. Sed non erat sodales, finibus ligula vitae, facilisis
-                neque. In fringilla massa leo, vehicula lobortis est efficitur
-                eu. Praesent magna risus, suscipit at enim blandit, gravida
-                pharetra sapien. volutpat interdum varius.
-              </Text>
-            </View>
+            <WebViewAutoHeight text={this.data.text} />
           )}
           {this.state.selectedIndex === 1 && (
             <View style={{ marginTop: 20 }}>
               <View style={{ paddingLeft: 24 }}>
                 <Text style={[styles.paragraph, { fontWeight: 'bold' }]}>
-                  Attendance fees
+                  {this.translate('attendance_fees')}
                 </Text>
               </View>
               <View style={styles.table}>
-                <Text style={styles.tableText}>Assigned member</Text>
-                <Text>18 000</Text>
+                <Text style={styles.tableText}>
+                  {this.translate('assigned_member')}
+                </Text>
+                <Text>{`${this.data.attendance.gold.value} ${
+                  this.data.attendance.gold.curr
+                }`}</Text>
               </View>
               <View style={styles.table}>
-                <Text style={styles.tableText}>Additional member</Text>
-                <Text>20 000</Text>
+                <Text style={styles.tableText}>
+                  {this.translate('additional_member')}
+                </Text>
+                <Text>{`${this.data.attendance.members.value} ${
+                  this.data.attendance.members.curr
+                }`}</Text>
               </View>
               <View style={styles.table}>
-                <Text style={styles.tableText}>Non-member</Text>
-                <Text>24 000</Text>
+                <Text style={styles.tableText}>
+                  {this.translate('non_member')}
+                </Text>
+                <Text>{`${this.data.attendance['non-members'].value} ${
+                  this.data.attendance.gold.curr
+                }`}</Text>
               </View>
-
               <TouchableOpacity
-                style={{ marginBottom: 150 }}
-                onPress={() => {
-                  this.props.navigation.navigate('CommitteesPage', {
-                    itemId: 86,
-                    otherParam: 'anything you want here'
-                  });
+                onPress={() => Linking.openURL(this.data.url)}
+                style={{
+                  borderRadius: 6,
+                  height: 50,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: '#0E4F9F',
+                  marginTop: 25,
+                  marginBottom: 25
                 }}
               >
-                <View
+                <Text
                   style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    width: deviceWidth - 28,
-                    marginTop: 25,
-                    shadowColor: '#000',
-                    shadowOffset: {
-                      width: 0,
-                      height: 2
-                    },
-                    shadowOpacity: 0.23,
-                    shadowRadius: 2.62,
-                    elevation: 4
+                    color: '#fff',
+                    fontSize: 15,
+                    letterSpacing: 0.32,
+                    textTransform: 'uppercase',
+                    fontWeight: '400'
                   }}
                 >
-                  <CommitteesCard
-                    extraPadding={28}
-                    data={CommitData}
-                    height={200}
-                    deviceWidth={deviceWidth}
-                    BAR_SPACE={0}
-                  />
-                </View>
+                  {this.translate('registration')}
+                </Text>
               </TouchableOpacity>
             </View>
           )}
           {this.state.selectedIndex === 2 && (
             <View style={{ marginTop: 20 }}>
-              <TouchableOpacity
-                style={{ marginBottom: 20 }}
-                onPress={() => {
-                  this.props.navigation.navigate('CommitteesPage', {
-                    itemId: 86,
-                    otherParam: 'anything you want here'
-                  });
+              <FlatList
+                contentContainerStyle={styles.flatlist}
+                numColumns={1}
+                data={this.data.file}
+                renderItem={({ item }) => {
+                  return (
+                    <ReleasesCard
+                      extraPadding={this.props.extraPadding}
+                      data={item}
+                      width={deviceWidth - 14 - BAR_SPACE}
+                      height={200}
+                      deviceWidth={deviceWidth}
+                      BAR_SPACE={BAR_SPACE}
+                    />
+                  );
                 }}
-              >
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    width: deviceWidth - 28,
-                    marginTop: 25,
-                    shadowColor: '#000',
-                    shadowOffset: {
-                      width: 0,
-                      height: 2
-                    },
-                    shadowOpacity: 0.23,
-                    shadowRadius: 2.62,
-                    elevation: 4
-                  }}
-                >
-                  <CommitteesCard
-                    extraPadding={28}
-                    data={CommitData}
-                    height={200}
-                    deviceWidth={deviceWidth}
-                    BAR_SPACE={0}
-                  />
-                </View>
-              </TouchableOpacity>
-              <ThumbList data={ThumbListData} extraPadding="0" />
+                keyExtractor={item => {
+                  return item.name.toString();
+                }}
+              />
             </View>
           )}
         </View>
@@ -282,10 +205,6 @@ class ArticleScreen extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props;
-    const itemId = navigation.getParam('itemId', 'NO-ID');
-    const otherParam = navigation.getParam('otherParam', 'some default value');
-
     // Because of content inset the scroll value will be negative on iOS so bring
     // it back to 0.
     const scrollY = Animated.add(
@@ -312,14 +231,14 @@ class ArticleScreen extends React.Component {
     });
 
     const textOpacity = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [1, 0, 0],
+      inputRange: [0, 15, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+      outputRange: [1, 0, 0, 0],
       extrapolate: 'clamp'
     });
 
     const textOpacityReverd = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, 0, 1],
+      inputRange: [0, 15, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+      outputRange: [0, 1, 1, 1],
       extrapolate: 'clamp'
     });
 
@@ -369,8 +288,19 @@ class ArticleScreen extends React.Component {
               }
             ]}
             source={{
-              uri: data.uri
+              uri: this.data.img.full[0]
             }}
+          />
+          <Animated.View
+            style={[
+              styles.backgroundImage,
+              // eslint-disable-next-line react-native/no-inline-styles
+              {
+                backgroundColor: 'rgba(0,0,0,.4)',
+                opacity: imageOpacity,
+                transform: [{ translateY: imageTranslate }]
+              }
+            ]}
           />
         </Animated.View>
         <Animated.View
@@ -383,38 +313,38 @@ class ArticleScreen extends React.Component {
             }
           ]}
         >
-          <Text style={[styles.title]}>{data.title}</Text>
-          <Text style={styles.date}>{Moment().format('dddd, DD MMMM')}</Text>
-          <Maps text="AZIMUT Hotel Smolenskaya Moscow, Smolenskaya st.8, Moscow" />
+          <Text style={[styles.title]}>{this.data.name}</Text>
+          <Text style={styles.date}>
+            {Moment(this.data.date * 1000).format('dddd, DD MMMM')}
+          </Text>
+          {this.data.registration.active && (
+            <Text
+              style={{
+                fontSize: 14,
+                color: '#FFF',
+                letterSpacing: 0.32,
+                marginBottom: 15,
+                marginHorizontal: 14,
+                backgroundColor: '#FF4D2C',
+                borderRadius: 6,
+                textAlign: 'center',
+                paddingVertical: 5,
+                width: 75
+              }}
+            >
+              {this.translate('open')}
+            </Text>
+          )}
+          <Maps text={this.data.place.name} />
           <View style={{ position: 'relative' }}>
             <CalendarIcon />
           </View>
         </Animated.View>
         <Animated.View
           pointerEvents="none"
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={{
-            marginTop: 5,
-            alignItems: 'center',
-            justifyContent: 'center',
-            paddingHorizontal: 14,
-            position: 'absolute',
-            top: -5,
-            width: deviceWidth,
-            left: 0,
-            right: 0,
-            opacity: textOpacityReverd
-          }}
+          style={[styles.titlemini, { opacity: textOpacityReverd }]}
         >
-          <Text
-            style={{
-              fontSize: 14,
-              color: '#fff',
-              fontWeight: 'bold'
-            }}
-          >
-            {data.title}
-          </Text>
+          <Text style={styles.titleminitext}>{this.data.name}</Text>
         </Animated.View>
       </View>
     );
@@ -467,14 +397,31 @@ const styles = StyleSheet.create({
     right: 0
   },
   title: {
-    fontSize: 34,
+    fontSize: 28,
     fontWeight: 'bold',
     color: '#fff',
     width: deviceWidth,
     paddingHorizontal: 14,
     paddingTop: 120
   },
+  titlemini: {
+    marginTop: 5,
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    paddingHorizontal: 14,
+    position: 'absolute',
+    top: -5,
+    width: deviceWidth,
+    left: 0,
+    right: 0
+  },
+  titleminitext: {
+    fontSize: 14,
+    color: '#fff',
+    fontWeight: 'bold'
+  },
   scrollViewContent: {
+    paddingHorizontal: 14,
     // iOS uses content inset, which acts like padding.
     paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0
   },
@@ -501,6 +448,12 @@ const styles = StyleSheet.create({
   },
   tableText: {
     color: '#D8D8D8'
+  },
+  flatlist: {
+    flex: 1,
+    flexDirection: 'column',
+    height: '100%',
+    width: '100%'
   }
 });
 export default ArticleScreen;

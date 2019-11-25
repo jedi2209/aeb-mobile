@@ -127,10 +127,13 @@ class EventsScreen extends React.Component {
     };
   }
 
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = ({ navigation, screenProps }) => {
     return {
       headerLeft: (
-        <Header onPress={() => navigation.navigate('Menu')} title="Events" />
+        <Header
+          onPress={() => navigation.navigate('Menu')}
+          title={screenProps.translate('events')}
+        />
       ),
       headerStyle: {
         height: Platform.OS === 'ios' ? 60 : 68

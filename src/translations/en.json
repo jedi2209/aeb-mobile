@@ -11,5 +11,16 @@
     "industrial": "INDUSTRIAL",
     "working_groups": "WORKING GROUPS",
     "upcoming_events": "Upcoming events",
-    "upcoming_events_on": "Events for"
+    "upcoming_events_on": "Events for",
+    "attendance_fees": "Attendance fees",
+    "assigned_member": "Assigned member",
+    "additional_member": "Additional member",
+    "non_member": "Non member",
+    "press": "Available for Press",
+    "translation_avail": "RUS / ENG, Translation available",
+    "about": "About",
+    "files": "Files",
+    "registration": "Registration",
+    "open": "Open",
+    "events": "Events"
 }
