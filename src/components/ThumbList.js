@@ -82,7 +82,7 @@ export default class AllArticlesScreen extends Component {
           responsedData = await this.api.getCommittees(page, paramsForFetch);
           break;
         default:
-          responsedData = await this.api.getReales(page);
+          responsedData = await this.api.getReales(page, paramsForFetch);
       }
 
       if (force) {
@@ -90,6 +90,11 @@ export default class AllArticlesScreen extends Component {
         calc = responsedData.items;
       } else {
         calc = [...this.state.data, ...responsedData.items];
+      }
+
+      if (!responsedData.pagination) {
+        this.setState({ fullList: true, data: [] });
+        return;
       }
 
       if (responsedData.pagination.pages.next === null) {
