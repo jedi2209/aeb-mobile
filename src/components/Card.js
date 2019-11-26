@@ -47,7 +47,9 @@ const Card = props => {
           source={{ uri: (data.img && data.img.preview[0]) || DEFAULT_IMAGE }}
           style={[styles.image, { width, height }]}
         />
-        <Text style={styles.title}>{data.name}</Text>
+        <Text numberOfLines={3} style={styles.title}>
+          {data.name}
+        </Text>
         <Text style={styles.date}>
           {moment(data.created * 1000).format('dddd, DD MMMM')}
         </Text>
