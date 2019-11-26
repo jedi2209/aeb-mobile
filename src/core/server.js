@@ -7,7 +7,7 @@ export const API = class AebApi {
     };
     const { platform, lang = 'rus' } = opts;
 
-    this._url = `http://api.aebrus.ru/${lang}`;
+    this._url = `https://api.aebrus.ru/${lang}`;
     this._headers = {
       'x-api-key': apiKeys[platform]
     };
@@ -138,23 +138,34 @@ export const API = class AebApi {
     }
   }
 
-  async getReales(page) {
+  async getReales(page, paramsForFetch = {}) {
+    const params = Object.keys(paramsForFetch).reduce((acc, param) => {
+      return acc + `&${param}=${paramsForFetch[param]}`;
+    }, '');
+
+    console.log('params', params);
+    console.log(`${this._url}/press/list/?page=${page}${params}`);
+
     try {
-      const response = await fetch(this._url + '/press/list/?page=' + page, {
-        method: 'GET',
-        headers: {
-          ...this._headers,
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
+      const response = await fetch(
+        `${this._url}/press/list/?page=${page}${params}`,
+        {
+          method: 'GET',
+          headers: {
+            ...this._headers,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          }
         }
-      });
+      );
 
       const responseJson = await response.json();
 
       console.log(responseJson);
       return {
         items: responseJson.data,
-        pagination: responseJson.info
+        pagination: responseJson.info,
+        filters: responseJson.filters
       };
     } catch (error) {
       console.log(error);

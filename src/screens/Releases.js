@@ -1,57 +1,10 @@
 import React from 'react';
-import { theme } from '../core/themeProvider';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
-import Dropdown from '../components/Dropdown';
 
-const ThumbListData = [
-  {
-    date: '2019-10-01',
-    items: [
-      {
-        title: 'Sales of cars and light commercial vehicles in June 2014',
-        commit: 'Automobile Manufacturers Committee',
-        date: Date.now(),
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        title: 'Sales of cars and light commercial vehicles in June 2014',
-        commit: 'Automobile Manufacturers Committee',
-        date: Date.now(),
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      }
-    ]
-  },
-  {
-    date: '2019-09-01',
-    items: [
-      {
-        title: 'Sales of cars and light commercial vehicles in June 2014',
-        commit: 'Automobile Manufacturers Committee',
-        date: Date.now(),
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      }
-    ]
-  },
-  {
-    date: '2019-08-01',
-    items: [
-      {
-        title: 'Sales of cars and light commercial vehicles in June 2014',
-        commit: 'Automobile Manufacturers Committee',
-        date: Date.now(),
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      },
-      {
-        title: 'Sales of cars and light commercial vehicles in June 2014',
-        commit: 'Automobile Manufacturers Committee',
-        date: Date.now(),
-        url: 'https://aebrus.ru/upload/iblock/fa7/bq_2_2019_web_final.pdf'
-      }
-    ]
-  }
-];
+import RNPickerSelect from 'react-native-picker-select';
+import ArrowDropdown from '../components/ArrowDropdown';
 
 import {
   SafeAreaView,
@@ -61,7 +14,19 @@ import {
   Platform
 } from 'react-native';
 
+import { API } from '../core/server';
 class ReleasesScreen extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: '',
+      params: {},
+      options: [],
+      filter: ''
+    };
+  }
+
   static navigationOptions = ({ navigation, screenProps }) => {
     return {
       headerLeft: (
@@ -71,20 +36,36 @@ class ReleasesScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: Platform.OS === 'ios' ? 60 : 68
+        height: Platform.OS === 'ios' ? 60 : 68,
+        borderBottomWidth: 0,
+        shadowRadius: 0,
+        shadowOffset: {
+          height: 0
+        },
+        elevation: 0,
+        shadowColor: 'transparent'
       }
-      // headerStyle: {
-      //   height: Platform.OS === 'ios' ? 100 : 108,
-      //   borderBottomWidth: 0,
-      //   shadowRadius: 0,
-      //   shadowOffset: {
-      //     height: 0
-      //   },
-      //   elevation: 0,
-      //   shadowColor: 'transparent'
-      // }
     };
   };
+
+  async componentDidMount() {
+    this.api = new API({ lang: this.lang, platform: Platform.OS });
+
+    const responsedData = await this.api.getReales(1);
+
+    let options =
+      responsedData &&
+      responsedData.filters &&
+      responsedData.filters[0].value.map(opt => {
+        return {
+          label: opt.name,
+          value: opt.id
+        };
+      });
+
+    // eslint-disable-next-line react/no-did-mount-set-state
+    this.setState({ options, name: responsedData.filters[0].name });
+  }
 
   render() {
     return (
@@ -95,52 +76,35 @@ class ReleasesScreen extends React.Component {
             style={styles.scrollView}
           >
             <View>
-              <Dropdown
-                // eslint-disable-next-line react-native/no-inline-styles
-                style={{ marginTop: 10 }}
-                options={[
-                  { label: 'Тема', value: '0' },
-                  { label: 'AEB Board News', value: '17' },
-                  {
-                    label: 'AEB Committees News',
-                    value: '18'
-                  },
-                  { label: 'AEB News', value: '19' },
-                  { label: 'AEB Statements', value: '20' },
-                  {
-                    label: 'Automobile Manufacturers Committee',
-                    value: '21'
-                  },
-                  {
-                    label: 'Commercial Vehicles Committee',
-                    value: '22'
-                  },
-                  { label: 'Economic News', value: '23' },
-                  { label: 'External Events', value: '24' },
-                  { label: 'Legislative News', value: '25' },
-                  {
-                    label: 'Sales of cars and light commercial vehicles',
-                    value: '26'
-                  },
-                  { label: 'Taxation', value: '27' },
-                  {
-                    label: 'Sales of new commercial vehicles',
-                    value: '29'
-                  },
-                  {
-                    label: 'Sales of new construction equipment',
-                    value: '1341'
-                  },
-                  {
-                    label: 'The AEB about sanctions',
-                    value: '1379'
-                  }
-                ]}
-              />
+              <View style={[this.props.style, styles.dropdown]}>
+                <RNPickerSelect
+                  items={this.state.options}
+                  onValueChange={value => {
+                    console.log('ya tyt', value);
+                    this.setState({
+                      filter: value,
+                      params: {
+                        [this.state.name]: value
+                      }
+                    });
+                  }}
+                  style={{
+                    ...pickerSelectStyles,
+                    iconContainer: {
+                      top: 8,
+                      right: 12
+                    }
+                  }}
+                  value={this.state.filter}
+                  useNativeAndroidPickerStyle={false}
+                  textInputProps={{ textAlign: 'left' }}
+                  Icon={() => <ArrowDropdown />}
+                />
+              </View>
               <View>
                 <ThumbList
+                  paramsForFetch={this.state.params}
                   screenProps={this.props.screenProps}
-                  data={ThumbListData}
                   extraPadding="28"
                 />
               </View>
@@ -156,6 +120,42 @@ const styles = StyleSheet.create({
   scrollView: {},
   body: {
     backgroundColor: '#FAFAFA'
+  },
+  dropdown: {
+    paddingVertical: 10,
+    paddingHorizontal: 14,
+    alignItems: 'stretch',
+    backgroundColor: '#FFF',
+    fontSize: 17,
+    color: '#000',
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+    borderColor: '#ACB1C0',
+    borderStyle: 'solid'
+  }
+});
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 17,
+    paddingVertical: 2,
+    paddingHorizontal: 10,
+    borderWidth: 0,
+    borderColor: '#ACB1C0',
+    borderRadius: 4,
+    color: '#ACB1C0',
+    paddingRight: 30 // to ensure the text is never behind the icon
+  },
+  inputAndroid: {
+    textAlign: 'left',
+    fontSize: 17,
+    paddingHorizontal: 10,
+    paddingVertical: 2,
+    borderWidth: 0,
+    borderColor: '#ACB1C0',
+    borderRadius: 8,
+    color: '#ACB1C0',
+    paddingRight: 30 // to ensure the text is never behind the icon
   }
 });
 
