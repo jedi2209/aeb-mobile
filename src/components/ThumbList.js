@@ -323,7 +323,7 @@ export default class AllArticlesScreen extends Component {
 
     return !this.state.loading ? (
       <View>
-        {title && (
+        {title && this.state.data.length > 0 && (
           <Title
             style={[
               theme.pageTitle,
