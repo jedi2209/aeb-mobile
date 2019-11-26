@@ -12,7 +12,7 @@ import { API } from '../core/server';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
-import Moment from 'moment';
+import Moment from 'moment/min/moment-with-locales';
 
 import { Calendar } from 'react-native-calendars';
 import { LocaleConfig } from 'react-native-calendars';
@@ -113,6 +113,8 @@ class EventsScreen extends React.Component {
 
     this.lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
     LocaleConfig.defaultLocale = this.lang;
+
+    Moment.locale(this.props.screenProps.locale);
 
     this.state = {
       current: Moment().format('YYYY-MM-DD'),
@@ -223,7 +225,7 @@ class EventsScreen extends React.Component {
 
                   title = `${this.props.screenProps.translate(
                     'upcoming_events_on'
-                  )} ${selectedDay}`;
+                  )} ${Moment(selectedDay).format('DD MMMM YYYY')}`;
                 }
 
                 this.setState({
