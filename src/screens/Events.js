@@ -117,7 +117,6 @@ class EventsScreen extends React.Component {
     Moment.locale(this.props.screenProps.locale);
 
     this.state = {
-      current: Moment().format('YYYY-MM-DD'),
       title: this.props.screenProps.translate('upcoming_events'),
       now: Moment().format('YYYY-MM-DD'),
       responsedData: [],
@@ -173,6 +172,15 @@ class EventsScreen extends React.Component {
     };
   };
 
+  _changeMonth = async month => {
+    const data = await this._fetchMarkedDates(`${month.year}-${month.month}`);
+
+    this.setState({
+      responsedData: data.responsedData,
+      markedDates: Object.assign(data.markedDates)
+    });
+  };
+
   render() {
     return (
       <View>
@@ -180,8 +188,6 @@ class EventsScreen extends React.Component {
           <ScrollView>
             <Calendar
               markedDates={this.state.markedDates}
-              // Initially visible month. Default = Date()
-              current={this.state.current}
               // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
               // minDate={'2012-05-10'}
               // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
@@ -242,16 +248,8 @@ class EventsScreen extends React.Component {
               // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
               monthFormat={'MMMM yyyy'}
               // Handler which gets executed when visible month changes in calendar. Default = undefined
-              onMonthChange={async month => {
-                const data = await this._fetchMarkedDates(
-                  `${month.year}-${month.month}`
-                );
-
-                this.setState({
-                  current: `${month.year}-${month.month}-${month.day}`,
-                  responsedData: data.responsedData,
-                  markedDates: Object.assign(data.markedDates)
-                });
+              onMonthChange={month => {
+                this._changeMonth(month);
               }}
               // Hide month navigation arrows. Default = false
               // hideArrows={true}
