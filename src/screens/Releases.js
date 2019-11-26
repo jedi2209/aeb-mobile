@@ -11,7 +11,8 @@ import {
   ScrollView,
   View,
   StyleSheet,
-  Platform
+  Platform,
+  NativeModules
 } from 'react-native';
 
 import { API } from '../core/server';
@@ -49,6 +50,13 @@ class ReleasesScreen extends React.Component {
   };
 
   async componentDidMount() {
+    const deviceLanguage =
+      Platform.OS === 'ios'
+        ? NativeModules.SettingsManager.settings.AppleLocale ||
+          NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+        : NativeModules.I18nManager.localeIdentifier;
+
+    this.lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
     this.api = new API({ lang: this.lang, platform: Platform.OS });
 
     const responsedData = await this.api.getReales(1);
@@ -80,7 +88,13 @@ class ReleasesScreen extends React.Component {
                 <RNPickerSelect
                   items={this.state.options}
                   onValueChange={value => {
-                    console.log('ya tyt', value);
+                    if (Platform.OS === 'ios') {
+                      this.setState({
+                        filter: value
+                      });
+
+                      return;
+                    }
                     this.setState({
                       filter: value,
                       params: {
@@ -94,6 +108,13 @@ class ReleasesScreen extends React.Component {
                       top: 8,
                       right: 12
                     }
+                  }}
+                  onDonePress={() => {
+                    this.setState({
+                      params: {
+                        [this.state.name]: this.state.filter
+                      }
+                    });
                   }}
                   value={this.state.filter}
                   useNativeAndroidPickerStyle={false}
