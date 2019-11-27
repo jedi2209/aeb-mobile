@@ -126,7 +126,6 @@ class ReleasesScreen extends React.Component {
               </View>
               <View>
                 <ThumbList
-                  type={'publications'}
                   paramsForFetch={this.state.params}
                   screenProps={this.props.screenProps}
                   extraPadding="28"

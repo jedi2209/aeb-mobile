@@ -4,7 +4,9 @@ import {
   Text,
   StyleSheet,
   TouchableWithoutFeedback,
-  Linking
+  Linking,
+  NativeModules,
+  Platform
 } from 'react-native';
 import ArrowButton from '../components/ArrowButton';
 
@@ -14,7 +16,14 @@ class ReleasesCard extends React.Component {
   render() {
     const extraPadding = this.props.extraPadding;
 
-    // moment.locale(this.props.locale);
+    const deviceLanguage =
+      Platform.OS === 'ios'
+        ? NativeModules.SettingsManager.settings.AppleLocale ||
+          NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+        : NativeModules.I18nManager.localeIdentifier;
+
+    deviceLanguage.includes('ru') ? 'ru' : 'en';
+    moment.locale(this.props.locale);
 
     return (
       <TouchableWithoutFeedback

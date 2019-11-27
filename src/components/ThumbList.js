@@ -48,6 +48,10 @@ export default class AllArticlesScreen extends Component {
 
     this.lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
 
+    // устанавливаем locale для moment
+    const lang = deviceLanguage.includes('ru') ? 'ru' : 'en';
+    moment.locale(lang);
+
     this.api = new API({ lang: this.lang, platform: Platform.OS });
 
     this._fetchAllArticles();
@@ -219,8 +223,6 @@ export default class AllArticlesScreen extends Component {
   };
 
   _renderRealesCards(item) {
-    moment.locale(this.lang);
-
     return (
       <View key={item.created.toString + getRandomInt(1, 1000)}>
         <View
