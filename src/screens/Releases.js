@@ -53,17 +53,19 @@ class ReleasesScreen extends React.Component {
     const deviceLanguage =
       Platform.OS === 'ios'
         ? NativeModules.SettingsManager.settings.AppleLocale ||
-          NativeModules.SettingsManager.settings.AppleLanguages[0] //iOS 13
+          NativeModules.SettingsManager.settings.AppleLanguages[0] // iOS 13
         : NativeModules.I18nManager.localeIdentifier;
 
     this.lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
     this.api = new API({ lang: this.lang, platform: Platform.OS });
 
-    const responsedData = await this.api.getReales(1);
+    const responsedData = await this.api.getReales(1, {});
 
     let options =
       responsedData &&
       responsedData.filters &&
+      responsedData.filters[0] &&
+      responsedData.filters[0].value &&
       responsedData.filters[0].value.map(opt => {
         return {
           label: opt.name,
@@ -84,7 +86,7 @@ class ReleasesScreen extends React.Component {
             style={styles.scrollView}
           >
             <View>
-              {/* <View style={[this.props.style, styles.dropdown]}>
+              <View style={[this.props.style, styles.dropdown]}>
                 <RNPickerSelect
                   items={this.state.options}
                   onValueChange={value => {
@@ -121,9 +123,10 @@ class ReleasesScreen extends React.Component {
                   textInputProps={{ textAlign: 'left' }}
                   Icon={() => <ArrowDropdown />}
                 />
-              </View> */}
+              </View>
               <View>
                 <ThumbList
+                  type={'publications'}
                   paramsForFetch={this.state.params}
                   screenProps={this.props.screenProps}
                   extraPadding="28"

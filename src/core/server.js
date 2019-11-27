@@ -46,14 +46,14 @@ export const API = class AebApi {
   }
 
   async getEvents(page, paramsForFetch = {}) {
-    const params = Object.keys(paramsForFetch).reduce((acc, param) => {
-      return acc + `&${param}=${paramsForFetch[param]}`;
-    }, '');
-
-    console.log('params', params);
-    console.log(`${this._url}/events/list/?page=${page}${params}`);
-
     try {
+      const params = Object.keys(paramsForFetch).reduce((acc, param) => {
+        return acc + `&${param}=${paramsForFetch[param]}`;
+      }, '');
+
+      console.log('params', params);
+      console.log(`${this._url}/events/list/?page=${page}${params}`);
+
       const response = await fetch(
         `${this._url}/events/list/?page=${page}${params}`,
         {
@@ -79,14 +79,14 @@ export const API = class AebApi {
   }
 
   async getPublications(page, paramsForFetch = {}) {
-    const params = Object.keys(paramsForFetch).reduce((acc, param) => {
-      return acc + `&${param}=${paramsForFetch[param]}`;
-    }, '');
-
-    console.log('params', params);
-    console.log(`${this._url}/publications/list/?page=${page}${params}`);
-
     try {
+      const params = Object.keys(paramsForFetch).reduce((acc, param) => {
+        return acc + `&${param}=${paramsForFetch[param]}`;
+      }, '');
+
+      console.log('params', params);
+      console.log(`${this._url}/publications/list/?page=${page}${params}`);
+
       const response = await fetch(
         `${this._url}/publications/list/?page=${page}${params}`,
         {
@@ -139,14 +139,14 @@ export const API = class AebApi {
   }
 
   async getReales(page, paramsForFetch = {}) {
-    const params = Object.keys(paramsForFetch).reduce((acc, param) => {
-      return acc + `&${param}=${paramsForFetch[param]}`;
-    }, '');
-
-    console.log('params', params);
-    console.log(`${this._url}/press/list/?page=${page}${params}`);
-
     try {
+      const params = Object.keys(paramsForFetch).reduce((acc, param) => {
+        return acc + `&${param}=${paramsForFetch[param]}`;
+      }, '');
+
+      console.log('params', params);
+      console.log(`${this._url}/press/list/?page=${page}${params}`);
+
       const response = await fetch(
         `${this._url}/press/list/?page=${page}${params}`,
         {
@@ -157,11 +157,17 @@ export const API = class AebApi {
             'Content-Type': 'application/json'
           }
         }
-      );
+      ).catch(err => {
+        console.log('err in getReales >>>', err);
+      });
 
-      const responseJson = await response.json();
+      let responseJson = await response.json();
 
-      console.log(responseJson);
+      // TODO: чертовщина какая-то
+      if (!responseJson) {
+        responseJson = {};
+      }
+
       return {
         items: responseJson.data,
         pagination: responseJson.info,
