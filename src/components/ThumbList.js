@@ -86,7 +86,6 @@ export default class AllArticlesScreen extends Component {
       }
 
       if (force) {
-        console.log('====> force');
         calc = responsedData.items;
       } else {
         calc = [...this.state.data, ...responsedData.items];
