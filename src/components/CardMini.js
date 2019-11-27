@@ -42,7 +42,9 @@ const CardMini = props => {
       >
         <Text style={styles.title}>{data.name}</Text>
         <Text style={styles.date}>
-          {moment((data.created || data.date) * 1000).format('dddd, DD MMMM YYYY')}
+          {moment((data.created || data.date) * 1000).format(
+            'dddd, DD MMMM YYYY'
+          )}
         </Text>
       </View>
     </View>

@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, { Fragment } from 'react';
 
-import Moment from 'moment';
+import Moment from 'moment/min/moment-with-locales';
 import FavoritesButton from '../components/FavoritesButton';
 import ShareButton from '../components/ShareButton';
 import SegmentedControlTab from 'react-native-segmented-control-tab';

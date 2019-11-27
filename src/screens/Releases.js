@@ -89,6 +89,9 @@ class ReleasesScreen extends React.Component {
               <View style={[this.props.style, styles.dropdown]}>
                 <RNPickerSelect
                   items={this.state.options}
+                  placeholder={{
+                    label: this.props.screenProps.translate('select_an_item')
+                  }}
                   onValueChange={value => {
                     if (Platform.OS === 'ios') {
                       this.setState({
@@ -107,7 +110,7 @@ class ReleasesScreen extends React.Component {
                   style={{
                     ...pickerSelectStyles,
                     iconContainer: {
-                      top: 8,
+                      top: 18,
                       right: 12
                     }
                   }}
@@ -119,7 +122,7 @@ class ReleasesScreen extends React.Component {
                     });
                   }}
                   value={this.state.filter}
-                  useNativeAndroidPickerStyle={false}
+                  useNativeAndroidPickerStyle={true}
                   textInputProps={{ textAlign: 'left' }}
                   Icon={() => <ArrowDropdown />}
                 />
@@ -145,7 +148,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAFAFA'
   },
   dropdown: {
-    paddingVertical: 10,
+    paddingVertical: 0,
     paddingHorizontal: 14,
     alignItems: 'stretch',
     backgroundColor: '#FFF',
