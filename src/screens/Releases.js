@@ -84,7 +84,7 @@ class ReleasesScreen extends React.Component {
             style={styles.scrollView}
           >
             <View>
-              <View style={[this.props.style, styles.dropdown]}>
+              {/* <View style={[this.props.style, styles.dropdown]}>
                 <RNPickerSelect
                   items={this.state.options}
                   onValueChange={value => {
@@ -121,7 +121,7 @@ class ReleasesScreen extends React.Component {
                   textInputProps={{ textAlign: 'left' }}
                   Icon={() => <ArrowDropdown />}
                 />
-              </View>
+              </View> */}
               <View>
                 <ThumbList
                   paramsForFetch={this.state.params}
