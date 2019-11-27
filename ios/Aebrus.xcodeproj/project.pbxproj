@@ -563,6 +563,7 @@
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 55L6B9JG7R;
 				INFOPLIST_FILE = Aebrus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -584,6 +585,7 @@
 				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_TEAM = 55L6B9JG7R;
 				INFOPLIST_FILE = Aebrus/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
