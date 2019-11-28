@@ -110,7 +110,7 @@ class ReleasesScreen extends React.Component {
                   style={{
                     ...pickerSelectStyles,
                     iconContainer: {
-                      top: 18,
+                      top: Platform.OS === 'ios' ? 8 : 18,
                       right: 12
                     }
                   }}
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAFAFA'
   },
   dropdown: {
-    paddingVertical: 0,
+    paddingVertical: Platform.OS === 'ios' ? 10 : 0,
     paddingHorizontal: 14,
     alignItems: 'stretch',
     backgroundColor: '#FFF',
