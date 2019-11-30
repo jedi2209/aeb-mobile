@@ -10,7 +10,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   Platform,
-  NativeModules
+  NativeModules,
+  TouchableWithoutFeedback
 } from 'react-native';
 
 import { theme } from '../core/themeProvider';
@@ -170,16 +171,27 @@ export default class AllArticlesScreen extends Component {
 
   _renderCardNews = item => {
     return (
-      <Card
-        extraPadding={this.props.extraPadding}
-        navigation={this.props.navigation}
-        key={`thumb-list-article-${item.id}`}
-        data={item}
-        width={deviceWidth - 14 - BAR_SPACE}
-        height={200}
-        deviceWidth={deviceWidth}
-        BAR_SPACE={BAR_SPACE}
-      />
+      <TouchableWithoutFeedback
+        onPress={() => {
+          this.props.navigation.navigate('Article', {
+            itemId: item.id,
+            otherParam: item
+          });
+        }}
+      >
+        <View style={styles.card}>
+          <Card
+            extraPadding={this.props.extraPadding}
+            navigation={this.props.navigation}
+            key={`thumb-list-article-${item.id}`}
+            data={item}
+            width={deviceWidth - 14 - BAR_SPACE}
+            height={200}
+            deviceWidth={deviceWidth}
+            BAR_SPACE={BAR_SPACE}
+          />
+        </View>
+      </TouchableWithoutFeedback>
     );
   };
 
@@ -275,19 +287,7 @@ export default class AllArticlesScreen extends Component {
 
     switch (this.props.type) {
       case 'news':
-        component = (
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => {
-              navigation.navigate('Article', {
-                itemId: item.id,
-                otherParam: item
-              });
-            }}
-          >
-            {this._renderCardNews(item)}
-          </TouchableOpacity>
-        );
+        component = this._renderCardNews(item);
         break;
       case 'events':
         component = (
@@ -330,7 +330,7 @@ export default class AllArticlesScreen extends Component {
 
   render() {
     console.log('render');
-    const { title, extraPadding } = this.props;
+    const { title } = this.props;
 
     return !this.state.loading ? (
       <View>
@@ -340,7 +340,7 @@ export default class AllArticlesScreen extends Component {
               theme.pageTitle,
               // eslint-disable-next-line react-native/no-inline-styles
               {
-                paddingHorizontal: extraPadding ? extraPadding / 2 : 0
+                paddingHorizontal: this.props.titlePadding
               }
             ]}
             text={title}
@@ -375,7 +375,7 @@ export default class AllArticlesScreen extends Component {
 
 const styles = StyleSheet.create({
   card: {
-    marginTop: 20
+    marginTop: 10
   },
   flatlist: {
     flex: 1,

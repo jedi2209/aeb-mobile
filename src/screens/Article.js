@@ -21,13 +21,13 @@ import {
 
 const deviceWidth = Dimensions.get('window').width;
 const HEADER_MAX_HEIGHT = 406;
-const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 75 : 73;
-const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT;
 
 class ArticleScreen extends React.Component {
   constructor(props) {
     super(props);
 
+    console.log(Dimensions.get('window').height)
     this.state = {
       scrollY: new Animated.Value(
         // iOS has negative initial scroll value because content inset
@@ -85,8 +85,6 @@ class ArticleScreen extends React.Component {
     const { navigation } = this.props;
     const data = navigation.getParam('otherParam', {});
 
-    // Because of content inset the scroll value will be negative on iOS so bring
-    // it back to 0.
     const scrollY = Animated.add(
       this.state.scrollY,
       Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0
@@ -99,7 +97,7 @@ class ArticleScreen extends React.Component {
     });
 
     const imageOpacity = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
+      inputRange: [0, 10, HEADER_SCROLL_DISTANCE],
       outputRange: [1, 1, 0],
       extrapolate: 'clamp'
     });
@@ -111,14 +109,8 @@ class ArticleScreen extends React.Component {
     });
 
     const textOpacity = scrollY.interpolate({
-      inputRange: [0, 5, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [1, 0, 0, 0],
-      extrapolate: 'clamp'
-    });
-
-    const textOpacityReverd = scrollY.interpolate({
-      inputRange: [0, 5, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, 1, 1, 1],
+      inputRange: [0, 5, HEADER_SCROLL_DISTANCE],
+      outputRange: [1, 0, 0],
       extrapolate: 'clamp'
     });
 
@@ -195,12 +187,6 @@ class ArticleScreen extends React.Component {
         >
           <Text style={[styles.title]}>{data.name}</Text>
         </Animated.View>
-        <Animated.View
-          pointerEvents="none"
-          style={[styles.titlemini, { opacity: textOpacityReverd }]}
-        >
-          <Text style={styles.titleminitext}>{data.name}</Text>
-        </Animated.View>
       </View>
     );
   }
@@ -258,33 +244,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingTop: 120
   },
-  titlemini: {
-    marginTop: 5,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    paddingHorizontal: 14,
-    position: 'absolute',
-    top: -5,
-    width: deviceWidth,
-    left: 0,
-    right: 0
-  },
-  titleminitext: {
-    fontSize: 14,
-    color: '#fff',
-    fontWeight: 'bold'
-  },
   scrollViewContent: {
     // iOS uses content inset, which acts like padding.
     paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0,
     paddingHorizontal: 14
-  },
-  row: {
-    height: 40,
-    margin: 16,
-    backgroundColor: '#D3D3D3',
-    alignItems: 'center',
-    justifyContent: 'center'
   },
   paragraph: {
     fontSize: 15,

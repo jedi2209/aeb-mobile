@@ -7,12 +7,12 @@ const DEFAULT_IMAGE =
 const PADDING = 14;
 
 const CardMini = props => {
-  const { deviceWidth, BAR_SPACE, data, locale } = props;
+  const { deviceWidth, data, locale } = props;
   const extraPadding = props.extraPadding
     ? parseInt(props.extraPadding, 10)
     : 0;
 
-  const cardWidth = deviceWidth - PADDING - BAR_SPACE - extraPadding;
+  const cardWidth = deviceWidth - PADDING * 2 - extraPadding;
 
   moment.locale(locale);
 
@@ -22,9 +22,8 @@ const CardMini = props => {
         styles.slide,
         // eslint-disable-next-line react-native/no-inline-styles
         {
-          width: cardWidth,
-          paddingHorizontal: extraPadding ? extraPadding / 2 : 0,
-          paddingTop: extraPadding ? 20 : 0
+          width: cardWidth
+          // paddingHorizontal: 14
         }
       ]}
     >
@@ -56,7 +55,7 @@ const styles = StyleSheet.create({
     borderBottomColor: '#D7D8DA',
     borderBottomWidth: 1,
     borderStyle: 'solid',
-    paddingBottom: 20,
+    paddingBottom: 10,
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
     borderRadius: 4

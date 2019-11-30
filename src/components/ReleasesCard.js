@@ -47,7 +47,7 @@ class ReleasesCard extends React.Component {
           <View style={{ width: this.props.deviceWidth - 64 - 35 - 14 }}>
             <Text style={styles.title}>{this.props.data.name}</Text>
             <Text style={styles.commit}>{this.props.data.descr}</Text>
-            {this.props.data.date && (
+            {this.props.data.created && (
               <Text style={styles.date}>
                 {moment(this.props.data.created * 1000).format('dddd, DD MMMM')}
               </Text>
