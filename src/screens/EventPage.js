@@ -1,4 +1,3 @@
-/* eslint-disable no-fallthrough */
 /* eslint-disable react-native/no-inline-styles */
 import React, { Fragment } from 'react';
 
@@ -12,17 +11,8 @@ import ReleasesCard from '../components/ReleasesCard';
 import WebViewAutoHeight from '../components/WebViewAutoHeight';
 
 import { TabView } from 'react-native-tab-view';
-import * as AddCalendarEvent from 'react-native-add-calendar-event';
-
-import moment from 'moment';
 
 const BAR_SPACE = 14;
-
-const utcDateToString = momentInUTC => {
-  let s = moment.utc(momentInUTC).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
-  // console.warn(s);
-  return s;
-};
 
 import {
   TouchableOpacity,
@@ -222,38 +212,6 @@ class ArticleScreen extends React.Component {
             <Press text={this.translate('press')} />
           )}
           <View style={{ backgroundColor: '#FAFAFA', paddingVertical: 14 }}>
-            <TouchableOpacity
-              onPress={() => {
-                const eventConfig = {
-                  title: this.data.name,
-                  startDate: utcDateToString(moment.now()),
-                };
-
-                AddCalendarEvent.presentEventCreatingDialog(eventConfig)
-                  .then(eventInfo => {
-                    // handle success - receives an object with `calendarItemIdentifier` and `eventIdentifier` keys, both of type string.
-                    // These are two different identifiers on iOS.
-                    // On Android, where they are both equal and represent the event id, also strings.
-                    // when { action: 'CANCELED' } is returned, the dialog was dismissed
-                    console.warn(JSON.stringify(eventInfo));
-                  })
-                  .catch(error => {
-                    // handle error such as when user rejected permissions
-                    console.error('error', error);
-                  });
-              }}
-              style={{
-                borderStyle: 'solid',
-                borderWidth: 1,
-                borderColor: 'red',
-                width: '100%',
-                height: 50,
-                position: 'relative'
-              }}
-            >
-              {/* <CalendarIcon /> */}
-              <Text>{'ALO'}</Text>
-            </TouchableOpacity>
             <TabView
               renderTabBar={this._renderTabBar}
               navigationState={this.state}
@@ -401,28 +359,21 @@ class ArticleScreen extends React.Component {
             </Text>
           )}
           <Maps text={this.data.place.name} />
-          <TouchableOpacity
-            onPress={() => {
-              alert('tyt');
-              RNCalendarEvents.saveEvent(this.data.name, {
-                location: this.data.place.name,
-                notes: 'notes',
-                startDate: this.data.date * 1000,
-                endDate: this.data.date * 1000
-              });
-            }}
-            style={{
-              borderStyle: 'solid',
-              borderWidth: 1,
-              borderColor: 'red',
-              width: '100%',
-              height: 50,
-              position: 'relative'
-            }}
-          >
-            {/* <CalendarIcon /> */}
-            <Text>{'ALO'}</Text>
-          </TouchableOpacity>
+        </Animated.View>
+        <Animated.View
+          style={[
+            styles.bar,
+            {
+              top: HEADER_MAX_HEIGHT,
+              height: 0,
+              opacity: textOpacity,
+              transform: [{ translateY: headerTranslate }]
+            }
+          ]}
+        >
+          <View style={{ position: 'relative' }}>
+            <CalendarIcon data={this.data} />
+          </View>
         </Animated.View>
       </View>
     );
