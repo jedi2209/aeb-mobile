@@ -58,7 +58,11 @@ export default class AllArticlesScreen extends Component {
   }
 
   componentDidUpdate(nextProps) {
-    // console.log('>>> np', nextProps)
+    // TODO: разобраться почему изменение табов вызывают ререндер
+    if (this.props.type === 'committees') {
+      return;
+    }
+
     if (this.props.paramsForFetch !== nextProps.paramsForFetch) {
       this._fetchAllArticles({ force: true });
     }
@@ -325,6 +329,7 @@ export default class AllArticlesScreen extends Component {
   };
 
   render() {
+    console.log('render');
     const { title, extraPadding } = this.props;
 
     return !this.state.loading ? (
