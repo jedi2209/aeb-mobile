@@ -4,36 +4,62 @@ import { theme } from '../core/themeProvider';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
-import SegmentedControlTab from 'react-native-segmented-control-tab';
+import { TabView } from 'react-native-tab-view';
 
 import {
   SafeAreaView,
   ScrollView,
   View,
   Platform,
-  StyleSheet
+  StyleSheet,
+  Dimensions,
+  Text,
+  TouchableOpacity
 } from 'react-native';
 
-const CATEGORIES = {
-  0: 32, //'CROSS-SECTORAL'
-  1: 30, //'INDUSTRIAL'
-  2: 31 //'WORKING GROUPS'
-};
+const FirstRoute = navigation => (
+  <View style={styles.body}>
+    <ThumbList
+      paramsForFetch={{ type: 32 }}
+      type="committees"
+      navigation={navigation}
+    />
+  </View>
+);
+
+const SecondRoute = navigation => (
+  <View style={styles.body}>
+    <ThumbList
+      paramsForFetch={{ type: 30 }}
+      type="committees"
+      navigation={navigation}
+    />
+  </View>
+);
+
+const ThirdRoute = navigation => (
+  <View style={styles.body}>
+    <ThumbList
+      paramsForFetch={{ type: 31 }}
+      type="committees"
+      navigation={navigation}
+    />
+  </View>
+);
 
 class CommitteesScreen extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedIndex: 0
+      index: 0,
+      routes: [
+        { key: 'first', title: props.screenProps.translate('cross_sectoral') }, //'CROSS-SECTORAL'
+        { key: 'second', title: props.screenProps.translate('industrial') }, //'INDUSTRIAL',
+        { key: 'third', title: props.screenProps.translate('working_groups') } //'WORKING GROUPS'
+      ]
     };
   }
-
-  handleIndexChange = selectedIndex => {
-    //handle tab selection for custom Tab Selection SegmentedControlTab
-    // this.setState(prevState => ({ ...prevState, selectedIndex: index }));
-    this.setState({ selectedIndex });
-  };
 
   static navigationOptions = ({ navigation, screenProps }) => {
     return {
@@ -49,6 +75,32 @@ class CommitteesScreen extends React.Component {
     };
   };
 
+  _renderTabBar = props => {
+    console.log(props);
+    return (
+      <View style={styles.tabBar}>
+        {props.navigationState.routes.map((route, i) => {
+          return (
+            <TouchableOpacity
+              key={`tab-${i}`}
+              style={styles.tabItem}
+              onPress={() => this.setState({ index: i })}
+            >
+              <Text
+                style={{
+                  color: props.navigationState.index === i ? '#000' : '#D8D8D8',
+                  fontSize: 11
+                }}
+              >
+                {route.title}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    );
+  };
+
   render() {
     return (
       <View
@@ -61,34 +113,21 @@ class CommitteesScreen extends React.Component {
           >
             <View>
               <View style={{ backgroundColor: '#FAFAFA', paddingVertical: 14 }}>
-                <SegmentedControlTab
-                  tabsContainerStyle={{ marginTop: 0 }}
-                  tabStyle={{
-                    backgroundColor: '#FAFAFA',
-                    borderColor: '#FAFAFA'
+                <TabView
+                  renderTabBar={this._renderTabBar}
+                  navigationState={this.state}
+                  renderScene={({ route }) => {
+                    switch (route.key) {
+                      case 'first':
+                        return FirstRoute(this.props.navigation);
+                      case 'second':
+                        return SecondRoute(this.props.navigation);
+                      default:
+                        return ThirdRoute(this.props.navigation);
+                    }
                   }}
-                  tabTextStyle={{ color: '#D8D8D8', fontSize: 11 }}
-                  activeTabStyle={{
-                    backgroundColor: '#FAFAFA',
-                    borderColor: '#FAFAFA'
-                  }}
-                  activeTabTextStyle={{ color: '#000', fontSize: 11 }}
-                  values={[
-                    this.props.screenProps.translate('cross_sectoral'), //'CROSS-SECTORAL'
-                    this.props.screenProps.translate('industrial'), //'INDUSTRIAL',
-                    this.props.screenProps.translate('working_groups') //'WORKING GROUPS'
-                  ]}
-                  selectedIndex={this.state.selectedIndex}
-                  onTabPress={this.handleIndexChange}
-                />
-              </View>
-              <View style={styles.body}>
-                <ThumbList
-                  paramsForFetch={{
-                    type: CATEGORIES[this.state.selectedIndex]
-                  }}
-                  type="committees"
-                  navigation={this.props.navigation}
+                  onIndexChange={index => this.setState({ index })}
+                  initialLayout={{ width: Dimensions.get('window').width }}
                 />
               </View>
             </View>
@@ -101,10 +140,26 @@ class CommitteesScreen extends React.Component {
 
 const styles = StyleSheet.create({
   scrollView: {},
+  scene: {
+    flex: 1
+  },
   body: {
     backgroundColor: '#FAFAFA',
     paddingLeft: 14,
     marginTop: -20
+  },
+  container: {
+    flex: 1
+  },
+  tabBar: {
+    flexDirection: 'row',
+    paddingTop: 0,
+    paddingBottom: 10
+  },
+  tabItem: {
+    flex: 1,
+    alignItems: 'center',
+    padding: 0
   }
 });
 
