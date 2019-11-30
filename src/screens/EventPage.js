@@ -2,7 +2,6 @@
 import React, { Fragment } from 'react';
 
 import Moment from 'moment/min/moment-with-locales';
-import FavoritesButton from '../components/FavoritesButton';
 import ShareButton from '../components/ShareButton';
 import SegmentedControlTab from 'react-native-segmented-control-tab';
 import Maps from '../components/Maps';
@@ -29,8 +28,7 @@ import {
 } from 'react-native';
 
 const HEADER_MAX_HEIGHT = 406;
-const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
-const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
+const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT;
 
 class ArticleScreen extends React.Component {
   constructor(props) {
@@ -231,14 +229,14 @@ class ArticleScreen extends React.Component {
     });
 
     const textOpacity = scrollY.interpolate({
-      inputRange: [0, 15, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [1, 0, 0, 0],
+      inputRange: [0, HEADER_SCROLL_DISTANCE - 80, HEADER_SCROLL_DISTANCE],
+      outputRange: [1, 0, 0],
       extrapolate: 'clamp'
     });
 
     const textOpacityReverd = scrollY.interpolate({
-      inputRange: [0, 15, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, 1, 1, 1],
+      inputRange: [0, HEADER_SCROLL_DISTANCE - 80, HEADER_SCROLL_DISTANCE],
+      outputRange: [0, 1, 1],
       extrapolate: 'clamp'
     });
 
@@ -328,7 +326,8 @@ class ArticleScreen extends React.Component {
                 backgroundColor: '#FF4D2C',
                 borderRadius: 6,
                 textAlign: 'center',
-                paddingVertical: 5,
+                paddingTop: 5,
+                paddingBottom: 3,
                 width: 75
               }}
             >
@@ -339,12 +338,6 @@ class ArticleScreen extends React.Component {
           <View style={{ position: 'relative' }}>
             <CalendarIcon />
           </View>
-        </Animated.View>
-        <Animated.View
-          pointerEvents="none"
-          style={[styles.titlemini, { opacity: textOpacityReverd }]}
-        >
-          <Text style={styles.titleminitext}>{this.data.name}</Text>
         </Animated.View>
       </View>
     );
@@ -358,8 +351,8 @@ const styles = StyleSheet.create({
     color: '#FFF',
     letterSpacing: 0.32,
     lineHeight: 22,
-    marginBottom: 15,
-    marginTop: 15,
+    marginBottom: 10,
+    marginTop: 10,
     paddingHorizontal: 14
   },
   fill: {

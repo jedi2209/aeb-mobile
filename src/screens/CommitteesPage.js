@@ -20,12 +20,8 @@ const { width: deviceWidth, height: deviceHeight } = Dimensions.get('window');
 class PublicationsScreen extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     return {
-      headerLeft: (
-        <Header
-          screen={'committees'}
-          onPress={() => navigation.navigate('Menu')}
-        />
-      ),
+      headerTintColor: '#fff',
+      headerBackTitleStyle: { color: 'transparent' },
       headerStyle: {
         backgroundImage: '../images/bg.png',
         backgroundColor: 'transparent',
