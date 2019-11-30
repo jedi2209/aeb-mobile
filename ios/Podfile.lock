@@ -76,6 +76,10 @@ PODS:
     - React-cxxreact (= 0.60.0)
     - React-jsi (= 0.60.0)
   - React-jsinspector (0.60.0)
+  - react-native-add-calendar-event (3.0.0):
+    - React
+  - react-native-calendar-events (1.7.3):
+    - React
   - react-native-onesignal (3.5.0):
     - OneSignal (= 2.11.2)
     - React (< 1.0.0, >= 0.13.0)
@@ -133,6 +137,8 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - react-native-add-calendar-event (from `../node_modules/react-native-add-calendar-event`)
+  - react-native-calendar-events (from `../node_modules/react-native-calendar-events`)
   - react-native-onesignal (from `../node_modules/react-native-onesignal`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -188,6 +194,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-add-calendar-event:
+    :path: "../node_modules/react-native-add-calendar-event"
+  react-native-calendar-events:
+    :path: "../node_modules/react-native-calendar-events"
   react-native-onesignal:
     :path: "../node_modules/react-native-onesignal"
   react-native-webview:
@@ -244,6 +254,8 @@ SPEC CHECKSUMS:
   React-jsi: 8e128c4d0d8febc2977ef617d1c09bb54326069c
   React-jsiexecutor: 7a3554f703a58963ec80b860144ea0f0e9b910e1
   React-jsinspector: d4ed52225912efe0019bb7f1a225aec20f23049a
+  react-native-add-calendar-event: 46b0ff5b4c9c7cb46e790ea25afb8ba430286d70
+  react-native-calendar-events: eaa63134881d97488feb21ea114158f712894018
   react-native-onesignal: 663944f5290d758d138b65ab6e60cf7d9c8e8f8f
   react-native-webview: d1b30cc9128256ec1a9c6d10fb572231bd371337
   React-RCTActionSheet: b27ff3cf3a68f917c46d2b94abf938b625b96570

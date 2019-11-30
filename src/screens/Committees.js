@@ -76,7 +76,6 @@ class CommitteesScreen extends React.Component {
   };
 
   _renderTabBar = props => {
-    console.log(props);
     return (
       <View style={styles.tabBar}>
         {props.navigationState.routes.map((route, i) => {

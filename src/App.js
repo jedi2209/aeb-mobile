@@ -68,7 +68,7 @@ const MainNavigator = createStackNavigator(
     Events: { screen: EventsScreen }
   },
   {
-    initialRouteName: 'Committees'
+    initialRouteName: 'Events'
   }
 );
 
