@@ -11,7 +11,7 @@ class Maps extends React.Component {
       <View
         style={{
           paddingLeft: 14,
-          width: '80%',
+          width: '90%',
           flex: 1,
           flexDirection: 'row',
           alignItems: 'flex-start',

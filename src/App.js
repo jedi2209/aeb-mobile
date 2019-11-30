@@ -10,7 +10,8 @@ import CommitteesPage from './screens/CommitteesPage';
 import EventsScreen from './screens/Events';
 import EventPage from './screens/EventPage';
 
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
 import * as RNLocalize from 'react-native-localize';
 import i18n from 'i18n-js';

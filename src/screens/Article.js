@@ -47,6 +47,7 @@ class ArticleScreen extends React.Component {
         </Fragment>
       ),
       headerTintColor: '#fff',
+      headerBackTitleStyle: { color: 'transparent' },
       headerStyle: {
         backgroundColor: 'transparent',
         shadowRadius: 0,
@@ -247,7 +248,8 @@ const styles = StyleSheet.create({
   scrollViewContent: {
     // iOS uses content inset, which acts like padding.
     paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0,
-    paddingHorizontal: 14
+    paddingHorizontal: 14,
+    marginBottom: Platform.OS !== 'ios' ? 20 : 0
   },
   paragraph: {
     fontSize: 15,
