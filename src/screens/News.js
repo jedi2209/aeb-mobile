@@ -7,7 +7,7 @@ import { useStore } from 'effector-react';
 import moment from 'moment/min/moment-with-locales';
 
 import Header from '../components/Header';
-import CarouselArticles from '../components/CarouselArticles';
+import { CarouselArticles } from '../components/CarouselArticles';
 import ThumbList from '../components/ThumbList';
 
 import {
@@ -58,7 +58,7 @@ const NewsScreen = props => {
     <View style={{ backgroundColor: theme.backgroundColor }}>
       <SafeAreaView>
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View style={[theme.body, { marginTop: 10 }]}>
+          <View style={[{ marginTop: 10 }]}>
             <CarouselArticles data={items} navigation={navigation} />
           </View>
           <View style={theme.body}>

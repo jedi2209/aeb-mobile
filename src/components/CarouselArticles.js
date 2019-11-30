@@ -1,12 +1,6 @@
-import React from 'react';
-
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  ScrollView,
-  Animated
-} from 'react-native';
+import React, { Component } from 'react';
+import Carousel from 'react-native-snap-carousel';
+import { StyleSheet, Dimensions } from 'react-native';
 
 import Card from '../components/Card';
 
@@ -14,47 +8,45 @@ const deviceWidth = Dimensions.get('window').width;
 const BAR_SPACE = 14;
 const PADDING = 14;
 
-const CarouselArticles = props => {
-  const { data, navigation } = props;
-  const animVal = new Animated.Value(0);
-
-  const items = data.map(item => {
+const cardWidth = deviceWidth - 25;
+export class CarouselArticles extends Component {
+  _renderItem({ item }) {
     return (
       <Card
-        navigation={navigation}
+        navigation={this.navigation}
         key={`carousel-article-${item.id}`}
         data={item}
-        width={deviceWidth - PADDING - BAR_SPACE}
+        width={cardWidth}
         height={200}
-        deviceWidth={deviceWidth}
         BAR_SPACE={BAR_SPACE}
       />
     );
-  });
+  }
 
-  return (
-    <View style={styles.container} flex={1}>
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        scrollEventThrottle={10}
-        pagingEnabled
-        onScroll={Animated.event([
-          { nativeEvent: { contentOffset: { x: animVal } } }
-        ])}
-      >
-        {items}
-      </ScrollView>
-    </View>
-  );
-};
+  render() {
+    this.navigation = this.props.navigation;
+
+    return (
+      <Carousel
+        style={styles.container}
+        ref={c => {
+          this._carousel = c;
+        }}
+        data={this.props.data}
+        renderItem={this._renderItem}
+        sliderWidth={deviceWidth}
+        inactiveSlideScale={0.97}
+        activeSlideAlignment={'center'}
+        itemWidth={cardWidth}
+      />
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center'
+    borderWidth: 1,
+    borderColor: 'red',
+    borderStyle: 'solid'
   }
 });
-
-export default CarouselArticles;

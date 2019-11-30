@@ -14,16 +14,8 @@ const DEFAULT_IMAGE =
 const PADDING = 14;
 
 const Card = props => {
-  const {
-    navigation,
-    deviceWidth,
-    BAR_SPACE,
-    data,
-    height,
-    width,
-    locale
-  } = props;
-  const cardWidth = deviceWidth - PADDING - BAR_SPACE;
+  const { navigation, BAR_SPACE, data, height, width, locale } = props;
+  const cardWidth = width;
 
   moment.locale(locale);
 
@@ -35,17 +27,16 @@ const Card = props => {
           otherParam: data
         });
       }}
-      style={[styles.slide, { width: cardWidth, marginRight: BAR_SPACE }]}
+      style={[styles.slide, { width: cardWidth }]}
     >
       <View
         style={{
-          width: cardWidth,
-          marginRight: BAR_SPACE
+          width: cardWidth
         }}
       >
         <Image
           source={{ uri: (data.img && data.img.preview[0]) || DEFAULT_IMAGE }}
-          style={[styles.image, { width, height }]}
+          style={[styles.image, { width: cardWidth, height }]}
         />
         <Text numberOfLines={3} style={styles.title}>
           {data.name}
