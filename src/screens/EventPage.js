@@ -1,9 +1,9 @@
+/* eslint-disable no-fallthrough */
 /* eslint-disable react-native/no-inline-styles */
 import React, { Fragment } from 'react';
 
 import Moment from 'moment/min/moment-with-locales';
 import ShareButton from '../components/ShareButton';
-import SegmentedControlTab from 'react-native-segmented-control-tab';
 import Maps from '../components/Maps';
 import Press from '../components/Press';
 import Translation from '../components/Translation';
@@ -11,7 +11,18 @@ import CalendarIcon from '../components/CalendarIcon';
 import ReleasesCard from '../components/ReleasesCard';
 import WebViewAutoHeight from '../components/WebViewAutoHeight';
 
+import { TabView } from 'react-native-tab-view';
+import * as AddCalendarEvent from 'react-native-add-calendar-event';
+
+import moment from 'moment';
+
 const BAR_SPACE = 14;
+
+const utcDateToString = momentInUTC => {
+  let s = moment.utc(momentInUTC).format('YYYY-MM-DDTHH:mm:ss.SSS[Z]');
+  // console.warn(s);
+  return s;
+};
 
 import {
   TouchableOpacity,
@@ -30,6 +41,95 @@ import {
 const HEADER_MAX_HEIGHT = 406;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT;
 
+const FirstRoute = data => {
+  console.log('>>>>>>>', data);
+
+  return (
+    <View style={styles.body}>
+      <WebViewAutoHeight text={data.text} />
+    </View>
+  );
+};
+
+const SecondRoute = (data, translate) => (
+  <View style={{ marginTop: 20 }}>
+    <View style={{ paddingLeft: 24 }}>
+      <Text style={[styles.paragraph, { fontWeight: 'bold' }]}>
+        {translate('attendance_fees')}
+      </Text>
+    </View>
+    <View style={styles.table}>
+      <Text style={styles.tableText}>{translate('assigned_member')}</Text>
+      <Text>{`${data.attendance.gold.value} ${
+        data.attendance.gold.curr
+      }`}</Text>
+    </View>
+    <View style={styles.table}>
+      <Text style={styles.tableText}>{translate('additional_member')}</Text>
+      <Text>{`${data.attendance.members.value} ${
+        data.attendance.members.curr
+      }`}</Text>
+    </View>
+    <View style={styles.table}>
+      <Text style={styles.tableText}>{translate('non_member')}</Text>
+      <Text>{`${data.attendance['non-members'].value} ${
+        data.attendance.gold.curr
+      }`}</Text>
+    </View>
+    <TouchableOpacity
+      onPress={() => Linking.openURL(data.url)}
+      style={{
+        borderRadius: 6,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#0E4F9F',
+        marginTop: 25,
+        marginBottom: 25
+      }}
+    >
+      <Text
+        style={{
+          color: '#fff',
+          fontSize: 15,
+          letterSpacing: 0.32,
+          textTransform: 'uppercase',
+          fontWeight: '400'
+        }}
+      >
+        {translate('registration')}
+      </Text>
+    </TouchableOpacity>
+  </View>
+);
+
+const ThirdRoute = (data, extraPadding) => (
+  <View style={styles.body}>
+    <View style={{ marginTop: 20 }}>
+      <FlatList
+        contentContainerStyle={styles.flatlist}
+        numColumns={1}
+        data={data.file}
+        renderItem={({ item }) => {
+          return (
+            <ReleasesCard
+              extraPadding={extraPadding}
+              data={item}
+              width={deviceWidth - 14 - BAR_SPACE}
+              height={200}
+              deviceWidth={deviceWidth}
+              BAR_SPACE={BAR_SPACE}
+            />
+          );
+        }}
+        keyExtractor={item => {
+          return item.name.toString();
+        }}
+      />
+    </View>
+  </View>
+);
+
 class ArticleScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -37,8 +137,15 @@ class ArticleScreen extends React.Component {
     const { navigation } = this.props;
     const data = navigation.getParam('otherParam', {});
 
+    this.translate = this.props.screenProps.translate;
+
     this.state = {
-      selectedIndex: 0,
+      index: 0,
+      routes: [
+        { key: 'first', title: this.translate('about') },
+        { key: 'second', title: this.translate('attendance_fees') },
+        { key: 'third', title: this.translate('files') }
+      ],
       scrollY: new Animated.Value(
         // iOS has negative initial scroll value because content inset...
         Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0
@@ -47,8 +154,6 @@ class ArticleScreen extends React.Component {
     };
 
     this.data = data;
-    this.translate = this.props.screenProps.translate;
-    console.log(this.data);
   }
 
   static navigationOptions = ({ navigation }) => {
@@ -78,12 +183,35 @@ class ArticleScreen extends React.Component {
     };
   };
 
-  handleIndexChange = index => {
-    //handle tab selection for custom Tab Selection SegmentedControlTab
-    this.setState(prevState => ({ ...prevState, selectedIndex: index }));
+  _renderTabBar = props => {
+    return (
+      <View style={styles.tabBar}>
+        {props.navigationState.routes.map((route, i) => {
+          return (
+            <TouchableOpacity
+              key={`tab-${i}`}
+              style={styles.tabItem}
+              onPress={() => this.setState({ index: i })}
+            >
+              <Text
+                style={{
+                  color: props.navigationState.index === i ? '#000' : '#D8D8D8',
+                  fontSize: 11
+                }}
+              >
+                {route.title}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
+      </View>
+    );
   };
 
   _renderScrollViewContent() {
+    const data = this.data;
+    const extraPadding = this.props.extraPadding;
+
     return (
       <SafeAreaView>
         <View style={[styles.scrollViewContent]}>
@@ -93,118 +221,62 @@ class ArticleScreen extends React.Component {
           {this.data.registration.press && (
             <Press text={this.translate('press')} />
           )}
-          {/* нельзя почему то передать стили ввиде объекта */}
-          <SegmentedControlTab
-            // eslint-disable-next-line react-native/no-inline-styles
-            tabsContainerStyle={{ marginTop: 0 }}
-            // eslint-disable-next-line react-native/no-inline-styles
-            tabStyle={{ backgroundColor: '#F1F2F6', borderColor: '#F1F2F6' }}
-            // eslint-disable-next-line react-native/no-inline-styles
-            tabTextStyle={{ color: '#D8D8D8', fontSize: 16 }}
-            // eslint-disable-next-line react-native/no-inline-styles
-            activeTabStyle={{ backgroundColor: '#fff', borderColor: '#F1F2F6' }}
-            // eslint-disable-next-line react-native/no-inline-styles
-            activeTabTextStyle={{ color: '#000', fontSize: 16 }}
-            values={[
-              this.translate('about'),
-              this.translate('attendance_fees'),
-              this.translate('files')
-            ]}
-            selectedIndex={this.state.selectedIndex}
-            onTabPress={this.handleIndexChange}
-          />
-          {this.state.selectedIndex === 0 && (
-            <WebViewAutoHeight text={this.data.text} />
-          )}
-          {this.state.selectedIndex === 1 && (
-            <View style={{ marginTop: 20 }}>
-              <View style={{ paddingLeft: 24 }}>
-                <Text style={[styles.paragraph, { fontWeight: 'bold' }]}>
-                  {this.translate('attendance_fees')}
-                </Text>
-              </View>
-              <View style={styles.table}>
-                <Text style={styles.tableText}>
-                  {this.translate('assigned_member')}
-                </Text>
-                <Text>{`${this.data.attendance.gold.value} ${
-                  this.data.attendance.gold.curr
-                }`}</Text>
-              </View>
-              <View style={styles.table}>
-                <Text style={styles.tableText}>
-                  {this.translate('additional_member')}
-                </Text>
-                <Text>{`${this.data.attendance.members.value} ${
-                  this.data.attendance.members.curr
-                }`}</Text>
-              </View>
-              <View style={styles.table}>
-                <Text style={styles.tableText}>
-                  {this.translate('non_member')}
-                </Text>
-                <Text>{`${this.data.attendance['non-members'].value} ${
-                  this.data.attendance.gold.curr
-                }`}</Text>
-              </View>
-              <TouchableOpacity
-                onPress={() => Linking.openURL(this.data.url)}
-                style={{
-                  borderRadius: 6,
-                  height: 50,
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor: '#0E4F9F',
-                  marginTop: 25,
-                  marginBottom: 25
-                }}
-              >
-                <Text
-                  style={{
-                    color: '#fff',
-                    fontSize: 15,
-                    letterSpacing: 0.32,
-                    textTransform: 'uppercase',
-                    fontWeight: '400'
-                  }}
-                >
-                  {this.translate('registration')}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          )}
-          {this.state.selectedIndex === 2 && (
-            <View style={{ marginTop: 20 }}>
-              <FlatList
-                contentContainerStyle={styles.flatlist}
-                numColumns={1}
-                data={this.data.file}
-                renderItem={({ item }) => {
-                  return (
-                    <ReleasesCard
-                      extraPadding={this.props.extraPadding}
-                      data={item}
-                      width={deviceWidth - 14 - BAR_SPACE}
-                      height={200}
-                      deviceWidth={deviceWidth}
-                      BAR_SPACE={BAR_SPACE}
-                    />
-                  );
-                }}
-                keyExtractor={item => {
-                  return item.name.toString();
-                }}
-              />
-            </View>
-          )}
+          <View style={{ backgroundColor: '#FAFAFA', paddingVertical: 14 }}>
+            <TouchableOpacity
+              onPress={() => {
+                const eventConfig = {
+                  title: this.data.name,
+                  startDate: utcDateToString(moment.now()),
+                };
+
+                AddCalendarEvent.presentEventCreatingDialog(eventConfig)
+                  .then(eventInfo => {
+                    // handle success - receives an object with `calendarItemIdentifier` and `eventIdentifier` keys, both of type string.
+                    // These are two different identifiers on iOS.
+                    // On Android, where they are both equal and represent the event id, also strings.
+                    // when { action: 'CANCELED' } is returned, the dialog was dismissed
+                    console.warn(JSON.stringify(eventInfo));
+                  })
+                  .catch(error => {
+                    // handle error such as when user rejected permissions
+                    console.error('error', error);
+                  });
+              }}
+              style={{
+                borderStyle: 'solid',
+                borderWidth: 1,
+                borderColor: 'red',
+                width: '100%',
+                height: 50,
+                position: 'relative'
+              }}
+            >
+              {/* <CalendarIcon /> */}
+              <Text>{'ALO'}</Text>
+            </TouchableOpacity>
+            <TabView
+              renderTabBar={this._renderTabBar}
+              navigationState={this.state}
+              renderScene={({ route }) => {
+                switch (route.key) {
+                  case 'first':
+                    return FirstRoute(data);
+                  case 'second':
+                    return SecondRoute(data, this.translate);
+                  default:
+                    return ThirdRoute(data, extraPadding);
+                }
+              }}
+              onIndexChange={index => this.setState({ index })}
+              initialLayout={{ width: Dimensions.get('window').width }}
+            />
+          </View>
         </View>
       </SafeAreaView>
     );
   }
 
   render() {
-    // Because of content inset the scroll value will be negative on iOS so bring
-    // it back to 0.
     const scrollY = Animated.add(
       this.state.scrollY,
       Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0
@@ -231,12 +303,6 @@ class ArticleScreen extends React.Component {
     const textOpacity = scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE - 80, HEADER_SCROLL_DISTANCE],
       outputRange: [1, 0, 0],
-      extrapolate: 'clamp'
-    });
-
-    const textOpacityReverd = scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE - 80, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, 1, 1],
       extrapolate: 'clamp'
     });
 
@@ -323,10 +389,10 @@ class ArticleScreen extends React.Component {
                 letterSpacing: 0.32,
                 marginBottom: 15,
                 marginHorizontal: 14,
-                backgroundColor: '#FF4D2C',
+                backgroundColor: '#FF2D55',
                 borderRadius: 6,
                 textAlign: 'center',
-                paddingTop: 5,
+                paddingTop: 3,
                 paddingBottom: 3,
                 width: 75
               }}
@@ -335,9 +401,28 @@ class ArticleScreen extends React.Component {
             </Text>
           )}
           <Maps text={this.data.place.name} />
-          <View style={{ position: 'relative' }}>
-            <CalendarIcon />
-          </View>
+          <TouchableOpacity
+            onPress={() => {
+              alert('tyt');
+              RNCalendarEvents.saveEvent(this.data.name, {
+                location: this.data.place.name,
+                notes: 'notes',
+                startDate: this.data.date * 1000,
+                endDate: this.data.date * 1000
+              });
+            }}
+            style={{
+              borderStyle: 'solid',
+              borderWidth: 1,
+              borderColor: 'red',
+              width: '100%',
+              height: 50,
+              position: 'relative'
+            }}
+          >
+            {/* <CalendarIcon /> */}
+            <Text>{'ALO'}</Text>
+          </TouchableOpacity>
         </Animated.View>
       </View>
     );
@@ -397,22 +482,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     paddingTop: 120
   },
-  titlemini: {
-    marginTop: 5,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-    paddingHorizontal: 14,
-    position: 'absolute',
-    top: -5,
-    width: deviceWidth,
-    left: 0,
-    right: 0
-  },
-  titleminitext: {
-    fontSize: 14,
-    color: '#fff',
-    fontWeight: 'bold'
-  },
   scrollViewContent: {
     paddingHorizontal: 14,
     // iOS uses content inset, which acts like padding.
@@ -447,6 +516,21 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     height: '100%',
     width: '100%'
+  },
+  tabBar: {
+    flexDirection: 'row',
+    paddingTop: 0,
+    paddingBottom: 0
+  },
+  tabItem: {
+    flex: 1,
+    alignItems: 'center',
+    paddingTop: 5,
+    paddingBottom: 10
+  },
+  scene: {
+    flex: 1
   }
 });
+
 export default ArticleScreen;

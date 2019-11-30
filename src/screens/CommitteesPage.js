@@ -1,7 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-
-import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
 
 import {

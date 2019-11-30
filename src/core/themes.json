@@ -1,6 +1,6 @@
 {
     "body": {
-        "fontFamily": "Helvetica",
+        "fontFamily": "SFUIDisplay-Regular",
         "backgroundColor": "#fff",
         "paddingLeft": 14
     },

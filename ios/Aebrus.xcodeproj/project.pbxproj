@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* AebrusTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* AebrusTests.m */; };
+		010EC62D65944836A0031105 /* SFUIDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0617FF28EF864EF0A8BAE9CB /* SFUIDisplay-Semibold.otf */; };
+		0F4AED392A6D4B0687DF32A9 /* SFUIDisplay-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = A1FEC040DCAA4AD09C1A3C0D /* SFUIDisplay-Heavy.otf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -15,8 +17,16 @@
 		3A494EF7236617EA000029F8 /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = 3A494EF6236617EA000029F8 /* NotificationService.m */; };
 		3A494EFB236617EA000029F8 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3A494EF3236617EA000029F8 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3A58419E2364E86D0017250A /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A58419D2364E86D0017250A /* AppCenter-Config.plist */; };
+		5FFBC9B8BC65436DA28CC4FC /* SFUIDisplay-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 41E57B7EB91E48BC8C22EAE1 /* SFUIDisplay-Thin.otf */; };
+		716FFC784DEA4F7DB663779D /* SFUIDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 027ADB4DB60A43999BCD4534 /* SFUIDisplay-Light.otf */; };
+		91FCF89C2E8F44D58AEFCD5C /* SFUIDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 385F266FC4B24D489519737B /* SFUIDisplay-Bold.otf */; };
 		9518AD8D4823CC10B6ADCF61 /* libPods-Aebrus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D0D20FD6E3D9893B21695AB /* libPods-Aebrus.a */; };
+		C544993923932317000A4B85 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = C544993823932317000A4B85 /* InfoPlist.strings */; };
+		CEEC0F7BB6C547C6B256C038 /* SFUIDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = A08C7F141C144300AFBA581C /* SFUIDisplay-Regular.otf */; };
+		D88256E5CDF54C4B80E92E06 /* SFUIDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7CB591C993144973B9FA03F6 /* SFUIDisplay-Ultralight.otf */; };
+		DCDA01B0312A4306A06EC573 /* SFUIDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = C66777F38DA74A188D385CF0 /* SFUIDisplay-Black.otf */; };
 		DD5FD1CD21784C8D5FCCCB82 /* libPods-AebrusTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8FC25E0FDC037E283E28A8E /* libPods-AebrusTests.a */; };
+		E00C86C7D2C84291819D15E3 /* SFUIDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F10262837013402B846EA0B3 /* SFUIDisplay-Medium.otf */; };
 		FDD6366B7E1EF975034C5ECF /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A78F6A6DADFFA250E21349B /* libPods-OneSignalNotificationServiceExtension.a */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +66,8 @@
 		00E356EE1AD99517003FC87E /* AebrusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AebrusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* AebrusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AebrusTests.m; sourceTree = "<group>"; };
+		027ADB4DB60A43999BCD4534 /* SFUIDisplay-Light.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Light.otf"; path = "../src/assets/fonts/SFUIDisplay-Light.otf"; sourceTree = "<group>"; };
+		0617FF28EF864EF0A8BAE9CB /* SFUIDisplay-Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Semibold.otf"; path = "../src/assets/fonts/SFUIDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		08A3A498F4FF918B3BC562C8 /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Aebrus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aebrus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Aebrus/AppDelegate.h; sourceTree = "<group>"; };
@@ -66,6 +78,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Aebrus/main.m; sourceTree = "<group>"; };
 		13C3F1550318ACB5965BBCE7 /* Pods-Aebrus-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aebrus-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-Aebrus-OneSignalNotificationServiceExtension/Pods-Aebrus-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
 		1D0D20FD6E3D9893B21695AB /* libPods-Aebrus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aebrus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		385F266FC4B24D489519737B /* SFUIDisplay-Bold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Bold.otf"; path = "../src/assets/fonts/SFUIDisplay-Bold.otf"; sourceTree = "<group>"; };
 		3A494EEE23661799000029F8 /* Aebrus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Aebrus.entitlements; path = Aebrus/Aebrus.entitlements; sourceTree = "<group>"; };
 		3A494EF3236617EA000029F8 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A494EF5236617EA000029F8 /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
@@ -73,16 +86,23 @@
 		3A494EF8236617EA000029F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A494F0023661A6E000029F8 /* OneSignalNotificationServiceExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneSignalNotificationServiceExtension.entitlements; sourceTree = "<group>"; };
 		3A58419D2364E86D0017250A /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppCenter-Config.plist"; sourceTree = "<group>"; };
+		41E57B7EB91E48BC8C22EAE1 /* SFUIDisplay-Thin.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Thin.otf"; path = "../src/assets/fonts/SFUIDisplay-Thin.otf"; sourceTree = "<group>"; };
 		4BE843024ED8418DBC2D08F7 /* Pods-AebrusTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AebrusTests.debug.xcconfig"; path = "Target Support Files/Pods-AebrusTests/Pods-AebrusTests.debug.xcconfig"; sourceTree = "<group>"; };
 		583983F4C930B3031A90576F /* Pods-AebrusTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AebrusTests.release.xcconfig"; path = "Target Support Files/Pods-AebrusTests/Pods-AebrusTests.release.xcconfig"; sourceTree = "<group>"; };
 		716EAE6FC8489351ABEE987C /* Pods-Aebrus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aebrus.debug.xcconfig"; path = "Target Support Files/Pods-Aebrus/Pods-Aebrus.debug.xcconfig"; sourceTree = "<group>"; };
 		7A78F6A6DADFFA250E21349B /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CB591C993144973B9FA03F6 /* SFUIDisplay-Ultralight.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Ultralight.otf"; path = "../src/assets/fonts/SFUIDisplay-Ultralight.otf"; sourceTree = "<group>"; };
+		A08C7F141C144300AFBA581C /* SFUIDisplay-Regular.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Regular.otf"; path = "../src/assets/fonts/SFUIDisplay-Regular.otf"; sourceTree = "<group>"; };
+		A1FEC040DCAA4AD09C1A3C0D /* SFUIDisplay-Heavy.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Heavy.otf"; path = "../src/assets/fonts/SFUIDisplay-Heavy.otf"; sourceTree = "<group>"; };
 		BC5714FC78B41928E2B23075 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		C544993823932317000A4B85 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
+		C66777F38DA74A188D385CF0 /* SFUIDisplay-Black.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Black.otf"; path = "../src/assets/fonts/SFUIDisplay-Black.otf"; sourceTree = "<group>"; };
 		CDA59B04D11B8914B1B3E783 /* Pods-Aebrus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aebrus.release.xcconfig"; path = "Target Support Files/Pods-Aebrus/Pods-Aebrus.release.xcconfig"; sourceTree = "<group>"; };
 		CFC1C3A66B9DCFED2D32177B /* Pods-Aebrus-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aebrus-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-Aebrus-OneSignalNotificationServiceExtension/Pods-Aebrus-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		D8FC25E0FDC037E283E28A8E /* libPods-AebrusTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AebrusTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		F10262837013402B846EA0B3 /* SFUIDisplay-Medium.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Medium.otf"; path = "../src/assets/fonts/SFUIDisplay-Medium.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +203,23 @@
 			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
+		4995257262534EE59D561BF6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C66777F38DA74A188D385CF0 /* SFUIDisplay-Black.otf */,
+				385F266FC4B24D489519737B /* SFUIDisplay-Bold.otf */,
+				A1FEC040DCAA4AD09C1A3C0D /* SFUIDisplay-Heavy.otf */,
+				027ADB4DB60A43999BCD4534 /* SFUIDisplay-Light.otf */,
+				F10262837013402B846EA0B3 /* SFUIDisplay-Medium.otf */,
+				A08C7F141C144300AFBA581C /* SFUIDisplay-Regular.otf */,
+				0617FF28EF864EF0A8BAE9CB /* SFUIDisplay-Semibold.otf */,
+				41E57B7EB91E48BC8C22EAE1 /* SFUIDisplay-Thin.otf */,
+				7CB591C993144973B9FA03F6 /* SFUIDisplay-Ultralight.otf */,
+				C544993823932317000A4B85 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -201,6 +238,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				086708895754E5A596A6021F /* Pods */,
+				4995257262534EE59D561BF6 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -310,6 +348,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -338,6 +377,16 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				3A58419E2364E86D0017250A /* AppCenter-Config.plist in Resources */,
+				C544993923932317000A4B85 /* InfoPlist.strings in Resources */,
+				DCDA01B0312A4306A06EC573 /* SFUIDisplay-Black.otf in Resources */,
+				91FCF89C2E8F44D58AEFCD5C /* SFUIDisplay-Bold.otf in Resources */,
+				0F4AED392A6D4B0687DF32A9 /* SFUIDisplay-Heavy.otf in Resources */,
+				716FFC784DEA4F7DB663779D /* SFUIDisplay-Light.otf in Resources */,
+				E00C86C7D2C84291819D15E3 /* SFUIDisplay-Medium.otf in Resources */,
+				CEEC0F7BB6C547C6B256C038 /* SFUIDisplay-Regular.otf in Resources */,
+				010EC62D65944836A0031105 /* SFUIDisplay-Semibold.otf in Resources */,
+				5FFBC9B8BC65436DA28CC4FC /* SFUIDisplay-Thin.otf in Resources */,
+				D88256E5CDF54C4B80E92E06 /* SFUIDisplay-Ultralight.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

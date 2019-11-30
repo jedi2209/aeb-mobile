@@ -1,0 +1,9 @@
+/* 
+  InfoPlist.strings
+  Aebrus
+
+  Created by Anna Tyutyunnik on 01/12/2019.
+  Copyright © 2019 AEB Rus. All rights reserved.
+*/
+NSCalendarsUsageDescription = "Need access to calendar";
+NSContactsUsageDescription = "Need access to calendar";
