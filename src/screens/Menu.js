@@ -36,7 +36,10 @@ class MenuScreen extends React.Component {
           navigation={this.props.navigation}
           translate={this.props.screenProps.translate}
         />
-        <CloseButton style={style.goBack} onPress={() => navigate('Home')} />
+        <CloseButton
+          style={style.goBack}
+          onPress={() => this.props.navigation.goBack()}
+        />
       </View>
     );
   }

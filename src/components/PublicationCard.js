@@ -54,7 +54,11 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     flexDirection: 'row',
     borderRadius: 4,
-    marginVertical: 10
+    marginVertical: 10,
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    shadowColor: '#000000',
+    shadowOffset: { height: 1, width: 0 }
   },
   image: {
     borderRadius: 4

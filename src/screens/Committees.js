@@ -154,12 +154,13 @@ const styles = StyleSheet.create({
   tabBar: {
     flexDirection: 'row',
     paddingTop: 0,
-    paddingBottom: 10
+    paddingBottom: 0
   },
   tabItem: {
     flex: 1,
     alignItems: 'center',
-    padding: 0
+    paddingTop: 5,
+    paddingBottom: 20
   }
 });
 

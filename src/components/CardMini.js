@@ -7,23 +7,18 @@ const DEFAULT_IMAGE =
 const PADDING = 14;
 
 const CardMini = props => {
-  const { deviceWidth, data, locale } = props;
-  const extraPadding = props.extraPadding
-    ? parseInt(props.extraPadding, 10)
-    : 0;
-
-  const cardWidth = deviceWidth - PADDING * 2 - extraPadding;
-
+  const { data, locale } = props;
+  const cardWidth = props.width - PADDING * 2;
   moment.locale(locale);
 
   return (
     <View
       style={[
         styles.slide,
-        // eslint-disable-next-line react-native/no-inline-styles
         {
-          width: cardWidth
-          // paddingHorizontal: 14
+          width: cardWidth,
+          // paddingHorizontal: 14,
+          paddingHorizontal: props.padding || 0
         }
       ]}
     >
@@ -36,7 +31,7 @@ const CardMini = props => {
       <View
         style={{
           // математика: cardWidth - ширина изображения - отступ изображения
-          width: cardWidth - 64 - 10
+          width: cardWidth - 64 - 10 - (props.padding || 0 * 2)
         }}
       >
         <Text style={styles.title}>{data.name}</Text>

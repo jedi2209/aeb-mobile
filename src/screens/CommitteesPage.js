@@ -89,10 +89,9 @@ class PublicationsScreen extends React.Component {
                     paramsForFetch={{ committees: data.id }}
                     translate={this.props.screenProps.translate}
                     type="publications"
-                    extraPadding="28" // потому что 14 * 2
+                    padding={14}
                   />
                   <View
-                    // eslint-disable-next-line react-native/no-inline-styles
                     style={{
                       backgroundColor: '#fff',
                       marginTop: 14,
@@ -100,11 +99,11 @@ class PublicationsScreen extends React.Component {
                     }}
                   >
                     <ThumbList
+                      padding={14}
                       paramsForFetch={{ committees: data.id }}
                       translate={this.props.screenProps.translate}
                       navigation={this.props.navigation}
                       type="news"
-                      extraPadding="28"
                       title={this.props.screenProps.translate('committee_news')}
                     />
                   </View>

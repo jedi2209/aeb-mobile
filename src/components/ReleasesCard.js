@@ -44,7 +44,7 @@ class ReleasesCard extends React.Component {
             }
           ]}
         >
-          <View style={{ width: this.props.deviceWidth - 64 - 35 - 14 }}>
+          <View style={{ width: this.props.deviceWidth - 64 - 35 - 14 - 14 }}>
             <Text style={styles.title}>{this.props.data.name}</Text>
             <Text style={styles.commit}>{this.props.data.descr}</Text>
             {this.props.data.created && (
@@ -66,21 +66,25 @@ const styles = StyleSheet.create({
   slide: {
     backgroundColor: '#FFFFFF',
     flexDirection: 'row',
-    borderRadius: 8
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    shadowColor: '#000000',
+    shadowOffset: { height: 1, width: 0 }
   },
   image: {
-    borderRadius: 4
+    borderRadius: 4,
+    marginRight: 14
   },
   title: {
-    fontSize: 17,
+    fontSize: 16,
     color: '#000000',
     letterSpacing: 0.32,
     textAlign: 'left',
     lineHeight: 22,
-    fontWeight: 'bold'
+    fontWeight: '500'
   },
   date: {
-    fontSize: 15,
+    fontSize: 12,
     color: '#8C8C8C',
     letterSpacing: 0.32,
     lineHeight: 20
