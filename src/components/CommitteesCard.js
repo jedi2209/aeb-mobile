@@ -34,7 +34,11 @@ const styles = StyleSheet.create({
   slide: {
     backgroundColor: '#fff',
     padding: 14,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    shadowColor: '#000000',
+    shadowOffset: { height: 1, width: 0 }
   },
   image: {
     borderRadius: 4

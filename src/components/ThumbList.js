@@ -181,11 +181,11 @@ export default class AllArticlesScreen extends Component {
       >
         <View style={styles.card}>
           <Card
-            extraPadding={this.props.extraPadding}
             navigation={this.props.navigation}
             key={`thumb-list-article-${item.id}`}
             data={item}
-            width={deviceWidth - 14 - BAR_SPACE}
+            width={deviceWidth}
+            padding={this.props.padding}
             height={200}
             deviceWidth={deviceWidth}
             BAR_SPACE={BAR_SPACE}
@@ -226,7 +226,7 @@ export default class AllArticlesScreen extends Component {
   _renderCardCommittee = item => {
     return (
       // eslint-disable-next-line react-native/no-inline-styles
-      <View style={{ marginTop: 25, width: '50%' }}>
+      <View style={{ marginTop: 10, width: '50%' }}>
         <CommitteesCard
           extraPadding={this.props.extraPadding}
           data={item}
@@ -291,7 +291,7 @@ export default class AllArticlesScreen extends Component {
         break;
       case 'events':
         component = (
-          <TouchableOpacity
+          <TouchableWithoutFeedback
             style={styles.card}
             onPress={() => {
               navigation.navigate('Event', {
@@ -300,8 +300,8 @@ export default class AllArticlesScreen extends Component {
               });
             }}
           >
-            {this._renderCardEvent(item)}
-          </TouchableOpacity>
+            <View style={styles.card}>{this._renderCardEvent(item)}</View>
+          </TouchableWithoutFeedback>
         );
         break;
       case 'publications':
@@ -309,7 +309,7 @@ export default class AllArticlesScreen extends Component {
         break;
       case 'committees':
         component = (
-          <TouchableOpacity
+          <TouchableWithoutFeedback
             onPress={() => {
               navigation.navigate('CommitteesPage', {
                 itemId: item.id,
@@ -318,7 +318,7 @@ export default class AllArticlesScreen extends Component {
             }}
           >
             {this._renderCardCommittee(item)}
-          </TouchableOpacity>
+          </TouchableWithoutFeedback>
         );
         break;
       default:
@@ -329,7 +329,6 @@ export default class AllArticlesScreen extends Component {
   };
 
   render() {
-    console.log('render');
     const { title } = this.props;
 
     return !this.state.loading ? (
@@ -340,7 +339,7 @@ export default class AllArticlesScreen extends Component {
               theme.pageTitle,
               // eslint-disable-next-line react-native/no-inline-styles
               {
-                paddingHorizontal: this.props.titlePadding
+                paddingHorizontal: this.props.padding
               }
             ]}
             text={title}

@@ -37,14 +37,7 @@ class ReleasesScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: Platform.OS === 'ios' ? 60 : 68,
-        borderBottomWidth: 0,
-        shadowRadius: 0,
-        shadowOffset: {
-          height: 0
-        },
-        elevation: 0,
-        shadowColor: 'transparent'
+        height: Platform.OS === 'ios' ? 60 : 68
       }
     };
   };
@@ -148,14 +141,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#FAFAFA'
   },
   dropdown: {
+    backgroundColor: '#FAFAFA',
     paddingVertical: Platform.OS === 'ios' ? 10 : 0,
     paddingHorizontal: 14,
     alignItems: 'stretch',
-    backgroundColor: '#FFF',
     fontSize: 17,
     color: '#000',
     borderBottomWidth: 1,
-    borderTopWidth: 1,
     borderColor: '#ACB1C0',
     borderStyle: 'solid'
   }
@@ -163,6 +155,7 @@ const styles = StyleSheet.create({
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
+    backgroundColor: '#FAFAFA',
     fontSize: 17,
     paddingVertical: 2,
     paddingHorizontal: 10,
