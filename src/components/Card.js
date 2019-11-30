@@ -11,10 +11,9 @@ import moment from 'moment/min/moment-with-locales';
 
 const DEFAULT_IMAGE =
   'https://aebrus.ru/local/templates/aeb2019en/img/contacts_image.jpg';
-const PADDING = 14;
 
 const Card = props => {
-  const { navigation, BAR_SPACE, data, height, width, locale } = props;
+  const { navigation, data, height, width, locale } = props;
   const cardWidth = width;
 
   moment.locale(locale);
