@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "postinstall": "cd ./ios; pod update; pod install; cd ../;",
+    "postinstall": "cd ./ios; pod update; pod install; cd ../; npx jetify;",
     "test": "jest",
     "lint": "eslint .",
     "iphone": "react-native run-ios --simulator=\"iPhone 11\"",
@@ -12,9 +12,9 @@
     "iphoneProMax": "react-native run-ios --simulator=\"iPhone 11 Pro Max\"",
     "iphone-release": "fastlane ios beta;",
     "react": "react-native start --reset-cache",
-    "android": "open -a Terminal ./android/dev.sh & adb wait-for-device; sleep 10; react-native run-android",
-    "android-release": "cd ./android; bundle exec fastlane android internal; cd ../",
-    "android-build": "cd ./android; bundle exec fastlane android build; cd ../; open ./android/app/build/outputs/apk/release;",
+    "android": "cd ./android && ./gradlew clean; cd ../; open -a Terminal ./android/dev.sh & adb wait-for-device; sleep 10; react-native run-android",
+    "android-release": "cd ./android && ./gradlew clean; bundle exec fastlane android internal; cd ../",
+    "android-build": "cd ./android && ./gradlew clean; bundle exec fastlane android build; cd ../; open ./android/app/build/outputs/apk/release;",
     "version": "./version.sh"
   },
   "dependencies": {

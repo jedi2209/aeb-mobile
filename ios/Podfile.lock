@@ -159,7 +159,7 @@ DEPENDENCIES:
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - AppCenter
     - AppCenterReactNativeShared
     - boost-for-react-native
@@ -254,10 +254,10 @@ SPEC CHECKSUMS:
   React-jsi: 8e128c4d0d8febc2977ef617d1c09bb54326069c
   React-jsiexecutor: 7a3554f703a58963ec80b860144ea0f0e9b910e1
   React-jsinspector: d4ed52225912efe0019bb7f1a225aec20f23049a
-  react-native-add-calendar-event: 46b0ff5b4c9c7cb46e790ea25afb8ba430286d70
-  react-native-calendar-events: eaa63134881d97488feb21ea114158f712894018
-  react-native-onesignal: 663944f5290d758d138b65ab6e60cf7d9c8e8f8f
-  react-native-webview: d1b30cc9128256ec1a9c6d10fb572231bd371337
+  react-native-add-calendar-event: d559051d40b9ced43ca2ae052aca7685a546e3e1
+  react-native-calendar-events: 2fe35a9294af05de0ed819d3a1b5dac048d2c010
+  react-native-onesignal: 50f5a70d2b8a94e0eda8c4e1b9ba0b82dec29a7a
+  react-native-webview: 7eefdb64f283cae1bebe82ebd8ddeb4b805900c0
   React-RCTActionSheet: b27ff3cf3a68f917c46d2b94abf938b625b96570
   React-RCTAnimation: 9e4708e5bd65fca8285ce7c0aa076f3f4fa5c2f8
   React-RCTBlob: 6eafcc3a24f33785692a7be24918ade607bc8719
@@ -268,13 +268,13 @@ SPEC CHECKSUMS:
   React-RCTText: 685fca2e13b024271048e7e247ef24476f28a41e
   React-RCTVibration: 4ee1cf208ab17a50fafb1c16ffe28fe594a64e4f
   React-RCTWebSocket: fca087d583724aa0e5fef7d911f0f2a28d0f2736
-  RNCAsyncStorage: 3c304d1adfaea02ec732ac218801cb13897aa8c0
+  RNCAsyncStorage: 6b57de0f6cb0dcfd17521af1681fa39001d3efff
   RNGestureHandler: 7add966bb5d90ee8cf38d4341f87814474357972
-  RNLocalize: 07eb7a91d10021cdf59d80061ebf3adb8a5b5688
+  RNLocalize: c117094a6c5a955c94e65520ad4c726e3a0f4ed6
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
   RNSVG: f6177f8d7c095fada7cfee2e4bb7388ba426064c
   yoga: 616fde658be980aa60a2158835170f3f9c2d04b4
 
 PODFILE CHECKSUM: 9bb52f5f42c54795670ac9b1d1ae206cb15c05bf
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.8.4
