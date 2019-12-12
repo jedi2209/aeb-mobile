@@ -3,7 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>$(NSCalendarsUsageDescription)</string>
+	<string>$(PRODUCT_NAME) need access to your calendar for AEB Events.</string>
+  <key>NSLocationAlwaysUsageDescription</key>
+  <string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places.</string>
+  <key>NSLocationWhenInUseUsageDescription</key>
+  <string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>$(NSContactsUsageDescription)</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -41,8 +45,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
 	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
 	<key>UIBackgroundModes</key>
