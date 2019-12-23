@@ -12,6 +12,8 @@ import ArrowButton from '../components/ArrowButton';
 
 import moment from 'moment/min/moment-with-locales';
 
+import { theme } from '../core/themeProvider';
+
 class ReleasesCard extends React.Component {
   render() {
     const extraPadding = this.props.extraPadding;
@@ -33,7 +35,8 @@ class ReleasesCard extends React.Component {
       >
         <View
           style={[
-            styles.slide,
+            theme.cardBlock,
+            theme.cardShadow,
             // eslint-disable-next-line react-native/no-inline-styles
             {
               width: this.props.deviceWidth - 14 - this.props.BAR_SPACE,

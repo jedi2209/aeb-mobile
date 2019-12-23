@@ -1,12 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import MapsSvg from '../images/Maps.svg';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text } from 'react-native';
+import { DeviceWidth } from '../core/themeProvider';
 
 class Maps extends React.Component {
   render() {
-    const deviceWidth = Dimensions.get('window').width;
-
     return (
       <View
         style={{
@@ -30,7 +29,7 @@ class Maps extends React.Component {
           style={{
             fontSize: 14,
             color: '#FFF',
-            width: deviceWidth - 160
+            width: DeviceWidth - 160
           }}
         >
           {this.props.text}

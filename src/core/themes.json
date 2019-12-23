@@ -46,5 +46,32 @@
         "marginBottom": 0,
         "marginTop": 20,
         "textTransform": "uppercase"
+    },
+    "cardBlock": {
+        "backgroundColor": "#FFFFFF",
+        "paddingTop": 10,
+        "paddingBottom": 20,
+        "flexDirection": "row",
+        "borderRadius": 4,
+        "marginVertical": 10
+    },
+    "cardShadow": {
+        "shadowOpacity": 0.1,
+        "shadowRadius": 4,
+        "shadowColor": "#000000",
+        "shadowOffset": {
+            "height": 1,
+            "width": -1
+        }
+    },
+    "headerShadow": {
+        "borderBottomWidth": 0,
+        "shadowOpacity": 0.2,
+        "shadowRadius": 15,
+        "shadowColor": "#000000",
+        "shadowOffset": {
+            "height": 2,
+            "width": 0
+        }
     }
 }

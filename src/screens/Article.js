@@ -9,7 +9,6 @@ const DEFAULT_IMAGE =
   'https://aebrus.ru/local/templates/aeb2019en/img/contacts_image.jpg';
 
 import {
-  Dimensions,
   SafeAreaView,
   View,
   Text,
@@ -19,7 +18,8 @@ import {
   RefreshControl
 } from 'react-native';
 
-const deviceWidth = Dimensions.get('window').width;
+import { DeviceWidth } from '../core/themeProvider';
+
 const HEADER_MAX_HEIGHT = 406;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT;
 
@@ -27,7 +27,6 @@ class ArticleScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log(Dimensions.get('window').height)
     this.state = {
       scrollY: new Animated.Value(
         // iOS has negative initial scroll value because content inset
@@ -233,7 +232,7 @@ const styles = StyleSheet.create({
       'linear-gradient(180deg, rgba(0,0,0,0.19) 50%, rgba(0,0,0,0.50) 100%)',
     position: 'absolute',
     top: -100,
-    width: deviceWidth,
+    width: DeviceWidth,
     left: 0,
     right: 0
   },
@@ -241,7 +240,7 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: 'bold',
     color: '#fff',
-    width: deviceWidth,
+    width: DeviceWidth,
     paddingHorizontal: 14,
     paddingTop: 120
   },

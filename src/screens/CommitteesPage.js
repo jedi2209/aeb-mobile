@@ -9,11 +9,10 @@ import {
   Image,
   StyleSheet,
   ImageBackground,
-  Platform,
-  Dimensions
+  Platform
 } from 'react-native';
 
-const { width: deviceWidth, height: deviceHeight } = Dimensions.get('window');
+import { DeviceWidth, DeviceHeight } from '../core/themeProvider';
 
 class PublicationsScreen extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -46,7 +45,7 @@ class PublicationsScreen extends React.Component {
             top: -100,
             position: 'relative',
             marginBottom: -100,
-            minHeight: deviceHeight + 100
+            minHeight: DeviceHeight + 100
           }
         ]}
       >
@@ -76,7 +75,7 @@ class PublicationsScreen extends React.Component {
                         {
                           // 60 - ширина картинки 40 marin right у картинки
                           // и 14 отсупы внутри и снаружи карточки
-                          width: deviceWidth - 60 - 20 - 14 * 2 - 14 * 2
+                          width: DeviceWidth - 60 - 20 - 14 * 2 - 14 * 2
                         }
                       ]}
                     >
@@ -87,7 +86,7 @@ class PublicationsScreen extends React.Component {
                     paramsForFetch={{ committees: data.id }}
                     translate={this.props.screenProps.translate}
                     type="publications"
-                    padding={14}
+                    extraPadding="14"
                   />
                   <View
                     style={{
@@ -101,7 +100,7 @@ class PublicationsScreen extends React.Component {
                       paramsForFetch={{ committees: data.id }}
                       translate={this.props.screenProps.translate}
                       navigation={this.props.navigation}
-                      type="news"
+                      type="newsCommitee"
                       title={this.props.screenProps.translate('committee_news')}
                     />
                   </View>

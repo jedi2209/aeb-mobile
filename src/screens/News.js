@@ -88,7 +88,15 @@ NewsScreen.navigationOptions = ({ navigation, screenProps }) => {
       />
     ),
     headerStyle: {
-      height: Platform.OS === 'ios' ? 80 : 88
+      height: Platform.OS === 'ios' ? 80 : 88,
+      borderBottomWidth: 0,
+      shadowOpacity: 0.2,
+      shadowRadius: 15,
+      shadowColor: '#000000',
+      shadowOffset: {
+        height: 2,
+        width: 0
+      }
     }
   };
 };

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import moment from 'moment/min/moment-with-locales';
 
 import {
-  Dimensions,
   View,
   FlatList,
   ActivityIndicator,
@@ -13,6 +12,8 @@ import {
   NativeModules,
   TouchableWithoutFeedback
 } from 'react-native';
+
+import { DeviceWidth } from '../core/themeProvider';
 
 import { theme } from '../core/themeProvider';
 import { API } from '../core/server';
@@ -25,7 +26,6 @@ import PublicationCard from '../components/PublicationCard';
 import CommitteesCard from '../components/CommitteesCard';
 import Card from '../components/CardMini';
 
-const { width: deviceWidth } = Dimensions.get('window');
 const BAR_SPACE = 14;
 
 // TODO: use named export for better DX
@@ -79,6 +79,7 @@ export default class AllArticlesScreen extends Component {
     try {
       switch (this.props.type) {
         case 'news':
+        case 'newsCommitee':
           responsedData = await this.api.getNews(page, paramsForFetch);
           break;
         case 'events':
@@ -91,7 +92,7 @@ export default class AllArticlesScreen extends Component {
           responsedData = await this.api.getCommittees(page, paramsForFetch);
           break;
         default:
-          responsedData = await this.api.getReales(page, paramsForFetch);
+          responsedData = await this.api.getReleases(page, paramsForFetch);
       }
 
       if (force) {
@@ -159,9 +160,14 @@ export default class AllArticlesScreen extends Component {
         <TouchableOpacity
           onPress={this._handleLoadMore}
           // eslint-disable-next-line react-native/no-inline-styles
-          style={{ marginTop: 10, width: deviceWidth - 28, height: 50 }}
+          style={{
+            marginTop: 10,
+            marginBottom: 20,
+            width: DeviceWidth - 28,
+            height: 50
+          }}
         >
-          <View style={[theme.whiteButton]}>
+          <View style={[theme.whiteButton, theme.cardShadow]}>
             <Text style={theme.whiteButtonText}>{translate('load_more')}</Text>
           </View>
         </TouchableOpacity>
@@ -184,10 +190,9 @@ export default class AllArticlesScreen extends Component {
             navigation={this.props.navigation}
             key={`thumb-list-article-${item.id}`}
             data={item}
-            width={deviceWidth}
+            width={DeviceWidth}
             padding={this.props.padding}
             height={200}
-            deviceWidth={deviceWidth}
             BAR_SPACE={BAR_SPACE}
           />
         </View>
@@ -200,10 +205,10 @@ export default class AllArticlesScreen extends Component {
       <Card
         extraPadding={this.props.extraPadding}
         data={item}
-        width={deviceWidth - 14 - BAR_SPACE}
+        width={DeviceWidth - 14 - BAR_SPACE}
         key={`thumb-list-event-${item.id}`}
         height={200}
-        deviceWidth={deviceWidth}
+        deviceWidth={DeviceWidth}
         BAR_SPACE={BAR_SPACE}
       />
     );
@@ -214,10 +219,10 @@ export default class AllArticlesScreen extends Component {
       <PublicationCard
         extraPadding={this.props.extraPadding}
         data={item}
-        width={deviceWidth - 28 - BAR_SPACE}
+        width={DeviceWidth - 28 - BAR_SPACE}
         height={200}
         key={`publication-card-${item.id}`}
-        deviceWidth={deviceWidth}
+        deviceWidth={DeviceWidth}
         BAR_SPACE={BAR_SPACE}
       />
     );
@@ -231,14 +236,14 @@ export default class AllArticlesScreen extends Component {
           extraPadding={this.props.extraPadding}
           data={item}
           height={200}
-          deviceWidth={deviceWidth}
+          deviceWidth={DeviceWidth}
           BAR_SPACE={BAR_SPACE}
         />
       </View>
     );
   };
 
-  _renderRealesCards(item) {
+  _renderReleasesCards(item) {
     return (
       <View key={item.created.toString + getRandomInt(1, 1000)}>
         <View
@@ -247,7 +252,7 @@ export default class AllArticlesScreen extends Component {
             borderColor: '#D7D8DA',
             borderBottomWidth: 1,
             borderBottomStyle: 'solid',
-            width: deviceWidth,
+            width: DeviceWidth,
             paddingLeft: 14,
             paddingVertical: 5,
             marginTop: 0,
@@ -270,9 +275,9 @@ export default class AllArticlesScreen extends Component {
               key={`release-card-${value.id}`}
               extraPadding={this.props.extraPadding}
               data={value}
-              width={deviceWidth - 14 - BAR_SPACE}
+              width={DeviceWidth - 14 - BAR_SPACE}
               height={200}
-              deviceWidth={deviceWidth}
+              deviceWidth={DeviceWidth}
               BAR_SPACE={BAR_SPACE}
             />
           );
@@ -287,6 +292,7 @@ export default class AllArticlesScreen extends Component {
 
     switch (this.props.type) {
       case 'news':
+      case 'newsCommitee':
         component = this._renderCardNews(item);
         break;
       case 'events':
@@ -322,7 +328,7 @@ export default class AllArticlesScreen extends Component {
         );
         break;
       default:
-        component = this._renderRealesCards(item);
+        component = this._renderReleasesCards(item);
     }
 
     return component;

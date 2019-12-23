@@ -1,13 +1,7 @@
 import React from 'react';
 import { theme } from '../core/themeProvider';
 
-import {
-  Text,
-  SectionList,
-  Dimensions,
-  TouchableOpacity,
-  View
-} from 'react-native';
+import { Text, SectionList, TouchableOpacity, View } from 'react-native';
 
 const menuItems = [
   'News',
@@ -18,37 +12,42 @@ const menuItems = [
   'Contacts'
 ];
 
-// const menuItemsBottom = ['settings'];
+const Menu = props => {
+  const { translate, navigation } = props;
 
-const { width } = Dimensions.get('window');
+  return (
+    // eslint-disable-next-line react-native/no-inline-styles
+    <View style={{ height: 300 }}>
+      <SectionList
+        style={styles.linklList}
+        sections={[
+          { title: '', data: menuItems }
+          // { title: '', data: menuItemsBottom }
+        ]}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate(item);
+            }}
+          >
+            <Text style={[styles.link, theme.whiteLink]}>
+              {translate(item)}
+            </Text>
+          </TouchableOpacity>
+        )}
+        keyExtractor={(item, index) => item + index}
+      />
+    </View>
+  );
+};
 
-class Menu extends React.Component {
-  render() {
-    const { translate } = this.props;
-    const { navigate } = this.props.navigation;
+// class Menu extends React.Component {
+//   render() {
+//     const { translate } = this.props;
+//     const { navigate } = this.props.navigation;
 
-    return (
-      // eslint-disable-next-line react-native/no-inline-styles
-      <View style={{ height: 300 }}>
-        <SectionList
-          style={styles.linklList}
-          sections={[
-            { title: '', data: menuItems }
-            // { title: '', data: menuItemsBottom }
-          ]}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => navigate(item)}>
-              <Text style={[styles.link, theme.whiteLink]}>
-                {translate(item)}
-              </Text>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(item, index) => item + index}
-        />
-      </View>
-    );
-  }
-}
+//   }
+// }
 
 const styles = {
   linklList: {},

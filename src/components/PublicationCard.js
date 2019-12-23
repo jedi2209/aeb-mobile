@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Linking
 } from 'react-native';
+import { theme } from '../core/themeProvider';
 
 class PublicationsCard extends React.Component {
   render() {
@@ -21,7 +22,8 @@ class PublicationsCard extends React.Component {
       >
         <View
           style={[
-            styles.slide,
+            theme.cardBlock,
+            theme.cardShadow,
             // eslint-disable-next-line react-native/no-inline-styles
             {
               width: this.props.deviceWidth - 14 - this.props.BAR_SPACE,
@@ -48,18 +50,6 @@ class PublicationsCard extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  slide: {
-    backgroundColor: '#FFFFFF',
-    paddingTop: 10,
-    paddingBottom: 20,
-    flexDirection: 'row',
-    borderRadius: 4,
-    marginVertical: 10,
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    shadowColor: '#000000',
-    shadowOffset: { height: 1, width: 0 }
-  },
   image: {
     borderRadius: 4
   },

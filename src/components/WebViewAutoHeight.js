@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ScrollView, Dimensions } from 'react-native';
+import { ScrollView } from 'react-native';
 import HTML from 'react-native-render-html';
+import { DeviceWidth } from '../core/themeProvider';
 
 const htmlStyles = `
   <style>
@@ -42,7 +43,7 @@ class WebViewAutoHeight extends Component {
       <ScrollView style={{ flex: 1 }}>
         <HTML
           html={htmlStyles + this.props.text}
-          imagesMaxWidth={Dimensions.get('window').width}
+          imagesMaxWidth={DeviceWidth}
         />
       </ScrollView>
     );

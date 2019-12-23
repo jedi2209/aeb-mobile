@@ -37,7 +37,15 @@ class ReleasesScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: Platform.OS === 'ios' ? 60 : 68
+        height: Platform.OS === 'ios' ? 60 : 68,
+        borderBottomWidth: 0,
+        shadowOpacity: 0.2,
+        shadowRadius: 15,
+        shadowColor: '#000000',
+        shadowOffset: {
+          height: 2,
+          width: 0
+        }
       }
     };
   };
@@ -52,7 +60,7 @@ class ReleasesScreen extends React.Component {
     this.lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
     this.api = new API({ lang: this.lang, platform: Platform.OS });
 
-    const responsedData = await this.api.getReales(1, {});
+    const responsedData = await this.api.getReleases(1, {});
 
     let options =
       responsedData &&
