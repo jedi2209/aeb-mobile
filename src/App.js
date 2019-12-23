@@ -17,8 +17,10 @@ import * as RNLocalize from 'react-native-localize';
 import i18n from 'i18n-js';
 import memoize from 'lodash.memoize'; // Use for caching/memoize for better performance
 
-import { I18nManager, Platform, NativeModules } from 'react-native';
+import { I18nManager, Platform, NativeModules, Text } from 'react-native';
 import OneSignal from 'react-native-onesignal'; // Import package from node modules
+
+import AsyncStorage from '@react-native-community/async-storage';
 
 const translationGetters = {
   // lazy requires (metro bundler does not support symlinks)
@@ -87,11 +89,29 @@ const RootStack = createStackNavigator(
   }
 );
 
+const persistenceKey = 'Events';
+const persistNavigationState = async navState => {
+  try {
+    await AsyncStorage.setItem(persistenceKey, JSON.stringify(navState));
+  } catch (err) {
+    // handle the error according to your needs
+  }
+};
+const loadNavigationState = async () => {
+  const jsonString = await AsyncStorage.getItem(persistenceKey);
+  return JSON.parse(jsonString);
+};
+
 const AppContainer = createAppContainer(RootStack);
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      loading: true
+    };
+
     setI18nConfig(); // set initial config
     OneSignal.init('829b3b43-bb6d-40fa-b82e-3305342bd57b', {
       kOSSettingsKeyAutoPrompt: true
@@ -132,9 +152,19 @@ export default class App extends React.Component {
     console.log('Device info: ', device);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.loading !== this.state.loading) {
+      console.log('need update');
+
+      return true;
+    }
+  }
+
   render() {
     return (
       <AppContainer
+        persistNavigationState={persistNavigationState}
+        loadNavigationState={loadNavigationState}
         screenProps={{
           translate,
           locale: deviceLanguage.includes('ru') ? 'ru' : 'en'

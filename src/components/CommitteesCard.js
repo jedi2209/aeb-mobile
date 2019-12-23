@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
+import { theme } from '../core/themeProvider';
 
 class CommitteesCard extends React.Component {
   render() {
@@ -7,6 +8,7 @@ class CommitteesCard extends React.Component {
       <View
         style={[
           styles.slide,
+          theme.cardShadow,
           {
             // 14 это отсупы
             width: this.props.deviceWidth - 28 - this.props.BAR_SPACE
@@ -34,11 +36,9 @@ const styles = StyleSheet.create({
   slide: {
     backgroundColor: '#fff',
     padding: 14,
+    marginLeft: 14,
     flexDirection: 'row',
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    shadowColor: '#000000',
-    shadowOffset: { height: 1, width: 0 }
+    borderRadius: 4
   },
   image: {
     borderRadius: 4

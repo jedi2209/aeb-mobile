@@ -1,5 +1,5 @@
 import React from 'react';
-import { theme } from '../core/themeProvider';
+import { theme, DeviceWidth } from '../core/themeProvider';
 import { Platform } from 'react-native';
 
 import Header from '../components/Header';
@@ -50,7 +50,15 @@ class PublicationsScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: Platform.OS === 'ios' ? 60 : 68
+        height: Platform.OS === 'ios' ? 60 : 68,
+        borderBottomWidth: 0,
+        shadowOpacity: 0.2,
+        shadowRadius: 15,
+        shadowColor: '#000000',
+        shadowOffset: {
+          height: 2,
+          width: 0
+        }
       }
     };
   };
@@ -60,7 +68,7 @@ class PublicationsScreen extends React.Component {
 
     return (
       <View
-        style={[styles.container, { backgroundColor: theme.backgroundColor }]}
+        style={[theme.cardBlock, { backgroundColor: theme.backgroundColor }]}
       >
         <SafeAreaView>
           <ScrollView
@@ -88,7 +96,8 @@ const styles = StyleSheet.create({
   scrollView: {},
   body: {
     backgroundColor: '#FAFAFA',
-    paddingLeft: 14
+    paddingLeft: 14,
+    width: DeviceWidth
   }
 });
 

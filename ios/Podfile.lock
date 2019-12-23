@@ -10,13 +10,13 @@ PODS:
     - AppCenter/Crashes
     - AppCenterReactNativeShared
     - React
-  - AppCenter/Analytics (2.5.1):
+  - AppCenter/Analytics (2.5.3):
     - AppCenter/Core
-  - AppCenter/Core (2.5.1)
-  - AppCenter/Crashes (2.5.1):
+  - AppCenter/Core (2.5.3)
+  - AppCenter/Crashes (2.5.3):
     - AppCenter/Core
-  - AppCenterReactNativeShared (2.6.0):
-    - AppCenter/Core (= 2.5.1)
+  - AppCenterReactNativeShared (2.6.1):
+    - AppCenter/Core (= 2.5.3)
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
   - Folly (2018.10.22.00):
@@ -236,11 +236,11 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
-  AppCenter: fddcbac6e4baae3d93a196ceb0bfe0e4ce407dec
+  AppCenter: 765ff38c4d360fc5ec61b61a8be24d74cd6d4d83
   appcenter: bde9923b687332a25607fc1aa9577c9361cfed85
   appcenter-analytics: 0ee7a35def715d4bce58ec435f54161770195166
   appcenter-crashes: 9f9c5647dba19026ff09509576fb7233f69697ff
-  AppCenterReactNativeShared: d5e360f8a4cb5126d29e31ab98051d2f070ba631
+  AppCenterReactNativeShared: d90c7165b03171aff31ecbe1424a04b34f64d609
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51

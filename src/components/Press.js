@@ -1,12 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import PressIcon from '../images/press.svg';
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text } from 'react-native';
+import { DeviceWidth } from '../core/themeProvider';
 
 class Press extends React.Component {
   render() {
-    const deviceWidth = Dimensions.get('window').width;
-
     return (
       <View
         style={{
@@ -29,7 +28,7 @@ class Press extends React.Component {
           style={{
             fontSize: 14,
             color: '#000',
-            width: deviceWidth - 14
+            width: DeviceWidth - 14
           }}
         >
           {this.props.text}

@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { theme } from '../core/themeProvider';
+import { theme, DeviceWidth } from '../core/themeProvider';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
@@ -12,9 +12,8 @@ import {
   View,
   Platform,
   StyleSheet,
-  Dimensions,
   Text,
-  TouchableOpacity
+  TouchableWithoutFeedback
 } from 'react-native';
 
 const FirstRoute = navigation => (
@@ -70,7 +69,15 @@ class CommitteesScreen extends React.Component {
         />
       ),
       headerStyle: {
-        height: Platform.OS === 'ios' ? 60 : 68
+        height: Platform.OS === 'ios' ? 60 : 68,
+        borderBottomWidth: 0,
+        shadowOpacity: 0.2,
+        shadowRadius: 15,
+        shadowColor: '#000000',
+        shadowOffset: {
+          height: 2,
+          width: 0
+        }
       }
     };
   };
@@ -80,20 +87,23 @@ class CommitteesScreen extends React.Component {
       <View style={styles.tabBar}>
         {props.navigationState.routes.map((route, i) => {
           return (
-            <TouchableOpacity
+            <TouchableWithoutFeedback
               key={`tab-${i}`}
+              accessibilityRole="tab"
               style={styles.tabItem}
               onPress={() => this.setState({ index: i })}
             >
               <Text
                 style={{
                   color: props.navigationState.index === i ? '#000' : '#D8D8D8',
-                  fontSize: 11
+                  fontSize: 12,
+                  paddingTop: 10,
+                  paddingBottom: 20
                 }}
               >
                 {route.title}
               </Text>
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
           );
         })}
       </View>
@@ -126,7 +136,7 @@ class CommitteesScreen extends React.Component {
                     }
                   }}
                   onIndexChange={index => this.setState({ index })}
-                  initialLayout={{ width: Dimensions.get('window').width }}
+                  initialLayout={{ width: DeviceWidth }}
                 />
               </View>
             </View>
@@ -144,22 +154,22 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: '#FAFAFA',
-    paddingLeft: 14,
-    marginTop: -20
+    marginTop: -10
   },
   container: {
     flex: 1
   },
   tabBar: {
     flexDirection: 'row',
-    paddingTop: 0,
-    paddingBottom: 0
+    justifyContent: 'space-between',
+    marginLeft: 14,
+    marginRight: 14,
+    height: 40
   },
   tabItem: {
     flex: 1,
     alignItems: 'center',
-    paddingTop: 5,
-    paddingBottom: 20
+    color: '#000000'
   }
 });
 

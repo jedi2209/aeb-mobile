@@ -9,14 +9,16 @@ import Translation from '../components/Translation';
 import CalendarIcon from '../components/CalendarIcon';
 import ReleasesCard from '../components/ReleasesCard';
 import WebViewAutoHeight from '../components/WebViewAutoHeight';
+import AutoHeightWebView from 'react-native-autoheight-webview';
+import { DeviceWidth, HTMLStyle } from '../core/themeProvider';
 
-import { TabView } from 'react-native-tab-view';
+import { TabView, TabBar } from 'react-native-tab-view';
 
 const BAR_SPACE = 14;
 
 import {
   TouchableOpacity,
-  Dimensions,
+  TouchableWithoutFeedback,
   SafeAreaView,
   View,
   Text,
@@ -35,10 +37,20 @@ const FirstRoute = data => {
   console.log('>>>>>>>', data);
 
   return (
-    <View style={styles.body}>
-      <WebViewAutoHeight text={data.text} />
-    </View>
+    <AutoHeightWebView
+      style={{ width: DeviceWidth - 25, marginLeft: 15, marginTop: 35 }}
+      customStyle={HTMLStyle}
+      source={{ html: data.text }}
+      scalesPageToFit={true}
+      zoomable={false}
+    />
   );
+
+  // return (
+  //   <View style={[styles.body, { paddingHorizontal: 14 }]}>
+  //     <WebViewAutoHeight text={data.text} />
+  //   </View>
+  // );
 };
 
 const SecondRoute = (data, translate) => (
@@ -66,35 +78,38 @@ const SecondRoute = (data, translate) => (
         data.attendance.gold.curr
       }`}</Text>
     </View>
-    <TouchableOpacity
-      onPress={() => Linking.openURL(data.url)}
-      style={{
-        borderRadius: 6,
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#0E4F9F',
-        marginTop: 25,
-        marginBottom: 25
-      }}
-    >
-      <Text
+    {data.registration.active ? (
+      <TouchableOpacity
+        onPress={() => Linking.openURL(data.url)}
         style={{
-          color: '#fff',
-          fontSize: 15,
-          letterSpacing: 0.32,
-          textTransform: 'uppercase',
-          fontWeight: '400'
+          borderRadius: 6,
+          height: 50,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#0E4F9F',
+          marginTop: 25,
+          marginBottom: 25,
+          marginHorizontal: 18
         }}
       >
-        {translate('registration')}
-      </Text>
-    </TouchableOpacity>
+        <Text
+          style={{
+            color: '#fff',
+            fontSize: 15,
+            letterSpacing: 0.32,
+            textTransform: 'uppercase',
+            fontWeight: '400'
+          }}
+        >
+          {translate('registration')}
+        </Text>
+      </TouchableOpacity>
+    ) : null}
   </View>
 );
 
 const ThirdRoute = (data, extraPadding) => (
-  <View style={styles.body}>
+  <View style={[styles.body, { paddingHorizontal: 14 }]}>
     <View style={{ marginTop: 20 }}>
       <FlatList
         contentContainerStyle={styles.flatlist}
@@ -105,9 +120,9 @@ const ThirdRoute = (data, extraPadding) => (
             <ReleasesCard
               extraPadding={extraPadding}
               data={item}
-              width={deviceWidth - 14 - BAR_SPACE}
+              width={DeviceWidth - 14 - BAR_SPACE}
               height={200}
-              deviceWidth={deviceWidth}
+              deviceWidth={DeviceWidth}
               BAR_SPACE={BAR_SPACE}
             />
           );
@@ -174,27 +189,28 @@ class ArticleScreen extends React.Component {
   };
 
   _renderTabBar = props => {
+    console.log('props', props);
     return (
-      <View style={styles.tabBar}>
-        {props.navigationState.routes.map((route, i) => {
-          return (
-            <TouchableOpacity
-              key={`tab-${i}`}
-              style={styles.tabItem}
-              onPress={() => this.setState({ index: i })}
-            >
-              <Text
-                style={{
-                  color: props.navigationState.index === i ? '#000' : '#D8D8D8',
-                  fontSize: 11
-                }}
-              >
-                {route.title}
-              </Text>
-            </TouchableOpacity>
-          );
-        })}
-      </View>
+      <TabBar
+        {...props}
+        indicatorStyle={{
+          backgroundColor: '#fff',
+          height: '97%',
+          borderRadius: 4
+        }}
+        style={styles.tabBar}
+        renderLabel={({ route, focused, color }) => (
+          <Text
+            style={{
+              color: focused ? '#000' : '#ACB1C0',
+              margin: -12,
+              fontSize: 12
+            }}
+          >
+            {route.title}
+          </Text>
+        )}
+      />
     );
   };
 
@@ -211,7 +227,7 @@ class ArticleScreen extends React.Component {
           {this.data.registration.press && (
             <Press text={this.translate('press')} />
           )}
-          <View style={{ backgroundColor: '#FAFAFA', paddingVertical: 14 }}>
+          <View style={{ backgroundColor: '#FAFAFA' }}>
             <TabView
               renderTabBar={this._renderTabBar}
               navigationState={this.state}
@@ -226,7 +242,7 @@ class ArticleScreen extends React.Component {
                 }
               }}
               onIndexChange={index => this.setState({ index })}
-              initialLayout={{ width: Dimensions.get('window').width }}
+              initialLayout={{ height: 0, width: DeviceWidth }}
             />
           </View>
         </View>
@@ -360,27 +376,28 @@ class ArticleScreen extends React.Component {
           )}
           <Maps text={this.data.place.name} />
         </Animated.View>
-        <Animated.View
-          style={[
-            styles.bar,
-            {
-              top: HEADER_MAX_HEIGHT,
-              height: 0,
-              opacity: textOpacity,
-              transform: [{ translateY: headerTranslate }]
-            }
-          ]}
-        >
-          <View style={{ position: 'relative' }}>
-            <CalendarIcon data={this.data} />
-          </View>
-        </Animated.View>
+        {this.data.registration.active ? (
+          <Animated.View
+            style={[
+              styles.bar,
+              {
+                top: HEADER_MAX_HEIGHT,
+                height: 0,
+                opacity: textOpacity,
+                transform: [{ translateY: headerTranslate }]
+              }
+            ]}
+          >
+            <View style={{ position: 'relative' }}>
+              <CalendarIcon data={this.data} />
+            </View>
+          </Animated.View>
+        ) : null}
       </View>
     );
   }
 }
 
-const deviceWidth = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   date: {
     fontSize: 17,
@@ -421,7 +438,7 @@ const styles = StyleSheet.create({
       'linear-gradient(180deg, rgba(0,0,0,0.19) 50%, rgba(0,0,0,0.50) 100%)',
     position: 'absolute',
     top: -100,
-    width: deviceWidth,
+    width: DeviceWidth,
     left: 0,
     right: 0
   },
@@ -429,12 +446,11 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
     color: '#fff',
-    width: deviceWidth,
+    width: DeviceWidth,
     paddingHorizontal: 14,
     paddingTop: 120
   },
   scrollViewContent: {
-    paddingHorizontal: 14,
     // iOS uses content inset, which acts like padding.
     paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0
   },
@@ -469,13 +485,17 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   tabBar: {
-    flexDirection: 'row',
-    paddingTop: 0,
-    paddingBottom: 0
+    backgroundColor: '#F1F2F6',
+    height: 35,
+    marginTop: 10,
+    width: '96%',
+    marginLeft: '2%',
+    borderRadius: 4
   },
   tabItem: {
     flex: 1,
     alignItems: 'center',
+    color: '#fff',
     paddingTop: 5,
     paddingBottom: 10
   },

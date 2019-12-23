@@ -138,7 +138,7 @@ export const API = class AebApi {
     }
   }
 
-  async getReales(page, paramsForFetch = {}) {
+  async getReleases(page, paramsForFetch = {}) {
     try {
       const params = Object.keys(paramsForFetch).reduce((acc, param) => {
         return acc + `&${param}=${paramsForFetch[param]}`;
@@ -158,7 +158,7 @@ export const API = class AebApi {
           }
         }
       ).catch(err => {
-        console.log('err in getReales >>>', err);
+        console.log('err in getReleases >>>', err);
       });
 
       let responseJson = await response.json();
