@@ -30,5 +30,11 @@
     "Publications": "Publications",
     "Releases": "Releases",
     "Committees": "Committees",
-    "Contacts": "Contacts"
+    "Contacts": "Contacts",
+    "Button": {
+        "Cancel": "Cancel"
+    },
+    "Map": {
+        "Title": "Get directions"
+    }
 }
