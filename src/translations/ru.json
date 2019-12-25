@@ -30,5 +30,11 @@
     "Publications": "Публикации",
     "Releases": "Пресс релизы",
     "Committees": "Комитеты",
-    "Contacts": "Контакты"
+    "Contacts": "Контакты",
+    "Button": {
+        "Cancel": "Отмена"
+    },
+    "Map": {
+        "Title": "Посмотреть на карте"
+    }
 }

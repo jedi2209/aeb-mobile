@@ -57,6 +57,8 @@ const setI18nConfig = () => {
   i18n.locale = languageTag;
 };
 
+const persistenceKey = 'News';
+
 const MainNavigator = createStackNavigator(
   {
     Home: { screen: NewsScreen },
@@ -70,7 +72,7 @@ const MainNavigator = createStackNavigator(
     Events: { screen: EventsScreen }
   },
   {
-    initialRouteName: 'Events'
+    initialRouteName: persistenceKey
   }
 );
 
@@ -89,7 +91,6 @@ const RootStack = createStackNavigator(
   }
 );
 
-const persistenceKey = 'Events';
 const persistNavigationState = async navState => {
   try {
     await AsyncStorage.setItem(persistenceKey, JSON.stringify(navState));
