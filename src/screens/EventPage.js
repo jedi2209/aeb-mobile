@@ -34,23 +34,24 @@ const HEADER_MAX_HEIGHT = 406;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT;
 
 const FirstRoute = data => {
-  console.log('>>>>>>>', data);
+  if (!data.text) {
+    return null;
+  }
+  // return (
+  //   <AutoHeightWebView
+  //     style={{ width: DeviceWidth - 25, marginLeft: 15, marginTop: 35 }}
+  //     customStyle={HTMLStyle}
+  //     source={{ html: data.text }}
+  //     scalesPageToFit={true}
+  //     zoomable={false}
+  //   />
+  // );
 
   return (
-    <AutoHeightWebView
-      style={{ width: DeviceWidth - 25, marginLeft: 15, marginTop: 35 }}
-      customStyle={HTMLStyle}
-      source={{ html: data.text }}
-      scalesPageToFit={true}
-      zoomable={false}
-    />
+    <View style={[styles.body, { paddingHorizontal: 14 }]}>
+      <WebViewAutoHeight text={data.text} />
+    </View>
   );
-
-  // return (
-  //   <View style={[styles.body, { paddingHorizontal: 14 }]}>
-  //     <WebViewAutoHeight text={data.text} />
-  //   </View>
-  // );
 };
 
 const SecondRoute = (data, translate) => (
@@ -80,7 +81,7 @@ const SecondRoute = (data, translate) => (
     </View>
     {data.registration.active ? (
       <TouchableOpacity
-        onPress={() => Linking.openURL(data.url)}
+        onPress={() => Linking.openURL(data.url + '#event_payment_info')}
         style={{
           borderRadius: 6,
           height: 50,
@@ -144,13 +145,11 @@ class ArticleScreen extends React.Component {
 
     this.translate = this.props.screenProps.translate;
 
+    console.log('data', data);
+
     this.state = {
       index: 0,
-      routes: [
-        { key: 'first', title: this.translate('about') },
-        { key: 'second', title: this.translate('attendance_fees') },
-        { key: 'third', title: this.translate('files') }
-      ],
+      routes: [],
       scrollY: new Animated.Value(
         // iOS has negative initial scroll value because content inset...
         Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0
@@ -158,14 +157,28 @@ class ArticleScreen extends React.Component {
       refreshing: false
     };
 
+    if (data.text) {
+      this.state.routes.push({ key: 'first', title: this.translate('about') });
+    }
+    if (data.attendance) {
+      this.state.routes.push({
+        key: 'second',
+        title: this.translate('attendance_fees')
+      });
+    }
+    if (data.files) {
+      this.state.routes.push({ key: 'third', title: this.translate('files') });
+    }
+
     this.data = data;
   }
 
   static navigationOptions = ({ navigation }) => {
+    const data = navigation.getParam('otherParam', {});
     return {
       headerRight: (
         <Fragment>
-          <ShareButton onPress={() => navigation.navigate('Menu')} />
+          <ShareButton data={data} />
         </Fragment>
       ),
       headerTintColor: '#fff',
@@ -189,7 +202,6 @@ class ArticleScreen extends React.Component {
   };
 
   _renderTabBar = props => {
-    console.log('props', props);
     return (
       <TabBar
         {...props}
@@ -311,7 +323,7 @@ class ArticleScreen extends React.Component {
           {this._renderScrollViewContent()}
         </Animated.ScrollView>
         <Animated.View
-          pointerEvents="none"
+          pointerEvents="box-none"
           style={[
             styles.header,
             { transform: [{ translateY: headerTranslate }] }
@@ -334,7 +346,7 @@ class ArticleScreen extends React.Component {
               styles.backgroundImage,
               // eslint-disable-next-line react-native/no-inline-styles
               {
-                backgroundColor: 'rgba(0,0,0,.4)',
+                // backgroundColor: 'rgba(0,0,0,.4)',
                 opacity: imageOpacity,
                 transform: [{ translateY: imageTranslate }]
               }
@@ -342,7 +354,7 @@ class ArticleScreen extends React.Component {
           />
         </Animated.View>
         <Animated.View
-          pointerEvents="none"
+          // pointerEvents="none"
           style={[
             styles.bar,
             {
@@ -374,7 +386,7 @@ class ArticleScreen extends React.Component {
               {this.translate('open')}
             </Text>
           )}
-          <Maps text={this.data.place.name} />
+          <Maps place={this.data.place} translate={this.translate} />
         </Animated.View>
         {this.data.registration.active ? (
           <Animated.View
@@ -440,7 +452,8 @@ const styles = StyleSheet.create({
     top: -100,
     width: DeviceWidth,
     left: 0,
-    right: 0
+    right: 0,
+    zIndex: 10
   },
   title: {
     fontSize: 28,
