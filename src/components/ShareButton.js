@@ -7,8 +7,9 @@ class ShareButton extends React.Component {
   onShare = async () => {
     try {
       const result = await Share.share({
-        url: this.props.data.url,
-        message: this.props.data.name
+        title: this.props.data.name + "\r\n\r\n" + this.props.data.url,
+        message: this.props.data.name + "\r\n\r\n" + this.props.data.url,
+        url: this.props.data.url
       });
 
       if (result.action === Share.sharedAction) {
@@ -41,8 +42,14 @@ const style = StyleSheet.create({
   close: {
     marginTop: 0,
     marginRight: 20,
-    width: 18,
-    height: 18
+    width: 20,
+    height: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 12
+    // borderColor: '#FFFFFF',
+    // borderStyle: 'solid',
+    // borderWidth: 1,
+    // borderRadius: 100
   }
 });
 

@@ -83,6 +83,8 @@ PODS:
   - react-native-onesignal (3.5.0):
     - OneSignal (= 2.11.2)
     - React (< 1.0.0, >= 0.13.0)
+  - react-native-splash-screen (3.2.0):
+    - React
   - react-native-webview (7.5.2):
     - React
   - React-RCTActionSheet (0.60.0):
@@ -119,6 +121,8 @@ PODS:
     - React
   - RNSVG (9.13.3):
     - React
+  - RNVectorIcons (6.6.0):
+    - React
   - yoga (0.60.0.React)
 
 DEPENDENCIES:
@@ -140,6 +144,7 @@ DEPENDENCIES:
   - react-native-add-calendar-event (from `../node_modules/react-native-add-calendar-event`)
   - react-native-calendar-events (from `../node_modules/react-native-calendar-events`)
   - react-native-onesignal (from `../node_modules/react-native-onesignal`)
+  - react-native-splash-screen (from `../node_modules/react-native-splash-screen`)
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
@@ -156,6 +161,7 @@ DEPENDENCIES:
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNSVG (from `../node_modules/react-native-svg`)
+  - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -200,6 +206,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-calendar-events"
   react-native-onesignal:
     :path: "../node_modules/react-native-onesignal"
+  react-native-splash-screen:
+    :path: "../node_modules/react-native-splash-screen"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-RCTActionSheet:
@@ -232,6 +240,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-reanimated"
   RNSVG:
     :path: "../node_modules/react-native-svg"
+  RNVectorIcons:
+    :path: "../node_modules/react-native-vector-icons"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -257,6 +267,7 @@ SPEC CHECKSUMS:
   react-native-add-calendar-event: d559051d40b9ced43ca2ae052aca7685a546e3e1
   react-native-calendar-events: 2fe35a9294af05de0ed819d3a1b5dac048d2c010
   react-native-onesignal: 50f5a70d2b8a94e0eda8c4e1b9ba0b82dec29a7a
+  react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
   react-native-webview: 7eefdb64f283cae1bebe82ebd8ddeb4b805900c0
   React-RCTActionSheet: b27ff3cf3a68f917c46d2b94abf938b625b96570
   React-RCTAnimation: 9e4708e5bd65fca8285ce7c0aa076f3f4fa5c2f8
@@ -273,8 +284,9 @@ SPEC CHECKSUMS:
   RNLocalize: c117094a6c5a955c94e65520ad4c726e3a0f4ed6
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
   RNSVG: f6177f8d7c095fada7cfee2e4bb7388ba426064c
+  RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   yoga: 616fde658be980aa60a2158835170f3f9c2d04b4
 
-PODFILE CHECKSUM: 9bb52f5f42c54795670ac9b1d1ae206cb15c05bf
+PODFILE CHECKSUM: 8cd0971ac86a76fcf7e472f4df2c2a6e17228563
 
 COCOAPODS: 1.8.4

@@ -13,12 +13,12 @@ import AutoHeightWebView from 'react-native-autoheight-webview';
 import { DeviceWidth, HTMLStyle } from '../core/themeProvider';
 
 import { TabView, TabBar } from 'react-native-tab-view';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 const BAR_SPACE = 14;
 
 import {
   TouchableOpacity,
-  TouchableWithoutFeedback,
   SafeAreaView,
   View,
   Text,
@@ -181,6 +181,13 @@ class ArticleScreen extends React.Component {
           <ShareButton data={data} />
         </Fragment>
       ),
+      headerLeft: (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <View style={{ marginLeft: 10, width: 50 }}>
+            <Icon name="arrowleft" size={30} color="#fff" />
+          </View>
+        </TouchableOpacity>
+      ),
       headerTintColor: '#fff',
       headerStyle: {
         backgroundColor: 'transparent',
@@ -323,7 +330,7 @@ class ArticleScreen extends React.Component {
           {this._renderScrollViewContent()}
         </Animated.ScrollView>
         <Animated.View
-          pointerEvents="box-none"
+          pointerEvents="none"
           style={[
             styles.header,
             { transform: [{ translateY: headerTranslate }] }
@@ -354,7 +361,7 @@ class ArticleScreen extends React.Component {
           />
         </Animated.View>
         <Animated.View
-          // pointerEvents="none"
+          pointerEvents="none"
           style={[
             styles.bar,
             {
@@ -400,7 +407,7 @@ class ArticleScreen extends React.Component {
               }
             ]}
           >
-            <View style={{ position: 'relative' }}>
+            <View style={{ position: 'relative', zIndex: 1000 }}>
               <CalendarIcon data={this.data} />
             </View>
           </Animated.View>
@@ -453,7 +460,7 @@ const styles = StyleSheet.create({
     width: DeviceWidth,
     left: 0,
     right: 0,
-    zIndex: 10
+    zIndex: 100
   },
   title: {
     fontSize: 28,
