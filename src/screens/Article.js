@@ -1,5 +1,7 @@
 import React, { Fragment } from 'react';
 
+import Icon from 'react-native-vector-icons/AntDesign';
+
 import moment from 'moment/min/moment-with-locales';
 
 import ShareButton from '../components/ShareButton';
@@ -11,6 +13,7 @@ const DEFAULT_IMAGE =
 import {
   SafeAreaView,
   View,
+  TouchableOpacity,
   Text,
   Animated,
   Platform,
@@ -18,7 +21,7 @@ import {
   RefreshControl
 } from 'react-native';
 
-import { DeviceWidth } from '../core/themeProvider';
+import { DeviceWidth, theme } from '../core/themeProvider';
 
 const HEADER_MAX_HEIGHT = 406;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT;
@@ -27,6 +30,11 @@ class ArticleScreen extends React.Component {
   constructor(props) {
     super(props);
 
+    const { navigation } = this.props;
+    const data = navigation.getParam('otherParam', {});
+
+    this.translate = this.props.screenProps.translate;
+
     this.state = {
       scrollY: new Animated.Value(
         // iOS has negative initial scroll value because content inset
@@ -34,19 +42,26 @@ class ArticleScreen extends React.Component {
       ),
       refreshing: false
     };
+    this.data = data;
   }
 
   static navigationOptions = ({ navigation }) => {
-    const data = navigation.getParam('otherParam', '');
-
+    const data = navigation.getParam('otherParam', {});
     return {
       headerRight: (
-        <Fragment>
-          <ShareButton data={data} />
-        </Fragment>
+        <ShareButton
+          data={data}
+          // style={{ paddingHorizontal: 5, paddingTop: 5 }}
+        />
+      ),
+      headerLeft: (
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <View style={theme.goBackButton}>
+            <Icon name="arrowleft" size={30} color="#fff" />
+          </View>
+        </TouchableOpacity>
       ),
       headerTintColor: '#fff',
-      headerBackTitleStyle: { color: 'transparent' },
       headerStyle: {
         backgroundColor: 'transparent',
         shadowRadius: 0,

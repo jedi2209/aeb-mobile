@@ -36,11 +36,6 @@ target 'Aebrus' do
 
   pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
 
-  target 'AebrusTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
   use_native_modules!
 end
 
