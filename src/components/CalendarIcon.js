@@ -22,14 +22,17 @@ class CalendarIcon extends React.Component {
             }
 
             const startDateUTC = moment(this.props.data.date * 1000);
+            const regex = /(<([^>]+)>)/ig;
 
             const eventConfig = {
               title: this.props.data.name,
               startDate: utcDateToString(startDateUTC),
               endDate: utcDateToString(
-                moment.utc(startDateUTC).add(1, 'hours')
+                moment.utc(startDateUTC).add(2, 'hours')
               ),
-              location: this.props.data.place.name
+              location: this.props.data.place.name,
+              notes: this.props.data.text.replace(regex, ''),
+              url: this.props.data.url
             };
 
             AddCalendarEvent.presentEventCreatingDialog(eventConfig)
