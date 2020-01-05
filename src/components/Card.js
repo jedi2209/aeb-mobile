@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     color: '#000000',
     letterSpacing: 0.25,
     textAlign: 'left',
-    lineHeight: 32,
+    lineHeight: 28,
     fontWeight: 'bold'
   },
   date: {
