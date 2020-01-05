@@ -105,6 +105,12 @@ const loadNavigationState = async () => {
 
 const AppContainer = createAppContainer(RootStack);
 
+if (__DEV__) {
+  import('./core/ReactotronConfig').then(() =>
+    console.log('Reactotron Configured')
+  );
+}
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
