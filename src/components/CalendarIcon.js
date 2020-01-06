@@ -44,21 +44,21 @@ class CalendarIcon extends React.Component {
               });
           }}
           style={{
-            shadowOpacity: 0.2,
-            shadowRadius: 4,
-            shadowColor: '#000000',
-            shadowOffset: { height: 1, width: 0 },
-            zIndex: 1000,
             position: 'absolute',
-            right: 14,
-            top: -25,
+            // right: 14,
+            // top: -25,
             backgroundColor: '#FF2D55',
             borderRadius: 30,
             width: 50,
             height: 50,
-            flex: 1,
+            // flex: 1,
             justifyContent: 'center',
-            alignItems: 'center'
+            alignItems: 'center',
+            shadowOpacity: 0.4,
+            shadowRadius: 4,
+            shadowColor: '#000000',
+            shadowOffset: { height: 1, width: 0 },
+            elevation: 10
           }}
         >
           <CalendarIconSvg />
