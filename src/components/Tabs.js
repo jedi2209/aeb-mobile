@@ -49,16 +49,21 @@ const _renderTabBar = props => {
   const stylesTab = StyleSheet.create({
     indicator: {
       backgroundColor: '#fff',
-      height: '97%',
-      borderRadius: 4
+      height: 32,
+      marginTop: 2,
+      marginBottom: 2,
+      borderRadius: 4,
+      top: 0
     },
     main: {
       backgroundColor: '#F1F2F6',
-      height: 35,
-      marginTop: 10,
+      height: 36,
+      marginTop: 5,
       width: '96%',
       marginLeft: '2%',
-      borderRadius: 4
+      marginRight: '2%',
+      borderRadius: 4,
+      position: 'relative'
     }
   });
   return (
@@ -70,7 +75,7 @@ const _renderTabBar = props => {
         <Text
           style={{
             color: focused ? '#000' : '#ACB1C0',
-            margin: -12,
+            margin: -14,
             fontSize: 12
           }}
         >

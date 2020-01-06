@@ -40,7 +40,7 @@ class Maps extends React.Component {
             <MapsSvg />
           </View>
           <Text
-            selectable={true}
+            // selectable={true}
             style={{
               fontSize: 14,
               color: '#FFF',
@@ -65,16 +65,8 @@ class Maps extends React.Component {
             justifyContent: 'flex-start'
           }}
         >
-          <View
-            style={{
-              marginTop: 7,
-              width: 32
-            }}
-          >
-            <MapsSvg />
-          </View>
           <Text
-            selectable={true}
+            // selectable={true}
             style={{
               fontSize: 14,
               color: '#FFF',

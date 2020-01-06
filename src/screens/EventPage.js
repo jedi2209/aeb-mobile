@@ -31,7 +31,7 @@ import {
   Linking
 } from 'react-native';
 
-const HEADER_MAX_HEIGHT = 406;
+const HEADER_MAX_HEIGHT = 300;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT;
 
 const FirstRoute = data => {
@@ -49,20 +49,16 @@ const FirstRoute = data => {
   // );
 
   return (
-    <View
-      style={[styles.body, { paddingHorizontal: 14, backgroundColor: 'white' }]}
-    >
+    <View style={[styles.body, { paddingHorizontal: 14 }]}>
       <WebViewAutoHeight text={data.text} />
     </View>
   );
 };
 
 const SecondRoute = (data, translate) => {
-  if (!data.attendance) {
+  if (!data.attendance || !data.registration.active) {
     return null;
   }
-  console.log('data.attendance', data.attendance);
-  console.log("translate('assigned_member')", translate('assigned_member'));
   const styleLocal = StyleSheet.create({
     table: {
       flexDirection: 'row',
@@ -231,18 +227,11 @@ class ArticleScreen extends React.Component {
     return (
       <View
         style={{
-        //   backgroundColor: 'red',
           flex: 1
         }}
       >
         <Image
-          style={[
-            styles.backgroundImage,
-            {
-              top: -100,
-              position: 'absolute'
-            }
-          ]}
+          style={styles.backgroundImage}
           // pointerEvents="none"
           source={{
             uri: this.data.img.full[0]
@@ -250,72 +239,96 @@ class ArticleScreen extends React.Component {
         />
         <SafeAreaView
           style={{
-            backgroundColor: 'blue',
+            // backgroundColor: 'blue',
             position: 'relative',
-            flex: 1,
-            height: 400
+            flex: 1
           }}
         >
           <ScrollView>
-            <Text style={[styles.title]}>{this.data.name}</Text>
-            <Text style={styles.date}>
-              {Moment(this.data.date * 1000).format('dddd, DD MMMM')}
-            </Text>
-            {this.data.registration.active && (
-              <Text
-                style={{
-                  fontSize: 14,
-                  color: '#FFF',
-                  letterSpacing: 0.32,
-                  marginBottom: 15,
-                  marginHorizontal: 14,
-                  backgroundColor: '#FF2D55',
-                  borderRadius: 6,
-                  textAlign: 'center',
-                  paddingTop: 3,
-                  paddingBottom: 3,
-                  width: 75
-                }}
-              >
-                {this.translate('open')}
+            <View style={{ height: HEADER_MAX_HEIGHT }}>
+              <Text style={[styles.title]}>{this.data.name}</Text>
+              <Text style={styles.date}>
+                {Moment(this.data.date * 1000).format('dddd, DD MMMM')}
               </Text>
-            )}
-            <Maps place={this.data.place} translate={this.translate} />
-            {this.data.registration.active ? (
-              <View
-                style={{
-                  position: 'absolute',
-                  top: 200,
-                  width: 50,
-                  height: 50,
-                  zIndex: 1000
-                }}
-              >
-                <CalendarIcon data={this.data} />
+              {this.data.registration.active && (
+                <Text
+                  style={{
+                    fontSize: 14,
+                    color: '#FFF',
+                    letterSpacing: 0.32,
+                    marginBottom: 15,
+                    marginHorizontal: 14,
+                    backgroundColor: '#FF2D55',
+                    borderRadius: 6,
+                    textAlign: 'center',
+                    paddingTop: 3,
+                    paddingBottom: 3,
+                    width: 75
+                  }}
+                >
+                  {this.translate('open')}
+                </Text>
+              )}
+              <Maps place={this.data.place} translate={this.translate} />
+            </View>
+            <View style={{ backgroundColor: 'white' }}>
+              {this.data.registration.active ? (
+                <View
+                  style={{
+                    position: 'absolute',
+                    top: -25,
+                    right: 10,
+                    width: 55,
+                    height: 55,
+                    zIndex: 1000
+                  }}
+                >
+                  <CalendarIcon data={this.data} />
+                </View>
+              ) : null}
+              <View style={{ marginLeft: 14 }}>
+                {this.data.translation ? (
+                  <Translation text={this.translate('translation_avail')} />
+                ) : (
+                  <Text
+                    style={{
+                      height: this.data.registration.active ? 'auto' : 1
+                    }}
+                  >
+                    &nbsp;
+                  </Text>
+                )}
               </View>
-            ) : null}
-            {this.data.translation && (
-              <Translation text={this.translate('translation_avail')} />
-            )}
-            {this.data.registration.press && (
-              <Press text={this.translate('press')} />
-            )}
-            <Tabs
-              tabs={[
-                {
-                  head: this.translate('about'),
-                  route: FirstRoute(this.data)
-                },
-                {
-                  head: this.translate('attendance_fees'),
-                  route: SecondRoute(this.data, this.translate)
-                },
-                {
-                  head: this.translate('files'),
-                  route: ThirdRoute(this.data, this.extraPadding)
-                }
-              ]}
-            />
+              <View style={{ marginLeft: 14 }}>
+                {this.data.registration.press ? (
+                  <Press text={this.translate('press')} />
+                ) : (
+                  <Text
+                    style={{
+                      height: this.data.registration.active ? 'auto' : 1
+                    }}
+                  >
+                    &nbsp;
+                  </Text>
+                )}
+              </View>
+              <Tabs
+                tabs={[
+                  {
+                    head: this.translate('about'),
+                    route: FirstRoute(this.data)
+                  },
+                  {
+                    head: this.translate('attendance_fees'),
+                    route: SecondRoute(this.data, this.translate)
+                  },
+                  {
+                    head: this.translate('files'),
+                    route: ThirdRoute(this.data, this.extraPadding)
+                  }
+                ]}
+              />
+            </View>
           </ScrollView>
         </SafeAreaView>
       </View>
@@ -342,7 +355,7 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     position: 'absolute',
-    top: 0,
+    top: -100,
     left: 0,
     right: 0,
     height: HEADER_MAX_HEIGHT + 100,
@@ -361,19 +374,12 @@ const styles = StyleSheet.create({
     zIndex: 100
   },
   title: {
-    fontSize: 28,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#fff',
     width: DeviceWidth,
     paddingHorizontal: 14,
     paddingTop: 10
-  },
-  scrollViewContent: {
-    // iOS uses content inset, which acts like padding.
-    paddingTop: Platform.OS !== 'ios' ? HEADER_MAX_HEIGHT : 0,
-    marginTop: 100,
-    position: 'relative'
-    // flex: 1
   },
   row: {
     height: 40,
@@ -381,15 +387,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#D3D3D3',
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  tabBar: {
-  },
-  tabItem: {
-    // flex: 1,
-    alignItems: 'center',
-    color: '#fff',
-    paddingTop: 5,
-    paddingBottom: 10
   }
 });
 
