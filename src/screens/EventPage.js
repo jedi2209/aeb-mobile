@@ -9,11 +9,10 @@ import Translation from '../components/Translation';
 import CalendarIcon from '../components/CalendarIcon';
 import ReleasesCard from '../components/ReleasesCard';
 import WebViewAutoHeight from '../components/WebViewAutoHeight';
-import AutoHeightWebView from 'react-native-autoheight-webview';
+// import AutoHeightWebView from 'react-native-autoheight-webview';
 import { DeviceWidth, HTMLStyle } from '../core/themeProvider';
 import Tabs from '../components/Tabs';
-import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-import Icon from 'react-native-vector-icons/AntDesign';
+import HeaderBackButtonCustom from '../components/HeaderBackButtonCustom';
 
 const BAR_SPACE = 14;
 
@@ -24,15 +23,12 @@ import {
   ScrollView,
   Image,
   Text,
-  Platform,
   StyleSheet,
-  RefreshControl,
   FlatList,
   Linking
 } from 'react-native';
 
 const HEADER_MAX_HEIGHT = 300;
-const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT;
 
 const FirstRoute = data => {
   if (!data.text) {
@@ -196,13 +192,7 @@ class ArticleScreen extends React.Component {
           <ShareButton data={data} />
         </Fragment>
       ),
-      headerLeft: (
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <View style={{ marginLeft: 10, width: 50 }}>
-            <Icon name="arrowleft" size={30} color="#fff" />
-          </View>
-        </TouchableOpacity>
-      ),
+      headerLeft: <HeaderBackButtonCustom navigation={navigation} />,
       headerTintColor: '#fff',
       headerStyle: {
         backgroundColor: 'transparent',
@@ -232,24 +222,18 @@ class ArticleScreen extends React.Component {
       >
         <Image
           style={styles.backgroundImage}
-          // pointerEvents="none"
           source={{
             uri: this.data.img.full[0]
           }}
         />
         <SafeAreaView
           style={{
-            // backgroundColor: 'blue',
             position: 'relative',
             flex: 1
           }}
         >
           <ScrollView>
             <View style={{ height: HEADER_MAX_HEIGHT }}>
-              <Text style={[styles.title]}>{this.data.name}</Text>
-              <Text style={styles.date}>
-                {Moment(this.data.date * 1000).format('dddd, DD MMMM')}
-              </Text>
               {this.data.registration.active && (
                 <Text
                   style={{
@@ -263,12 +247,19 @@ class ArticleScreen extends React.Component {
                     textAlign: 'center',
                     paddingTop: 3,
                     paddingBottom: 3,
-                    width: 75
+                    width: 75,
+                    fontFamily: 'SFUIDisplay-Regular'
                   }}
                 >
                   {this.translate('open')}
                 </Text>
               )}
+              <Text style={[styles.title]}>{this.data.name}</Text>
+              <Text style={styles.date}>
+                {Moment(this.data.date * 1000).format(
+                  'DD MMMM YYYY, HH:mm, dddd'
+                )}
+              </Text>
               <Maps place={this.data.place} translate={this.translate} />
             </View>
             <View style={{ backgroundColor: 'white' }}>
@@ -338,20 +329,14 @@ class ArticleScreen extends React.Component {
 
 const styles = StyleSheet.create({
   date: {
-    fontSize: 17,
+    fontSize: 14,
+    fontFamily: 'SFUIDisplay-Regular',
     color: '#FFF',
     letterSpacing: 0.32,
-    lineHeight: 22,
+    lineHeight: 16,
     marginBottom: 10,
     marginTop: 10,
     paddingHorizontal: 14
-  },
-  header: {
-    position: 'absolute',
-    top: -100,
-    backgroundColor: '#0E4F9F'
-    // overflow: 'hidden'
-    // height: HEADER_MAX_HEIGHT + 100
   },
   backgroundImage: {
     position: 'absolute',
@@ -362,31 +347,14 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     flex: 1
   },
-  bar: {
-    height: HEADER_MAX_HEIGHT + 100,
-    backgroundColor:
-      'linear-gradient(180deg, rgba(0,0,0,0.19) 50%, rgba(0,0,0,0.50) 100%)',
-    // position: 'absolute',
-    top: -100,
-    width: DeviceWidth,
-    left: 0,
-    right: 0,
-    zIndex: 100
-  },
   title: {
     fontSize: 22,
-    fontWeight: 'bold',
+    fontFamily: 'SFUIDisplay-Heavy',
+    // fontWeight: 'bold',
     color: '#fff',
     width: DeviceWidth,
     paddingHorizontal: 14,
     paddingTop: 10
-  },
-  row: {
-    height: 40,
-    margin: 16,
-    backgroundColor: '#D3D3D3',
-    alignItems: 'center',
-    justifyContent: 'center'
   }
 });
 

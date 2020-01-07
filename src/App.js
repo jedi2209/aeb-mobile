@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import NewsScreen from './screens/News';
 import MenuScreen from './screens/Menu';
@@ -16,6 +16,8 @@ import { createStackNavigator } from 'react-navigation-stack';
 import * as RNLocalize from 'react-native-localize';
 import i18n from 'i18n-js';
 import memoize from 'lodash.memoize'; // Use for caching/memoize for better performance
+
+import SplashScreen from 'react-native-splash-screen';
 
 import { I18nManager, Platform, NativeModules, Text } from 'react-native';
 import OneSignal from 'react-native-onesignal'; // Import package from node modules
@@ -130,6 +132,7 @@ export default class App extends React.Component {
 
   componentDidMount() {
     RNLocalize.addEventListener('change', this.handleLocalizationChange);
+    SplashScreen.hide();
   }
 
   componentWillUnmount() {

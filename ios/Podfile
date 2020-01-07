@@ -36,6 +36,8 @@ target 'Aebrus' do
 
   pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
 
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   use_native_modules!
 end
 
