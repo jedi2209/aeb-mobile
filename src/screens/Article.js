@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
 
-import Icon from 'react-native-vector-icons/AntDesign';
-
 import moment from 'moment/min/moment-with-locales';
 
 import ShareButton from '../components/ShareButton';
@@ -21,7 +19,8 @@ import {
   RefreshControl
 } from 'react-native';
 
-import { DeviceWidth, theme } from '../core/themeProvider';
+import { DeviceWidth } from '../core/themeProvider';
+import HeaderBackButtonCustom from '../components/HeaderBackButtonCustom';
 
 const HEADER_MAX_HEIGHT = 406;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT;
@@ -54,13 +53,7 @@ class ArticleScreen extends React.Component {
           // style={{ paddingHorizontal: 5, paddingTop: 5 }}
         />
       ),
-      headerLeft: (
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <View style={theme.goBackButton}>
-            <Icon name="arrowleft" size={30} color="#fff" />
-          </View>
-        </TouchableOpacity>
-      ),
+      headerLeft: <HeaderBackButtonCustom navigation={navigation} />,
       headerTintColor: '#fff',
       headerStyle: {
         backgroundColor: 'transparent',

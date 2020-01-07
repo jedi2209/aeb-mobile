@@ -56,7 +56,7 @@ class CalendarIcon extends React.Component {
             alignItems: 'center',
             shadowOpacity: 0.4,
             shadowRadius: 4,
-            shadowColor: '#000000',
+            shadowColor: '#FF2D55',
             shadowOffset: { height: 1, width: 0 },
             elevation: 10
           }}

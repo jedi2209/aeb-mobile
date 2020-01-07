@@ -4,6 +4,7 @@ import { theme, DeviceWidth } from '../core/themeProvider';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
+import Tabs from '../components/Tabs';
 import { TabView } from 'react-native-tab-view';
 
 import {
@@ -50,14 +51,14 @@ class CommitteesScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      index: 0,
-      routes: [
-        { key: 'first', title: props.screenProps.translate('cross_sectoral') }, //'CROSS-SECTORAL'
-        { key: 'second', title: props.screenProps.translate('industrial') }, //'INDUSTRIAL',
-        { key: 'third', title: props.screenProps.translate('working_groups') } //'WORKING GROUPS'
-      ]
-    };
+    // this.state = {
+    //   index: 0,
+    //   routes: [
+    //     { key: 'first', title: props.screenProps.translate('cross_sectoral') }, //'CROSS-SECTORAL'
+    //     { key: 'second', title: props.screenProps.translate('industrial') }, //'INDUSTRIAL',
+    //     { key: 'third', title: props.screenProps.translate('working_groups') } //'WORKING GROUPS'
+    //   ]
+    // };
   }
 
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -82,33 +83,33 @@ class CommitteesScreen extends React.Component {
     };
   };
 
-  _renderTabBar = props => {
-    return (
-      <View style={styles.tabBar}>
-        {props.navigationState.routes.map((route, i) => {
-          return (
-            <TouchableWithoutFeedback
-              key={`tab-${i}`}
-              accessibilityRole="tab"
-              style={styles.tabItem}
-              onPress={() => this.setState({ index: i })}
-            >
-              <Text
-                style={{
-                  color: props.navigationState.index === i ? '#000' : '#D8D8D8',
-                  fontSize: 12,
-                  paddingTop: 10,
-                  paddingBottom: 20
-                }}
-              >
-                {route.title}
-              </Text>
-            </TouchableWithoutFeedback>
-          );
-        })}
-      </View>
-    );
-  };
+  // _renderTabBar = props => {
+  //   return (
+  //     <View style={styles.tabBar}>
+  //       {props.navigationState.routes.map((route, i) => {
+  //         return (
+  //           <TouchableWithoutFeedback
+  //             key={`tab-${i}`}
+  //             accessibilityRole="tab"
+  //             style={styles.tabItem}
+  //             onPress={() => this.setState({ index: i })}
+  //           >
+  //             <Text
+  //               style={{
+  //                 color: props.navigationState.index === i ? '#000' : '#D8D8D8',
+  //                 fontSize: 12,
+  //                 paddingTop: 10,
+  //                 paddingBottom: 20
+  //               }}
+  //             >
+  //               {route.title}
+  //             </Text>
+  //           </TouchableWithoutFeedback>
+  //         );
+  //       })}
+  //     </View>
+  //   );
+  // };
 
   render() {
     return (
@@ -122,21 +123,21 @@ class CommitteesScreen extends React.Component {
           >
             <View>
               <View style={{ backgroundColor: '#FAFAFA', paddingVertical: 14 }}>
-                <TabView
-                  renderTabBar={this._renderTabBar}
-                  navigationState={this.state}
-                  renderScene={({ route }) => {
-                    switch (route.key) {
-                      case 'first':
-                        return FirstRoute(this.props.navigation);
-                      case 'second':
-                        return SecondRoute(this.props.navigation);
-                      default:
-                        return ThirdRoute(this.props.navigation);
+                <Tabs
+                  tabs={[
+                    {
+                      head: this.props.screenProps.translate('cross_sectoral'),
+                      route: FirstRoute(this.props.navigation)
+                    },
+                    {
+                      head: this.props.screenProps.translate('industrial'),
+                      route: SecondRoute(this.props.navigation)
+                    },
+                    {
+                      head: this.props.screenProps.translate('working_groups'),
+                      route: ThirdRoute(this.props.navigation)
                     }
-                  }}
-                  onIndexChange={index => this.setState({ index })}
-                  initialLayout={{ width: DeviceWidth }}
+                  ]}
                 />
               </View>
             </View>
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: '#FAFAFA',
-    marginTop: -10
+    marginTop: 10
   },
   container: {
     flex: 1
