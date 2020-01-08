@@ -5,9 +5,9 @@
 	<key>NSCalendarsUsageDescription</key>
 	<string>$(PRODUCT_NAME) need access to your calendar for AEB Events.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places.</string>
+	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places and AEB Contacts.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places.</string>
+	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places and AEB Contacts.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>$(NSContactsUsageDescription)</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -53,6 +53,8 @@
 	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>tel</string>
+		<string>telprompt</string>
 		<string>comgooglemaps</string>
 		<string>citymapper</string>
 		<string>uber</string>

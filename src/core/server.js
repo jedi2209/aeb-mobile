@@ -203,4 +203,25 @@ export const API = class AebApi {
       console.log(error);
     }
   }
+
+  async getContacts() {
+    try {
+      const response = await fetch(`${this._url}/contacts/list/`, {
+        method: 'GET',
+        headers: {
+          ...this._headers,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const responseJson = await response.json();
+
+      return {
+        items: responseJson.data
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
