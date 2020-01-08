@@ -9,6 +9,7 @@ import CommitteesScreen from './screens/Committees';
 import CommitteesPage from './screens/CommitteesPage';
 import EventsScreen from './screens/Events';
 import EventPage from './screens/EventPage';
+import ContactsScreen from './screens/Contacts';
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -71,7 +72,8 @@ const MainNavigator = createStackNavigator(
     Releases: { screen: ReleasesScreen },
     Publications: { screen: PublicationsScreen },
     Committees: { screen: CommitteesScreen },
-    Events: { screen: EventsScreen }
+    Events: { screen: EventsScreen },
+    Contacts: { screen: ContactsScreen }
   },
   {
     initialRouteName: persistenceKey
