@@ -49,17 +49,13 @@ class PublicationsScreen extends React.Component {
           title={screenProps.translate('publications')}
         />
       ),
-      headerStyle: {
-        height: Platform.OS === 'ios' ? 60 : 68,
-        borderBottomWidth: 0,
-        shadowOpacity: 0.2,
-        shadowRadius: 15,
-        shadowColor: '#000000',
-        shadowOffset: {
-          height: 2,
-          width: 0
+      headerStyle: [
+        theme.headerShadow,
+        {
+          height: Platform.OS === 'ios' ? 60 : 68,
+          borderBottomWidth: 0
         }
-      }
+      ]
     };
   };
 
@@ -67,37 +63,32 @@ class PublicationsScreen extends React.Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <View
-        style={[theme.cardBlock, { backgroundColor: theme.backgroundColor }]}
-      >
-        <SafeAreaView>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}
-          >
-            <View>
-              <View style={styles.body}>
-                <ThumbList
-                  screenProps={this.props.screenProps}
-                  data={ThumbListData}
-                  type="publications"
-                  extraPadding="28"
-                />
-              </View>
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </View>
+      <SafeAreaView style={{ backgroundColor: theme.backgroundColor }}>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}
+        >
+          <View style={styles.body}>
+            <ThumbList
+              screenProps={this.props.screenProps}
+              data={ThumbListData}
+              type="publications"
+              extraPadding="28"
+            />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  scrollView: {},
-  body: {
+  scrollView: {
     backgroundColor: '#FAFAFA',
-    paddingLeft: 14,
     width: DeviceWidth
+  },
+  body: {
+    //paddingLeft: 14
   }
 });
 

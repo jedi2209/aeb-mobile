@@ -162,11 +162,16 @@ export default class AllArticlesScreen extends Component {
           style={{
             marginTop: 10,
             marginBottom: 20,
-            width: DeviceWidth - 28,
+            width: DeviceWidth - 14,
             height: 50
+            // display: 'flex',
+            // alignContent: 'center',
+            // alignItems: 'stretch'
           }}
         >
-          <View style={[theme.whiteButton, theme.cardShadow]}>
+          <View
+            style={[theme.whiteButton, theme.cardShadow, { marginLeft: 14 }]}
+          >
             <Text style={theme.whiteButtonText}>{translate('load_more')}</Text>
           </View>
         </TouchableOpacity>
@@ -184,7 +189,7 @@ export default class AllArticlesScreen extends Component {
           });
         }}
       >
-        <View style={styles.card}>
+        <View style={[styles.card]}>
           <Card
             navigation={this.props.navigation}
             key={`thumb-list-article-${item.id}`}
@@ -204,7 +209,7 @@ export default class AllArticlesScreen extends Component {
       <Card
         extraPadding={this.props.extraPadding}
         data={item}
-        width={DeviceWidth - 14 - BAR_SPACE}
+        width={DeviceWidth - BAR_SPACE}
         key={`thumb-list-event-${item.id}`}
         height={200}
         deviceWidth={DeviceWidth}
@@ -297,7 +302,7 @@ export default class AllArticlesScreen extends Component {
       case 'events':
         component = (
           <TouchableWithoutFeedback
-            style={styles.card}
+            style={[theme.cardShadow, theme.cardBlock]}
             onPress={() => {
               navigation.navigate('Event', {
                 itemId: item.id,
@@ -344,7 +349,8 @@ export default class AllArticlesScreen extends Component {
               theme.pageTitle,
               // eslint-disable-next-line react-native/no-inline-styles
               {
-                paddingHorizontal: this.props.padding
+                paddingHorizontal: this.props.padding,
+                marginLeft: 14
               }
             ]}
             text={title}
@@ -370,14 +376,15 @@ export default class AllArticlesScreen extends Component {
         />
       </View>
     ) : (
-        <LoadingIndicator />
+      <LoadingIndicator />
     );
   }
 }
 
 const styles = StyleSheet.create({
   card: {
-    marginTop: 10
+    marginTop: 10,
+    marginLeft: 14
   },
   flatlist: {
     flex: 1,

@@ -28,7 +28,8 @@ class PublicationsCard extends React.Component {
             {
               width: this.props.deviceWidth - 14 - this.props.BAR_SPACE,
               paddingHorizontal: extraPadding ? extraPadding / 2 : 0,
-              paddingTop: extraPadding ? 20 : 0
+              paddingTop: extraPadding ? 20 : 0,
+              marginLeft: 14
             }
           ]}
         >

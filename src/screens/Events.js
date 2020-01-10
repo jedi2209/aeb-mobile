@@ -8,6 +8,7 @@ import {
   NativeModules
 } from 'react-native';
 
+import { theme } from '../core/themeProvider';
 import { API } from '../core/server';
 
 import Header from '../components/Header';
@@ -136,17 +137,13 @@ class EventsScreen extends React.Component {
           title={screenProps.translate('events')}
         />
       ),
-      headerStyle: {
-        height: Platform.OS === 'ios' ? 60 : 68,
-        borderBottomWidth: 0,
-        shadowOpacity: 0.2,
-        shadowRadius: 15,
-        shadowColor: '#000000',
-        shadowOffset: {
-          height: 2,
-          width: 0
+      headerStyle: [
+        theme.headerShadow,
+        {
+          height: Platform.OS === 'ios' ? 60 : 68,
+          borderBottomWidth: 0
         }
-      }
+      ]
     };
   };
 

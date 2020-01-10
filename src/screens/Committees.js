@@ -60,17 +60,13 @@ class CommitteesScreen extends React.Component {
           title={screenProps.translate('committees')} //committees
         />
       ),
-      headerStyle: {
-        height: Platform.OS === 'ios' ? 60 : 68,
-        borderBottomWidth: 0,
-        shadowOpacity: 0.2,
-        shadowRadius: 15,
-        shadowColor: '#000000',
-        shadowOffset: {
-          height: 2,
-          width: 0
+      headerStyle: [
+        theme.headerShadow,
+        {
+          height: Platform.OS === 'ios' ? 60 : 68,
+          borderBottomWidth: 0
         }
-      }
+      ]
     };
   };
 
