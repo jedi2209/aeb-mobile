@@ -7,7 +7,7 @@ import {
 } from '../core/themeProvider';
 import Header from '../components/Header';
 import BottomSheet from 'reanimated-bottom-sheet';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { Divider, Button, Card, ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -62,17 +62,13 @@ class ContactsScreen extends React.Component {
           title={screenProps.translate('Contacts')}
         />
       ),
-      headerStyle: {
-        height: Platform.OS === 'ios' ? 60 : 68,
-        borderBottomWidth: 0,
-        shadowOpacity: 0.2,
-        shadowRadius: 15,
-        shadowColor: '#000000',
-        shadowOffset: {
-          height: 2,
-          width: 0
+      headerStyle: [
+        theme.headerShadow,
+        {
+          height: Platform.OS === 'ios' ? 60 : 68,
+          borderBottomWidth: 0
         }
-      }
+      ]
     };
   };
 
@@ -234,7 +230,7 @@ class ContactsScreen extends React.Component {
     return !this.state.loading ? (
       <View style={styles.container}>
         <BottomSheet
-          snapPoints={['50%', '80%', '15%']}
+          snapPoints={['30%', '80%', '15%']}
           renderContent={() => {
             return this.renderContent(this.state.data.items);
           }}
@@ -246,12 +242,18 @@ class ContactsScreen extends React.Component {
             provider={PROVIDER_GOOGLE} // remove if not using Google Maps
             style={styles.map}
             region={{
-              latitude: parseFloat(this.state.data.items.address.coords.lat),
-              longitude: parseFloat(this.state.data.items.address.coords.lon),
+              latitude: parseFloat(
+                this.state.data.items.address.coords.latitude
+              ),
+              longitude: parseFloat(
+                this.state.data.items.address.coords.longitude
+              ),
               latitudeDelta: 0.015,
               longitudeDelta: 0.0121
             }}
-          />
+          >
+            <Marker coordinate={this.state.data.items.address.coords} />
+          </MapView>
         </View>
       </View>
     ) : (
