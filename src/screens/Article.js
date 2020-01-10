@@ -19,7 +19,7 @@ import {
   RefreshControl
 } from 'react-native';
 
-import { DeviceWidth } from '../core/themeProvider';
+import { DeviceWidth, LoadingIndicator } from '../core/themeProvider';
 import HeaderBackButtonCustom from '../components/HeaderBackButtonCustom';
 
 const HEADER_MAX_HEIGHT = 406;

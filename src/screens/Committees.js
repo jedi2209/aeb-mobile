@@ -50,15 +50,6 @@ const ThirdRoute = navigation => (
 class CommitteesScreen extends React.Component {
   constructor(props) {
     super(props);
-
-    // this.state = {
-    //   index: 0,
-    //   routes: [
-    //     { key: 'first', title: props.screenProps.translate('cross_sectoral') }, //'CROSS-SECTORAL'
-    //     { key: 'second', title: props.screenProps.translate('industrial') }, //'INDUSTRIAL',
-    //     { key: 'third', title: props.screenProps.translate('working_groups') } //'WORKING GROUPS'
-    //   ]
-    // };
   }
 
   static navigationOptions = ({ navigation, screenProps }) => {

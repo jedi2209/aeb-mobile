@@ -1,7 +1,11 @@
 import React from 'react';
-import { theme } from '../core/themeProvider';
+import {
+  LoadingIndicator,
+  theme,
+  DeviceWidth,
+  DeviceHeight
+} from '../core/themeProvider';
 import Header from '../components/Header';
-import { DeviceWidth, DeviceHeight } from '../core/themeProvider';
 import BottomSheet from 'reanimated-bottom-sheet';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { Divider, Button, Card, ListItem } from 'react-native-elements';
@@ -16,8 +20,7 @@ import {
   StyleSheet,
   Platform,
   Clipboard,
-  NativeModules,
-  ActivityIndicator
+  NativeModules
 } from 'react-native';
 
 import { API } from '../core/server';
@@ -109,7 +112,7 @@ class ContactsScreen extends React.Component {
                 key={value.name}
                 containerStyle={{
                   width: '48%',
-                  marginBottom: 10,
+                  marginBottom: 5,
                   marginRight: '2%',
                   marginLeft: 0
                 }}
@@ -138,7 +141,7 @@ class ContactsScreen extends React.Component {
                           titleStyle={[
                             theme.whiteButtonText,
                             {
-                              marginBottom: 5,
+                              marginBottom: 1,
                               marginLeft: 5,
                               fontSize: 12
                             }
@@ -213,9 +216,6 @@ class ContactsScreen extends React.Component {
             );
           })}
         </View>
-        <View style={styles.panelButton}>
-          <Text style={styles.panelButtonTitle}>Directions</Text>
-        </View>
       </View>
     );
   };
@@ -234,12 +234,12 @@ class ContactsScreen extends React.Component {
     return !this.state.loading ? (
       <View style={styles.container}>
         <BottomSheet
-          snapPoints={['50%', '80%', '20%']}
+          snapPoints={['50%', '80%', '15%']}
           renderContent={() => {
             return this.renderContent(this.state.data.items);
           }}
           renderHeader={this.renderHeader}
-          enabledInnerScrolling={false}
+          enabledInnerScrolling={true}
         />
         <View style={styles.containerMap}>
           <MapView
@@ -255,9 +255,7 @@ class ContactsScreen extends React.Component {
         </View>
       </View>
     ) : (
-      <View style={styles.container}>
-        <ActivityIndicator />
-      </View>
+      <LoadingIndicator />
     );
   }
 }

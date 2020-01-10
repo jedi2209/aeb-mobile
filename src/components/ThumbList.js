@@ -4,7 +4,6 @@ import moment from 'moment/min/moment-with-locales';
 import {
   View,
   FlatList,
-  ActivityIndicator,
   Text,
   TouchableOpacity,
   StyleSheet,
@@ -13,7 +12,7 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 
-import { DeviceWidth } from '../core/themeProvider';
+import { DeviceWidth, LoadingIndicator } from '../core/themeProvider';
 
 import { theme } from '../core/themeProvider';
 import { API } from '../core/server';
@@ -371,9 +370,7 @@ export default class AllArticlesScreen extends Component {
         />
       </View>
     ) : (
-      <View>
-        <ActivityIndicator />
-      </View>
+        <LoadingIndicator />
     );
   }
 }
