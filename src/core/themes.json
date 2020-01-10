@@ -1,8 +1,8 @@
 {
     "body": {
         "fontFamily": "SFUIDisplay-Regular",
-        "backgroundColor": "#fff",
-        "paddingLeft": 14
+        "backgroundColor": "#fff"
+        // "paddingLeft": 14
     },
     "blueScreen": {
         "backgroundColor": "#0E4F9F"
@@ -65,7 +65,8 @@
         "shadowOffset": {
             "height": 1,
             "width": -1
-        }
+        },
+        "elevation": 5
     },
     "headerShadow": {
         "borderBottomWidth": 0,
@@ -75,6 +76,7 @@
         "shadowOffset": {
             "height": 2,
             "width": 0
-        }
+        },
+        "elevation": 5
     }
 }

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 
 import moment from 'moment/min/moment-with-locales';
+import { theme } from '../core/themeProvider';
 
 const DEFAULT_IMAGE =
   'https://aebrus.ru/local/templates/aeb2019en/img/contacts_image.jpg';
@@ -26,7 +27,7 @@ const Card = props => {
           otherParam: data
         });
       }}
-      style={[styles.slide, { width: cardWidth }]}
+      style={[styles.slide, theme.cardShadow, { width: cardWidth }]}
     >
       <View
         style={{

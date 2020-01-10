@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import moment from 'moment/min/moment-with-locales';
+import { theme } from '../core/themeProvider';
 
 const DEFAULT_IMAGE =
   'https://aebrus.ru/local/templates/aeb2019en/img/contacts_image.jpg';
@@ -15,6 +16,7 @@ const CardMini = props => {
     <View
       style={[
         styles.slide,
+        theme.CardShadow,
         {
           width: cardWidth,
           // paddingHorizontal: 14,

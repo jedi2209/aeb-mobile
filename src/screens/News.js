@@ -55,23 +55,21 @@ const NewsScreen = props => {
   const { screenProps, navigation } = props;
 
   return (
-    <View style={{ backgroundColor: theme.backgroundColor }}>
-      <SafeAreaView>
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View style={[{ marginTop: 10 }]}>
-            <CarouselArticles data={items} navigation={navigation} />
-          </View>
-          <View style={theme.body}>
-            <ThumbList
-              screenProps={screenProps}
-              type="news"
-              title={screenProps.translate('last_news')} // "Last news"
-              navigation={navigation}
-            />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </View>
+    <SafeAreaView style={{ backgroundColor: theme.backgroundColor }}>
+      <ScrollView contentInsetAdjustmentBehavior="automatic">
+        <View style={[{ marginTop: 10 }]}>
+          <CarouselArticles data={items} navigation={navigation} />
+        </View>
+        <View style={theme.body}>
+          <ThumbList
+            screenProps={screenProps}
+            type="news"
+            title={screenProps.translate('last_news')} // "Last news"
+            navigation={navigation}
+          />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -87,17 +85,13 @@ NewsScreen.navigationOptions = ({ navigation, screenProps }) => {
         date={moment().format('dddd, DD MMMM')}
       />
     ),
-    headerStyle: {
-      height: Platform.OS === 'ios' ? 80 : 88,
-      borderBottomWidth: 0,
-      shadowOpacity: 0.2,
-      shadowRadius: 15,
-      shadowColor: '#000000',
-      shadowOffset: {
-        height: 2,
-        width: 0
+    headerStyle: [
+      theme.headerShadow,
+      {
+        height: Platform.OS === 'ios' ? 80 : 88,
+        borderBottomWidth: 0
       }
-    }
+    ]
   };
 };
 
