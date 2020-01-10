@@ -1,5 +1,7 @@
+import React from 'react';
 import THEME from './themes.json';
 import { Dimensions } from 'react-native';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
 
 export const theme = THEME;
 export const DeviceWidth = Dimensions.get('window').width;
@@ -34,3 +36,26 @@ export const HTMLStyle = `
       max-width: 100%;
     }
 `;
+
+export const LoadingIndicator = () => {
+  const LoadingStyles = StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center'
+    },
+    horizontal: {
+      flexDirection: 'row',
+      justifyContent: 'space-around',
+      padding: 10
+    },
+    indicator: {
+      width: 50,
+      height: 50
+    }
+  });
+  return (
+    <View style={[LoadingStyles.container, LoadingStyles.horizontal]}>
+      <ActivityIndicator size="large" color="#0E4F9F" />
+    </View>
+  );
+};
