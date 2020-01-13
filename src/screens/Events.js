@@ -8,15 +8,15 @@ import {
   NativeModules
 } from 'react-native';
 
-import { theme } from '../core/themeProvider';
-import { API } from '../core/server';
+import {theme} from '../core/themeProvider';
+import {API} from '../core/server';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
 import Moment from 'moment/min/moment-with-locales';
 
-import { Calendar } from 'react-native-calendars';
-import { LocaleConfig } from 'react-native-calendars';
+import {Calendar} from 'react-native-calendars';
+import {LocaleConfig} from 'react-native-calendars';
 
 LocaleConfig.locales.eng = {
   monthNames: [
@@ -129,7 +129,7 @@ class EventsScreen extends React.Component {
     };
   }
 
-  static navigationOptions = ({ navigation, screenProps }) => {
+  static navigationOptions = ({navigation, screenProps}) => {
     return {
       headerLeft: (
         <Header
@@ -148,7 +148,7 @@ class EventsScreen extends React.Component {
   };
 
   async componentDidMount() {
-    this.api = new API({ lang: this.lang, platform: Platform.OS });
+    this.api = new API({lang: this.lang, platform: Platform.OS});
 
     const data = await this._fetchMarkedDates(Moment().format('YYYY-MM'));
 
@@ -156,7 +156,7 @@ class EventsScreen extends React.Component {
     this.setState({
       responsedData: data.responsedData,
       markedDates: Object.assign(data.markedDates, {
-        [this.state.now]: { selected: true }
+        [this.state.now]: {selected: true}
       })
     });
   }
@@ -166,7 +166,7 @@ class EventsScreen extends React.Component {
 
     const markedDates = responsedData.items
       ? responsedData.items.reduce((acc, item) => {
-          acc[item] = { marked: true };
+          acc[item] = {marked: true};
           return acc;
         }, {})
       : {};
@@ -210,14 +210,14 @@ class EventsScreen extends React.Component {
                 // снова их приводим к сооответсвующему объекту
                 const markedDates = responsedData
                   ? responsedData.reduce((acc, item) => {
-                      acc[item] = { marked: true };
+                      acc[item] = {marked: true};
                       return acc;
                     }, {})
                   : {};
 
                 // то что запишем в markedDates в итоге
                 const calculated = Object.assign(markedDates, {
-                  [selectedDay]: { selected: true }
+                  [selectedDay]: {selected: true}
                 });
 
                 let params;

@@ -1,8 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 // todo: refactor this!!
 import React from 'react';
-import { theme } from '../core/themeProvider';
-import { TouchableOpacity } from 'react-native';
+import {theme} from '../core/themeProvider';
+import {TouchableOpacity} from 'react-native';
 import BurgerIcon from '../images/Burger.svg';
 
 class Burger extends React.Component {
@@ -27,8 +27,7 @@ class Burger extends React.Component {
             paddingTop: 14,
             zIndex: 100
           }
-        ]}
-      >
+        ]}>
         <BurgerIcon />
       </TouchableOpacity>
     );

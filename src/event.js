@@ -1,6 +1,6 @@
 //@flow
 
-import { createEvent } from 'effector';
+import {createEvent} from 'effector';
 
 /**
  * Event is just a function which provide a way

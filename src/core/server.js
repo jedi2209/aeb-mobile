@@ -5,7 +5,7 @@ export const API = class AebApi {
       android: '6g?-1)!m.8`EEko4OguYsuxpZI)$jM',
       ios: 'z{YT>3}/+vL1a&J_uPM|+f=b)`c&Jx'
     };
-    const { platform, lang = 'rus' } = opts;
+    const {platform, lang = 'rus'} = opts;
 
     this._url = `https://api.aebrus.ru/${lang}`;
     this._headers = {
@@ -111,7 +111,7 @@ export const API = class AebApi {
     }
   }
 
-  async getCommittees(page, { type }) {
+  async getCommittees(page, {type}) {
     try {
       console.log(this._url + '/committees/list/' + type + '/?page=' + page);
       const response = await fetch(

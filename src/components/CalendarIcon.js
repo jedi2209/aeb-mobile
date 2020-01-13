@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import CalendarIconSvg from '../images/calendarIcon.svg';
-import { TouchableOpacity, View } from 'react-native';
+import {TouchableOpacity, View} from 'react-native';
 import * as AddCalendarEvent from 'react-native-add-calendar-event';
 
 import moment from 'moment';
@@ -22,7 +22,7 @@ class CalendarIcon extends React.Component {
             }
 
             const startDateUTC = moment(this.props.data.date * 1000);
-            const regex = /(<([^>]+)>)/ig;
+            const regex = /(<([^>]+)>)/gi;
 
             const eventConfig = {
               title: this.props.data.name,
@@ -31,7 +31,10 @@ class CalendarIcon extends React.Component {
                 moment.utc(startDateUTC).add(2, 'hours')
               ),
               location: this.props.data.place.name,
-              notes: (this.props.data.text || this.props.data.name).replace(regex, ''),
+              notes: (this.props.data.text || this.props.data.name).replace(
+                regex,
+                ''
+              ),
               url: this.props.data.url
             };
 
@@ -57,10 +60,9 @@ class CalendarIcon extends React.Component {
             shadowOpacity: 0.4,
             shadowRadius: 4,
             shadowColor: '#FF2D55',
-            shadowOffset: { height: 1, width: 0 },
+            shadowOffset: {height: 1, width: 0},
             elevation: 10
-          }}
-        >
+          }}>
           <CalendarIconSvg />
         </TouchableOpacity>
       </View>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import Arrow from '../images/Arrow';
 
 class ArrowButton extends React.Component {
@@ -7,8 +7,7 @@ class ArrowButton extends React.Component {
     return (
       <TouchableOpacity
         onPress={this.props.onPress}
-        style={[this.props.style, style.arrowBack]}
-      >
+        style={[this.props.style, style.arrowBack]}>
         <Arrow />
       </TouchableOpacity>
     );

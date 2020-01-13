@@ -1,9 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import MapsSvg from '../images/Maps.svg';
-import { View, TouchableOpacity, Text } from 'react-native';
-import { DeviceWidth } from '../core/themeProvider';
-import { showLocation } from 'react-native-map-link';
+import {View, TouchableOpacity, Text} from 'react-native';
+import {DeviceWidth} from '../core/themeProvider';
+import {showLocation} from 'react-native-map-link';
 
 class Maps extends React.Component {
   render() {
@@ -29,14 +29,12 @@ class Maps extends React.Component {
             flexDirection: 'row',
             alignItems: 'flex-start',
             justifyContent: 'flex-start'
-          }}
-        >
+          }}>
           <View
             style={{
               marginTop: 7,
               width: 32
-            }}
-          >
+            }}>
             <MapsSvg />
           </View>
           <Text
@@ -47,8 +45,7 @@ class Maps extends React.Component {
               width: DeviceWidth - 160,
               flexDirection: 'column',
               flex: 1
-            }}
-          >
+            }}>
             {this.props.place.name}
           </Text>
         </TouchableOpacity>
@@ -63,8 +60,7 @@ class Maps extends React.Component {
             flexDirection: 'row',
             alignItems: 'flex-start',
             justifyContent: 'flex-start'
-          }}
-        >
+          }}>
           <Text
             // selectable={true}
             style={{
@@ -73,8 +69,7 @@ class Maps extends React.Component {
               width: DeviceWidth - 160,
               flexDirection: 'column',
               flex: 1
-            }}
-          >
+            }}>
             {this.props.place.name}
           </Text>
         </View>

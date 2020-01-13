@@ -8,13 +8,13 @@ import {
 } from 'react-native';
 
 import moment from 'moment/min/moment-with-locales';
-import { theme } from '../core/themeProvider';
+import {theme} from '../core/themeProvider';
 
 const DEFAULT_IMAGE =
   'https://aebrus.ru/local/templates/aeb2019en/img/contacts_image.jpg';
 
 const Card = props => {
-  const { navigation, data, height, width, locale } = props;
+  const {navigation, data, height, width, locale} = props;
   const cardWidth = width;
 
   moment.locale(locale);
@@ -33,16 +33,14 @@ const Card = props => {
           otherParam: data
         });
       }}
-      style={[styles.slide, theme.cardShadow, { width: cardWidth }]}
-    >
+      style={[styles.slide, theme.cardShadow, {width: cardWidth}]}>
       <View
         style={{
           width: cardWidth
-        }}
-      >
+        }}>
         <Image
-          source={{ uri: (data.img && data.img.preview[0]) || DEFAULT_IMAGE }}
-          style={[styles.image, { width: cardWidth, height }]}
+          source={{uri: (data.img && data.img.preview[0]) || DEFAULT_IMAGE}}
+          style={[styles.image, {width: cardWidth, height}]}
         />
         <Text numberOfLines={3} style={styles.title}>
           {data.name}

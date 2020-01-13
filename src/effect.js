@@ -1,5 +1,5 @@
-import { createEffect } from 'effector';
-import { menuChange } from './event';
+import {createEffect} from 'effector';
+import {menuChange} from './event';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export const getCurrentMenuItem = createEffect({
@@ -14,7 +14,9 @@ export const updateCurrentMenuItem = createEffect({
   handler: async item => {
     try {
       await AsyncStorage.setItem('currentMenu', `${item}`, err => {
-        if (err) console.error(err);
+        if (err) {
+          console.error(err);
+        }
       });
     } catch (err) {
       console.error(err);

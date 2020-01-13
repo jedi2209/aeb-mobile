@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import { theme } from '../core/themeProvider';
+import React, {useEffect} from 'react';
+import {theme} from '../core/themeProvider';
 
-import { createStore, createEffect } from 'effector';
-import { useStore } from 'effector-react';
+import {createStore, createEffect} from 'effector';
+import {useStore} from 'effector-react';
 
 import moment from 'moment/min/moment-with-locales';
 
 import Header from '../components/Header';
-import { CarouselArticles } from '../components/CarouselArticles';
+import {CarouselArticles} from '../components/CarouselArticles';
 import ThumbList from '../components/ThumbList';
 
 import {
@@ -19,7 +19,7 @@ import {
   NativeModules
 } from 'react-native';
 
-import { API } from '../core/server';
+import {API} from '../core/server';
 
 // Есть конвеншен что эффекты начинаются с fx -> (fxFetchData), а сторы с $ -> ($data)
 const fxFetchCountFromAsyncStorage = createEffect({
@@ -32,32 +32,32 @@ const fxFetchCountFromAsyncStorage = createEffect({
 
     const lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
 
-    const api = new API({ lang, platform: Platform.OS });
+    const api = new API({lang, platform: Platform.OS});
     const data = await api.getNews(page);
-    return data || { items: [], paginations: {} };
+    return data || {items: [], paginations: {}};
   }
 });
 
 // Создаем стор у которого по дефолту пустой массив
-const $counter = createStore({ items: [], paginations: {} })
+const $counter = createStore({items: [], paginations: {}})
   // Подписываем стор на состояние эффекта когда он будет в статусе done, по дефолту все эффекты имеют 3 статуса pending, done, fail
-  .on(fxFetchCountFromAsyncStorage.done, (_, { result }) => result);
+  .on(fxFetchCountFromAsyncStorage.done, (_, {result}) => result);
 
-fxFetchCountFromAsyncStorage.done.watch(({ result }) => {});
+fxFetchCountFromAsyncStorage.done.watch(({result}) => {});
 
 const NewsScreen = props => {
-  const { items, paginations } = useStore($counter);
+  const {items, paginations} = useStore($counter);
 
   useEffect(() => {
     fxFetchCountFromAsyncStorage(1);
   }, []);
 
-  const { screenProps, navigation } = props;
+  const {screenProps, navigation} = props;
 
   return (
-    <SafeAreaView style={{ backgroundColor: theme.backgroundColor }}>
+    <SafeAreaView style={{backgroundColor: theme.backgroundColor}}>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View style={[{ marginTop: 10 }]}>
+        <View style={[{marginTop: 10}]}>
           <CarouselArticles data={items} navigation={navigation} />
         </View>
         <View style={theme.body}>
@@ -73,7 +73,7 @@ const NewsScreen = props => {
   );
 };
 
-NewsScreen.navigationOptions = ({ navigation, screenProps }) => {
+NewsScreen.navigationOptions = ({navigation, screenProps}) => {
   moment.locale(screenProps.locale);
 
   let date = moment().format('dddd, DD MMMM');

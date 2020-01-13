@@ -1,21 +1,15 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { theme } from '../core/themeProvider';
+import {theme} from '../core/themeProvider';
 
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-  Platform
-} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Text, Platform} from 'react-native';
 
 import Menu from '../components/Menu';
 import CloseButton from '../components/CloseButton';
 
 class MenuScreen extends React.Component {
   render() {
-    const { navigate } = this.props.navigation;
+    const {navigate} = this.props.navigation;
     return (
       <View style={[style.container, theme.blueScreen]}>
         <TouchableOpacity
@@ -24,8 +18,7 @@ class MenuScreen extends React.Component {
             marginTop: Platform.OS === 'ios' ? '20%' : '10%',
             width: 305,
             height: 50
-          }}
-        >
+          }}>
           <View style={[theme.whiteButton]}>
             <Text style={theme.whiteButtonText}>
               {this.props.screenProps.translate('login')}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { View, StyleSheet, ScrollView, Animated, Image } from 'react-native';
+import {View, StyleSheet, ScrollView, Animated, Image} from 'react-native';
 
 const BAR_SPACE = 14;
 
@@ -28,25 +28,24 @@ export class CarouselImages extends React.Component {
     data.forEach((item, i) => {
       const thisImage = (
         <Image
-          style={{ width: 60, height: 60, marginRight: BAR_SPACE }}
+          style={{width: 60, height: 60, marginRight: BAR_SPACE}}
           key={'image' + i}
-          source={{ uri: item }}
+          source={{uri: item}}
         />
       );
       imageArray.push(thisImage);
     });
 
     return (
-      <View style={[styles.container, { marginVertical: 10 }]} flex={1}>
+      <View style={[styles.container, {marginVertical: 10}]} flex={1}>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           scrollEventThrottle={10}
           pagingEnabled
           onScroll={Animated.event([
-            { nativeEvent: { contentOffset: { x: this.animVal } } }
-          ])}
-        >
+            {nativeEvent: {contentOffset: {x: this.animVal}}}
+          ])}>
           {imageArray}
         </ScrollView>
         <View style={styles.barContainer}>{barArray}</View>
