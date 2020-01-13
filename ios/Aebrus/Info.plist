@@ -2,14 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSCalendarsUsageDescription</key>
-	<string>$(PRODUCT_NAME) need access to your calendar for AEB Events.</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places and AEB Contacts.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places and AEB Contacts.</string>
-	<key>NSContactsUsageDescription</key>
-	<string>$(NSContactsUsageDescription)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -30,27 +22,6 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>19</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-		<key>NSExceptionDomains</key>
-		<dict>
-			<key>localhost</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-		</dict>
-	</dict>
-	<key>NSMainNibFile</key>
-	<string>LaunchScreen</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>tel</string>
@@ -66,20 +37,31 @@
 		<string>yandexmaps</string>
 		<string>kakaomap</string>
 	</array>
-	<key>UILaunchStoryboardName</key>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>$(PRODUCT_NAME) need access to your calendar for AEB Events.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>$(NSContactsUsageDescription)</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places and AEB Contacts.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places and AEB Contacts.</string>
+	<key>NSMainNibFile</key>
 	<string>LaunchScreen</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SFUIDisplay-Black.otf</string>
@@ -107,5 +89,21 @@
 		<string>Octicons.ttf</string>
 		<string>Zocial.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>
