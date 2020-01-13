@@ -12,13 +12,13 @@ import {
   Platform
 } from 'react-native';
 
-import { DeviceWidth, DeviceHeight } from '../core/themeProvider';
+import {DeviceWidth, DeviceHeight} from '../core/themeProvider';
 
 class PublicationsScreen extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => {
+  static navigationOptions = ({navigation, screenProps}) => {
     return {
       headerTintColor: '#fff',
-      headerBackTitleStyle: { color: 'transparent' },
+      headerBackTitleStyle: {color: 'transparent'},
       headerStyle: {
         backgroundImage: '../images/bg.png',
         backgroundColor: 'transparent',
@@ -47,19 +47,16 @@ class PublicationsScreen extends React.Component {
             marginBottom: -100,
             minHeight: DeviceHeight + 100
           }
-        ]}
-      >
+        ]}>
         <View>
           <View
             style={{
               marginTop: Platform.OS === 'ios' ? 60 + 30 : 73 + 30
-            }}
-          >
+            }}>
             <ScrollView
               contentInsetAdjustmentBehavior="automatic"
-              style={styles.scrollView}
-            >
-              <View style={{ marginBottom: 100 }}>
+              style={styles.scrollView}>
+              <View style={{marginBottom: 100}}>
                 <View style={styles.body}>
                   <View style={styles.header}>
                     <Image
@@ -77,13 +74,12 @@ class PublicationsScreen extends React.Component {
                           // и 14 отсупы внутри и снаружи карточки
                           width: DeviceWidth - 60 - 20 - 14 * 2 - 14 * 2
                         }
-                      ]}
-                    >
+                      ]}>
                       {data.name}
                     </Text>
                   </View>
                   <ThumbList
-                    paramsForFetch={{ committees: data.id }}
+                    paramsForFetch={{committees: data.id}}
                     translate={this.props.screenProps.translate}
                     type="publications"
                     extraPadding="14"
@@ -93,11 +89,10 @@ class PublicationsScreen extends React.Component {
                       backgroundColor: '#fff',
                       marginTop: 14,
                       borderRadius: 8
-                    }}
-                  >
+                    }}>
                     <ThumbList
                       padding={14}
-                      paramsForFetch={{ committees: data.id }}
+                      paramsForFetch={{committees: data.id}}
                       translate={this.props.screenProps.translate}
                       navigation={this.props.navigation}
                       type="newsCommitee"

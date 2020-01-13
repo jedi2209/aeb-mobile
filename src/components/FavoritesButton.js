@@ -1,6 +1,6 @@
 import React from 'react';
-import { theme } from '../core/themeProvider';
-import { TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import {theme} from '../core/themeProvider';
+import {TouchableWithoutFeedback, StyleSheet} from 'react-native';
 import Favorites from '../images/favorites.svg';
 
 class FavoritesButton extends React.Component {
@@ -8,8 +8,7 @@ class FavoritesButton extends React.Component {
     return (
       <TouchableWithoutFeedback
         onPress={this.props.onPress}
-        style={[this.props.style, theme.goBackButton]}
-      >
+        style={[this.props.style, theme.goBackButton]}>
         <Favorites style={style.close} />
       </TouchableWithoutFeedback>
     );

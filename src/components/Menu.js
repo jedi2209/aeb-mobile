@@ -1,7 +1,7 @@
 import React from 'react';
-import { theme } from '../core/themeProvider';
+import {theme} from '../core/themeProvider';
 
-import { Text, SectionList, TouchableOpacity, View } from 'react-native';
+import {Text, SectionList, TouchableOpacity, View} from 'react-native';
 
 const menuItems = [
   'News',
@@ -13,23 +13,22 @@ const menuItems = [
 ];
 
 const Menu = props => {
-  const { translate, navigation } = props;
+  const {translate, navigation} = props;
 
   return (
     // eslint-disable-next-line react-native/no-inline-styles
-    <View style={{ height: 300 }}>
+    <View style={{height: 300}}>
       <SectionList
         style={styles.linklList}
         sections={[
-          { title: '', data: menuItems }
+          {title: '', data: menuItems}
           // { title: '', data: menuItemsBottom }
         ]}
-        renderItem={({ item }) => (
+        renderItem={({item}) => (
           <TouchableOpacity
             onPress={() => {
               navigation.navigate(item);
-            }}
-          >
+            }}>
             <Text style={[styles.link, theme.whiteLink]}>
               {translate(item)}
             </Text>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import moment from 'moment/min/moment-with-locales';
 
 import {
@@ -12,10 +12,10 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 
-import { DeviceWidth, LoadingIndicator } from '../core/themeProvider';
+import {DeviceWidth, LoadingIndicator} from '../core/themeProvider';
 
-import { theme } from '../core/themeProvider';
-import { API } from '../core/server';
+import {theme} from '../core/themeProvider';
+import {API} from '../core/server';
 import getRandomInt from '../lib/getRandomInt';
 
 import Title from '../components/Title';
@@ -52,7 +52,7 @@ export default class AllArticlesScreen extends Component {
     const lang = deviceLanguage.includes('ru') ? 'ru' : 'en';
     moment.locale(lang);
 
-    this.api = new API({ lang: this.lang, platform: Platform.OS });
+    this.api = new API({lang: this.lang, platform: Platform.OS});
 
     this._fetchAllArticles();
   }
@@ -64,12 +64,12 @@ export default class AllArticlesScreen extends Component {
     }
 
     if (this.props.paramsForFetch !== nextProps.paramsForFetch) {
-      this._fetchAllArticles({ force: true });
+      this._fetchAllArticles({force: true});
     }
   }
 
-  _fetchAllArticles = async ({ force } = {}) => {
-    const { page = 1 } = this.state;
+  _fetchAllArticles = async ({force} = {}) => {
+    const {page = 1} = this.state;
     const paramsForFetch = this.props.paramsForFetch || {};
 
     let responsedData;
@@ -101,12 +101,12 @@ export default class AllArticlesScreen extends Component {
       }
 
       if (!responsedData.pagination) {
-        this.setState({ fullList: true, data: [] });
+        this.setState({fullList: true, data: []});
         return;
       }
 
       if (responsedData.pagination.pages.next === null) {
-        this.setState({ fullList: true });
+        this.setState({fullList: true});
       }
 
       this.setState({
@@ -128,7 +128,7 @@ export default class AllArticlesScreen extends Component {
   };
 
   _handleRefresh = () => {
-    this.setState({ page: 1, refreshing: true }, () => {
+    this.setState({page: 1, refreshing: true}, () => {
       this._fetchAllArticles();
     });
   };
@@ -167,11 +167,8 @@ export default class AllArticlesScreen extends Component {
             // display: 'flex',
             // alignContent: 'center',
             // alignItems: 'stretch'
-          }}
-        >
-          <View
-            style={[theme.whiteButton, theme.cardShadow, { marginLeft: 14 }]}
-          >
+          }}>
+          <View style={[theme.whiteButton, theme.cardShadow, {marginLeft: 14}]}>
             <Text style={theme.whiteButtonText}>{translate('load_more')}</Text>
           </View>
         </TouchableOpacity>
@@ -187,8 +184,7 @@ export default class AllArticlesScreen extends Component {
             itemId: item.id,
             otherParam: item
           });
-        }}
-      >
+        }}>
         <View style={[styles.card]}>
           <Card
             navigation={this.props.navigation}
@@ -235,7 +231,7 @@ export default class AllArticlesScreen extends Component {
   _renderCardCommittee = item => {
     return (
       // eslint-disable-next-line react-native/no-inline-styles
-      <View style={{ marginTop: 10, width: '50%' }}>
+      <View style={{marginTop: 10, width: '50%'}}>
         <CommitteesCard
           extraPadding={this.props.extraPadding}
           data={item}
@@ -261,15 +257,13 @@ export default class AllArticlesScreen extends Component {
             paddingVertical: 5,
             marginTop: 0,
             marginBottom: 10
-          }}
-        >
+          }}>
           <Text
             // eslint-disable-next-line react-native/no-inline-styles
             style={{
               color: '#8C8C8C',
               fontSize: 15
-            }}
-          >
+            }}>
             {moment(item.created * 1000).format('YYYY MMMM')}
           </Text>
         </View>
@@ -308,8 +302,7 @@ export default class AllArticlesScreen extends Component {
                 itemId: item.id,
                 otherParam: item
               });
-            }}
-          >
+            }}>
             <View style={styles.card}>{this._renderCardEvent(item)}</View>
           </TouchableWithoutFeedback>
         );
@@ -325,8 +318,7 @@ export default class AllArticlesScreen extends Component {
                 itemId: item.id,
                 otherParam: item
               });
-            }}
-          >
+            }}>
             {this._renderCardCommittee(item)}
           </TouchableWithoutFeedback>
         );
@@ -339,7 +331,7 @@ export default class AllArticlesScreen extends Component {
   };
 
   render() {
-    const { title } = this.props;
+    const {title} = this.props;
 
     return !this.state.loading ? (
       <View>
@@ -360,7 +352,7 @@ export default class AllArticlesScreen extends Component {
           contentContainerStyle={styles.flatlist}
           numColumns={1}
           data={this.state.data}
-          renderItem={({ item }) => {
+          renderItem={({item}) => {
             return (
               <View style={styles.flatlistview}>{this._renderCard(item)}</View>
             );

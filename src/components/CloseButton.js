@@ -1,6 +1,6 @@
 import React from 'react';
-import { theme } from '../core/themeProvider';
-import { TouchableOpacity, StyleSheet } from 'react-native';
+import {theme} from '../core/themeProvider';
+import {TouchableOpacity, StyleSheet} from 'react-native';
 import Close from '../images/close.svg';
 
 class CloseButton extends React.Component {
@@ -8,8 +8,7 @@ class CloseButton extends React.Component {
     return (
       <TouchableOpacity
         onPress={this.props.onPress}
-        style={[this.props.style, theme.goBackButton]}
-      >
+        style={[this.props.style, theme.goBackButton]}>
         <Close style={style.close} />
       </TouchableOpacity>
     );

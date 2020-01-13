@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image } from 'react-native';
-import { theme } from '../core/themeProvider';
+import {View, Text, StyleSheet, Image} from 'react-native';
+import {theme} from '../core/themeProvider';
 
 class CommitteesCard extends React.Component {
   render() {
@@ -13,19 +13,17 @@ class CommitteesCard extends React.Component {
             // 14 это отсупы
             width: this.props.deviceWidth - 28 - this.props.BAR_SPACE
           }
-        ]}
-      >
+        ]}>
         <View
           style={{
             width: this.props.deviceWidth - 28 - 28 - 70 - this.props.BAR_SPACE
-          }}
-        >
+          }}>
           <Text style={styles.title}>{this.props.data.name}</Text>
         </View>
         <Image
-          source={{ uri: this.props.data.img.preview[0] }}
+          source={{uri: this.props.data.img.preview[0]}}
           // eslint-disable-next-line react-native/no-inline-styles
-          style={[styles.image, { width: 60, height: 60, marginLeft: 10 }]}
+          style={[styles.image, {width: 60, height: 60, marginLeft: 10}]}
         />
       </View>
     );

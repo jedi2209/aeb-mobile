@@ -1,22 +1,22 @@
 import * as React from 'react';
 import moment from 'moment/min/moment-with-locales';
 
-import { View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 
-import { TabView, TabBar, SceneMap } from 'react-native-tab-view';
-import { DeviceWidth } from '../core/themeProvider';
+import {TabView, TabBar, SceneMap} from 'react-native-tab-view';
+import {DeviceWidth} from '../core/themeProvider';
 
-const initialLayout = { width: DeviceWidth };
+const initialLayout = {width: DeviceWidth};
 
 const Tabs = props => {
-  const { tabs } = props;
+  const {tabs} = props;
   const [index, setIndex] = React.useState(0);
   const routes = [];
 
   tabs.forEach((item, _index) => {
     let key = 'tab' + _index;
     if (item.route) {
-      routes.push({ key: key, title: item.head });
+      routes.push({key: key, title: item.head});
     }
   });
 
@@ -36,7 +36,7 @@ const Tabs = props => {
 
   return (
     <TabView
-      navigationState={{ index, routes }}
+      navigationState={{index, routes}}
       renderScene={_renderScene}
       onIndexChange={setIndex}
       initialLayout={initialLayout}
@@ -71,14 +71,13 @@ const _renderTabBar = props => {
       {...props}
       indicatorStyle={stylesTab.indicator}
       style={stylesTab.main}
-      renderLabel={({ route, focused, color }) => (
+      renderLabel={({route, focused, color}) => (
         <Text
           style={{
             color: focused ? '#000' : '#ACB1C0',
             margin: -14,
             fontSize: 12
-          }}
-        >
+          }}>
           {route.title}
         </Text>
       )}

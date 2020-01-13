@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 
 import moment from 'moment/min/moment-with-locales';
 
@@ -19,7 +19,7 @@ import {
   RefreshControl
 } from 'react-native';
 
-import { DeviceWidth, LoadingIndicator } from '../core/themeProvider';
+import {DeviceWidth, LoadingIndicator} from '../core/themeProvider';
 import HeaderBackButtonCustom from '../components/HeaderBackButtonCustom';
 
 const HEADER_MAX_HEIGHT = 406;
@@ -29,7 +29,7 @@ class ArticleScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    const { navigation } = this.props;
+    const {navigation} = this.props;
     const data = navigation.getParam('otherParam', {});
 
     this.translate = this.props.screenProps.translate;
@@ -44,7 +44,7 @@ class ArticleScreen extends React.Component {
     this.data = data;
   }
 
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = ({navigation}) => {
     const data = navigation.getParam('otherParam', {});
     return {
       headerRight: <ShareButton data={data} />,
@@ -92,7 +92,7 @@ class ArticleScreen extends React.Component {
   }
 
   render() {
-    const { navigation } = this.props;
+    const {navigation} = this.props;
     const data = navigation.getParam('otherParam', {});
 
     const scrollY = Animated.add(
@@ -130,15 +130,15 @@ class ArticleScreen extends React.Component {
           style={styles.fill}
           scrollEventThrottle={1}
           onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
-            { useNativeDriver: true }
+            [{nativeEvent: {contentOffset: {y: this.state.scrollY}}}],
+            {useNativeDriver: true}
           )}
           refreshControl={
             <RefreshControl
               refreshing={this.state.refreshing}
               onRefresh={() => {
-                this.setState({ refreshing: true });
-                setTimeout(() => this.setState({ refreshing: false }), 1000);
+                this.setState({refreshing: true});
+                setTimeout(() => this.setState({refreshing: false}), 1000);
               }}
               // Android offset for RefreshControl
               progressViewOffset={HEADER_MAX_HEIGHT}
@@ -150,23 +150,18 @@ class ArticleScreen extends React.Component {
           }}
           contentOffset={{
             y: -HEADER_MAX_HEIGHT
-          }}
-        >
+          }}>
           {this._renderScrollViewContent(data)}
         </Animated.ScrollView>
         <Animated.View
           pointerEvents="none"
-          style={[
-            styles.header,
-            { transform: [{ translateY: headerTranslate }] }
-          ]}
-        >
+          style={[styles.header, {transform: [{translateY: headerTranslate}]}]}>
           <Animated.Image
             style={[
               styles.backgroundImage,
               {
                 opacity: imageOpacity,
-                transform: [{ translateY: imageTranslate }]
+                transform: [{translateY: imageTranslate}]
               }
             ]}
             source={{
@@ -180,7 +175,7 @@ class ArticleScreen extends React.Component {
               {
                 backgroundColor: 'rgba(0,0,0,.4)',
                 opacity: imageOpacity,
-                transform: [{ translateY: imageTranslate }]
+                transform: [{translateY: imageTranslate}]
               }
             ]}
           />
@@ -191,10 +186,9 @@ class ArticleScreen extends React.Component {
             styles.bar,
             {
               opacity: textOpacity,
-              transform: [{ translateY: headerTranslate }]
+              transform: [{translateY: headerTranslate}]
             }
-          ]}
-        >
+          ]}>
           <Text style={[styles.title]}>{data.name}</Text>
         </Animated.View>
       </View>

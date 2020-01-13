@@ -1,11 +1,11 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { theme, DeviceWidth } from '../core/themeProvider';
+import {theme, DeviceWidth} from '../core/themeProvider';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
 import Tabs from '../components/Tabs';
-import { TabView } from 'react-native-tab-view';
+import {TabView} from 'react-native-tab-view';
 
 import {
   SafeAreaView,
@@ -20,7 +20,7 @@ import {
 const FirstRoute = navigation => (
   <View style={styles.body}>
     <ThumbList
-      paramsForFetch={{ type: 32 }}
+      paramsForFetch={{type: 32}}
       type="committees"
       navigation={navigation}
     />
@@ -30,7 +30,7 @@ const FirstRoute = navigation => (
 const SecondRoute = navigation => (
   <View style={styles.body}>
     <ThumbList
-      paramsForFetch={{ type: 30 }}
+      paramsForFetch={{type: 30}}
       type="committees"
       navigation={navigation}
     />
@@ -40,7 +40,7 @@ const SecondRoute = navigation => (
 const ThirdRoute = navigation => (
   <View style={styles.body}>
     <ThumbList
-      paramsForFetch={{ type: 31 }}
+      paramsForFetch={{type: 31}}
       type="committees"
       navigation={navigation}
     />
@@ -52,7 +52,7 @@ class CommitteesScreen extends React.Component {
     super(props);
   }
 
-  static navigationOptions = ({ navigation, screenProps }) => {
+  static navigationOptions = ({navigation, screenProps}) => {
     return {
       headerLeft: (
         <Header
@@ -101,15 +101,13 @@ class CommitteesScreen extends React.Component {
   render() {
     return (
       <View
-        style={[styles.container, { backgroundColor: theme.backgroundColor }]}
-      >
+        style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
         <SafeAreaView>
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}
-          >
+            style={styles.scrollView}>
             <View>
-              <View style={{ backgroundColor: '#FAFAFA', paddingVertical: 14 }}>
+              <View style={{backgroundColor: '#FAFAFA', paddingVertical: 14}}>
                 <Tabs
                   tabs={[
                     {

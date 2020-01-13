@@ -1,14 +1,14 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import {View, Image, Text, StyleSheet} from 'react-native';
 import moment from 'moment/min/moment-with-locales';
-import { theme } from '../core/themeProvider';
+import {theme} from '../core/themeProvider';
 
 const DEFAULT_IMAGE =
   'https://aebrus.ru/local/templates/aeb2019en/img/contacts_image.jpg';
 const PADDING = 14;
 
 const CardMini = props => {
-  const { data, locale } = props;
+  const {data, locale} = props;
   const cardWidth = props.width - PADDING * 2;
   moment.locale(locale);
 
@@ -28,8 +28,7 @@ const CardMini = props => {
           // paddingHorizontal: 14,
           paddingHorizontal: props.padding || 0
         }
-      ]}
-    >
+      ]}>
       <Image
         source={{
           uri: (data.img && data.img.preview[0]) || DEFAULT_IMAGE
@@ -40,8 +39,7 @@ const CardMini = props => {
         style={{
           // математика: cardWidth - ширина изображения - отступ изображения
           width: cardWidth - 64 - 10 - (props.padding || 0 * 2)
-        }}
-      >
+        }}>
         <Text style={styles.title}>{data.name}</Text>
         <Text style={styles.date}>
           {toUpperdate(

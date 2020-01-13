@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { ScrollView } from 'react-native';
+import React, {Component} from 'react';
+import {ScrollView} from 'react-native';
 import HTML from 'react-native-render-html';
-import { DeviceWidth } from '../core/themeProvider';
+import {DeviceWidth} from '../core/themeProvider';
 
 const htmlStyles = `
   <style>
@@ -40,7 +40,7 @@ class WebViewAutoHeight extends Component {
   render() {
     return (
       // eslint-disable-next-line react-native/no-inline-styles
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={{flex: 1}}>
         <HTML
           html={htmlStyles + this.props.text}
           imagesMaxWidth={DeviceWidth}

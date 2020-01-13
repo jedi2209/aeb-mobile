@@ -1,6 +1,6 @@
 import React from 'react';
-import { theme, DeviceWidth } from '../core/themeProvider';
-import { Platform } from 'react-native';
+import {theme, DeviceWidth} from '../core/themeProvider';
+import {Platform} from 'react-native';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
@@ -38,10 +38,10 @@ const ThumbListData = [
   }
 ];
 
-import { SafeAreaView, ScrollView, View, StyleSheet } from 'react-native';
+import {SafeAreaView, ScrollView, View, StyleSheet} from 'react-native';
 
 class PublicationsScreen extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => {
+  static navigationOptions = ({navigation, screenProps}) => {
     return {
       headerLeft: (
         <Header
@@ -60,14 +60,13 @@ class PublicationsScreen extends React.Component {
   };
 
   render() {
-    const { navigate } = this.props.navigation;
+    const {navigate} = this.props.navigation;
 
     return (
-      <SafeAreaView style={{ backgroundColor: theme.backgroundColor }}>
+      <SafeAreaView style={{backgroundColor: theme.backgroundColor}}>
         <ScrollView
           contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}
-        >
+          style={styles.scrollView}>
           <View style={styles.body}>
             <ThumbList
               screenProps={this.props.screenProps}

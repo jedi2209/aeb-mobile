@@ -7,8 +7,8 @@ import {
 } from '../core/themeProvider';
 import Header from '../components/Header';
 import BottomSheet from 'reanimated-bottom-sheet';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
-import { Divider, Button, Card, ListItem } from 'react-native-elements';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import {Divider, Button, Card, ListItem} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import {
@@ -23,7 +23,7 @@ import {
   NativeModules
 } from 'react-native';
 
-import { API } from '../core/server';
+import {API} from '../core/server';
 
 class ContactsScreen extends React.Component {
   constructor(props) {
@@ -43,7 +43,7 @@ class ContactsScreen extends React.Component {
         : NativeModules.I18nManager.localeIdentifier;
 
     this.lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
-    this.api = new API({ lang: this.lang, platform: Platform.OS });
+    this.api = new API({lang: this.lang, platform: Platform.OS});
 
     const responsedData = await this.api.getContacts();
     // eslint-disable-next-line react/no-did-mount-set-state
@@ -53,7 +53,7 @@ class ContactsScreen extends React.Component {
     });
   }
 
-  static navigationOptions = ({ navigation, screenProps }) => {
+  static navigationOptions = ({navigation, screenProps}) => {
     return {
       headerLeft: (
         <Header
@@ -77,7 +77,7 @@ class ContactsScreen extends React.Component {
       <View style={styles.panel}>
         <Text style={styles.panelTitle}>{items.address.name}</Text>
         <Text style={styles.panelSubtitle}>{items.address.description}</Text>
-        <Divider style={{ backgroundColor: '#0E4F9F', marginBottom: 10 }} />
+        <Divider style={{backgroundColor: '#0E4F9F', marginBottom: 10}} />
         {items.email.map(value => {
           return (
             <Button
@@ -87,7 +87,7 @@ class ContactsScreen extends React.Component {
               type="outline"
               //   title={value}
               titleStyle={theme.whiteButtonText}
-              containerStyle={{ width: '20%' }}
+              containerStyle={{width: '20%'}}
               buttonStyle={theme.whiteButton}
             />
           );
@@ -99,8 +99,7 @@ class ContactsScreen extends React.Component {
             flexDirection: 'row',
             flexWrap: 'wrap',
             paddingTop: 10
-          }}
-        >
+          }}>
           {items.phone.map(value => {
             return (
               <Card
@@ -111,8 +110,7 @@ class ContactsScreen extends React.Component {
                   marginBottom: 5,
                   marginRight: '2%',
                   marginLeft: 0
-                }}
-              >
+                }}>
                 <View
                 //   style={{
                 //     display: 'flex',
@@ -250,8 +248,7 @@ class ContactsScreen extends React.Component {
               ),
               latitudeDelta: 0.015,
               longitudeDelta: 0.0121
-            }}
-          >
+            }}>
             <Marker coordinate={this.state.data.items.address.coords} />
           </MapView>
         </View>

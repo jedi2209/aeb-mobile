@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, { Fragment } from 'react';
+import React, {Fragment} from 'react';
 
 import Moment from 'moment/min/moment-with-locales';
 import ShareButton from '../components/ShareButton';
@@ -10,7 +10,7 @@ import CalendarIcon from '../components/CalendarIcon';
 import ReleasesCard from '../components/ReleasesCard';
 import WebViewAutoHeight from '../components/WebViewAutoHeight';
 // import AutoHeightWebView from 'react-native-autoheight-webview';
-import { DeviceWidth, HTMLStyle } from '../core/themeProvider';
+import {DeviceWidth, HTMLStyle} from '../core/themeProvider';
 import Tabs from '../components/Tabs';
 import HeaderBackButtonCustom from '../components/HeaderBackButtonCustom';
 
@@ -45,7 +45,7 @@ const FirstRoute = data => {
   // );
 
   return (
-    <View style={[styles.body, { paddingHorizontal: 14 }]}>
+    <View style={[styles.body, {paddingHorizontal: 14}]}>
       <WebViewAutoHeight text={data.text} />
     </View>
   );
@@ -75,9 +75,9 @@ const SecondRoute = (data, translate) => {
   });
 
   return (
-    <View style={{ marginTop: 20 }}>
-      <View style={{ paddingLeft: 24 }}>
-        <Text style={[styleLocal.paragraph, { fontWeight: 'bold' }]}>
+    <View style={{marginTop: 20}}>
+      <View style={{paddingLeft: 24}}>
+        <Text style={[styleLocal.paragraph, {fontWeight: 'bold'}]}>
           {translate('attendance_fees')}
         </Text>
       </View>
@@ -113,8 +113,7 @@ const SecondRoute = (data, translate) => {
             marginTop: 25,
             marginBottom: 25,
             marginHorizontal: 18
-          }}
-        >
+          }}>
           <Text
             style={{
               color: '#fff',
@@ -122,8 +121,7 @@ const SecondRoute = (data, translate) => {
               letterSpacing: 0.32,
               textTransform: 'uppercase',
               fontWeight: '400'
-            }}
-          >
+            }}>
             {translate('registration')}
           </Text>
         </TouchableOpacity>
@@ -145,13 +143,13 @@ const ThirdRoute = (data, extraPadding) => {
     }
   });
   return (
-    <View style={[styles.body, { paddingHorizontal: 14 }]}>
-      <View style={{ marginTop: 20 }}>
+    <View style={[styles.body, {paddingHorizontal: 14}]}>
+      <View style={{marginTop: 20}}>
         <FlatList
           contentContainerStyle={styleLocal.flatlist}
           numColumns={1}
           data={data.file}
-          renderItem={({ item }) => {
+          renderItem={({item}) => {
             return (
               <ReleasesCard
                 extraPadding={extraPadding}
@@ -176,7 +174,7 @@ class ArticleScreen extends React.Component {
   constructor(props) {
     super(props);
 
-    const { navigation } = this.props;
+    const {navigation} = this.props;
     const data = navigation.getParam('otherParam', {});
 
     this.translate = this.props.screenProps.translate;
@@ -184,7 +182,7 @@ class ArticleScreen extends React.Component {
     console.log('this.data', data);
   }
 
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = ({navigation}) => {
     const data = navigation.getParam('otherParam', {});
     return {
       headerRight: (
@@ -223,8 +221,7 @@ class ArticleScreen extends React.Component {
       <View
         style={{
           flex: 1
-        }}
-      >
+        }}>
         <Image
           style={styles.backgroundImage}
           source={{
@@ -235,10 +232,9 @@ class ArticleScreen extends React.Component {
           style={{
             position: 'relative',
             flex: 1
-          }}
-        >
+          }}>
           <ScrollView>
-            <View style={{ height: HEADER_MAX_HEIGHT }}>
+            <View style={{height: HEADER_MAX_HEIGHT}}>
               {this.data.registration.active && (
                 <Text
                   style={{
@@ -254,8 +250,7 @@ class ArticleScreen extends React.Component {
                     paddingBottom: 3,
                     width: 75,
                     fontFamily: 'SFUIDisplay-Regular'
-                  }}
-                >
+                  }}>
                   {this.translate('open')}
                 </Text>
               )}
@@ -267,7 +262,7 @@ class ArticleScreen extends React.Component {
               </Text>
               <Maps place={this.data.place} translate={this.translate} />
             </View>
-            <View style={{ backgroundColor: 'white' }}>
+            <View style={{backgroundColor: 'white'}}>
               {this.data.registration.active ? (
                 <View
                   style={{
@@ -277,33 +272,30 @@ class ArticleScreen extends React.Component {
                     width: 55,
                     height: 55,
                     zIndex: 1000
-                  }}
-                >
+                  }}>
                   <CalendarIcon data={this.data} />
                 </View>
               ) : null}
-              <View style={{ marginLeft: 14 }}>
+              <View style={{marginLeft: 14}}>
                 {this.data.translation ? (
                   <Translation text={this.translate('translation_avail')} />
                 ) : (
                   <Text
                     style={{
                       height: this.data.registration.active ? 'auto' : 1
-                    }}
-                  >
+                    }}>
                     &nbsp;
                   </Text>
                 )}
               </View>
-              <View style={{ marginLeft: 14 }}>
+              <View style={{marginLeft: 14}}>
                 {this.data.registration.press ? (
                   <Press text={this.translate('press')} />
                 ) : (
                   <Text
                     style={{
                       height: this.data.registration.active ? 'auto' : 1
-                    }}
-                  >
+                    }}>
                     &nbsp;
                   </Text>
                 )}

@@ -7,7 +7,7 @@ import {
   TouchableWithoutFeedback,
   Linking
 } from 'react-native';
-import { theme } from '../core/themeProvider';
+import {theme} from '../core/themeProvider';
 
 class PublicationsCard extends React.Component {
   render() {
@@ -18,8 +18,7 @@ class PublicationsCard extends React.Component {
       <TouchableWithoutFeedback
         onPress={() => {
           Linking.openURL(this.props.data.file[0]);
-        }}
-      >
+        }}>
         <View
           style={[
             theme.cardBlock,
@@ -31,18 +30,16 @@ class PublicationsCard extends React.Component {
               paddingTop: extraPadding ? 20 : 0,
               marginLeft: 14
             }
-          ]}
-        >
+          ]}>
           <View
             style={{
               width: this.props.deviceWidth - 64 - 35 - (extraPadding || 0)
-            }}
-          >
+            }}>
             <Text style={styles.title}>{this.props.data.name}</Text>
           </View>
           <Image
-            source={{ uri: this.props.data.img.preview[0] }}
-            style={[styles.image, { width: 63, height: 88, marginLeft: 10 }]}
+            source={{uri: this.props.data.img.preview[0]}}
+            style={[styles.image, {width: 63, height: 88, marginLeft: 10}]}
           />
         </View>
       </TouchableWithoutFeedback>
