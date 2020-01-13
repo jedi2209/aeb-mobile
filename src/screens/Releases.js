@@ -88,7 +88,9 @@ class ReleasesScreen extends React.Component {
                 <RNPickerSelect
                   items={this.state.options}
                   placeholder={{
-                    label: this.props.screenProps.translate('select_an_item')
+                    label: this.props.screenProps.translate(
+                      'all_press_releases'
+                    )
                   }}
                   onValueChange={value => {
                     if (Platform.OS === 'ios') {
@@ -108,9 +110,22 @@ class ReleasesScreen extends React.Component {
                   style={{
                     ...pickerSelectStyles,
                     iconContainer: {
-                      top: Platform.OS === 'ios' ? 8 : 18,
+                      top: Platform.OS === 'ios' ? 0 : 10,
                       right: 12
+                      // borderBottomWidth: 0,
+                      // shadowOpacity: 0.2,
+                      // shadowRadius: 15,
+                      // shadowColor: "#000000",
+                      // shadowOffset: {
+                      //   height: 2,
+                      //   width: 0
+                      // },
+                      // elevation: 5
                     }
+                  }}
+                  pickerProps={{
+                    mode: 'dialog',
+                    prompt: 'title'
                   }}
                   onDonePress={() => {
                     this.setState({
@@ -121,6 +136,7 @@ class ReleasesScreen extends React.Component {
                   }}
                   value={this.state.filter}
                   useNativeAndroidPickerStyle={true}
+                  doneText={this.props.screenProps.translate('done')}
                   textInputProps={{ textAlign: 'left' }}
                   Icon={() => <ArrowDropdown />}
                 />
@@ -141,9 +157,17 @@ class ReleasesScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  scrollView: {},
+  scrollContentContainer: {
+    paddingTop: 40,
+    paddingBottom: 10
+  },
+  scrollView: {
+    // flex: 1,
+    // paddingHorizontal: 0
+  },
   body: {
-    backgroundColor: '#FAFAFA'
+    backgroundColor: '#FAFAFA',
+    // flex: 1
   },
   dropdown: {
     backgroundColor: '#FAFAFA',

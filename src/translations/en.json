@@ -17,6 +17,7 @@
     "additional_member": "Additional member",
     "non_member": "Non member",
     "select_an_item": "Select a subject",
+    "all_press_releases": "All Press Releases",
     "press": "Available for Press",
     "translation_avail": "RUS / ENG, Translation available",
     "about": "About",
@@ -36,5 +37,6 @@
     },
     "Map": {
         "Title": "Get directions"
-    }
+    },
+    "done": "Done"
 }
