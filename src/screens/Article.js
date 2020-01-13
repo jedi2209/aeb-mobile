@@ -76,11 +76,18 @@ class ArticleScreen extends React.Component {
 
   _renderScrollViewContent(item) {
     moment.locale(this.props.screenProps.locale);
+
+    const toUpperdate = date => {
+      date = date.toString().split('');
+      date[0] = date[0].toUpperCase();
+      return date;
+    };
+
     return (
       <SafeAreaView>
         <View style={[styles.scrollViewContent]}>
           <Text style={styles.date}>
-            {moment(item.created * 1000).format('dddd, DD MMMM')}
+            {toUpperdate(moment(item.created * 1000).format('dddd, DD MMMM'))}
           </Text>
           <WebViewAutoHeight text={item.descr} />
           <WebViewAutoHeight text={item.text} />

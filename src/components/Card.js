@@ -19,6 +19,12 @@ const Card = props => {
 
   moment.locale(locale);
 
+  const toUpperdate = date => {
+    date = date.toString().split('');
+    date[0] = date[0].toUpperCase();
+    return date;
+  };
+
   return (
     <TouchableWithoutFeedback
       onPress={() => {
@@ -42,7 +48,7 @@ const Card = props => {
           {data.name}
         </Text>
         <Text style={styles.date}>
-          {moment(data.created * 1000).format('dddd, DD MMMM')}
+          {toUpperdate(moment(data.created * 1000).format('dddd, DD MMMM'))}
         </Text>
       </View>
     </TouchableWithoutFeedback>
