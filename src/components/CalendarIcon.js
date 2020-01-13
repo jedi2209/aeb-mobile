@@ -31,7 +31,7 @@ class CalendarIcon extends React.Component {
                 moment.utc(startDateUTC).add(2, 'hours')
               ),
               location: this.props.data.place.name,
-              notes: this.props.data.text.replace(regex, ''),
+              notes: (this.props.data.text || this.props.data.name).replace(regex, ''),
               url: this.props.data.url
             };
 
