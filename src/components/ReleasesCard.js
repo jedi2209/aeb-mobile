@@ -27,6 +27,12 @@ class ReleasesCard extends React.Component {
     deviceLanguage.includes('ru') ? 'ru' : 'en';
     moment.locale(this.props.locale);
 
+    const toUpperdate = date => {
+      date = date.toString().split('');
+      date[0] = date[0].toUpperCase();
+      return date;
+    };
+
     return (
       <TouchableWithoutFeedback
         onPress={() => {
@@ -52,7 +58,9 @@ class ReleasesCard extends React.Component {
             <Text style={styles.commit}>{this.props.data.descr}</Text>
             {this.props.data.created && (
               <Text style={styles.date}>
-                {moment(this.props.data.created * 1000).format('dddd, DD MMMM')}
+                {toUpperdate(
+                  moment(this.props.data.created * 1000).format('dddd, DD MMMM')
+                )}
               </Text>
             )}
           </View>
