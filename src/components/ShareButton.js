@@ -1,14 +1,19 @@
 import React from 'react';
 import { theme } from '../core/themeProvider';
-import { TouchableWithoutFeedback, StyleSheet, Share } from 'react-native';
+import {
+  TouchableWithoutFeedback,
+  StyleSheet,
+  Share,
+  View
+} from 'react-native';
 import ShareImage from '../images/share.svg';
 
 class ShareButton extends React.Component {
   onShare = async () => {
     try {
       const result = await Share.share({
-        title: this.props.data.name + "\r\n\r\n" + this.props.data.url,
-        message: this.props.data.name + "\r\n\r\n" + this.props.data.url,
+        title: this.props.data.name + '\r\n\r\n' + this.props.data.url,
+        message: this.props.data.name + '\r\n\r\n' + this.props.data.url,
         url: this.props.data.url
       });
 
@@ -28,11 +33,10 @@ class ShareButton extends React.Component {
 
   render() {
     return (
-      <TouchableWithoutFeedback
-        onPress={this.onShare}
-        style={[this.props.style, theme.goBackButton]}
-      >
-        <ShareImage style={style.close} />
+      <TouchableWithoutFeedback onPress={this.onShare}>
+        <View style={[this.props.style, theme.goBackButton]}>
+          <ShareImage style={[style.close]} />
+        </View>
       </TouchableWithoutFeedback>
     );
   }
