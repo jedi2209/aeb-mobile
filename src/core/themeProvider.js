@@ -1,7 +1,7 @@
 import React from 'react';
 import THEME from './themes.json';
-import { Dimensions } from 'react-native';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import {Dimensions} from 'react-native';
+import {View, ActivityIndicator, StyleSheet} from 'react-native';
 
 export const theme = THEME;
 export const DeviceWidth = Dimensions.get('window').width;

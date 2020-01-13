@@ -2,7 +2,7 @@ import React from 'react';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
-import { theme } from '../core/themeProvider';
+import {theme} from '../core/themeProvider';
 
 import RNPickerSelect from 'react-native-picker-select';
 import ArrowDropdown from '../components/ArrowDropdown';
@@ -16,7 +16,7 @@ import {
   NativeModules
 } from 'react-native';
 
-import { API } from '../core/server';
+import {API} from '../core/server';
 class ReleasesScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +29,7 @@ class ReleasesScreen extends React.Component {
     };
   }
 
-  static navigationOptions = ({ navigation, screenProps }) => {
+  static navigationOptions = ({navigation, screenProps}) => {
     return {
       headerLeft: (
         <Header
@@ -55,7 +55,7 @@ class ReleasesScreen extends React.Component {
         : NativeModules.I18nManager.localeIdentifier;
 
     this.lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
-    this.api = new API({ lang: this.lang, platform: Platform.OS });
+    this.api = new API({lang: this.lang, platform: Platform.OS});
 
     const responsedData = await this.api.getReleases(1, {});
 
@@ -72,7 +72,7 @@ class ReleasesScreen extends React.Component {
       });
 
     // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({ options, name: responsedData.filters[0].name });
+    this.setState({options, name: responsedData.filters[0].name});
   }
 
   render() {
@@ -81,8 +81,7 @@ class ReleasesScreen extends React.Component {
         <SafeAreaView>
           <ScrollView
             contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}
-          >
+            style={styles.scrollView}>
             <View>
               <View style={[this.props.style, styles.dropdown]}>
                 <RNPickerSelect
@@ -137,7 +136,7 @@ class ReleasesScreen extends React.Component {
                   value={this.state.filter}
                   useNativeAndroidPickerStyle={true}
                   doneText={this.props.screenProps.translate('done')}
-                  textInputProps={{ textAlign: 'left' }}
+                  textInputProps={{textAlign: 'left'}}
                   Icon={() => <ArrowDropdown />}
                 />
               </View>
@@ -166,7 +165,7 @@ const styles = StyleSheet.create({
     // paddingHorizontal: 0
   },
   body: {
-    backgroundColor: '#FAFAFA',
+    backgroundColor: '#FAFAFA'
     // flex: 1
   },
   dropdown: {
