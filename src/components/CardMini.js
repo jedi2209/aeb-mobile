@@ -12,6 +12,12 @@ const CardMini = props => {
   const cardWidth = props.width - PADDING * 2;
   moment.locale(locale);
 
+  const toUpperdate = date => {
+    date = date.toString().split('');
+    date[0] = date[0].toUpperCase();
+    return date;
+  };
+
   return (
     <View
       style={[
@@ -38,8 +44,10 @@ const CardMini = props => {
       >
         <Text style={styles.title}>{data.name}</Text>
         <Text style={styles.date}>
-          {moment((data.created || data.date) * 1000).format(
-            'dddd, DD MMMM YYYY'
+          {toUpperdate(
+            moment((data.created || data.date) * 1000).format(
+              'dddd, DD MMMM YYYY'
+            )
           )}
         </Text>
       </View>

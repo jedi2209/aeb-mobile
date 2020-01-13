@@ -214,6 +214,11 @@ class ArticleScreen extends React.Component {
   };
 
   render() {
+    let dateWithCupitalize = Moment(this.data.date * 1000).format('dddd');
+    dateWithCupitalize = dateWithCupitalize.toString().split('');
+    dateWithCupitalize[0] = dateWithCupitalize[0].toUpperCase();
+    dateWithCupitalize = dateWithCupitalize.join('');
+
     return (
       <View
         style={{
@@ -256,9 +261,9 @@ class ArticleScreen extends React.Component {
               )}
               <Text style={[styles.title]}>{this.data.name}</Text>
               <Text style={styles.date}>
-                {Moment(this.data.date * 1000).format(
-                  'DD MMMM YYYY, HH:mm, dddd'
-                )}
+                {`${Moment(this.data.date * 1000).format(
+                  'DD MMMM YYYY, HH:mm'
+                )}, ${dateWithCupitalize}`}
               </Text>
               <Maps place={this.data.place} translate={this.translate} />
             </View>
