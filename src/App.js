@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import NewsScreen from './screens/News';
 import MenuScreen from './screens/Menu';
@@ -11,8 +11,8 @@ import EventsScreen from './screens/Events';
 import EventPage from './screens/EventPage';
 import ContactsScreen from './screens/Contacts';
 
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 
 import * as RNLocalize from 'react-native-localize';
 import i18n from 'i18n-js';
@@ -20,7 +20,7 @@ import memoize from 'lodash.memoize'; // Use for caching/memoize for better perf
 
 import SplashScreen from 'react-native-splash-screen';
 
-import { I18nManager, Platform, NativeModules, Text } from 'react-native';
+import {I18nManager, Platform, NativeModules, Text} from 'react-native';
 import OneSignal from 'react-native-onesignal'; // Import package from node modules
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -48,7 +48,7 @@ const setI18nConfig = () => {
     isRTL: false
   };
 
-  const { languageTag, isRTL } = deviceLang;
+  const {languageTag, isRTL} = deviceLang;
 
   console.log('languageTag', languageTag, isRTL);
   // clear translation cache
@@ -56,7 +56,7 @@ const setI18nConfig = () => {
   // update layout direction
   I18nManager.forceRTL(isRTL);
   // set i18n-js config
-  i18n.translations = { [languageTag]: translationGetters[languageTag]() };
+  i18n.translations = {[languageTag]: translationGetters[languageTag]()};
   i18n.locale = languageTag;
 };
 
@@ -64,16 +64,16 @@ const persistenceKey = 'News';
 
 const MainNavigator = createStackNavigator(
   {
-    Home: { screen: NewsScreen },
-    News: { screen: NewsScreen },
-    Article: { screen: ArticleScreen },
-    Event: { screen: EventPage },
-    CommitteesPage: { screen: CommitteesPage },
-    Releases: { screen: ReleasesScreen },
-    Publications: { screen: PublicationsScreen },
-    Committees: { screen: CommitteesScreen },
-    Events: { screen: EventsScreen },
-    Contacts: { screen: ContactsScreen }
+    Home: {screen: NewsScreen},
+    News: {screen: NewsScreen},
+    Article: {screen: ArticleScreen},
+    Event: {screen: EventPage},
+    CommitteesPage: {screen: CommitteesPage},
+    Releases: {screen: ReleasesScreen},
+    Publications: {screen: PublicationsScreen},
+    Committees: {screen: CommitteesScreen},
+    Events: {screen: EventsScreen},
+    Contacts: {screen: ContactsScreen}
   },
   {
     initialRouteName: persistenceKey
