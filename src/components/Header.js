@@ -31,6 +31,8 @@ const style = StyleSheet.create({
     marginTop: 0,
     fontSize: 15,
     color: '#ACB1C0'
+    // ,
+    // textTransform: 'capitalize'
   }
 });
 

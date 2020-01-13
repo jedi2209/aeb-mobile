@@ -76,13 +76,17 @@ const NewsScreen = props => {
 NewsScreen.navigationOptions = ({ navigation, screenProps }) => {
   moment.locale(screenProps.locale);
 
+  let date = moment().format('dddd, DD MMMM');
+  date = date.toString().split('');
+  date[0] = date[0].toUpperCase();
+
   return {
     headerLeft: (
       <Header
         screen="news"
         onPress={() => navigation.navigate('Menu')}
         title={screenProps.translate('news')} // Новости
-        date={moment().format('dddd, DD MMMM')}
+        date={date}
       />
     ),
     headerStyle: [
