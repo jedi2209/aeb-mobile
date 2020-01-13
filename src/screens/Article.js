@@ -47,12 +47,7 @@ class ArticleScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     const data = navigation.getParam('otherParam', {});
     return {
-      headerRight: (
-        <ShareButton
-          data={data}
-          // style={{ paddingHorizontal: 5, paddingTop: 5 }}
-        />
-      ),
+      headerRight: <ShareButton data={data} />,
       headerLeft: <HeaderBackButtonCustom navigation={navigation} />,
       headerTintColor: '#fff',
       headerStyle: {
