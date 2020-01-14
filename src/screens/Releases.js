@@ -41,7 +41,7 @@ class ReleasesScreen extends React.Component {
         theme.headerStyle,
         theme.headerShadow,
         {
-          height: Platform.OS === 'ios' ? 58 : 58
+          height: 58
         }
       ]
     };
