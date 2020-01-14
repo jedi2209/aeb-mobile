@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Linking
 } from 'react-native';
+import Imager from '../components/Imager';
 import {theme} from '../core/themeProvider';
 
 class PublicationsCard extends React.Component {

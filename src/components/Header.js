@@ -1,13 +1,16 @@
 import React from 'react';
 import {View, Text, StyleSheet, Platform} from 'react-native';
 import Burger from '../components/Burger';
+import {theme} from '../core/themeProvider';
 
 class Header extends React.Component {
   render() {
     return (
       <View style={style.header}>
         <Burger screen={this.props.screen} onPress={this.props.onPress} />
-        <Text style={[style.headerTitle]}>{this.props.title}</Text>
+        <Text style={[theme.headerTitle, style.headerTitle]}>
+          {this.props.title}
+        </Text>
         {this.props.date && (
           <Text style={style.headerDate}>{this.props.date}</Text>
         )}
@@ -18,14 +21,11 @@ class Header extends React.Component {
 
 const style = StyleSheet.create({
   header: {
-    paddingHorizontal: 14,
-    marginTop: Platform.OS !== 'ios' ? 10 : 0
+    paddingHorizontal: 14
+    // marginTop: Platform.OS !== 'ios' ? 0 : 0
   },
   headerTitle: {
-    marginTop: 10,
-    fontSize: 34,
-    color: '#1E2432',
-    fontWeight: 'bold'
+    marginTop: Platform.OS !== 'ios' ? -12 : -8
   },
   headerDate: {
     marginTop: 0,

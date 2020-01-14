@@ -90,10 +90,10 @@ NewsScreen.navigationOptions = ({navigation, screenProps}) => {
       />
     ),
     headerStyle: [
+      theme.headerStyle,
       theme.headerShadow,
       {
-        height: Platform.OS === 'ios' ? 80 : 88,
-        borderBottomWidth: 0
+        height: 75
       }
     ]
   };
