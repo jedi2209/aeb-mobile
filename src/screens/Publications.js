@@ -53,7 +53,7 @@ class PublicationsScreen extends React.Component {
         theme.headerStyle,
         theme.headerShadow,
         {
-          height: Platform.OS === 'ios' ? 60 : 58
+          height: 58
         }
       ]
     };
