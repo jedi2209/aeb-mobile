@@ -38,10 +38,10 @@ class ReleasesScreen extends React.Component {
         />
       ),
       headerStyle: [
+        theme.headerStyle,
         theme.headerShadow,
         {
-          height: Platform.OS === 'ios' ? 60 : 68,
-          borderBottomWidth: 0
+          height: Platform.OS === 'ios' ? 58 : 58
         }
       ]
     };
