@@ -28,6 +28,7 @@ const style = StyleSheet.create({
     marginTop: Platform.OS !== 'ios' ? -12 : -8
   },
   headerDate: {
+    marginLeft: 54,
     marginTop: 0,
     fontSize: 15,
     color: '#ACB1C0'
