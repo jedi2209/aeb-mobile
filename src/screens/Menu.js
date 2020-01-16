@@ -13,7 +13,7 @@ class MenuScreen extends React.Component {
     return (
       <View style={[style.container, theme.blueScreen]}>
         <TouchableOpacity
-          onPress={() => navigate('Login')}
+          onPress={() => navigate('LoginScreen')}
           style={{
             marginTop: Platform.OS === 'ios' ? '20%' : '10%',
             width: 305,

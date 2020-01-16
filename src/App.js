@@ -24,6 +24,7 @@ import {I18nManager, Platform, NativeModules, Text} from 'react-native';
 import OneSignal from 'react-native-onesignal'; // Import package from node modules
 
 import AsyncStorage from '@react-native-community/async-storage';
+import {LoginScreen} from './screens/LoginScreen';
 
 const translationGetters = {
   // lazy requires (metro bundler does not support symlinks)
@@ -87,6 +88,9 @@ const RootStack = createStackNavigator(
     },
     Menu: {
       screen: MenuScreen
+    },
+    LoginScreen: {
+      screen: LoginScreen
     }
   },
   {
