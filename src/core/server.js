@@ -27,17 +27,53 @@ export const API = class AebApi {
 
       const responseJson = await response.json();
       // TODO: Доббавить проверку на наличие даннных
-      // console.log('>>>>>>>>> responseJson login', responseJson.data);
+      console.log('>>>>>>>>> responseJson login', responseJson.data);
+
+      // if (responseJson.data.length === 0) {
+      //   throw new Error('Не правильный пароль или логин');
+      // }
 
       return {
         name: responseJson.data.NAME,
         id: responseJson.data.ID,
         email: responseJson.data.EMAIL,
         login: responseJson.data.LOGIN,
-        phone: responseJson.data.PERSONAL_PHONE
+        phone: responseJson.data.PERSONAL_MOBILE,
+        second_name: responseJson.data.SECOND_NAME,
+        last_name: responseJson.data.LAST_NAME
       };
     } catch (err) {
       console.log('>>>>>>>> login', err);
+    }
+  }
+
+  async profile(data, id) {
+    try {
+      const response = await fetch(this._url + `/user/edit/${id}/`, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          ...this._headers,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const responseJson = await response.json();
+
+      console.log('>>>>>>>>> responseJson profile', responseJson.data);
+
+      return {
+        name: responseJson.data.NAME,
+        email: responseJson.data.EMAIL,
+        login: responseJson.data.LOGIN,
+        phone: responseJson.data.PERSONAL_MOBILE,
+        second_name: responseJson.data.SECOND_NAME,
+        last_name: responseJson.data.LAST_NAME,
+        id
+      };
+    } catch (err) {
+      console.log('>>>>>>>> profile', err);
     }
   }
 
