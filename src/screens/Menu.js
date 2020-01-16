@@ -1,17 +1,17 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import { useStore } from 'effector-react';
+import {useStore} from 'effector-react';
 import {theme} from '../core/themeProvider';
 
 import {StyleSheet, View, TouchableOpacity, Text, Platform} from 'react-native';
 
 import Menu from '../components/Menu';
 import CloseButton from '../components/CloseButton';
-import { $session, onPressSignOut } from './LoginScreen/LoginScreen.model';
+import {$session, onPressSignOut} from './LoginScreen/LoginScreen.model';
 
 const MenuScreen = ({navigation, navigate, screenProps}) => {
   const session = useStore($session);
-  
+
   return (
     <View style={[style.container, theme.blueScreen]}>
       {session.id ? (
@@ -23,9 +23,7 @@ const MenuScreen = ({navigation, navigate, screenProps}) => {
             height: 50
           }}>
           <View style={[theme.whiteButton]}>
-            <Text style={theme.whiteButtonText}>
-              Logout
-            </Text>
+            <Text style={theme.whiteButtonText}>Выйти</Text>
           </View>
         </TouchableOpacity>
       ) : (
