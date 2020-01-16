@@ -3,140 +3,92 @@ import moment from 'moment/min/moment-with-locales';
 
 import {View, Text, StyleSheet} from 'react-native';
 
-import {TabView, TabBar, SceneMap} from 'react-native-tab-view';
-import {DeviceWidth} from '../core/themeProvider';
+import SegmentedControlTab from 'react-native-segmented-control-tab';
+import {theme} from '../core/themeProvider';
 
-const initialLayout = {width: DeviceWidth};
-
-const Tabs = props => {
-  const {tabs} = props;
-  const [index, setIndex] = React.useState(0);
-  const routes = [];
-
-  tabs.forEach((item, _index) => {
-    let key = 'tab' + _index;
-    if (item.route) {
-      routes.push({key: key, title: item.head});
-    }
-  });
-
-  const getSceneMap = () => {
-    let sceneMap = {};
-
-    tabs.map((item, _index) => {
-      sceneMap['tab' + _index] = () => {
-        return item.route; // some component for tab scene
-      };
+class Tabs extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedIndex: 0
+    };
+    this.values = [];
+    this.tabsContent = [];
+    this.props.tabs.forEach((item, _index) => {
+      if (item.route) {
+        this.values.push(item.head);
+        this.tabsContent.push(item.route);
+      }
     });
+  }
 
-    return sceneMap;
+  handleIndexChange = index => {
+    this.setState({
+      ...this.state,
+      selectedIndex: index
+    });
   };
 
-  const _renderScene = SceneMap(getSceneMap());
-
-  return (
-    <TabView
-      navigationState={{index, routes}}
-      renderScene={_renderScene}
-      onIndexChange={setIndex}
-      initialLayout={initialLayout}
-      renderTabBar={_renderTabBar}
-    />
-  );
-};
-
-const _renderTabBar = props => {
-  const stylesTab = StyleSheet.create({
-    indicator: {
-      backgroundColor: '#fff',
-      height: 32,
-      marginTop: 2,
-      marginBottom: 2,
-      borderRadius: 4,
-      top: 0
-    },
-    main: {
-      backgroundColor: '#F1F2F6',
-      height: 36,
-      marginTop: 5,
-      width: '96%',
-      marginLeft: '2%',
-      marginRight: '2%',
-      borderRadius: 4,
-      position: 'relative'
-    }
-  });
-  return (
-    <TabBar
-      {...props}
-      indicatorStyle={stylesTab.indicator}
-      style={stylesTab.main}
-      renderLabel={({route, focused, color}) => (
-        <Text
-          style={{
-            color: focused ? '#000' : '#ACB1C0',
-            margin: -14,
-            fontSize: 12
-          }}>
-          {route.title}
-        </Text>
-      )}
-    />
-  );
-};
+  render() {
+    return (
+      <View>
+        <SegmentedControlTab
+          tabsContainerStyle={[styles.main, theme.cardShadow]}
+          tabStyle={styles.tabInActive}
+          tabTextStyle={styles.tabInActiveFont}
+          activeTabStyle={styles.tabActive}
+          activeTabTextStyle={styles.tabActiveFont}
+          values={this.values}
+          selectedIndex={this.state.selectedIndex}
+          onTabPress={this.handleIndexChange}
+        />
+        <View>{this.tabsContent[this.state.selectedIndex]}</View>
+      </View>
+    );
+  }
+}
 
 const styles = StyleSheet.create({
   scene: {
     flex: 1
+  },
+  // indicator: {
+  //   backgroundColor: '#fff',
+  //   height: 32,
+  //   marginTop: 2,
+  //   marginBottom: 2,
+  //   borderRadius: 4,
+  //   top: 0
+  // },
+  main: {
+    backgroundColor: '#F1F2F6',
+    borderWidth: 0,
+    height: 36,
+    marginTop: 5,
+    width: '96%',
+    marginLeft: '2%',
+    marginRight: '2%',
+    borderRadius: 4,
+    position: 'relative'
+  },
+  tabInActive: {
+    borderColor: '#D8D8D8',
+    backgroundColor: '#F1F2F6',
+    borderWidth: 0
+  },
+  tabInActiveFont: {
+    fontSize: 14,
+    color: '#ACB1C0'
+  },
+  tabActive: {
+    backgroundColor: '#fff',
+    marginVertical: 1,
+    borderWidth: 0
+  },
+  tabActiveFont: {
+    fontSize: 14,
+    color: '#1E2432'
   }
 });
-
-// export default class TabBar extends Component {
-//     const data = this.data;
-//     const extraPadding = this.props.extraPadding;
-
-//     const initialLayout = { width: DeviceWidth };
-
-//     const [index, setIndex] = React.useState(0);
-//     const [routes_arr] = [];
-
-//     if (data.text) {
-//       routes_arr.push({ key: 'first', title: this.translate('about') });
-//     }
-//     if (data.attendance) {
-//       routes_arr.push({
-//         key: 'second',
-//         title: this.translate('attendance_fees')
-//       });
-//     }
-//     if (data.files) {
-//       routes_arr.push({ key: 'third', title: this.translate('files') });
-//     }
-
-//     const [routes] = React.useState(routes_arr);
-
-//     return (
-//       // <View style={[styles.scrollViewContent]}>
-//       //   <View style={{ backgroundColor: '#FAFAFA' }}>
-//           <TabView
-//             renderTabBar={this._renderTabBar}
-//             navigationState={{ index, routes }}
-//             renderScene={({ route }) => {
-//               switch (route.key) {
-//                 case 'first':
-//                   return FirstRoute(data);
-//                 case 'second':
-//                   return SecondRoute(data, this.translate);
-//                 case 'third':
-//                   return ThirdRoute(data, extraPadding);
-//               }
-//             }}
-//             onIndexChange={setIndex}
-//             initialLayout={initialLayout}
-//           />
-//       //   </View>
-//       // </View>
-//     );
-//   }
 
 export default Tabs;
