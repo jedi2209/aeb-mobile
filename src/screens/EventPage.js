@@ -10,8 +10,9 @@ import CalendarIcon from '../components/CalendarIcon';
 import ReleasesCard from '../components/ReleasesCard';
 import WebViewAutoHeight from '../components/WebViewAutoHeight';
 // import AutoHeightWebView from 'react-native-autoheight-webview';
-import {DeviceWidth, HTMLStyle} from '../core/themeProvider';
-import Tabs from '../components/Tabs';
+import {DeviceWidth} from '../core/themeProvider';
+// import Tabs from '../components/Tabs';
+import SegmentedControlTab from 'react-native-segmented-control-tab';
 import HeaderBackButtonCustom from '../components/HeaderBackButtonCustom';
 
 const BAR_SPACE = 14;
@@ -30,49 +31,34 @@ import {
 
 const HEADER_MAX_HEIGHT = 300;
 
-const FirstRoute = data => {
-  if (!data.text) {
-    return null;
+const styleLocal = StyleSheet.create({
+  table: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderBottomColor: '#D8D8D8',
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
+    marginHorizontal: 24,
+    paddingVertical: 14
+  },
+  tableText: {
+    color: '#D8D8D8'
+  },
+  paragraph: {
+    fontSize: 15,
+    color: '#1E2432'
+  },
+  flatlist: {
+    flexDirection: 'column',
+    height: '100%',
+    width: '100%'
   }
-  // return (
-  //   <AutoHeightWebView
-  //     style={{ width: DeviceWidth - 25, marginLeft: 15, marginTop: 35 }}
-  //     customStyle={HTMLStyle}
-  //     source={{ html: data.text }}
-  //     scalesPageToFit={true}
-  //     zoomable={false}
-  //   />
-  // );
-
-  return (
-    <View style={[styles.body, {paddingHorizontal: 14}]}>
-      <WebViewAutoHeight text={data.text} />
-    </View>
-  );
-};
+});
 
 const SecondRoute = (data, translate) => {
   if (!data.attendance || !data.registration.active) {
     return null;
   }
-  const styleLocal = StyleSheet.create({
-    table: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      borderBottomColor: '#D8D8D8',
-      borderBottomWidth: 1,
-      borderStyle: 'solid',
-      marginHorizontal: 24,
-      paddingVertical: 14
-    },
-    tableText: {
-      color: '#D8D8D8'
-    },
-    paragraph: {
-      fontSize: 15,
-      color: '#1E2432'
-    }
-  });
 
   return (
     <View style={{marginTop: 20}}>
@@ -179,7 +165,10 @@ class ArticleScreen extends React.Component {
 
     this.translate = this.props.screenProps.translate;
     this.data = data;
-    console.log('this.data', data);
+
+    this.state = {
+      selectedIndex: 0
+    };
   }
 
   static navigationOptions = ({navigation}) => {
@@ -209,6 +198,14 @@ class ArticleScreen extends React.Component {
         shadowColor: 'transparent'
       }
     };
+  };
+
+  handleIndexChange = index => {
+    console.log('>>> index', index);
+    this.setState({
+      ...this.state,
+      selectedIndex: index
+    });
   };
 
   render() {
@@ -300,7 +297,122 @@ class ArticleScreen extends React.Component {
                   </Text>
                 )}
               </View>
-              <Tabs
+              <View>
+                <SegmentedControlTab
+                  tabsContainerStyle={{marginTop: 0}}
+                  tabStyle={{
+                    backgroundColor: '#FAFAFA',
+                    borderColor: '#FAFAFA'
+                  }}
+                  tabTextStyle={{color: '#D8D8D8', fontSize: 11}}
+                  activeTabStyle={{
+                    backgroundColor: '#FAFAFA',
+                    borderColor: '#FAFAFA'
+                  }}
+                  activeTabTextStyle={{color: '#000', fontSize: 11}}
+                  values={[
+                    this.data.text && this.translate('about'),
+                    this.translate('attendance_fees'),
+                    this.translate('files')
+                  ]}
+                  selectedIndex={this.state.selectedIndex}
+                  onTabPress={this.handleIndexChange}
+                />
+              </View>
+              {this.state.selectedIndex === 0 && (
+                <ScrollView>
+                  <View style={[styles.body, {paddingHorizontal: 14}]}>
+                    <WebViewAutoHeight text={this.data.text} />
+                  </View>
+                </ScrollView>
+              )}
+              {this.state.selectedIndex === 1 && (
+                <View style={{marginTop: 20}}>
+                  <View style={{paddingLeft: 24}}>
+                    <Text style={[styleLocal.paragraph, {fontWeight: 'bold'}]}>
+                      {this.translate('attendance_fees')}
+                    </Text>
+                  </View>
+                  <View style={styleLocal.table}>
+                    <Text style={styleLocal.tableText}>
+                      {this.translate('assigned_member')}
+                    </Text>
+                    <Text>{`${this.data.attendance.gold.value} ${
+                      this.data.attendance.gold.curr
+                    }`}</Text>
+                  </View>
+                  <View style={styleLocal.table}>
+                    <Text style={styleLocal.tableText}>
+                      {this.translate('additional_member')}
+                    </Text>
+                    <Text>{`${this.data.attendance.members.value} ${
+                      this.data.attendance.members.curr
+                    }`}</Text>
+                  </View>
+                  <View style={styleLocal.table}>
+                    <Text style={styleLocal.tableText}>
+                      {this.translate('non_member')}
+                    </Text>
+                    <Text>{`${this.data.attendance['non-members'].value} ${
+                      this.data.attendance.gold.curr
+                    }`}</Text>
+                  </View>
+                  {this.data.registration.active ? (
+                    <TouchableOpacity
+                      onPress={() =>
+                        Linking.openURL(this.data.url + '#event_payment_info')
+                      }
+                      style={{
+                        borderRadius: 6,
+                        height: 50,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        backgroundColor: '#0E4F9F',
+                        marginTop: 25,
+                        marginBottom: 25,
+                        marginHorizontal: 18
+                      }}>
+                      <Text
+                        style={{
+                          color: '#fff',
+                          fontSize: 15,
+                          letterSpacing: 0.32,
+                          textTransform: 'uppercase',
+                          fontWeight: '400'
+                        }}>
+                        {this.translate('registration')}
+                      </Text>
+                    </TouchableOpacity>
+                  ) : null}
+                </View>
+              )}
+              {this.state.selectedIndex === 2 && (
+                <View style={[styles.body, {paddingHorizontal: 14}]}>
+                  <View style={{marginTop: 20}}>
+                    <FlatList
+                      contentContainerStyle={styleLocal.flatlist}
+                      numColumns={1}
+                      data={this.data.file}
+                      renderItem={({item}) => {
+                        return (
+                          <ReleasesCard
+                            extraPadding={this.extraPadding}
+                            data={item}
+                            width={DeviceWidth - 14 - BAR_SPACE}
+                            height={200}
+                            deviceWidth={DeviceWidth}
+                            BAR_SPACE={BAR_SPACE}
+                          />
+                        );
+                      }}
+                      keyExtractor={item => {
+                        return item.name.toString();
+                      }}
+                    />
+                  </View>
+                </View>
+              )}
+              {/* <Tabs
                 tabs={[
                   {
                     head: this.translate('about'),
@@ -315,7 +427,7 @@ class ArticleScreen extends React.Component {
                     route: ThirdRoute(this.data, this.extraPadding)
                   }
                 ]}
-              />
+              /> */}
             </View>
           </ScrollView>
         </SafeAreaView>
