@@ -53,13 +53,7 @@ export const LoginScreen = () => {
               <View style={styles.separator} />
               <TouchableOpacity
                 style={styles.button}
-                onPressIn={() => onPressSignIn(values)}
-                // onPress={() => {
-                //   // go to api
-                //   // get answer
-                //   // set obj to asynStorage
-                // }}
-                >
+                onPressIn={() => onPressSignIn(values)}>
                 <Text style={[styles.buttonText, {textTransform: 'uppercase'}]}>
                   Sign In
                 </Text>

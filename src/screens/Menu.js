@@ -12,6 +12,8 @@ import {$session, onPressSignOut} from './LoginScreen/LoginScreen.model';
 const MenuScreen = ({navigation, navigate, screenProps}) => {
   const session = useStore($session);
 
+  console.log('render menu screen', session.id);
+
   return (
     <View style={[style.container, theme.blueScreen]}>
       {session.id ? (
@@ -41,7 +43,11 @@ const MenuScreen = ({navigation, navigate, screenProps}) => {
           </View>
         </TouchableOpacity>
       )}
-      <Menu navigation={navigation} translate={screenProps.translate} />
+      <Menu
+        navigation={navigation}
+        translate={screenProps.translate}
+        isLogin={session.id}
+      />
       <CloseButton style={style.goBack} onPress={() => navigation.goBack()} />
     </View>
   );
