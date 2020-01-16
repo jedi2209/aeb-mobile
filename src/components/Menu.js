@@ -3,7 +3,7 @@ import {theme} from '../core/themeProvider';
 
 import {Text, SectionList, TouchableOpacity, View} from 'react-native';
 
-const menuItems = [
+let menuItems = [
   'News',
   'Events',
   'Publications',
@@ -15,14 +15,28 @@ const menuItems = [
 const Menu = props => {
   const {translate, navigation} = props;
 
+  if (props.isLogin && !menuItems.includes('Settings')) {
+    menuItems.push('Settings');
+  }
+  console.log('>>> render', props.isLogin);
   return (
-    // eslint-disable-next-line react-native/no-inline-styles
     <View style={{height: 300}}>
       <SectionList
         style={styles.linklList}
         sections={[
-          {title: '', data: menuItems}
-          // { title: '', data: menuItemsBottom }
+          {
+            title: '',
+            data: props.isLogin
+              ? menuItems
+              : [
+                  'News',
+                  'Events',
+                  'Publications',
+                  'Releases',
+                  'Committees',
+                  'Contacts'
+                ]
+          }
         ]}
         renderItem={({item}) => (
           <TouchableOpacity

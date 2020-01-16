@@ -31,6 +31,10 @@ const signInFx = sessionDomain.effect({
       password: data.password
     });
 
+    if (!userData.id) {
+      throw new Error('Не правильный логин или пароль');
+    }
+
     await AsyncStorage.setItem('session', JSON.stringify(userData));
 
     return Promise.resolve({...userData, isSynced: true});
@@ -43,11 +47,14 @@ const signOutFx = sessionDomain.effect({
       await AsyncStorage.removeItem('session');
 
       return Promise.resolve({isSynced: true});
-    } catch (error) {}
+    } catch (error) {
+      console.log('>>>> error in signOutFx');
+    }
   }
 });
 
 $session.on(signInFx.done, (_, {result}) => result);
+$session.on(signOutFx.done, (_, {result}) => result);
 
 signInFx.fail.watch(err => {
   alert(err ? err.error : 'Что-то пошло не так, попробуйте снова');
@@ -56,7 +63,7 @@ signInFx.fail.watch(err => {
 signInFx.done.watch(() => navigate('News'));
 signOutFx.done.watch(() => navigate('News'));
 
-// $session.watch(store => console.log(store));
+$session.watch(store => console.log('>>>>>>>> store watch', store));
 
 forward({from: onPressSignIn, to: signInFx});
 forward({from: onPressSignOut, to: signOutFx});

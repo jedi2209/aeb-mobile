@@ -11,6 +11,7 @@ import CommitteesPage from './screens/CommitteesPage';
 import EventsScreen from './screens/Events';
 import EventPage from './screens/EventPage';
 import ContactsScreen from './screens/Contacts';
+import {Settings} from './screens/Settings';
 
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -86,7 +87,8 @@ const MainNavigator = createStackNavigator(
     Publications: {screen: PublicationsScreen},
     Committees: {screen: CommitteesScreen},
     Events: {screen: EventsScreen},
-    Contacts: {screen: ContactsScreen}
+    Contacts: {screen: ContactsScreen},
+    Settings: {screen: Settings}
   },
   {
     initialRouteName: persistenceKey
