@@ -1,19 +1,22 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
+import { useStore } from 'effector-react';
 import {theme} from '../core/themeProvider';
 
 import {StyleSheet, View, TouchableOpacity, Text, Platform} from 'react-native';
 
 import Menu from '../components/Menu';
 import CloseButton from '../components/CloseButton';
+import { $session, onPressSignOut } from './LoginScreen/LoginScreen.model';
 
-class MenuScreen extends React.Component {
-  render() {
-    const {navigate} = this.props.navigation;
-    return (
-      <View style={[style.container, theme.blueScreen]}>
+const MenuScreen = ({navigation, navigate, screenProps}) => {
+  const session = useStore($session);
+  
+  return (
+    <View style={[style.container, theme.blueScreen]}>
+      {session.id ? (
         <TouchableOpacity
-          onPress={() => navigate('LoginScreen')}
+          onPress={() => onPressSignOut()}
           style={{
             marginTop: Platform.OS === 'ios' ? '20%' : '10%',
             width: 305,
@@ -21,22 +24,30 @@ class MenuScreen extends React.Component {
           }}>
           <View style={[theme.whiteButton]}>
             <Text style={theme.whiteButtonText}>
-              {this.props.screenProps.translate('login')}
+              Logout
             </Text>
           </View>
         </TouchableOpacity>
-        <Menu
-          navigation={this.props.navigation}
-          translate={this.props.screenProps.translate}
-        />
-        <CloseButton
-          style={style.goBack}
-          onPress={() => this.props.navigation.goBack()}
-        />
-      </View>
-    );
-  }
-}
+      ) : (
+        <TouchableOpacity
+          onPress={() => navigation.navigate('LoginScreen')}
+          style={{
+            marginTop: Platform.OS === 'ios' ? '20%' : '10%',
+            width: 305,
+            height: 50
+          }}>
+          <View style={[theme.whiteButton]}>
+            <Text style={theme.whiteButtonText}>
+              {screenProps.translate('login')}
+            </Text>
+          </View>
+        </TouchableOpacity>
+      )}
+      <Menu navigation={navigation} translate={screenProps.translate} />
+      <CloseButton style={style.goBack} onPress={() => navigation.goBack()} />
+    </View>
+  );
+};
 
 const style = StyleSheet.create({
   container: {

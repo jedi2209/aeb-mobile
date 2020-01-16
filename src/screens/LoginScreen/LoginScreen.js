@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   StyleSheet,
   View,
@@ -10,14 +10,17 @@ import {
   SafeAreaView
 } from 'react-native';
 
-import Logo from '../images/logo-full-white.svg';
-import {TextInput} from '../components/Textinput';
+import Logo from '../../images/logo-full-white.svg';
+import {TextInput} from '../../components/Textinput';
+import {onPressSignIn} from './LoginScreen.model';
 
 export const LoginScreen = () => {
+  const [values, setValues] = useState({email: '', password: ''});
+
   return (
     <ImageBackground
       style={styles.background}
-      source={require('../images/login-bg.png')}>
+      source={require('../../images/login-bg.png')}>
       <SafeAreaView>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.inner}>
@@ -25,10 +28,20 @@ export const LoginScreen = () => {
             <View style={styles.container}>
               <View style={styles.containerInner}>
                 <View style={styles.field}>
-                  <TextInput label="Email" value="fake@gmail.com" />
+                  <TextInput
+                    label="Email"
+                    value={values.email}
+                    onChangeText={text => setValues({...values, email: text})}
+                  />
                 </View>
                 <View style={styles.field}>
-                  <TextInput label="Password" />
+                  <TextInput
+                    label="Password"
+                    value={values.password}
+                    onChangeText={text =>
+                      setValues({...values, password: text})
+                    }
+                  />
                 </View>
                 <TouchableOpacity
                   style={[styles.button, {alignItems: 'flex-end'}]}>
@@ -38,7 +51,15 @@ export const LoginScreen = () => {
                 </TouchableOpacity>
               </View>
               <View style={styles.separator} />
-              <TouchableOpacity style={styles.button}>
+              <TouchableOpacity
+                style={styles.button}
+                onPressIn={() => onPressSignIn(values)}
+                // onPress={() => {
+                //   // go to api
+                //   // get answer
+                //   // set obj to asynStorage
+                // }}
+                >
                 <Text style={[styles.buttonText, {textTransform: 'uppercase'}]}>
                   Sign In
                 </Text>
