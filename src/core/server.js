@@ -13,14 +13,39 @@ export const API = class AebApi {
     };
   }
 
+  async login({email, password}) {
+    try {
+      const response = await fetch(this._url + '/user/auth/', {
+        method: 'POST',
+        body: JSON.stringify({login: email, pass: password}),
+        headers: {
+          ...this._headers,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const responseJson = await response.json();
+      // TODO: Доббавить проверку на наличие даннных
+      // console.log('>>>>>>>>> responseJson login', responseJson.data);
+
+      return {
+        name: responseJson.data.NAME,
+        id: responseJson.data.ID,
+        email: responseJson.data.EMAIL,
+        login: responseJson.data.LOGIN,
+        phone: responseJson.data.PERSONAL_PHONE
+      };
+    } catch (err) {
+      console.log('>>>>>>>> login', err);
+    }
+  }
+
   async getNews(page, paramsForFetch = {}) {
     try {
       const params = Object.keys(paramsForFetch).reduce((acc, param) => {
         return acc + `&${param}=${paramsForFetch[param]}`;
       }, '');
-
-      console.log('params', params);
-      console.log(`${this._url}/news/list/?page=${page}${params}`);
 
       const response = await fetch(
         `${this._url}/news/list/?page=${page}${params}`,
@@ -113,7 +138,6 @@ export const API = class AebApi {
 
   async getCommittees(page, {type}) {
     try {
-      console.log(this._url + '/committees/list/' + type + '/?page=' + page);
       const response = await fetch(
         this._url + '/committees/list/' + type + '/?page=' + page,
         {
@@ -128,7 +152,6 @@ export const API = class AebApi {
 
       const responseJson = await response.json();
 
-      console.log(responseJson);
       return {
         items: responseJson.data,
         pagination: responseJson.info

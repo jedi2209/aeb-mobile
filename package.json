@@ -19,7 +19,7 @@
     "version": "./version.sh"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.6.2",
+    "@react-native-community/async-storage": "^1.7.1",
     "appcenter": "2.5.0",
     "appcenter-analytics": "2.5.0",
     "appcenter-crashes": "2.5.0",

@@ -1,4 +1,5 @@
 import React from 'react';
+import {useStore} from 'effector-react';
 
 import NewsScreen from './screens/News';
 import MenuScreen from './screens/Menu';
@@ -20,11 +21,22 @@ import memoize from 'lodash.memoize'; // Use for caching/memoize for better perf
 
 import SplashScreen from 'react-native-splash-screen';
 
-import {I18nManager, Platform, NativeModules, Text} from 'react-native';
+import {
+  SafeAreaView,
+  I18nManager,
+  Platform,
+  NativeModules,
+  View,
+  Text,
+  ActivityIndicator
+} from 'react-native';
 import OneSignal from 'react-native-onesignal'; // Import package from node modules
 
+import {setTopLevelNavigator} from './lib/navigation';
+
 import AsyncStorage from '@react-native-community/async-storage';
-import {LoginScreen} from './screens/LoginScreen';
+import {LoginScreen} from './screens/LoginScreen/LoginScreen';
+import {$session} from './screens/LoginScreen/LoginScreen.model';
 
 const translationGetters = {
   // lazy requires (metro bundler does not support symlinks)
@@ -119,6 +131,29 @@ if (__DEV__) {
   );
 }
 
+const AppContainerWrapper = props => {
+  const session = useStore($session);
+
+  if (!session.isSynced) {
+    return (
+      <SafeAreaView>
+        <View style={{marginTop: 200}}>
+          <Text>Loading...</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  return (
+    <AppContainer
+      {...props}
+      ref={navigatorRef => {
+        setTopLevelNavigator(navigatorRef);
+      }}
+    />
+  );
+};
+
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -178,7 +213,7 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <AppContainer
+      <AppContainerWrapper
         persistNavigationState={persistNavigationState}
         loadNavigationState={loadNavigationState}
         screenProps={{
