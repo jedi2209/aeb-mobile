@@ -22,6 +22,10 @@ export const $session = sessionDomain.store({isSynced: false});
 
 const signInFx = sessionDomain.effect({
   handler: async data => {
+    if (!data.email || !data.password) {
+      throw new Error('Заполните поля');
+    }
+
     const userData = await api.login({
       email: data.email,
       password: data.password
@@ -45,8 +49,8 @@ const signOutFx = sessionDomain.effect({
 
 $session.on(signInFx.done, (_, {result}) => result);
 
-signInFx.fail.watch(() => {
-  alert('Ops... try again');
+signInFx.fail.watch(err => {
+  alert(err ? err.error : 'Что-то пошло не так, попробуйте снова');
 });
 
 signInFx.done.watch(() => navigate('News'));
