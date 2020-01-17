@@ -113,12 +113,14 @@ class PublicationsScreen extends React.Component {
                         {this.data.name}
                       </Text>
                     </View>
-                    ({this.state.data.contacts.coordinator.name} ?
+                    {(this.state.data.contacts.coordinator.name ?
                     <TouchableHighlight
                       onPress={() => {
                         if (this.state.data.contacts.coordinator.email) {
                           Linking.openURL(
-                            `mailto:${this.state.data.contacts.coordinator.email}`
+                            `mailto:${
+                              this.state.data.contacts.coordinator.email
+                            }`
                           );
                         }
                       }}>
@@ -144,7 +146,7 @@ class PublicationsScreen extends React.Component {
                         </Text>
                       </View>
                     </TouchableHighlight>
-                    : null)
+                     : null)}
                     <ThumbList
                       paramsForFetch={{committees: this.data.id}}
                       translate={this.props.screenProps.translate}
