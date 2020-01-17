@@ -24,6 +24,7 @@
 	<string>20</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>mailto</string>
 		<string>tel</string>
 		<string>telprompt</string>
 		<string>comgooglemaps</string>
