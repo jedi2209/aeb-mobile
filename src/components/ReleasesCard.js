@@ -36,7 +36,7 @@ class ReleasesCard extends React.Component {
     return (
       <TouchableWithoutFeedback
         onPress={() => {
-          Linking.openURL(this.props.data.path);
+          Linking.openURL(this.props.data.file);
         }}>
         <View
           style={[
