@@ -4,7 +4,6 @@ import React from 'react';
 import {theme} from '../core/themeProvider';
 import {TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/SimpleLineIcons';
-// import BurgerIcon from '../images/Burger.svg';
 
 class Burger extends React.Component {
   render() {

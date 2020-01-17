@@ -1,6 +1,5 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
-import ArrowD from '../images/ArrowDropdown.svg';
 
 class ArrowDropdown extends React.Component {
   render() {
