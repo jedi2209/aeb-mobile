@@ -1,7 +1,7 @@
 import React from 'react';
 import {theme} from '../core/themeProvider';
 import {TouchableOpacity, StyleSheet} from 'react-native';
-import Close from '../images/close.svg';
+import Close from 'react-native-vector-icons/Ionicons';
 
 class CloseButton extends React.Component {
   render() {
@@ -9,7 +9,12 @@ class CloseButton extends React.Component {
       <TouchableOpacity
         onPress={this.props.onPress}
         style={[this.props.style, theme.goBackButton]}>
-        <Close style={style.close} />
+        <Close
+          name="ios-close-circle-outline"
+          size={45}
+          color={this.props.buttonColor ? this.props.buttonColor : '#fff'}
+          style={style.close}
+        />
       </TouchableOpacity>
     );
   }
@@ -17,8 +22,8 @@ class CloseButton extends React.Component {
 
 const style = StyleSheet.create({
   close: {
-    marginTop: 10,
-    marginLeft: 10
+    // marginTop: 10,
+    // marginLeft: 10
   }
 });
 

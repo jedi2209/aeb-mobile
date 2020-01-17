@@ -1,15 +1,15 @@
 import React from 'react';
-import {TouchableOpacity, StyleSheet} from 'react-native';
-import Arrow from '../images/Arrow';
+import {TouchableHighlight, StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class ArrowButton extends React.Component {
   render() {
     return (
-      <TouchableOpacity
+      <TouchableHighlight
         onPress={this.props.onPress}
         style={[this.props.style, style.arrowBack]}>
-        <Arrow />
-      </TouchableOpacity>
+        <Icon name="md-download" size={30} style={this.props.styleButton} />
+      </TouchableHighlight>
     );
   }
 }
