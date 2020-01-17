@@ -3,7 +3,13 @@ import React from 'react';
 import {useStore} from 'effector-react';
 import {theme} from '../core/themeProvider';
 
-import {StyleSheet, View, TouchableOpacity, Text, Platform} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableHighlight,
+  Text,
+  Platform
+} from 'react-native';
 
 import Menu from '../components/Menu';
 import CloseButton from '../components/CloseButton';
@@ -17,7 +23,7 @@ const MenuScreen = ({navigation, navigate, screenProps}) => {
   return (
     <View style={[style.container, theme.blueScreen]}>
       {session.id ? (
-        <TouchableOpacity
+        <TouchableHighlight
           onPress={() => onPressSignOut()}
           style={{
             marginTop: Platform.OS === 'ios' ? '20%' : '10%',
@@ -27,21 +33,25 @@ const MenuScreen = ({navigation, navigate, screenProps}) => {
           <View style={[theme.whiteButton]}>
             <Text style={theme.whiteButtonText}>Выйти</Text>
           </View>
-        </TouchableOpacity>
+        </TouchableHighlight>
       ) : (
-        <TouchableOpacity
+        <TouchableHighlight
           onPress={() => navigation.navigate('LoginScreen')}
+          navigation={navigation}
+          underlayColor={'#4A90E2'}
           style={{
             marginTop: Platform.OS === 'ios' ? '20%' : '10%',
-            width: 305,
-            height: 50
+            width: '75%',
+            height: 50,
+            marginHorizontal: 20,
+            marginVertical: 10
           }}>
-          <View style={[theme.whiteButton]}>
+          <View style={[theme.whiteButton, theme.cardShadow]}>
             <Text style={theme.whiteButtonText}>
               {screenProps.translate('login')}
             </Text>
           </View>
-        </TouchableOpacity>
+        </TouchableHighlight>
       )}
       <Menu
         navigation={navigation}
@@ -62,7 +72,9 @@ const style = StyleSheet.create({
     justifyContent: 'space-around'
   },
   goBack: {
-    marginBottom: '15%'
+    position: 'absolute',
+    bottom: '5%',
+    left: '43%'
   }
 });
 

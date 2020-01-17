@@ -12,7 +12,7 @@ class Header extends React.Component {
           {this.props.title}
         </Text>
         {this.props.date && (
-          <Text style={style.headerDate}>{this.props.date}</Text>
+          <Text style={theme.headerDate}>{this.props.date}</Text>
         )}
       </View>
     );
@@ -22,7 +22,6 @@ class Header extends React.Component {
 const style = StyleSheet.create({
   header: {
     paddingHorizontal: 14
-    // marginTop: Platform.OS !== 'ios' ? 0 : 0
   },
   headerTitle: {
     marginTop: Platform.OS !== 'ios' ? -12 : -8

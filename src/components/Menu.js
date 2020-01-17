@@ -20,7 +20,7 @@ const Menu = props => {
   }
   console.log('>>> render', props.isLogin);
   return (
-    <View style={{height: 300}}>
+    <View style={{height: '60%'}} scrollEnabled={false}>
       <SectionList
         style={styles.linklList}
         sections={[
@@ -42,6 +42,9 @@ const Menu = props => {
           <TouchableOpacity
             onPress={() => {
               navigation.navigate(item);
+            }}
+            style={{
+              paddingVertical: 10
             }}>
             <Text style={[styles.link, theme.whiteLink]}>
               {translate(item)}
