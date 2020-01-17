@@ -12,7 +12,9 @@ import {
   Image,
   StyleSheet,
   ImageBackground,
-  Platform
+  Platform,
+  TouchableHighlight,
+  Linking
 } from 'react-native';
 
 import {DeviceWidth, DeviceHeight} from '../core/themeProvider';
@@ -111,21 +113,38 @@ class PublicationsScreen extends React.Component {
                         {this.data.name}
                       </Text>
                     </View>
-                    <View
-                      style={[
-                        theme.cardBlock,
-                        theme.cardShadow,
-                        {
-                          width: DeviceWidth - 28,
-                          marginHorizontal: 14,
-                          padding: 14
+                    ({this.state.data.contacts.coordinator.name} ?
+                    <TouchableHighlight
+                      onPress={() => {
+                        if (this.state.data.contacts.coordinator.email) {
+                          Linking.openURL(
+                            `mailto:${this.state.data.contacts.coordinator.email}`
+                          );
                         }
-                      ]}>
-                      <Text>
-                        {this.props.screenProps.translate('coordinator')}
-                      </Text>
-                      <Text>{this.state.data.contacts.coordinator.name}</Text>
-                    </View>
+                      }}>
+                      <View
+                        style={[
+                          theme.cardBlock,
+                          theme.cardShadow,
+                          {
+                            width: DeviceWidth - 28,
+                            marginHorizontal: 14,
+                            padding: 14
+                          }
+                        ]}>
+                        <Text style={[styles.headerText, {flex: 1}]}>
+                          {this.props.screenProps.translate('coordinator')}
+                        </Text>
+                        <Text
+                          style={{
+                            fontSize: 16,
+                            fontFamily: 'SFUIDisplay-Regular'
+                          }}>
+                          {this.state.data.contacts.coordinator.name}
+                        </Text>
+                      </View>
+                    </TouchableHighlight>
+                    : null)
                     <ThumbList
                       paramsForFetch={{committees: this.data.id}}
                       translate={this.props.screenProps.translate}
