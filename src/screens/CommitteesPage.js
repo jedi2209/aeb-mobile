@@ -1,6 +1,9 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import ThumbList from '../components/ThumbList';
+import {API} from '../core/server';
+import {ActivityIndicator} from 'react-native';
+import {theme} from '../core/themeProvider';
 
 import {
   ScrollView,
@@ -15,6 +18,16 @@ import {
 import {DeviceWidth, DeviceHeight} from '../core/themeProvider';
 
 class PublicationsScreen extends React.Component {
+  state = {
+    data: [],
+    loading: true,
+    loadingMore: false,
+    fullList: false,
+    refreshing: false
+  };
+
+  data = this.props.navigation.getParam('otherParam', {});
+
   static navigationOptions = ({navigation, screenProps}) => {
     return {
       headerTintColor: '#fff',
@@ -33,79 +46,117 @@ class PublicationsScreen extends React.Component {
     };
   };
 
-  render() {
-    const data = this.props.navigation.getParam('otherParam', {});
+  componentDidMount() {
+    this.api = new API({lang: this.lang, platform: Platform.OS});
+    this._fetchAllArticles();
+  }
 
-    return (
-      <ImageBackground
-        source={require('../images/bg.png')}
-        style={[
-          styles.container,
-          {
-            top: -100,
-            position: 'relative',
-            marginBottom: -100,
-            minHeight: DeviceHeight + 100
-          }
-        ]}>
-        <View>
-          <View
-            style={{
-              marginTop: Platform.OS === 'ios' ? 60 + 30 : 73 + 30
-            }}>
-            <ScrollView
-              contentInsetAdjustmentBehavior="automatic"
-              style={styles.scrollView}>
-              <View style={{marginBottom: 100}}>
-                <View style={styles.body}>
-                  <View style={styles.header}>
-                    <Image
-                      style={styles.headerImage}
-                      source={{
-                        uri:
-                          'https://aebrus.ru/local/templates/aeb2019en/img/commitet_inner.png'
-                      }}
-                    />
-                    <Text
+  _fetchAllArticles = async ({force} = {}) => {
+    let calc;
+
+    let responsedData = await this.api.getCommitteeItem(this.data.id);
+
+    if (force) {
+      calc = responsedData.items;
+    } else {
+      calc = [...this.state.data, ...responsedData.items];
+    }
+
+    this.setState({fullList: true, data: calc[0]});
+  };
+
+  render() {
+    if (!this.state.data.id) {
+      return <ActivityIndicator />;
+    } else {
+      return (
+        <ImageBackground
+          source={require('../images/bg.png')}
+          style={[
+            styles.container,
+            {
+              top: -100,
+              position: 'relative',
+              marginBottom: -100,
+              minHeight: DeviceHeight + 100
+            }
+          ]}>
+          <View>
+            <View
+              style={{
+                marginTop: Platform.OS === 'ios' ? 60 + 30 : 73 + 30
+              }}>
+              <ScrollView
+                contentInsetAdjustmentBehavior="automatic"
+                style={styles.scrollView}>
+                <View style={{marginBottom: 100}}>
+                  <View style={styles.body}>
+                    <View style={styles.header}>
+                      <Image
+                        style={styles.headerImage}
+                        source={{
+                          uri:
+                            'https://aebrus.ru/local/templates/aeb2019en/img/commitet_inner.png'
+                        }}
+                      />
+                      <Text
+                        style={[
+                          styles.headerText,
+                          {
+                            // 60 - ширина картинки 40 marin right у картинки
+                            // и 14 отсупы внутри и снаружи карточки
+                            width: DeviceWidth - 60 - 20 - 14 * 2
+                          }
+                        ]}>
+                        {this.data.name}
+                      </Text>
+                    </View>
+                    <View
                       style={[
-                        styles.headerText,
+                        theme.cardBlock,
+                        theme.cardShadow,
                         {
-                          // 60 - ширина картинки 40 marin right у картинки
-                          // и 14 отсупы внутри и снаружи карточки
-                          width: DeviceWidth - 60 - 20 - 14 * 2
+                          width: DeviceWidth - 28,
+                          marginHorizontal: 14,
+                          padding: 14
                         }
                       ]}>
-                      {data.name}
-                    </Text>
-                  </View>
-                  <ThumbList
-                    paramsForFetch={{committees: data.id}}
-                    translate={this.props.screenProps.translate}
-                    type="publications"
-                    extraPadding="14"
-                  />
-                  <View
-                    style={{
-                      backgroundColor: '#fff',
-                      marginTop: 14,
-                      borderRadius: 8,
-                      marginHorizontal: 14
-                    }}>
+                      <Text>
+                        {this.props.screenProps.translate('coordinator')}
+                      </Text>
+                      <Text>{this.state.data.contacts.coordinator.name}</Text>
+                    </View>
                     <ThumbList
-                      paramsForFetch={{committees: data.id}}
+                      paramsForFetch={{committees: this.data.id}}
                       translate={this.props.screenProps.translate}
-                      navigation={this.props.navigation}
-                      type="newsCommitee"
-                      title={this.props.screenProps.translate('committee_news')}
+                      type="publications"
+                      extraPadding="14"
                     />
+                    <View
+                      style={{
+                        backgroundColor: '#fff',
+                        marginTop: 14,
+                        borderRadius: 8,
+                        marginHorizontal: 14
+                      }}>
+                      <ThumbList
+                        paramsForFetch={{committees: this.data.id}}
+                        translate={this.props.screenProps.translate}
+                        navigation={this.props.navigation}
+                        type="newsCommitee"
+                        title={this.props.screenProps.translate(
+                          'committee_news'
+                        )}
+                      />
+                    </View>
                   </View>
                 </View>
-              </View>
-            </ScrollView>
+              </ScrollView>
+            </View>
           </View>
-        </View>
-      </ImageBackground>
-    );
+        </ImageBackground>
+      );
+    }
   }
 }
 

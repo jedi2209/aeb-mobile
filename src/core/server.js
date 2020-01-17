@@ -197,6 +197,28 @@ export const API = class AebApi {
     }
   }
 
+  async getCommitteeItem(id) {
+    try {
+      const response = await fetch(this._url + '/committees/item/' + id + '/', {
+        method: 'GET',
+        headers: {
+          ...this._headers,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const responseJson = await response.json();
+
+      return {
+        items: responseJson.data,
+        pagination: responseJson.info
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async getReleases(page, paramsForFetch = {}) {
     try {
       const params = Object.keys(paramsForFetch).reduce((acc, param) => {

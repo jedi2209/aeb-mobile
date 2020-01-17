@@ -69,7 +69,7 @@ export const Settings = props => {
                   label={props.screenProps.translate('Profile.Fields.Phone')}
                   value={values.phone}
                   returnKeyType={'next'}
-                  textContentType={'phone'}
+                  textContentType={'telephoneNumber'}
                   keyboardType={'phone-pad'}
                   onChangeText={text => setValues({...values, phone: text})}
                 />
