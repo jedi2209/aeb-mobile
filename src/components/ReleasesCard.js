@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.32,
     textAlign: 'left',
     lineHeight: 22,
-    fontWeight: '500'
+    fontFamily: 'SFUIDisplay-Regular'
   },
   date: {
     fontSize: 12,

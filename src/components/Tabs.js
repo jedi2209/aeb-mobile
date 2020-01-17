@@ -34,10 +34,13 @@ class Tabs extends React.Component {
       <View>
         <SegmentedControlTab
           tabsContainerStyle={[styles.main, theme.cardShadow]}
-          tabStyle={styles.tabInActive}
-          tabTextStyle={styles.tabInActiveFont}
-          activeTabStyle={styles.tabActive}
-          activeTabTextStyle={styles.tabActiveFont}
+          tabStyle={[styles.tabInActive, this.props.tabStyle]}
+          tabTextStyle={[styles.tabInActiveFont, this.props.tabTextStyle]}
+          activeTabStyle={[styles.tabActive, this.props.activeTabStyle]}
+          activeTabTextStyle={[
+            styles.tabActiveFont,
+            this.props.activeTabTextStyle
+          ]}
           values={this.values}
           selectedIndex={this.state.selectedIndex}
           onTabPress={this.handleIndexChange}
