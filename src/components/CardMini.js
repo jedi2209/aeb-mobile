@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     letterSpacing: 0.32,
     textAlign: 'left',
     lineHeight: 22,
-    fontWeight: 'bold'
+    fontFamily: 'SFUIDisplay-Regular'
   },
   date: {
     fontSize: 15,

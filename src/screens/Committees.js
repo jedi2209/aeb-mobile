@@ -5,7 +5,6 @@ import {theme, DeviceWidth} from '../core/themeProvider';
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
 import Tabs from '../components/Tabs';
-import {TabView} from 'react-native-tab-view';
 
 import {
   SafeAreaView,
@@ -18,7 +17,7 @@ import {
 } from 'react-native';
 
 const FirstRoute = navigation => (
-  <View style={styles.body}>
+  <View style={styles.body} key="committees32">
     <ThumbList
       paramsForFetch={{type: 32}}
       type="committees"
@@ -28,7 +27,7 @@ const FirstRoute = navigation => (
 );
 
 const SecondRoute = navigation => (
-  <View style={styles.body}>
+  <View style={styles.body} key="committees30">
     <ThumbList
       paramsForFetch={{type: 30}}
       type="committees"
@@ -38,7 +37,7 @@ const SecondRoute = navigation => (
 );
 
 const ThirdRoute = navigation => (
-  <View style={styles.body}>
+  <View style={styles.body} key="committees31">
     <ThumbList
       paramsForFetch={{type: 31}}
       type="committees"
@@ -70,34 +69,6 @@ class CommitteesScreen extends React.Component {
     };
   };
 
-  // _renderTabBar = props => {
-  //   return (
-  //     <View style={styles.tabBar}>
-  //       {props.navigationState.routes.map((route, i) => {
-  //         return (
-  //           <TouchableWithoutFeedback
-  //             key={`tab-${i}`}
-  //             accessibilityRole="tab"
-  //             style={styles.tabItem}
-  //             onPress={() => this.setState({ index: i })}
-  //           >
-  //             <Text
-  //               style={{
-  //                 color: props.navigationState.index === i ? '#000' : '#D8D8D8',
-  //                 fontSize: 12,
-  //                 paddingTop: 10,
-  //                 paddingBottom: 20
-  //               }}
-  //             >
-  //               {route.title}
-  //             </Text>
-  //           </TouchableWithoutFeedback>
-  //         );
-  //       })}
-  //     </View>
-  //   );
-  // };
-
   render() {
     return (
       <View
@@ -109,6 +80,8 @@ class CommitteesScreen extends React.Component {
             <View>
               <View style={{backgroundColor: '#FAFAFA', paddingVertical: 14}}>
                 <Tabs
+                  tabTextStyle={{fontSize: 12}}
+                  activeTabTextStyle={{fontSize: 12}}
                   tabs={[
                     {
                       head: this.props.screenProps.translate('cross_sectoral'),
@@ -140,7 +113,7 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: '#FAFAFA',
-    marginTop: 10
+    marginVertical: 10
   },
   container: {
     flex: 1

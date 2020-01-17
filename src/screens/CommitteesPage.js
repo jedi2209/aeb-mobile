@@ -72,7 +72,7 @@ class PublicationsScreen extends React.Component {
                         {
                           // 60 - ширина картинки 40 marin right у картинки
                           // и 14 отсупы внутри и снаружи карточки
-                          width: DeviceWidth - 60 - 20 - 14 * 2 - 14 * 2
+                          width: DeviceWidth - 60 - 20 - 14 * 2
                         }
                       ]}>
                       {data.name}
@@ -88,10 +88,10 @@ class PublicationsScreen extends React.Component {
                     style={{
                       backgroundColor: '#fff',
                       marginTop: 14,
-                      borderRadius: 8
+                      borderRadius: 8,
+                      marginHorizontal: 14
                     }}>
                     <ThumbList
-                      padding={14}
                       paramsForFetch={{committees: data.id}}
                       translate={this.props.screenProps.translate}
                       navigation={this.props.navigation}
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
   body: {
     backgroundColor: 'transparent',
-    paddingHorizontal: 14,
+    // paddingHorizontal: 14,
     marginTop: 10
   },
   header: {
@@ -126,6 +126,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-start',
     paddingHorizontal: 14,
+    marginHorizontal: 14,
     paddingVertical: 20,
     marginBottom: 20
   },
@@ -133,7 +134,7 @@ const styles = StyleSheet.create({
     fontSize: 17,
     color: '#000000',
     lineHeight: 20,
-    fontWeight: 'bold'
+    fontFamily: 'SFUIDisplay-Regular'
   },
   headerImage: {
     width: 60,

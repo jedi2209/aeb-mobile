@@ -190,7 +190,7 @@ export default class AllArticlesScreen extends Component {
             navigation={this.props.navigation}
             key={`thumb-list-article-${item.id}`}
             data={item}
-            width={DeviceWidth}
+            width={DeviceWidth - 14}
             padding={this.props.padding}
             height={200}
             BAR_SPACE={BAR_SPACE}
@@ -237,7 +237,7 @@ export default class AllArticlesScreen extends Component {
           data={item}
           height={200}
           deviceWidth={DeviceWidth}
-          BAR_SPACE={BAR_SPACE}
+          BAR_SPACE={0}
         />
       </View>
     );
