@@ -11,17 +11,20 @@ import {
 } from 'react-native';
 
 import Logo from '../../images/logo-full-white.svg';
+import CloseButton from '../../components/CloseButton';
 import {TextInput} from '../../components/Textinput';
 import {onPressSignIn} from './LoginScreen.model';
+import {DeviceHeight} from '../../core/themeProvider';
 
-export const LoginScreen = () => {
+export const LoginScreen = props => {
   const [values, setValues] = useState({email: '', password: ''});
+  const {navigation} = props;
 
   return (
     <ImageBackground
       style={styles.background}
       source={require('../../images/login-bg.png')}>
-      <SafeAreaView>
+      <SafeAreaView style={{height: DeviceHeight}}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.inner}>
             <Logo style={styles.logo} />
@@ -69,6 +72,11 @@ export const LoginScreen = () => {
             </Text>
           </TouchableOpacity>
         </View>
+        <CloseButton
+          style={styles.goBack}
+          buttonColor="#024b9e"
+          onPress={() => navigation.goBack()}
+        />
       </SafeAreaView>
     </ImageBackground>
   );
@@ -118,5 +126,10 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#024b9e',
     fontSize: 15
+  },
+  goBack: {
+    position: 'absolute',
+    bottom: '10%',
+    left: '43%'
   }
 });
