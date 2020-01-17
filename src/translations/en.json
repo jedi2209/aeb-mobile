@@ -32,11 +32,32 @@
     "Releases": "Releases",
     "Committees": "Committees",
     "Contacts": "Contacts",
+    "Settings": "Settings",
     "Button": {
         "Cancel": "Cancel"
     },
     "Map": {
         "Title": "Get directions"
     },
-    "done": "Done"
+    "done": "Done",
+    "Auth" : {
+        "Password": "Password",
+        "PasswordForgot": "Forgot your password?",
+        "SignIn": "Sign in",
+        "NoAccount": "Don't have an account?",
+        "SignUp": "Sign up",
+        "RegisterLink": "https://aebrus.ru/en/for-aeb-members/howto.php",
+        "ForgotPasswordLink": "https://aebrus.ru/auth/?forgot_password=yes",
+        "Error": {
+            "BlankInput": "Заполните поля"
+        }
+    },
+    "Profile": {
+        "Fields": {
+            "FirstName": "Name",
+            "SecondName": "Second Name",
+            "SurName": "Last Name",
+            "Phone": "Phone"
+        }
+    }
 }
