@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
-  SafeAreaView
+  SafeAreaView,
+  Linking
 } from 'react-native';
 
 import Logo from '../../images/logo-full-white.svg';
@@ -34,22 +35,39 @@ export const LoginScreen = props => {
                   <TextInput
                     label="Email"
                     value={values.email}
+                    autoCapitalize={'none'}
+                    textContentType={'emailAddress'}
+                    keyboardType={'email-address'}
+                    enablesReturnKeyAutomatically={true}
+                    autoCompleteType={'username'}
+                    returnKeyType={'next'}
+                    autoFocus={true}
                     onChangeText={text => setValues({...values, email: text})}
                   />
                 </View>
                 <View style={styles.field}>
                   <TextInput
-                    label="Password"
+                    label={props.screenProps.translate('Auth.Password')}
                     value={values.password}
+                    autoCapitalize={'none'}
+                    secureTextEntry={true}
+                    enablesReturnKeyAutomatically={true}
+                    textContentType={'password'}
+                    autoCompleteType={'password'}
                     onChangeText={text =>
                       setValues({...values, password: text})
                     }
                   />
                 </View>
                 <TouchableOpacity
-                  style={[styles.button, {alignItems: 'flex-end'}]}>
+                  style={[styles.button, {alignItems: 'flex-end'}]}
+                  onPress={() => {
+                    Linking.openURL(
+                      props.screenProps.translate('Auth.ForgotPasswordLink')
+                    );
+                  }}>
                   <Text style={[styles.buttonText, {color: '#000'}]}>
-                    Forgot your password?
+                    {props.screenProps.translate('Auth.PasswordForgot')}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -58,17 +76,23 @@ export const LoginScreen = props => {
                 style={styles.button}
                 onPressIn={() => onPressSignIn(values)}>
                 <Text style={[styles.buttonText, {textTransform: 'uppercase'}]}>
-                  Sign In
+                  {props.screenProps.translate('Auth.SignIn')}
                 </Text>
               </TouchableOpacity>
             </View>
           </View>
         </TouchableWithoutFeedback>
         <View style={{marginTop: 80}}>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              Linking.openURL(props.screenProps.translate('Auth.RegisterLink'));
+            }}>
             <Text style={[styles.buttonText, {color: '#9B9B9B'}]}>
-              Don't have an account?{' '}
-              <Text style={{color: '#000'}}>Sign up</Text>
+              {props.screenProps.translate('Auth.NoAccount')}{' '}
+              <Text style={{color: '#000'}}>
+                {props.screenProps.translate('Auth.SignUp')}
+              </Text>
             </Text>
           </TouchableOpacity>
         </View>

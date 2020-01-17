@@ -32,7 +32,7 @@ const signInFx = sessionDomain.effect({
     });
 
     if (!userData.id) {
-      throw new Error('Не правильный логин или пароль');
+      throw new Error('Wrong login OR password');
     }
 
     await AsyncStorage.setItem('session', JSON.stringify(userData));

@@ -16,7 +16,7 @@ import {TextInput} from '../components/Textinput';
 import {$session} from './LoginScreen/LoginScreen.model';
 import {useStore} from 'effector-react';
 
-export const Settings = () => {
+export const Settings = props => {
   const session = useStore($session);
 
   const [values, setValues] = useState({
@@ -36,15 +36,21 @@ export const Settings = () => {
             <View style={styles.containerInner}>
               <View style={styles.field}>
                 <TextInput
-                  label="Name"
+                  label={props.screenProps.translate(
+                    'Profile.Fields.FirstName'
+                  )}
                   value={values.name}
+                  returnKeyType={'next'}
                   onChangeText={text => setValues({...values, name: text})}
                 />
               </View>
               <View style={styles.field}>
                 <TextInput
-                  label="Second name"
+                  label={props.screenProps.translate(
+                    'Profile.Fields.SecondName'
+                  )}
                   value={values.second_name}
+                  returnKeyType={'next'}
                   onChangeText={text =>
                     setValues({...values, second_name: text})
                   }
@@ -52,15 +58,19 @@ export const Settings = () => {
               </View>
               <View style={styles.field}>
                 <TextInput
-                  label="Last name"
+                  label={props.screenProps.translate('Profile.Fields.SurName')}
                   value={values.last_name}
+                  returnKeyType={'next'}
                   onChangeText={text => setValues({...values, last_name: text})}
                 />
               </View>
               <View style={styles.field}>
                 <TextInput
-                  label="Phone"
+                  label={props.screenProps.translate('Profile.Fields.Phone')}
                   value={values.phone}
+                  returnKeyType={'next'}
+                  textContentType={'phone'}
+                  keyboardType={'phone-pad'}
                   onChangeText={text => setValues({...values, phone: text})}
                 />
               </View>
@@ -68,6 +78,13 @@ export const Settings = () => {
                 <TextInput
                   label="Email"
                   value={values.email}
+                  autoCapitalize={'none'}
+                  textContentType={'emailAddress'}
+                  keyboardType={'email-address'}
+                  enablesReturnKeyAutomatically={true}
+                  autoCompleteType={'username'}
+                  returnKeyType={'done'}
+                  autoFocus={true}
                   onChangeText={text => setValues({...values, email: text})}
                 />
               </View>
