@@ -19,7 +19,7 @@ import {onPressSignIn} from './LoginScreen.model';
 import {DeviceHeight} from '../../core/themeProvider';
 
 export const LoginScreen = props => {
-  const [values, setValues] = useState({email: '', password: ''});
+  const [values, setValues] = useState({email: 'mobile@aebrus.ru', password: 'vsd3453Gfd435@34!'});
   const {navigation} = props;
 
   return (
