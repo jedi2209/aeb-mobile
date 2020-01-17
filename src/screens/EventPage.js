@@ -240,15 +240,12 @@ class EventScreen extends React.Component {
             <View style={{height: HEADER_MAX_HEIGHT}}>
               {this.data.registration.active && (
                 <View
-                  style={{
-                    backgroundColor: '#FF2D55',
-                    borderRadius: 6,
-                    width: 75,
-                    paddingTop: 3,
-                    paddingBottom: 3,
-                    marginBottom: 15,
-                    marginHorizontal: 14
-                  }}>
+                  style={[
+                    theme.badgeRed,
+                    {
+                      width: 75
+                    }
+                  ]}>
                   <Text
                     style={{
                       fontSize: 14,

@@ -2,10 +2,16 @@
     "body": {
         "fontFamily": "SFUIDisplay-Regular",
         "backgroundColor": "#fff"
-        // "paddingLeft": 14
     },
     "blueScreen": {
         "backgroundColor": "#0E4F9F"
+    },
+    "badgeRed": {
+        "backgroundColor": "#FF2D55",
+        "borderRadius": 6,
+        "paddingVertical": 3,
+        "marginBottom": 15,
+        "marginHorizontal": 14
     },
     "whiteLink": {
         "color": "#FFFFFF",
@@ -76,7 +82,7 @@
         "marginVertical": 10
     },
     "cardShadow": {
-        "shadowOpacity": 0.1,
+        "shadowOpacity": 0.3,
         "shadowRadius": 4,
         "shadowColor": "#000000",
         "shadowOffset": {
@@ -90,7 +96,7 @@
     },
     "headerShadow": {
         "borderBottomWidth": 0,
-        "shadowOpacity": 0.2,
+        "shadowOpacity": 0.3,
         "shadowRadius": 15,
         "shadowColor": "#000000",
         "shadowOffset": {
