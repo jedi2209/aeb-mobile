@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard,
-  SafeAreaView
+  SafeAreaView,
+  ScrollView
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -29,95 +30,97 @@ export const Settings = props => {
   });
 
   return (
-    <SafeAreaView>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={styles.inner}>
-          <View style={styles.container}>
-            <View style={styles.containerInner}>
-              <View style={styles.field}>
-                <TextInput
-                  label={props.screenProps.translate(
-                    'Profile.Fields.FirstName'
-                  )}
-                  value={values.name}
-                  returnKeyType={'next'}
-                  onChangeText={text => setValues({...values, name: text})}
-                />
+    <ScrollView>
+      <SafeAreaView>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={styles.inner}>
+            <View style={styles.container}>
+              <View style={styles.containerInner}>
+                <View style={styles.field}>
+                  <TextInput
+                    label={props.screenProps.translate(
+                      'Profile.Fields.FirstName'
+                    )}
+                    value={values.name}
+                    returnKeyType={'next'}
+                    onChangeText={text => setValues({...values, name: text})}
+                  />
+                </View>
+                <View style={styles.field}>
+                  <TextInput
+                    label={props.screenProps.translate(
+                      'Profile.Fields.SecondName'
+                    )}
+                    value={values.second_name}
+                    returnKeyType={'next'}
+                    onChangeText={text =>
+                      setValues({...values, second_name: text})
+                    }
+                  />
+                </View>
+                <View style={styles.field}>
+                  <TextInput
+                    label={props.screenProps.translate('Profile.Fields.SurName')}
+                    value={values.last_name}
+                    returnKeyType={'next'}
+                    onChangeText={text => setValues({...values, last_name: text})}
+                  />
+                </View>
+                <View style={styles.field}>
+                  <TextInput
+                    label={props.screenProps.translate('Profile.Fields.Phone')}
+                    value={values.phone}
+                    returnKeyType={'next'}
+                    textContentType={'phone'}
+                    keyboardType={'phone-pad'}
+                    onChangeText={text => setValues({...values, phone: text})}
+                  />
+                </View>
+                <View style={styles.field}>
+                  <TextInput
+                    label="Email"
+                    value={values.email}
+                    autoCapitalize={'none'}
+                    textContentType={'emailAddress'}
+                    keyboardType={'email-address'}
+                    enablesReturnKeyAutomatically={true}
+                    autoCompleteType={'username'}
+                    returnKeyType={'done'}
+                    autoFocus={true}
+                    onChangeText={text => setValues({...values, email: text})}
+                  />
+                </View>
               </View>
-              <View style={styles.field}>
-                <TextInput
-                  label={props.screenProps.translate(
-                    'Profile.Fields.SecondName'
-                  )}
-                  value={values.second_name}
-                  returnKeyType={'next'}
-                  onChangeText={text =>
-                    setValues({...values, second_name: text})
-                  }
-                />
-              </View>
-              <View style={styles.field}>
-                <TextInput
-                  label={props.screenProps.translate('Profile.Fields.SurName')}
-                  value={values.last_name}
-                  returnKeyType={'next'}
-                  onChangeText={text => setValues({...values, last_name: text})}
-                />
-              </View>
-              <View style={styles.field}>
-                <TextInput
-                  label={props.screenProps.translate('Profile.Fields.Phone')}
-                  value={values.phone}
-                  returnKeyType={'next'}
-                  textContentType={'phone'}
-                  keyboardType={'phone-pad'}
-                  onChangeText={text => setValues({...values, phone: text})}
-                />
-              </View>
-              <View style={styles.field}>
-                <TextInput
-                  label="Email"
-                  value={values.email}
-                  autoCapitalize={'none'}
-                  textContentType={'emailAddress'}
-                  keyboardType={'email-address'}
-                  enablesReturnKeyAutomatically={true}
-                  autoCompleteType={'username'}
-                  returnKeyType={'done'}
-                  autoFocus={true}
-                  onChangeText={text => setValues({...values, email: text})}
-                />
-              </View>
+              <View style={styles.separator} />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={async () => {
+                  const {name, second_name, last_name, phone, email, id} = values;
+
+                  const userData = await api.profile(
+                    {
+                      NAME: name,
+                      SECOND_NAME: second_name,
+                      LAST_NAME: last_name,
+                      EMAIL: email,
+                      PERSONAL_MOBILE: phone
+                    },
+                    id
+                  );
+
+                  await AsyncStorage.setItem('session', JSON.stringify(userData));
+
+                  alert('Сохранено успешно');
+                }}>
+                <Text style={[styles.buttonText, {textTransform: 'uppercase'}]}>
+                  Редактировать
+                </Text>
+              </TouchableOpacity>
             </View>
-            <View style={styles.separator} />
-            <TouchableOpacity
-              style={styles.button}
-              onPress={async () => {
-                const {name, second_name, last_name, phone, email, id} = values;
-
-                const userData = await api.profile(
-                  {
-                    NAME: name,
-                    SECOND_NAME: second_name,
-                    LAST_NAME: last_name,
-                    EMAIL: email,
-                    PERSONAL_MOBILE: phone
-                  },
-                  id
-                );
-
-                await AsyncStorage.setItem('session', JSON.stringify(userData));
-
-                alert('Сохранено успешно');
-              }}>
-              <Text style={[styles.buttonText, {textTransform: 'uppercase'}]}>
-                Редактировать
-              </Text>
-            </TouchableOpacity>
           </View>
-        </View>
-      </TouchableWithoutFeedback>
-    </SafeAreaView>
+        </TouchableWithoutFeedback>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
@@ -127,7 +130,7 @@ const styles = StyleSheet.create({
     height: 356
   },
   inner: {
-    paddingTop: 30,
+    paddingVertical: 30,
     paddingHorizontal: 30,
     alignItems: 'center'
   },

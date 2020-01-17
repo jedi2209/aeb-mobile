@@ -75,21 +75,23 @@ const styles = StyleSheet.create({
     position: 'relative'
   },
   tabInActive: {
+    paddingHorizontal: 2,
     borderColor: '#D8D8D8',
     backgroundColor: '#F1F2F6',
     borderWidth: 0
   },
   tabInActiveFont: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#ACB1C0'
   },
   tabActive: {
     backgroundColor: '#fff',
     marginVertical: 1,
-    borderWidth: 0
+    borderWidth: 0,
+    fontSize: 12
   },
   tabActiveFont: {
-    fontSize: 14,
+    fontSize: 12,
     color: '#1E2432'
   }
 });
