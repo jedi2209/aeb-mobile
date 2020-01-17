@@ -88,7 +88,10 @@ const MainNavigator = createStackNavigator(
     Committees: {screen: CommitteesScreen},
     Events: {screen: EventsScreen},
     Contacts: {screen: ContactsScreen},
-    Settings: {screen: Settings}
+    Settings: {screen: Settings},
+    LoginScreen: {
+      screen: LoginScreen
+    }
   },
   {
     initialRouteName: persistenceKey
@@ -102,9 +105,6 @@ const RootStack = createStackNavigator(
     },
     Menu: {
       screen: MenuScreen
-    },
-    LoginScreen: {
-      screen: LoginScreen
     }
   },
   {

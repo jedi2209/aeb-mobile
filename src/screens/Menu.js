@@ -18,8 +18,6 @@ import {$session, onPressSignOut} from './LoginScreen/LoginScreen.model';
 const MenuScreen = ({navigation, navigate, screenProps}) => {
   const session = useStore($session);
 
-  console.log('render menu screen', session.id);
-
   return (
     <View style={[style.container, theme.blueScreen]}>
       {session.id ? (
@@ -67,14 +65,12 @@ const style = StyleSheet.create({
   container: {
     height: '100%',
     flex: 1,
-    flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-around'
+    justifyContent: 'space-between',
   },
   goBack: {
-    position: 'absolute',
-    bottom: '5%',
-    left: '43%'
+    marginVertical: 24,
+    marginBottom: 48
   }
 });
 
