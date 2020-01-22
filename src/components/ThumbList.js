@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import moment from 'moment/min/moment-with-locales';
 
 import {
@@ -28,11 +28,11 @@ import Card from '../components/CardMini';
 const BAR_SPACE = 14;
 
 // TODO: use named export for better DX
-export default class AllArticlesScreen extends Component {
+export default class AllArticlesScreen extends PureComponent {
   state = {
     data: [],
     // для новостей начинаем со 2 страницы, т.к рендерим первую страницу в карусели
-    page: this.props.type === 'news' ? 2 : 1,
+    page: 1,
     loading: true,
     loadingMore: false,
     fullList: false,

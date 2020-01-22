@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useStore} from 'effector-react';
 import {theme, DeviceWidth} from '../core/themeProvider';
-import {Platform} from 'react-native';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
@@ -38,48 +38,70 @@ const ThumbListData = [
   }
 ];
 
-import {SafeAreaView, ScrollView, View, StyleSheet} from 'react-native';
+import {
+  TouchableOpacity,
+  SafeAreaView,
+  ScrollView,
+  View,
+  StyleSheet,
+  Text
+} from 'react-native';
+import {
+  onSubscribePressed,
+  $notifications
+} from '../features/notifications/Notifications.model';
 
-class PublicationsScreen extends React.Component {
-  static navigationOptions = ({navigation, screenProps}) => {
-    return {
-      headerLeft: (
-        <Header
-          onPress={() => navigation.navigate('Menu')}
-          title={screenProps.translate('publications')}
-        />
-      ),
-      headerStyle: [
-        theme.headerStyle,
-        theme.headerShadow,
-        {
-          height: 58
-        }
-      ]
-    };
+const PublicationsScreen = ({screenProps, navigation}) => {
+  const notifications = useStore($notifications);
+
+  useEffect(() => {
+    navigation.setParams({
+      notificationsEnabled: notifications.Publications
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [notifications]);
+
+  return (
+    <SafeAreaView style={{backgroundColor: theme.backgroundColor}}>
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={styles.scrollView}>
+        <View style={styles.body}>
+          <ThumbList
+            screenProps={screenProps}
+            data={ThumbListData}
+            type="publications"
+            extraPadding="28"
+          />
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+};
+
+PublicationsScreen.navigationOptions = ({navigation, screenProps}) => {
+  const {notificationsEnabled} = navigation.state.params;
+  return {
+    headerLeft: (
+      <Header
+        onPress={() => navigation.navigate('Menu')}
+        title={screenProps.translate('publications')}
+      />
+    ),
+    headerRight: (
+      <TouchableOpacity onPress={() => onSubscribePressed('Publications')}>
+        <Text>{notificationsEnabled ? 'Отписка' : 'Подписка'}</Text>
+      </TouchableOpacity>
+    ),
+    headerStyle: [
+      theme.headerStyle,
+      theme.headerShadow,
+      {
+        height: 58
+      }
+    ]
   };
-
-  render() {
-    const {navigate} = this.props.navigation;
-
-    return (
-      <SafeAreaView style={{backgroundColor: theme.backgroundColor}}>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <View style={styles.body}>
-            <ThumbList
-              screenProps={this.props.screenProps}
-              data={ThumbListData}
-              type="publications"
-              extraPadding="28"
-            />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
-}
+};
 
 const styles = StyleSheet.create({
   scrollView: {
