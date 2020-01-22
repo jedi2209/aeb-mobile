@@ -14,3 +14,12 @@ export function navigate(routeName, params) {
     })
   );
 }
+
+export function setParams(params, key) {
+  _navigator.dispatch(
+    NavigationActions.setParams({
+      params,
+      key
+    })
+  );
+}
