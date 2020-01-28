@@ -1,4 +1,4 @@
-import {createDomain} from 'effector';
+import {createDomain, forward} from 'effector';
 import AsyncStorage from '@react-native-community/async-storage';
 import PushNotifications from './PushNotifications';
 import {Alert} from 'react-native';
@@ -34,14 +34,21 @@ notificationsDomain.onCreateStore(async store => {
 export const onSubscribePressed = notificationsDomain.event();
 export const $notifications = notificationsDomain.store({});
 
-$notifications.on(onSubscribePressed, async (state, page) => {
-  let PushStatus = false;
+const onAlertButtonPressed = notificationsDomain.event();
+
+const subscribeFx = notificationsDomain.effect().use(async page => {
+  const isEnabledNotifications = $notifications.getState()[page];
+
+  if (isEnabledNotifications) {
+    onAlertButtonPressed({page, status: false});
+    return;
+  }
+
   switch (page) {
-    case 'Publications':
+    case 'Publications': {
       const {status, settings} = await requestNotifications(['alert', 'sound']);
-      console.log('status', status);
       if (status !== RESULTS.GRANTED) {
-        PushStatus = Alert.alert(
+        Alert.alert(
           translate('Push.Publications.PleaseAllowTitle'),
           translate('Push.Publications.PleaseAllow'),
           [
@@ -50,10 +57,7 @@ $notifications.on(onSubscribePressed, async (state, page) => {
               style: 'cancel',
               onPress: () => {
                 console.log('Ask me later pressed');
-                return {
-                  ...state,
-                  [page]: false
-                };
+                onAlertButtonPressed({page, status: false});
               }
             },
             {
@@ -61,61 +65,57 @@ $notifications.on(onSubscribePressed, async (state, page) => {
               style: 'cancel',
               onPress: () => {
                 console.log('Cancel pressed');
-                return {
-                  ...state,
-                  [page]: false
-                };
+                onAlertButtonPressed({page, status: false});
               }
             },
             {
               text: translate('Button.OK'),
               onPress: () => {
-                openSettings().catch(() =>
-                  console.warn('Cannot open settings')
-                );
-                return {
-                  ...state,
-                  [page]: false
-                };
+                openSettings().catch(() => {
+                  console.warn('Cannot open settings');
+                  // TODO: Разобраться.
+                  // onAlertButtonPressed({page, status: false});
+                });
               }
             }
           ],
           {cancelable: false}
         );
       } else {
-        PushStatus = Alert.alert(
+        Alert.alert(
           translate('Push.Publications.YouHaveSubscribedTitle'),
           translate('Push.Publications.YouHaveSubscribedDescription'),
           [
             {
               text: translate('Button.OK'),
               onPress: () => {
-                return {
-                  ...state,
-                  [page]: true
-                };
+                onAlertButtonPressed({page, status: true});
               }
             }
           ]
         );
       }
-      break;
+    }
   }
-  console.log('PushStatus', PushStatus);
-  console.log('state[page]', state[page]);
-  return {
-    ...state,
-    [page]: state[page] ? !state[page] : false
-  };
 });
+
+$notifications.on(onAlertButtonPressed, (state, {page, status}) => ({
+  ...state,
+  [page]: status
+}));
 
 $notifications.watch(async store => {
   try {
     await AsyncStorage.setItem('notifications', JSON.stringify(store));
-    //console.log('$notifications.watch', store);
   } catch (error) {}
 });
 
-$notifications.watch(val => {
-  //console.log('val', val);
+$notifications.watch(notifications => {
+  // TODO: Тут можно делать подписку и отписку на пуши.
 });
+
+$notifications.watch(val => {
+  console.log(val);
+});
+
+forward({from: onSubscribePressed, to: subscribeFx});

@@ -344,7 +344,7 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - AppCenter
     - AppCenterReactNativeShared
     - boost-for-react-native
@@ -455,7 +455,7 @@ SPEC CHECKSUMS:
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
   GoogleMaps: 5046d7edfe381c1a0b20fdaf293915a375c3122b
   OneSignal: f2fbf3c497bc6ef111bfcdb0180c432af51fc9af
-  Permission-Notifications: 1e03f5c43612ac4f9cdcaf6504695fc4e15f33d9
+  Permission-Notifications: a5f726fd7ef7f337277dd145f4483008c8c7d0f6
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
@@ -465,13 +465,13 @@ SPEC CHECKSUMS:
   React-jsi: cb2cd74d7ccf4cffb071a46833613edc79cdf8f7
   React-jsiexecutor: d5525f9ed5f782fdbacb64b9b01a43a9323d2386
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
-  react-native-add-calendar-event: 46b0ff5b4c9c7cb46e790ea25afb8ba430286d70
-  react-native-calendar-events: eaa63134881d97488feb21ea114158f712894018
+  react-native-add-calendar-event: d559051d40b9ced43ca2ae052aca7685a546e3e1
+  react-native-calendar-events: 2fe35a9294af05de0ed819d3a1b5dac048d2c010
   react-native-google-maps: 2e2e697dab576abd5809d78cd74e775865b62bf7
   react-native-maps: 6e499eee4eabf422ba8b6f94e993cc768bf35153
-  react-native-onesignal: 29813e90679fe02ce79ac766908be3a580016978
+  react-native-onesignal: 8bee1cdc9bf67cafd4a731fa12332bd74661b18b
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
-  react-native-webview: db4682f1698ab4b17a5e88f951031d203ff8aea8
+  react-native-webview: 711cef318a554093b09a5b871894011435d87a8d
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -482,10 +482,10 @@ SPEC CHECKSUMS:
   React-RCTText: 9ccc88273e9a3aacff5094d2175a605efa854dbe
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
-  RNCAsyncStorage: 44395cb9c7c1523104c2b499eb426ef7aff82bca
+  RNCAsyncStorage: 8539fc80a0075fcc9c8e2dff84cd22dc5bf1dacf
   RNGestureHandler: 02905abe54e1f6e59c081a10b4bd689721e17aa6
-  RNLocalize: 08eb68476e1f2d8cacd75fa919bf5e219fb03b19
-  RNPermissions: 2f74237e97b08beda01e914301e12524ddddf5b8
+  RNLocalize: 613a538ad24cb5924cc7707bc57fe8d5eccb4350
+  RNPermissions: 6db7e0a4d94c9c02390d11020b1d3d187aaf77e5
   RNReanimated: b2ab0b693dddd2339bd2f300e770f6302d2e960c
   RNSVG: 8ba35cbeb385a52fd960fd28db9d7d18b4c2974f
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
@@ -493,4 +493,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 60a148d36af733e3d95f5f197b6321a2db71c883
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.4
