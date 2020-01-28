@@ -21,9 +21,6 @@ const htmlStyles = `
         left: 0;
         right: 0;
     }
-    table {
-      font-size: 12px !important;
-    }
     table,
     th,
     td {
@@ -36,13 +33,27 @@ const htmlStyles = `
   </style>
 `;
 
+const tagsStyles = {
+  p: {padding: 0, marginBottom: 2},
+  // div: {display: 'flex', flex: 1, flexDirection: 'column'},
+  //table: {fontSize: '12px !important', color: 'red'},
+  img: {width: DeviceWidth, maxWidth: DeviceWidth}
+};
+
+const classesStyles = {
+  'div': {marginBottom: 0, padding: 0},
+  'divider': {marginRight: 10, width: 10}
+}
+
 class WebViewAutoHeight extends Component {
   render() {
     return (
       // eslint-disable-next-line react-native/no-inline-styles
-      <ScrollView style={{flex: 1}}>
+      <ScrollView style={{flex: 1, marginTop: 20}}>
         <HTML
-          html={htmlStyles + this.props.text}
+          html={this.props.text}
+          tagsStyles={tagsStyles}
+          classesStyles={classesStyles}
           imagesMaxWidth={DeviceWidth}
         />
       </ScrollView>
