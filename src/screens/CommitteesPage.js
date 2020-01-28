@@ -131,6 +131,7 @@ class PublicationsScreen extends React.Component {
                           {
                             width: DeviceWidth - 28,
                             marginHorizontal: 14,
+                            // marginVertical: 14,
                             padding: 14
                           }
                         ]}>
@@ -148,7 +149,7 @@ class PublicationsScreen extends React.Component {
                     </TouchableHighlight>
                      : null)}
                     <ThumbList
-                      paramsForFetch={{committees: this.data.id}}
+                      paramsForFetch={{committees: this.data.id, limit: 3}}
                       translate={this.props.screenProps.translate}
                       type="publications"
                       extraPadding="14"

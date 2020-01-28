@@ -35,7 +35,9 @@
     "Contacts": "Contacts",
     "Settings": "Settings",
     "Button": {
-        "Cancel": "Cancel"
+        "Cancel": "Cancel",
+        "OK": "OK",
+        "AskLater": "Ask me later"
     },
     "Map": {
         "Title": "Get directions"
@@ -59,6 +61,14 @@
             "SecondName": "Second Name",
             "SurName": "Last Name",
             "Phone": "Phone"
+        }
+    },
+    "Push": {
+        "Publications": {
+            "PleaseAllowTitle": "Push Notifications request",
+            "PleaseAllow": "Please Allow Push Notifications in order to receive Publications updates",
+            "YouHaveSubscribedTitle": "You have been scubsribed!",
+            "YouHaveSubscribedDescription": "Now you get pus-message when new Publication is online"
         }
     }
 }

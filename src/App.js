@@ -165,45 +165,24 @@ export default class App extends React.Component {
     };
 
     setI18nConfig(); // set initial config
-    OneSignal.init('829b3b43-bb6d-40fa-b82e-3305342bd57b', {
-      kOSSettingsKeyAutoPrompt: true
-    });
-    OneSignal.addEventListener('received', this.onReceivedPush);
-    OneSignal.addEventListener('opened', this.onOpenedPush);
-    OneSignal.addEventListener('ids', this.onIdsPush);
   }
 
   componentDidMount() {
     RNLocalize.addEventListener('change', this.handleLocalizationChange);
     SplashScreen.hide();
+    OneSignal.init('829b3b43-bb6d-40fa-b82e-3305342bd57b', {
+      kOSSettingsKeyAutoPrompt: false
+    });
   }
 
   componentWillUnmount() {
     RNLocalize.removeEventListener('change', this.handleLocalizationChange);
-    OneSignal.removeEventListener('received', this.onReceivedPush);
-    OneSignal.removeEventListener('opened', this.onOpenedPush);
-    OneSignal.removeEventListener('ids', this.onIdsPush);
   }
 
   handleLocalizationChange = () => {
     setI18nConfig();
     this.forceUpdate();
   };
-
-  onReceivedPush(notification) {
-    console.log('Notification received: ', notification);
-  }
-
-  onOpenedPush(openResult) {
-    console.log('Message: ', openResult.notification.payload.body);
-    console.log('Data: ', openResult.notification.payload.additionalData);
-    console.log('isActive: ', openResult.notification.isAppInFocus);
-    console.log('openResult: ', openResult);
-  }
-
-  onIdsPush(device) {
-    console.log('Device info: ', device);
-  }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.loading !== this.state.loading) {

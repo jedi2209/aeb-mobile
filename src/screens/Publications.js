@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useStore} from 'effector-react';
 import {theme, DeviceWidth} from '../core/themeProvider';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
@@ -80,7 +81,7 @@ const PublicationsScreen = ({screenProps, navigation}) => {
 };
 
 PublicationsScreen.navigationOptions = ({navigation, screenProps}) => {
-  const {notificationsEnabled} = navigation.state.params;
+  const {notificationsEnabled} = navigation.state.params || {};
   return {
     headerLeft: (
       <Header
@@ -89,9 +90,14 @@ PublicationsScreen.navigationOptions = ({navigation, screenProps}) => {
       />
     ),
     headerRight: (
-      <TouchableOpacity onPress={() => onSubscribePressed('Publications')}>
-        <Text>{notificationsEnabled ? 'Отписка' : 'Подписка'}</Text>
-      </TouchableOpacity>
+      <Icon
+        name={
+          notificationsEnabled ? 'md-notifications' : 'md-notifications-off'
+        }
+        size={30}
+        style={styles.styleButton}
+        onPress={() => onSubscribePressed('Publications')}
+      />
     ),
     headerStyle: [
       theme.headerStyle,
@@ -107,6 +113,10 @@ const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: '#FAFAFA',
     width: DeviceWidth
+  },
+  styleButton: {
+    paddingRight: 18,
+    paddingTop: 10
   },
   body: {
     //paddingLeft: 14
