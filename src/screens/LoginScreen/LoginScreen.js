@@ -16,6 +16,9 @@ import Logo from '../../images/logo-full-white.svg';
 import CloseButton from '../../components/CloseButton';
 import {TextInput} from '../../components/Textinput';
 import {onPressSignIn} from './LoginScreen.model';
+import Header from '../../components/Header';
+import HeaderBackButtonCustom from '../../components/HeaderBackButtonCustom';
+import {theme} from '../../core/themeProvider';
 import {DeviceHeight} from '../../core/themeProvider';
 
 export const LoginScreen = props => {
@@ -23,92 +26,109 @@ export const LoginScreen = props => {
   const {navigation} = props;
 
   return (
-    <ScrollView style={{flex: 1}}>
-      <SafeAreaView>
-        <View>
-          <ImageBackground
-            style={styles.background}
-            source={require('../../images/login-bg.png')}>
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-              <View style={styles.inner}>
-                <Logo style={styles.logo} />
-                <View style={styles.container}>
-                  <View style={styles.containerInner}>
-                    <View style={styles.field}>
-                      <TextInput
-                        label="Email"
-                        value={values.email}
-                        autoCapitalize={'none'}
-                        textContentType={'emailAddress'}
-                        keyboardType={'email-address'}
-                        enablesReturnKeyAutomatically={true}
-                        autoCompleteType={'username'}
-                        returnKeyType={'next'}
-                        autoFocus={true}
-                        onChangeText={text =>
-                          setValues({...values, email: text})
-                        }
-                      />
-                    </View>
-                    <View style={styles.field}>
-                      <TextInput
-                        label={props.screenProps.translate('Auth.Password')}
-                        value={values.password}
-                        autoCapitalize={'none'}
-                        secureTextEntry={true}
-                        enablesReturnKeyAutomatically={true}
-                        textContentType={'password'}
-                        autoCompleteType={'password'}
-                        onChangeText={text =>
-                          setValues({...values, password: text})
-                        }
-                      />
-                    </View>
-                    <TouchableOpacity
-                      style={[styles.button, {alignItems: 'flex-end'}]}
-                      onPress={() => {
-                        Linking.openURL(
-                          props.screenProps.translate('Auth.ForgotPasswordLink')
-                        );
-                      }}>
-                      <Text style={[styles.buttonText, {color: '#000'}]}>
-                        {props.screenProps.translate('Auth.PasswordForgot')}
-                      </Text>
-                    </TouchableOpacity>
+    <SafeAreaView style={{flex: 1, marginTop: -16}}>
+      <ScrollView>
+        <ImageBackground
+          style={styles.background}
+          source={require('../../images/login-bg.png')}>
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View style={styles.inner}>
+              <Logo style={styles.logo} />
+              <View style={styles.container}>
+                <View style={styles.containerInner}>
+                  <View style={styles.field}>
+                    <TextInput
+                      label="Email"
+                      value={values.email}
+                      autoCapitalize={'none'}
+                      textContentType={'emailAddress'}
+                      keyboardType={'email-address'}
+                      enablesReturnKeyAutomatically={true}
+                      autoCompleteType={'username'}
+                      returnKeyType={'next'}
+                      autoFocus={true}
+                      onChangeText={text => setValues({...values, email: text})}
+                    />
                   </View>
-                  <View style={styles.separator} />
+                  <View style={styles.field}>
+                    <TextInput
+                      label={props.screenProps.translate('Auth.Password')}
+                      value={values.password}
+                      autoCapitalize={'none'}
+                      secureTextEntry={true}
+                      enablesReturnKeyAutomatically={true}
+                      textContentType={'password'}
+                      autoCompleteType={'password'}
+                      onChangeText={text =>
+                        setValues({...values, password: text})
+                      }
+                    />
+                  </View>
                   <TouchableOpacity
-                    style={styles.button}
-                    onPressIn={() => onPressSignIn(values)}>
-                    <Text
-                      style={[styles.buttonText, {textTransform: 'uppercase'}]}>
-                      {props.screenProps.translate('Auth.SignIn')}
+                    style={[styles.button, {alignItems: 'flex-end'}]}
+                    onPress={() => {
+                      Linking.openURL(
+                        props.screenProps.translate('Auth.ForgotPasswordLink')
+                      );
+                    }}>
+                    <Text style={[styles.buttonText, {color: '#000'}]}>
+                      {props.screenProps.translate('Auth.PasswordForgot')}
                     </Text>
                   </TouchableOpacity>
                 </View>
+                <View style={styles.separator} />
+                <TouchableOpacity
+                  style={styles.button}
+                  onPressIn={() => onPressSignIn(values)}>
+                  <Text
+                    style={[styles.buttonText, {textTransform: 'uppercase'}]}>
+                    {props.screenProps.translate('Auth.SignIn')}
+                  </Text>
+                </TouchableOpacity>
               </View>
-            </TouchableWithoutFeedback>
-          </ImageBackground>
-          <View style={{marginTop: 80}}>
-            <TouchableOpacity
-              style={styles.button}
-              onPress={() => {
-                Linking.openURL(
-                  props.screenProps.translate('Auth.RegisterLink')
-                );
-              }}>
-              <Text style={[styles.buttonText, {color: '#9B9B9B'}]}>
-                {props.screenProps.translate('Auth.NoAccount')}{' '}
-                <Text style={{color: '#000'}}>
-                  {props.screenProps.translate('Auth.SignUp')}
-                </Text>
+            </View>
+          </TouchableWithoutFeedback>
+        </ImageBackground>
+        <View style={{marginTop: 40}}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              Linking.openURL(props.screenProps.translate('Auth.RegisterLink'));
+            }}>
+            <Text style={[styles.buttonText, {color: '#9B9B9B'}]}>
+              {props.screenProps.translate('Auth.NoAccount')}{' '}
+              <Text style={{color: '#000'}}>
+                {props.screenProps.translate('Auth.SignUp')}
               </Text>
-            </TouchableOpacity>
-          </View>
+            </Text>
+          </TouchableOpacity>
         </View>
-      </SafeAreaView>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
+};
+
+LoginScreen.navigationOptions = ({navigation, screenProps}) => {
+  return {
+    headerLeft: <HeaderBackButtonCustom navigation={navigation} />,
+    headerTintColor: '#0E4F9F',
+    headerStyle: {
+      backgroundColor: '#0E4F9F',
+      shadowRadius: 0,
+      shadowOffset: {
+        height: 0
+      },
+      elevation: 0,
+      borderBottomWidth: 0,
+      shadowColor: 'transparent'
+    },
+    headerRightStyle: {
+      borderWidth: 0,
+      borderColor: 'transparent',
+      elevation: 0,
+      shadowColor: 'transparent'
+    }
+  };
 };
 
 const styles = StyleSheet.create({

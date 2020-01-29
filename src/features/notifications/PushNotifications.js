@@ -1,14 +1,6 @@
 import React from 'react';
 import OneSignal from 'react-native-onesignal'; // Import package from node modules
 import AsyncStorage from '@react-native-community/async-storage';
-import {
-  check,
-  checkNotifications,
-  requestNotifications,
-  openSettings,
-  PERMISSIONS,
-  RESULTS
-} from 'react-native-permissions';
 
 export default class PushNotifications {
   // componentDidMount() {
@@ -20,30 +12,18 @@ export default class PushNotifications {
   //   OneSignal.addEventListener('ids', this.onIdsPush);
   // }
 
-  checkPermit() {
-    return checkNotifications().then(({status, settings}) => {
-      switch (status) {
-        case 'granted':
-          break;
-        case 'denied':
-          requestNotifications(['alert', 'sound']).then(
-            ({status, settings}) => {
-              console.log('denied status', status);
-              console.log('denied settings', settings);
-            }
-          );
-          break;
-        case 'blocked':
-      }
-      return status;
-    });
-  }
-
   // componentWillUnmount() {
   //   OneSignal.removeEventListener('received', this.onReceivedPush);
   //   OneSignal.removeEventListener('opened', this.onOpenedPush);
   //   OneSignal.removeEventListener('ids', this.onIdsPush);
   // }
+  setSubscription(type, status) {
+    if (status) {
+      OneSignal.sendTag('subscription' + type, status);
+    } else {
+      OneSignal.deleteTag('subscription' + type);
+    }
+  }
 
   onReceivedPush(notification) {
     console.log('Notification received: ', notification);

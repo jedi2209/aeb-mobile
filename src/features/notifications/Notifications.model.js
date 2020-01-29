@@ -1,6 +1,6 @@
 import {createDomain, forward} from 'effector';
 import AsyncStorage from '@react-native-community/async-storage';
-import PushNotifications from './PushNotifications';
+import PushNotificationsClass from './PushNotifications';
 import {Alert} from 'react-native';
 import {
   check,
@@ -35,6 +35,7 @@ export const onSubscribePressed = notificationsDomain.event();
 export const $notifications = notificationsDomain.store({});
 
 const onAlertButtonPressed = notificationsDomain.event();
+const PushNotifications = new PushNotificationsClass();
 
 const subscribeFx = notificationsDomain.effect().use(async page => {
   const isEnabledNotifications = $notifications.getState()[page];
@@ -110,12 +111,12 @@ $notifications.watch(async store => {
   } catch (error) {}
 });
 
-$notifications.watch(notifications => {
-  // TODO: Тут можно делать подписку и отписку на пуши.
-});
-
 $notifications.watch(val => {
-  console.log(val);
+  if (typeof val.Publications !== undefined && val.Publications === true) {
+    PushNotifications.setSubscription('Publications', true);
+  } else {
+    PushNotifications.setSubscription('Publications', false);
+  }
 });
 
 forward({from: onSubscribePressed, to: subscribeFx});

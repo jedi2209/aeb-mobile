@@ -13,6 +13,13 @@
         "marginBottom": 15,
         "marginHorizontal": 14
     },
+    "badgeYellow": {
+        "backgroundColor": "#f3e400",
+        "borderRadius": 6,
+        "paddingVertical": 3,
+        "marginBottom": 15,
+        "marginHorizontal": 14
+    },
     "whiteLink": {
         "color": "#FFFFFF",
         "fontSize": 20,
