@@ -1,31 +1,41 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {
+  TouchableWithoutFeedback,
+  View,
+  Text,
+  StyleSheet,
+  Image
+} from 'react-native';
 import {theme} from '../core/themeProvider';
 
 class CommitteesCard extends React.Component {
   render() {
     return (
-      <View
-        style={[
-          styles.slide,
-          theme.cardShadow,
-          {
-            // 14 это отсупы
-            width: this.props.deviceWidth - 28 - this.props.BAR_SPACE
-          }
-        ]}>
+      <TouchableWithoutFeedback onPress={this.props.onPress}>
         <View
-          style={{
-            width: this.props.deviceWidth - 28 - 28 - 70 - this.props.BAR_SPACE
-          }}>
-          <Text style={styles.title}>{this.props.data.name}</Text>
+          style={[
+            styles.slide,
+            theme.cardShadow,
+            {
+              // 14 это отсупы
+              width: this.props.deviceWidth - 28 - this.props.BAR_SPACE
+            },
+            this.props.style
+          ]}>
+          <View
+            style={{
+              width:
+                this.props.deviceWidth - 28 - 28 - 70 - this.props.BAR_SPACE
+            }}>
+            <Text style={styles.title}>{this.props.data.name}</Text>
+          </View>
+          <Image
+            source={{uri: this.props.data.img.preview[0]}}
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={[styles.image, {width: 60, height: 60, marginLeft: 10}]}
+          />
         </View>
-        <Image
-          source={{uri: this.props.data.img.preview[0]}}
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={[styles.image, {width: 60, height: 60, marginLeft: 10}]}
-        />
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

@@ -173,6 +173,9 @@ export default class App extends React.Component {
     OneSignal.init('829b3b43-bb6d-40fa-b82e-3305342bd57b', {
       kOSSettingsKeyAutoPrompt: false
     });
+    OneSignal.setSubscription(true);
+    OneSignal.enableVibrate(true);
+    OneSignal.enableSound(true);
   }
 
   componentWillUnmount() {

@@ -231,15 +231,14 @@ export default class AllArticlesScreen extends PureComponent {
   _renderCardCommittee = item => {
     return (
       // eslint-disable-next-line react-native/no-inline-styles
-      <View style={{marginTop: 10, width: '50%'}}>
-        <CommitteesCard
-          extraPadding={this.props.extraPadding}
-          data={item}
-          height={200}
-          deviceWidth={DeviceWidth}
-          BAR_SPACE={0}
-        />
-      </View>
+      <CommitteesCard
+        extraPadding={this.props.extraPadding}
+        data={item}
+        height={200}
+        deviceWidth={DeviceWidth}
+        BAR_SPACE={0}
+        style={{marginTop: 10}}
+      />
     );
   };
 
@@ -312,15 +311,20 @@ export default class AllArticlesScreen extends PureComponent {
         break;
       case 'committees':
         component = (
-          <TouchableWithoutFeedback
+          <CommitteesCard
+            extraPadding={this.props.extraPadding}
+            data={item}
+            height={200}
+            deviceWidth={DeviceWidth}
+            BAR_SPACE={0}
+            style={{marginTop: 10}}
             onPress={() => {
               navigation.navigate('CommitteesPage', {
                 itemId: item.id,
                 otherParam: item
               });
-            }}>
-            {this._renderCardCommittee(item)}
-          </TouchableWithoutFeedback>
+            }}
+          />
         );
         break;
       default:

@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
   },
   styleButton: {
     paddingRight: 18,
+    marginTop: -15,
     paddingTop: 10
   },
   body: {

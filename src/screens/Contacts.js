@@ -89,15 +89,20 @@ class ContactsScreen extends React.Component {
               titleStyle={theme.whiteButtonText}
               containerStyle={{width: '20%'}}
               buttonStyle={theme.whiteButton}
+              onPress={() => {
+                return Linking.openURL(`mailto:${value}`);
+              }}
             />
           );
         })}
         <View
           style={{
-            display: 'flex',
-            justifyContent: 'flex-start',
-            flexDirection: 'row',
-            flexWrap: 'wrap',
+            // display: 'flex',
+            // justifyContent: 'flex-start',
+            // flexDirection: 'column',
+            // flexWrap: 'wrap',
+            width: '100%',
+            flex: 1,
             paddingTop: 10
           }}>
           {items.phone.map(value => {
@@ -106,17 +111,18 @@ class ContactsScreen extends React.Component {
                 title={value.name}
                 key={value.name}
                 containerStyle={{
-                  width: '48%',
+                  width: '100%',
                   marginBottom: 5,
                   marginRight: '2%',
                   marginLeft: 0
                 }}>
                 <View
-                //   style={{
-                //     display: 'flex',
-                //     justifyContent: 'space-around',
-                //     flexDirection: 'row'
-                //   }}
+                  style={{
+                    // display: 'flex',
+                    width: '100%'
+                    // justifyContent: 'space-around',
+                    // flexDirection: 'row'
+                  }}
                 >
                   {value.phone.map((data, i) => {
                     return (
@@ -285,7 +291,7 @@ const styles = StyleSheet.create({
     right: 0
   },
   panel: {
-    height: DeviceHeight,
+    height: 930,
     padding: 20,
     backgroundColor: '#ffffff'
   },
