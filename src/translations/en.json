@@ -27,6 +27,7 @@
     "coordinator": "Coordinator",
     "events": "Events",
     "login": "Sign In",
+    "logout": "Sign Out",
     "News": "News",
     "Events": "Events",
     "Publications": "Publications",
@@ -70,5 +71,6 @@
             "YouHaveSubscribedTitle": "You have been scubsribed!",
             "YouHaveSubscribedDescription": "Now you get pus-message when new Publication is online"
         }
-    }
+    },
+    "profile": "Profile"
 }

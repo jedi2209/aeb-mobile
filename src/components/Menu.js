@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {theme} from '../core/themeProvider';
 
@@ -9,15 +10,12 @@ let menuItems = [
   'Publications',
   'Releases',
   'Committees',
-  'Contacts'
+  'Contacts',
+  'Settings'
 ];
 
 const Menu = props => {
   const {translate, navigation} = props;
-
-  if (props.isLogin && !menuItems.includes('Settings')) {
-    menuItems.push('Settings');
-  }
 
   return (
     <View
