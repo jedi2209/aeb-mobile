@@ -8,12 +8,9 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
-  ScrollView,
-  TouchableHighlight,
-  Platform
+  ScrollView
 } from 'react-native';
 
-import {DeviceWidth} from '../core/themeProvider';
 import AsyncStorage from '@react-native-community/async-storage';
 import {api} from '../lib/api';
 
