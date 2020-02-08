@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   View,
@@ -17,7 +17,16 @@ import {TextInput} from '../components/Textinput';
 import {$session} from './LoginScreen/LoginScreen.model';
 import {useStore} from 'effector-react';
 
+import {
+  onSubscribePressed,
+  $notifications
+} from '../features/notifications/Notifications.model';
+
 export const Settings = props => {
+  const notifications = useStore($notifications);
+
+  console.log('>>> notifications', notifications);
+
   return (
     <ScrollView>
       <SafeAreaView>
@@ -26,16 +35,31 @@ export const Settings = props => {
             <View style={styles.container}>
               <View style={styles.containerInner}>
                 <View style={styles.field}>
-                  <Text style={styles.label}>Уведомления о новостях</Text>
-                  <Switch value={true} />
+                  <Text style={styles.label}>
+                    {props.screenProps.translate('Notification.News')}
+                  </Text>
+                  <Switch
+                    onValueChange={() => onSubscribePressed('News')}
+                    value={notifications.News}
+                  />
                 </View>
                 <View style={styles.field}>
-                  <Text style={styles.label}>Уведомления о публикациях</Text>
-                  <Switch value={true} />
+                  <Text style={styles.label}>
+                    {props.screenProps.translate('Notification.Publications')}
+                  </Text>
+                  <Switch
+                    onValueChange={() => onSubscribePressed('Publications')}
+                    value={notifications.Publications}
+                  />
                 </View>
                 <View style={styles.field}>
-                  <Text style={styles.label}>Уведомления о пресс-релизах</Text>
-                  <Switch value={true} />
+                  <Text style={styles.label}>
+                    {props.screenProps.translate('Notification.Releases')}
+                  </Text>
+                  <Switch
+                    onValueChange={() => onSubscribePressed('Releases')}
+                    value={notifications.Releases}
+                  />
                 </View>
               </View>
               <View style={styles.separator} />

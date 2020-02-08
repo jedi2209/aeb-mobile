@@ -45,58 +45,54 @@ const subscribeFx = notificationsDomain.effect().use(async page => {
     return;
   }
 
-  switch (page) {
-    case 'Publications': {
-      const {status, settings} = await requestNotifications(['alert', 'sound']);
-      if (status !== RESULTS.GRANTED) {
-        Alert.alert(
-          translate('Push.Publications.PleaseAllowTitle'),
-          translate('Push.Publications.PleaseAllow'),
-          [
-            {
-              text: translate('Button.AskLater'),
-              style: 'cancel',
-              onPress: () => {
-                console.log('Ask me later pressed');
-                onAlertButtonPressed({page, status: false});
-              }
-            },
-            {
-              text: translate('Button.Cancel'),
-              style: 'cancel',
-              onPress: () => {
-                console.log('Cancel pressed');
-                onAlertButtonPressed({page, status: false});
-              }
-            },
-            {
-              text: translate('Button.OK'),
-              onPress: () => {
-                openSettings().catch(() => {
-                  console.warn('Cannot open settings');
-                  // TODO: Разобраться.
-                  // onAlertButtonPressed({page, status: false});
-                });
-              }
-            }
-          ],
-          {cancelable: false}
-        );
-      } else {
-        Alert.alert(
-          translate('Push.Publications.YouHaveSubscribedTitle'),
-          translate('Push.Publications.YouHaveSubscribedDescription'),
-          [
-            {
-              text: translate('Button.OK'),
-              onPress: () => {
-                onAlertButtonPressed({page, status: true});
-              }
-            }
-          ]
-        );
-      }
-    }
+  const {status, settings} = await requestNotifications(['alert', 'sound']);
+  if (status !== RESULTS.GRANTED) {
+    Alert.alert(
+      translate(`Push.${page}.PleaseAllowTitle`),
+      translate(`Push.${page}.PleaseAllow`),
+      [
+        {
+          text: translate('Button.AskLater'),
+          style: 'cancel',
+          onPress: () => {
+            console.log('Ask me later pressed');
+            onAlertButtonPressed({page, status: false});
+          }
+        },
+        {
+          text: translate('Button.Cancel'),
+          style: 'cancel',
+          onPress: () => {
+            console.log('Cancel pressed');
+            onAlertButtonPressed({page, status: false});
+          }
+        },
+        {
+          text: translate('Button.OK'),
+          onPress: () => {
+            openSettings().catch(() => {
+              console.log('Cannot open settings');
+              // TODO: Разобраться.
+              // onAlertButtonPressed({page, status: false});
+            });
+          }
+        }
+      ],
+      {cancelable: false}
+    );
+  } else {
+    Alert.alert(
+      translate(`Push.${page}.YouHaveSubscribedTitle`),
+      translate(`Push.${page}.YouHaveSubscribedDescription`),
+      [
+        {
+          text: translate('Button.OK'),
+          onPress: () => {
+            onAlertButtonPressed({page, status: true});
+          }
+        }
+      ]
+    );
   }
 });
 
@@ -112,11 +108,10 @@ $notifications.watch(async store => {
 });
 
 $notifications.watch(val => {
-  if (typeof val.Publications !== undefined && val.Publications === true) {
-    PushNotifications.setSubscription('Publications', true);
-  } else {
-    PushNotifications.setSubscription('Publications', false);
-  }
+  Object.keys(val).map(item => {
+    console.log('PushNotifications setSubscription', item, val[item]);
+    PushNotifications.setSubscription(item, val[item]);
+  });
 });
 
 forward({from: onSubscribePressed, to: subscribeFx});
