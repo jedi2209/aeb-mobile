@@ -13,7 +13,7 @@ import {
 
 import Menu from '../components/Menu';
 import CloseButton from '../components/CloseButton';
-import {$session, onPressSignOut} from './LoginScreen/LoginScreen.model';
+import {$session} from './LoginScreen/LoginScreen.model';
 
 const MenuScreen = ({navigation, navigate, screenProps}) => {
   const session = useStore($session);
@@ -22,14 +22,16 @@ const MenuScreen = ({navigation, navigate, screenProps}) => {
     <View style={[style.container, theme.blueScreen]}>
       {session.id ? (
         <TouchableHighlight
-          onPress={() => onPressSignOut()}
+          onPress={() => navigation.navigate('Profile')}
           style={{
             marginTop: Platform.OS === 'ios' ? '20%' : '10%',
             width: 305,
             height: 50
           }}>
           <View style={[theme.whiteButton]}>
-            <Text style={theme.whiteButtonText}>Выйти</Text>
+            <Text style={theme.whiteButtonText}>
+              {screenProps.translate('profile')}
+            </Text>
           </View>
         </TouchableHighlight>
       ) : (

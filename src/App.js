@@ -12,6 +12,7 @@ import EventsScreen from './screens/Events';
 import EventPage from './screens/EventPage';
 import ContactsScreen from './screens/Contacts';
 import {Settings} from './screens/Settings';
+import {Profile} from './screens/Profile';
 
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -89,6 +90,7 @@ const MainNavigator = createStackNavigator(
     Events: {screen: EventsScreen},
     Contacts: {screen: ContactsScreen},
     Settings: {screen: Settings},
+    Profile: {screen: Profile},
     LoginScreen: {
       screen: LoginScreen
     }
