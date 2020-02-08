@@ -70,7 +70,24 @@
             "PleaseAllow": "Please Allow Push Notifications in order to receive Publications updates",
             "YouHaveSubscribedTitle": "You have been scubsribed!",
             "YouHaveSubscribedDescription": "Now you get pus-message when new Publication is online"
+        },
+        "News": {
+            "PleaseAllowTitle": "Push Notifications request",
+            "PleaseAllow": "Please Allow Push Notifications in order to receive News updates",
+            "YouHaveSubscribedTitle": "You have been scubsribed!",
+            "YouHaveSubscribedDescription": "Now you get pus-message when new News is online"
+        },
+        "Releases": {
+            "PleaseAllowTitle": "Push Notifications request",
+            "PleaseAllow": "Please Allow Push Notifications in order to receive Releases updates",
+            "YouHaveSubscribedTitle": "You have been scubsribed!",
+            "YouHaveSubscribedDescription": "Now you get pus-message when new Releases is online" 
         }
     },
-    "profile": "Profile"
+    "profile": "Profile",
+    "Notification": {
+        "Publications": "Notification about Publications",
+        "News": "Notification about News",
+        "Releases": "Notification about Releases"
+    }
 }

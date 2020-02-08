@@ -39,14 +39,7 @@ const ThumbListData = [
   }
 ];
 
-import {
-  TouchableOpacity,
-  SafeAreaView,
-  ScrollView,
-  View,
-  StyleSheet,
-  Text
-} from 'react-native';
+import {SafeAreaView, ScrollView, View, StyleSheet} from 'react-native';
 import {
   onSubscribePressed,
   $notifications
