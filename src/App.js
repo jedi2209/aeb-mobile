@@ -193,7 +193,7 @@ export default class App extends React.Component {
   }
 
   onOpenedPush(openResult) {
-    const type = openResult.notification.payload.groupKey;
+    const type = openResult.notification.payload.additionalData.type;
     let id = 0;
     switch (type) {
       case 'Article':
