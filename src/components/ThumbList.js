@@ -68,6 +68,65 @@ export default class AllArticlesScreen extends PureComponent {
     }
   }
 
+  _fetchArticle = async ({force} = {}) => {
+    const {page = 1} = this.state;
+    const paramsForFetch = this.props.paramsForFetch || {};
+
+    let responsedData;
+    let calc;
+
+    try {
+      switch (this.props.type) {
+        case 'news':
+        case 'newsCommitee':
+          responsedData = await this.api.getNews(page, paramsForFetch);
+          break;
+        case 'events':
+          responsedData = await this.api.getEvents(page, paramsForFetch);
+          break;
+        case 'publications':
+          responsedData = await this.api.getPublications(page, paramsForFetch);
+          break;
+        case 'committees':
+          responsedData = await this.api.getCommittees(page, paramsForFetch);
+          break;
+        default:
+          responsedData = await this.api.getReleases(page, paramsForFetch);
+      }
+
+      if (force) {
+        calc = responsedData.items;
+      } else {
+        calc = [...this.state.data, ...responsedData.items];
+      }
+
+      if (!responsedData.pagination) {
+        this.setState({fullList: true, data: []});
+        return;
+      }
+
+      if (responsedData.pagination.pages.next === null) {
+        this.setState({fullList: true});
+      }
+
+      this.setState({
+        data: calc,
+        loading: false,
+        loadingMore: false,
+        refreshing: false
+      });
+    } catch (err) {
+      console.log('error during load data:', err);
+
+      this.setState({
+        fullList: true,
+        loading: false,
+        loadingMore: false,
+        refreshing: false
+      });
+    }
+  };
+
   _fetchAllArticles = async ({force} = {}) => {
     const {page = 1} = this.state;
     const paramsForFetch = this.props.paramsForFetch || {};
