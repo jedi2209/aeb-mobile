@@ -252,7 +252,7 @@ class ContactsScreen extends React.Component {
 const styles = StyleSheet.create({
   containerMap: {
     ...StyleSheet.absoluteFillObject,
-    height: '100%',
+    height: DeviceHeight,
     width: DeviceWidth,
     justifyContent: 'flex-end',
     alignItems: 'center'
