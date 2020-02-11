@@ -183,7 +183,6 @@ export default class App extends React.Component {
     OneSignal.enableSound(true);
 
     OneSignal.addEventListener('received', this.onReceivedPush.bind(this));
-    // OneSignal.addEventListener('opened', PushNotifications.onOpenedPush);
     OneSignal.addEventListener('ids', this.onIdsPush.bind(this));
     OneSignal.addEventListener('opened', this.onOpenedPush.bind(this));
 
@@ -231,6 +230,10 @@ export default class App extends React.Component {
 
   componentWillUnmount() {
     RNLocalize.removeEventListener('change', this.handleLocalizationChange);
+
+    OneSignal.removeEventListener('received', this.onReceivedPush.bind(this));
+    OneSignal.removeEventListener('opened', this.onIdsPush.bind(this));
+    OneSignal.removeEventListener('ids', this.onIdsPush.bind(this));
   }
 
   handleLocalizationChange = () => {

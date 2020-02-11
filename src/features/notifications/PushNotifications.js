@@ -24,19 +24,4 @@ export default class PushNotifications {
       OneSignal.deleteTag('subscription' + type);
     }
   }
-
-  onReceivedPush(notification) {
-    console.log('Notification received: ', notification);
-  }
-
-  onOpenedPush(openResult) {
-    console.log('Message: ', openResult.notification.payload.body);
-    console.log('Data: ', openResult.notification.payload.additionalData);
-    console.log('isActive: ', openResult.notification.isAppInFocus);
-    console.log('openResult: ', openResult);
-  }
-
-  onIdsPush(device) {
-    console.log('Device info: ', device);
-  }
 }
