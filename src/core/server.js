@@ -106,6 +106,27 @@ export const API = class AebApi {
     }
   }
 
+  async getNewsItem(itemID) {
+    try {
+      const response = await fetch(`${this._url}/news/item/${itemID}/`, {
+        method: 'GET',
+        headers: {
+          ...this._headers,
+          Accept: 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const responseJson = await response.json();
+      return {
+        items: responseJson.data,
+        pagination: responseJson.info
+      };
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   async getEvents(page, paramsForFetch = {}) {
     try {
       const params = Object.keys(paramsForFetch).reduce((acc, param) => {

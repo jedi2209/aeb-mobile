@@ -22,6 +22,9 @@ import i18n from 'i18n-js';
 import memoize from 'lodash.memoize'; // Use for caching/memoize for better performance
 
 import SplashScreen from 'react-native-splash-screen';
+import {LoadingIndicator} from './core/themeProvider';
+
+import PushNotifications from './features/notifications/PushNotifications';
 
 import {
   SafeAreaView,
@@ -34,7 +37,7 @@ import {
 } from 'react-native';
 import OneSignal from 'react-native-onesignal'; // Import package from node modules
 
-import {setTopLevelNavigator} from './lib/navigation';
+import NavigationService from './lib/navigation';
 
 import AsyncStorage from '@react-native-community/async-storage';
 import {LoginScreen} from './screens/LoginScreen/LoginScreen';
@@ -124,6 +127,9 @@ const persistNavigationState = async navState => {
 };
 const loadNavigationState = async () => {
   const jsonString = await AsyncStorage.getItem(persistenceKey);
+  this.setState({
+    loading: false
+  });
   return JSON.parse(jsonString);
 };
 
@@ -141,9 +147,7 @@ const AppContainerWrapper = props => {
   if (!session.isSynced) {
     return (
       <SafeAreaView>
-        <View style={{marginTop: 200}}>
-          <Text>Loading...</Text>
-        </View>
+        <LoadingIndicator color="white" />
       </SafeAreaView>
     );
   }
@@ -152,7 +156,7 @@ const AppContainerWrapper = props => {
     <AppContainer
       {...props}
       ref={navigatorRef => {
-        setTopLevelNavigator(navigatorRef);
+        NavigationService.setTopLevelNavigator(navigatorRef);
       }}
     />
   );
@@ -171,13 +175,58 @@ export default class App extends React.Component {
 
   componentDidMount() {
     RNLocalize.addEventListener('change', this.handleLocalizationChange);
-    SplashScreen.hide();
     OneSignal.init('829b3b43-bb6d-40fa-b82e-3305342bd57b', {
       kOSSettingsKeyAutoPrompt: false
     });
     OneSignal.setSubscription(true);
     OneSignal.enableVibrate(true);
     OneSignal.enableSound(true);
+
+    OneSignal.addEventListener('received', this.onReceivedPush.bind(this));
+    // OneSignal.addEventListener('opened', PushNotifications.onOpenedPush);
+    OneSignal.addEventListener('ids', this.onIdsPush.bind(this));
+    OneSignal.addEventListener('opened', this.onOpenedPush.bind(this));
+
+    setTimeout(function() {
+      SplashScreen.hide();
+    }, 550);
+  }
+
+  onOpenedPush(openResult) {
+    const type = openResult.notification.payload.groupKey;
+    let id = 0;
+    switch (type) {
+      case 'Article':
+        id = openResult.notification.payload.additionalData.id;
+        setTimeout(function() {
+          NavigationService.navigate(type, {
+            itemId: id
+          });
+        }, 150);
+        break;
+      case 'Publications':
+        setTimeout(function() {
+          NavigationService.navigate(type);
+        }, 150);
+        break;
+      case 'Releases':
+        setTimeout(function() {
+          NavigationService.navigate(type);
+        }, 150);
+        break;
+    }
+
+    // console.log('Data: ', openResult.notification.payload.additionalData);
+    // console.log('isActive: ', openResult.notification.isAppInFocus);
+    // console.log('openResult: ', openResult);
+  }
+
+  onReceivedPush(notification) {
+    console.log('Notification received: ', notification);
+  }
+
+  onIdsPush(device) {
+    console.log('Device info: ', device);
   }
 
   componentWillUnmount() {

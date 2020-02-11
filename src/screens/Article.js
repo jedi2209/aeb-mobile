@@ -5,6 +5,8 @@ import moment from 'moment/min/moment-with-locales';
 import ShareButton from '../components/ShareButton';
 import WebViewAutoHeight from '../components/WebViewAutoHeight';
 
+import {API} from '../core/server';
+
 const DEFAULT_IMAGE =
   'https://aebrus.ru/local/templates/aeb2019en/img/contacts_image.jpg';
 
@@ -30,7 +32,7 @@ class ArticleScreen extends React.Component {
     super(props);
 
     const {navigation} = this.props;
-    const data = navigation.getParam('otherParam', {});
+    const data = navigation.getParam('otherParam', null);
 
     this.translate = this.props.screenProps.translate;
 
@@ -39,10 +41,30 @@ class ArticleScreen extends React.Component {
         // iOS has negative initial scroll value because content inset
         Platform.OS === 'ios' ? -HEADER_MAX_HEIGHT : 0
       ),
-      refreshing: false
+      refreshing: false,
+      loading: true,
+      data: data
     };
-    this.data = data;
   }
+
+  componentDidMount() {
+    if (!this.state.data) {
+      this._fetchArticleAPI(this.props.navigation.state.params.itemId);
+    } else {
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
+  _fetchArticleAPI = async (itemId = {}) => {
+    this.api = new API({lang: this.lang, platform: Platform.OS});
+    const apiData = await this.api.getNewsItem(itemId);
+    this.setState({
+      loading: false,
+      data: apiData.items[0]
+    });
+  };
 
   static navigationOptions = ({navigation}) => {
     const data = navigation.getParam('otherParam', {});
@@ -92,9 +114,9 @@ class ArticleScreen extends React.Component {
   }
 
   render() {
-    const {navigation} = this.props;
-    const data = navigation.getParam('otherParam', {});
-
+    if (!this.state.data || this.state.loading) {
+      return <LoadingIndicator />;
+    }
     const scrollY = Animated.add(
       this.state.scrollY,
       Platform.OS === 'ios' ? HEADER_MAX_HEIGHT : 0
@@ -151,7 +173,7 @@ class ArticleScreen extends React.Component {
           contentOffset={{
             y: -HEADER_MAX_HEIGHT
           }}>
-          {this._renderScrollViewContent(data)}
+          {this._renderScrollViewContent(this.state.data)}
         </Animated.ScrollView>
         <Animated.View
           pointerEvents="none"
@@ -165,7 +187,9 @@ class ArticleScreen extends React.Component {
               }
             ]}
             source={{
-              uri: (data.img && data.img.full[0]) || DEFAULT_IMAGE
+              uri:
+                (this.state.data.img && this.state.data.img.full[0]) ||
+                DEFAULT_IMAGE
             }}
           />
           <Animated.View
@@ -189,7 +213,7 @@ class ArticleScreen extends React.Component {
               transform: [{translateY: headerTranslate}]
             }
           ]}>
-          <Text style={[styles.title]}>{data.name}</Text>
+          <Text style={[styles.title]}>{this.state.data.name}</Text>
         </Animated.View>
       </View>
     );

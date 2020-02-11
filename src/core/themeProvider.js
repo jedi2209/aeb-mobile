@@ -37,7 +37,7 @@ export const HTMLStyle = `
     }
 `;
 
-export const LoadingIndicator = () => {
+export const LoadingIndicator = props => {
   const LoadingStyles = StyleSheet.create({
     container: {
       flex: 1,
@@ -55,7 +55,10 @@ export const LoadingIndicator = () => {
   });
   return (
     <View style={[LoadingStyles.container, LoadingStyles.horizontal]}>
-      <ActivityIndicator size="large" color="#0E4F9F" />
+      <ActivityIndicator
+        size="large"
+        color={props.color ? props.color : '#0E4F9F'}
+      />
     </View>
   );
 };

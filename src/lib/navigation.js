@@ -2,11 +2,11 @@ import {NavigationActions} from 'react-navigation';
 
 let _navigator;
 
-export function setTopLevelNavigator(navigatorRef) {
+function setTopLevelNavigator(navigatorRef) {
   _navigator = navigatorRef;
 }
 
-export function navigate(routeName, params) {
+function navigate(routeName, params) {
   _navigator.dispatch(
     NavigationActions.navigate({
       routeName,
@@ -15,7 +15,7 @@ export function navigate(routeName, params) {
   );
 }
 
-export function setParams(params, key) {
+function setParams(params, key) {
   _navigator.dispatch(
     NavigationActions.setParams({
       params,
@@ -23,3 +23,9 @@ export function setParams(params, key) {
     })
   );
 }
+
+export default {
+  navigate,
+  setTopLevelNavigator,
+  setParams
+};
