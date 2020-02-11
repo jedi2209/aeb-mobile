@@ -20,7 +20,8 @@ import {
   StyleSheet,
   Platform,
   Clipboard,
-  NativeModules
+  NativeModules,
+  Alert
 } from 'react-native';
 
 import {API} from '../core/server';
@@ -82,7 +83,16 @@ class ContactsScreen extends React.Component {
           return (
             <Button
               key={value}
-              icon={<Icon name="email-outline" size={25} color="#0E4F9F" />}
+              icon={
+                <Icon
+                  name="email-outline"
+                  size={25}
+                  color="#0E4F9F"
+                  onPress={() => {
+                    return Linking.openURL(`mailto:${value}`);
+                  }}
+                />
+              }
               iconLeft
               type="outline"
               //   title={value}
@@ -122,8 +132,7 @@ class ContactsScreen extends React.Component {
                     width: '100%'
                     // justifyContent: 'space-around',
                     // flexDirection: 'row'
-                  }}
-                >
+                  }}>
                   {value.phone.map((data, i) => {
                     return (
                       <View
@@ -131,10 +140,25 @@ class ContactsScreen extends React.Component {
                         // style={{
                         //   width: '100%'
                         // }}
-                      >
+                        onPress={() => {
+                          return Linking.openURL(
+                            `tel:${data.replace(/[^+\d]+/g, '')}`
+                          );
+                        }}>
                         <Button
                           key={'phoneBt' + i}
-                          icon={<Icon name="phone" size={20} color="#0E4F9F" />}
+                          icon={
+                            <Icon
+                              name="phone"
+                              size={20}
+                              color="#0E4F9F"
+                              onPress={() => {
+                                return Linking.openURL(
+                                  `tel:${data.replace(/[^+\d]+/g, '')}`
+                                );
+                              }}
+                            />
+                          }
                           iconLeft
                           type="clear"
                           title={data}
@@ -175,7 +199,17 @@ class ContactsScreen extends React.Component {
                           ]}
                           buttonStyle={theme.whiteButton}
                           onPress={() => {
-                            return Clipboard.setString(value);
+                            Alert.alert(
+                              this.props.screenProps.translate('CopyToClipboard.Title'),
+                              this.props.screenProps.translate('CopyToClipboard.Fax'),
+                              [
+                                {
+                                  text: this.props.screenProps.translate('Button.OK')
+                                }
+                              ],
+                              {cancelable: false}
+                            );
+                            return Clipboard.setString(data);
                           }}
                         />
                       </View>
