@@ -8,7 +8,11 @@ class HeaderBackButtonCustom extends React.Component {
     return (
       <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
         <View style={theme.goBackButton}>
-          <Icon name="ios-arrow-back" size={30} color="#fff" />
+          <Icon
+            name="ios-arrow-back"
+            size={30}
+            color={this.props.color ? this.props.color : '#fff'}
+          />
         </View>
       </TouchableOpacity>
     );
