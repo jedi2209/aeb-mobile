@@ -73,7 +73,12 @@ class ContactsScreen extends React.Component {
     };
   };
 
-  renderContent = items => {
+  _onPressButton(link) {
+    Linking.openURL(link);
+  }
+
+  renderContent = () => {
+    const items = this.state.data.items;
     return (
       <View style={styles.panel}>
         <Text style={styles.panelTitle}>{items.address.name}</Text>
@@ -83,34 +88,21 @@ class ContactsScreen extends React.Component {
           return (
             <Button
               key={value}
-              icon={
-                <Icon
-                  name="email-outline"
-                  size={25}
-                  color="#0E4F9F"
-                  onPress={() => {
-                    return Linking.openURL(`mailto:${value}`);
-                  }}
-                />
-              }
+              icon={<Icon name="email-outline" size={25} color="#0E4F9F" />}
               iconLeft
               type="outline"
-              //   title={value}
+              // title={value}
               titleStyle={theme.whiteButtonText}
               containerStyle={{width: '20%'}}
               buttonStyle={theme.whiteButton}
               onPress={() => {
-                return Linking.openURL(`mailto:${value}`);
+                return this._onPressButton(`mailto:${value}`);
               }}
             />
           );
         })}
         <View
           style={{
-            // display: 'flex',
-            // justifyContent: 'flex-start',
-            // flexDirection: 'column',
-            // flexWrap: 'wrap',
             width: '100%',
             flex: 1,
             paddingTop: 10
@@ -128,56 +120,39 @@ class ContactsScreen extends React.Component {
                 }}>
                 <View
                   style={{
-                    // display: 'flex',
                     width: '100%'
-                    // justifyContent: 'space-around',
-                    // flexDirection: 'row'
                   }}>
                   {value.phone.map((data, i) => {
                     return (
-                      <View
-                        key={'phone' + i}
-                        // style={{
-                        //   width: '100%'
-                        // }}
+                      // <View
+                      //   key={'phone' + i}
+                      //   // style={{
+                      //   //   width: '100%'
+                      //   // }}
+                      // >
+                      <Button
+                        key={'phoneBt' + i}
+                        useForeground={true}
+                        icon={<Icon name="phone" size={20} color="#0E4F9F" />}
+                        iconLeft
+                        type="clear"
+                        title={data}
+                        titleStyle={[
+                          theme.whiteButtonText,
+                          {
+                            marginBottom: 1,
+                            marginLeft: 5,
+                            fontSize: 12
+                          }
+                        ]}
+                        buttonStyle={theme.whiteButton}
                         onPress={() => {
-                          return Linking.openURL(
+                          return this._onPressButton(
                             `tel:${data.replace(/[^+\d]+/g, '')}`
                           );
-                        }}>
-                        <Button
-                          key={'phoneBt' + i}
-                          icon={
-                            <Icon
-                              name="phone"
-                              size={20}
-                              color="#0E4F9F"
-                              onPress={() => {
-                                return Linking.openURL(
-                                  `tel:${data.replace(/[^+\d]+/g, '')}`
-                                );
-                              }}
-                            />
-                          }
-                          iconLeft
-                          type="clear"
-                          title={data}
-                          titleStyle={[
-                            theme.whiteButtonText,
-                            {
-                              marginBottom: 1,
-                              marginLeft: 5,
-                              fontSize: 12
-                            }
-                          ]}
-                          buttonStyle={theme.whiteButton}
-                          onPress={() => {
-                            return Linking.openURL(
-                              `tel:${data.replace(/[^+\d]+/g, '')}`
-                            );
-                          }}
-                        />
-                      </View>
+                        }}
+                      />
+                      // </View>
                     );
                   })}
                   {value.fax.map((data, i) => {
@@ -200,11 +175,17 @@ class ContactsScreen extends React.Component {
                           buttonStyle={theme.whiteButton}
                           onPress={() => {
                             Alert.alert(
-                              this.props.screenProps.translate('CopyToClipboard.Title'),
-                              this.props.screenProps.translate('CopyToClipboard.Fax'),
+                              this.props.screenProps.translate(
+                                'CopyToClipboard.Title'
+                              ),
+                              this.props.screenProps.translate(
+                                'CopyToClipboard.Fax'
+                              ),
                               [
                                 {
-                                  text: this.props.screenProps.translate('Button.OK')
+                                  text: this.props.screenProps.translate(
+                                    'Button.OK'
+                                  )
                                 }
                               ],
                               {cancelable: false}
@@ -217,36 +198,6 @@ class ContactsScreen extends React.Component {
                   })}
                 </View>
               </Card>
-              // <View key={value.name}>
-              //   <Divider style={{ backgroundColor: '#0E4F9F', marginTop: 10 }} />
-              //   <Text style={styles.panelTitle}>{value.name}</Text>
-              //   <View>
-              //     {value.phone.map(data => {
-              //       return (
-              //         <Button
-              //           key={value}
-              //           icon={<Icon name="phone" size={25} color="#0E4F9F" />}
-              //           iconLeft
-              //           type="outline"
-              //           title={data}
-              //           titleStyle={theme.whiteButtonText}
-              //         //   containerStyle={{ width: '20%' }}
-              //           buttonStyle={theme.whiteButton}
-              //         />
-              //       );
-              //     })}
-              //   </View>
-              //   <Text>Fax</Text>
-              //   <View>
-              //     {value.fax.map(data => {
-              //       return (
-              //         <View key={data}>
-              //           <Text>{data}</Text>
-              //         </View>
-              //       );
-              //     })}
-              //   </View>
-              // </View>
             );
           })}
         </View>
@@ -269,13 +220,12 @@ class ContactsScreen extends React.Component {
       <View style={styles.container}>
         <BottomSheet
           snapPoints={['30%', '80%', '15%']}
-          renderContent={() => {
-            return this.renderContent(this.state.data.items);
-          }}
+          renderContent={this.renderContent}
           renderHeader={this.renderHeader}
+          enabledContentTapInteraction={false}
           enabledInnerScrolling={true}
         />
-        <View style={styles.containerMap}>
+        <TouchableWithoutFeedback style={styles.containerMap}>
           <MapView
             provider={PROVIDER_GOOGLE} // remove if not using Google Maps
             style={styles.map}
@@ -291,7 +241,7 @@ class ContactsScreen extends React.Component {
             }}>
             <Marker coordinate={this.state.data.items.address.coords} />
           </MapView>
-        </View>
+        </TouchableWithoutFeedback>
       </View>
     ) : (
       <LoadingIndicator />
