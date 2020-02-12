@@ -147,7 +147,7 @@ const ThirdRoute = (data, extraPadding) => {
     }
   });
   return (
-    <View style={[styles.body, {paddingHorizontal: 14}]}>
+    <View style={[styles.body]}>
       <View style={{marginTop: 20}}>
         <FlatList
           contentContainerStyle={styleLocal.flatlist}
@@ -316,7 +316,7 @@ class EventScreen extends React.Component {
                   },
                   {
                     head: this.translate('files'),
-                    route: ThirdRoute(this.data, this.extraPadding)
+                    route: ThirdRoute(this.data, 28)
                   }
                 ]}
               />

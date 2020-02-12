@@ -18,6 +18,8 @@ import Moment from 'moment/min/moment-with-locales';
 import {Calendar} from 'react-native-calendars';
 import {LocaleConfig} from 'react-native-calendars';
 
+import {DeviceWidth} from '../core/themeProvider';
+
 LocaleConfig.locales.eng = {
   monthNames: [
     'January',
@@ -188,10 +190,10 @@ class EventsScreen extends React.Component {
 
   render() {
     return (
-      <View>
         <SafeAreaView>
           <ScrollView>
             <Calendar
+              width={DeviceWidth}
               markedDates={this.state.markedDates}
               // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
               // minDate={'2012-05-10'}
@@ -287,7 +289,6 @@ class EventsScreen extends React.Component {
             </View>
           </ScrollView>
         </SafeAreaView>
-      </View>
     );
   }
 }
