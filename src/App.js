@@ -45,9 +45,15 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {LoginScreen} from './screens/LoginScreen/LoginScreen';
 import {$session} from './screens/LoginScreen/LoginScreen.model';
 
-Sentry.init({
-  dsn: 'https://3b90574d17b84e10a8f5ab5cf0c49a65@sentry.io/2461509'
-});
+if (__DEV__) {
+  import('./core/ReactotronConfig').then(() =>
+    console.log('Reactotron Configured')
+  );
+} else {
+  Sentry.init({
+    dsn: 'https://3b90574d17b84e10a8f5ab5cf0c49a65@sentry.io/2461509'
+  });
+}
 
 const translationGetters = {
   // lazy requires (metro bundler does not support symlinks)
@@ -140,12 +146,6 @@ const loadNavigationState = async () => {
 };
 
 const AppContainer = createAppContainer(RootStack);
-
-if (__DEV__) {
-  import('./core/ReactotronConfig').then(() =>
-    console.log('Reactotron Configured')
-  );
-}
 
 const AppContainerWrapper = props => {
   const session = useStore($session);
