@@ -36,7 +36,7 @@ class ContactsScreen extends React.Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const deviceLanguage =
       Platform.OS === 'ios'
         ? NativeModules.SettingsManager.settings.AppleLocale ||
@@ -44,15 +44,21 @@ class ContactsScreen extends React.Component {
         : NativeModules.I18nManager.localeIdentifier;
 
     this.lang = deviceLanguage.includes('ru') ? 'rus' : 'eng';
-    this.api = new API({lang: this.lang, platform: Platform.OS});
 
-    const responsedData = await this.api.getContacts();
-    // eslint-disable-next-line react/no-did-mount-set-state
-    this.setState({
-      data: responsedData,
-      loading: false
-    });
+    this._getContacts();
   }
+
+  _getContacts = async () => {
+    this.api = new API({lang: this.lang, platform: Platform.OS});
+    const responsedData = await this.api.getContacts();
+    const _this = this;
+    setTimeout(function() {
+      _this.setState({
+        data: responsedData,
+        loading: false
+      });
+    }, 1000);
+  };
 
   static navigationOptions = ({navigation, screenProps}) => {
     return {
@@ -219,7 +225,7 @@ class ContactsScreen extends React.Component {
     return !this.state.loading ? (
       <View style={styles.container}>
         <BottomSheet
-          snapPoints={['30%', '80%', '15%']}
+          snapPoints={['30%', '80%', '10%']}
           renderContent={this.renderContent}
           renderHeader={this.renderHeader}
           enabledContentTapInteraction={false}
