@@ -26,6 +26,8 @@ import {LoadingIndicator} from './core/themeProvider';
 
 import PushNotifications from './features/notifications/PushNotifications';
 
+import * as Sentry from '@sentry/react-native';
+
 import {
   SafeAreaView,
   I18nManager,
@@ -42,6 +44,10 @@ import NavigationService from './lib/navigation';
 import AsyncStorage from '@react-native-community/async-storage';
 import {LoginScreen} from './screens/LoginScreen/LoginScreen';
 import {$session} from './screens/LoginScreen/LoginScreen.model';
+
+Sentry.init({
+  dsn: 'https://3b90574d17b84e10a8f5ab5cf0c49a65@sentry.io/2461509'
+});
 
 const translationGetters = {
   // lazy requires (metro bundler does not support symlinks)
