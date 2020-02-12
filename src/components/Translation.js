@@ -1,6 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import TranslationIconSvg from '../images/Translation.svg';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {View, Text} from 'react-native';
 import {DeviceWidth} from '../core/themeProvider';
 
@@ -17,10 +17,9 @@ class Translation extends React.Component {
         }}>
         <View
           style={{
-            marginRight: 15,
-            width: 14
+            marginRight: 15
           }}>
-          <TranslationIconSvg />
+          <Icon name="translate" size={20} style={this.props.styleButton} />
         </View>
         <Text
           style={{

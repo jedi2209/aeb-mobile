@@ -65,6 +65,9 @@ class ReleasesCard extends React.Component {
           <ArrowButton
             style={[styles.image, {width: 60, height: 60, marginLeft: 10}]}
             styleButton={{color:'#fff'}}
+            onPress={() => {
+              Linking.openURL(this.props.data.file);
+            }}
           />
         </View>
       </TouchableWithoutFeedback>

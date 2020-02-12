@@ -141,6 +141,7 @@ class PublicationsScreen extends React.Component {
                         <Text
                           style={{
                             fontSize: 16,
+                            lineHeight: 20,
                             fontFamily: 'SFUIDisplay-Regular'
                           }}>
                           {this.state.data.contacts.coordinator.name}
@@ -152,7 +153,7 @@ class PublicationsScreen extends React.Component {
                       paramsForFetch={{committees: this.data.id, limit: 3}}
                       translate={this.props.screenProps.translate}
                       type="publications"
-                      extraPadding="14"
+                      extraPadding="28"
                     />
                     <View
                       style={{
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
     marginBottom: 20
   },
   headerText: {
-    fontSize: 17,
+    fontSize: 16,
     color: '#000000',
     lineHeight: 20,
     fontFamily: 'SFUIDisplay-Regular'
