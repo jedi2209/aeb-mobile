@@ -32,7 +32,6 @@ class ArticleScreen extends React.Component {
     super(props);
 
     const {navigation} = this.props;
-    const data = navigation.getParam('otherParam', null);
 
     this.translate = this.props.screenProps.translate;
 
@@ -43,7 +42,7 @@ class ArticleScreen extends React.Component {
       ),
       refreshing: false,
       loading: true,
-      data: data
+      data: navigation.getParam('otherParam', null)
     };
   }
 
@@ -67,9 +66,9 @@ class ArticleScreen extends React.Component {
   };
 
   static navigationOptions = ({navigation}) => {
-    // const data = navigation.getParam('otherParam', {});
+    const data = navigation.getParam('otherParam', {});
     return {
-      headerRight: <ShareButton data={this.state.data} />,
+      headerRight: <ShareButton data={data} />,
       headerLeft: <HeaderBackButtonCustom navigation={navigation} />,
       headerTintColor: '#fff',
       headerStyle: {
