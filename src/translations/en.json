@@ -85,6 +85,7 @@
         }
     },
     "profile": "Profile",
+    "edit": "Save",
     "Notification": {
         "Publications": "Notifications about Publications",
         "News": "Notifications about News",
