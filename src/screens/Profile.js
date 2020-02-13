@@ -130,7 +130,7 @@ export const Profile = props => {
                   alert('Сохранено успешно');
                 }}>
                 <Text style={[styles.buttonText, {textTransform: 'uppercase'}]}>
-                  Редактировать
+                  {props.screenProps.translate('edit')}
                 </Text>
               </TouchableOpacity>
             </View>

@@ -1,7 +1,7 @@
 import {createDomain, forward} from 'effector';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import {navigate} from '../../lib/navigation';
+import NavigationService from '../../lib/navigation';
 import {api} from '../../lib/api';
 
 const sessionDomain = createDomain();
@@ -60,8 +60,8 @@ signInFx.fail.watch(err => {
   alert(err ? err.error : 'Что-то пошло не так, попробуйте снова');
 });
 
-signInFx.done.watch(() => navigate('News'));
-signOutFx.done.watch(() => navigate('News'));
+signInFx.done.watch(() => NavigationService.navigate('Profile'));
+signOutFx.done.watch(() => NavigationService.navigate('News'));
 
 $session.watch(store => console.log('>>>>>>>> store watch', store));
 
