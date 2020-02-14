@@ -64,6 +64,7 @@ export default class AllArticlesScreen extends PureComponent {
     }
 
     if (this.props.paramsForFetch !== nextProps.paramsForFetch) {
+      this.setState({fullList: false});
       this._fetchAllArticles({force: true});
     }
   }
@@ -208,7 +209,7 @@ export default class AllArticlesScreen extends PureComponent {
     const translate =
       (this.props.screenProps && this.props.screenProps.translate) ||
       this.props.translate;
-
+ 
     if (this.state.fullList) {
       return null;
     }
