@@ -154,6 +154,16 @@ export default class AllArticlesScreen extends PureComponent {
           responsedData = await this.api.getReleases(page, paramsForFetch);
       }
 
+      if (
+        page === 1 &&
+        this.props.type === 'news' &&
+        responsedData.items &&
+        responsedData.items.length > 3
+      ) {
+        responsedData.items.splice(0, 3);
+        console.log('responsedData', responsedData);
+      }
+
       if (force) {
         calc = responsedData.items;
       } else {
@@ -209,7 +219,7 @@ export default class AllArticlesScreen extends PureComponent {
     const translate =
       (this.props.screenProps && this.props.screenProps.translate) ||
       this.props.translate;
- 
+
     if (this.state.fullList) {
       return null;
     }

@@ -48,6 +48,10 @@ fxFetchCountFromAsyncStorage.done.watch(({result}) => {});
 const NewsScreen = props => {
   const {items, paginations} = useStore($counter);
 
+  if (items.length > 3) {
+    items.length = 3;
+  }
+
   useEffect(() => {
     fxFetchCountFromAsyncStorage(1);
   }, []);
