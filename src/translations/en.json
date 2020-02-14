@@ -82,6 +82,12 @@
             "PleaseAllow": "Please Allow Push Notifications in order to receive Releases updates",
             "YouHaveSubscribedTitle": "You have been scubsribed!",
             "YouHaveSubscribedDescription": "Now you get a push-message when new Releases is online" 
+        },
+        "Events": {
+            "PleaseAllowTitle": "Push Notifications request",
+            "PleaseAllow": "Please Allow Push Notifications in order to receive Events updates",
+            "YouHaveSubscribedTitle": "You have been scubsribed!",
+            "YouHaveSubscribedDescription": "Now you get a push-message when new Events is online" 
         }
     },
     "profile": "Profile",
@@ -89,7 +95,8 @@
     "Notification": {
         "Publications": "Notifications about Publications",
         "News": "Notifications about News",
-        "Releases": "Notifications about Releases"
+        "Releases": "Notifications about Releases",
+        "Events": "Notifications about Events"
     },
     "CopyToClipboard": {
         "Title": "Copied!",
