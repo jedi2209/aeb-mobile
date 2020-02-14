@@ -65,6 +65,15 @@ export const Settings = props => {
                     value={notifications.Releases}
                   />
                 </View>
+                <View style={styles.field}>
+                  <Text style={styles.label}>
+                    {props.screenProps.translate('Notification.Events')}
+                  </Text>
+                  <Switch
+                    onValueChange={() => onSubscribePressed('Events')}
+                    value={notifications.Events}
+                  />
+                </View>
               </View>
               <View style={styles.separator} />
             </View>
