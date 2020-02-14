@@ -18,6 +18,7 @@ import {
 } from 'react-native';
 
 import {DeviceWidth, DeviceHeight} from '../core/themeProvider';
+import Plate from '../components/Plate';
 
 class PublicationsScreen extends React.Component {
   state = {
@@ -71,6 +72,25 @@ class PublicationsScreen extends React.Component {
     if (!this.state.data.id) {
       return <ActivityIndicator />;
     } else {
+      const contacts = [];
+      if (this.state.data.contacts.chairman.name) {
+        contacts.push({
+          position: this.state.data.contacts.chairman.position,
+          name:
+            this.state.data.contacts.chairman.name +
+            ' ' +
+            this.state.data.contacts.chairman.surname
+        });
+      }
+      this.state.data.contacts.chairmanDeputy.map(el => {
+        contacts.push({
+          id: el.id,
+          name: el.name + ' ' + el.surname,
+          position: el.position,
+          email: el.email,
+          phone: el.phone
+        });
+      });
       return (
         <ImageBackground
           source={require('../images/bg.png')}
@@ -113,42 +133,43 @@ class PublicationsScreen extends React.Component {
                         {this.data.name}
                       </Text>
                     </View>
-                    {(this.state.data.contacts.coordinator.name ?
-                    <TouchableHighlight
-                      onPress={() => {
-                        if (this.state.data.contacts.coordinator.email) {
-                          Linking.openURL(
-                            `mailto:${
-                              this.state.data.contacts.coordinator.email
-                            }`
-                          );
-                        }
-                      }}>
-                      <View
-                        style={[
-                          theme.cardBlock,
-                          theme.cardShadow,
-                          {
-                            width: DeviceWidth - 28,
-                            marginHorizontal: 14,
-                            // marginVertical: 14,
-                            padding: 14
+                    <Plate items={contacts} />
+                    {this.state.data.contacts.coordinator.name ? (
+                      <TouchableHighlight
+                        onPress={() => {
+                          if (this.state.data.contacts.coordinator.email) {
+                            Linking.openURL(
+                              `mailto:${
+                                this.state.data.contacts.coordinator.email
+                              }`
+                            );
                           }
-                        ]}>
-                        <Text style={[styles.headerText, {flex: 1}]}>
-                          {this.props.screenProps.translate('coordinator')}
-                        </Text>
-                        <Text
-                          style={{
-                            fontSize: 16,
-                            lineHeight: 20,
-                            fontFamily: 'SFUIDisplay-Regular'
-                          }}>
-                          {this.state.data.contacts.coordinator.name}
-                        </Text>
-                      </View>
-                    </TouchableHighlight>
-                     : null)}
+                        }}>
+                        <View
+                          style={[
+                            theme.cardBlock,
+                            theme.cardShadow,
+                            {
+                              width: DeviceWidth - 28,
+                              marginHorizontal: 14,
+                              // marginVertical: 14,
+                              padding: 14
+                            }
+                          ]}>
+                          <Text style={[styles.headerText, {flex: 1}]}>
+                            {this.props.screenProps.translate('coordinator')}
+                          </Text>
+                          <Text
+                            style={{
+                              fontSize: 16,
+                              lineHeight: 20,
+                              fontFamily: 'SFUIDisplay-Regular'
+                            }}>
+                            {this.state.data.contacts.coordinator.name}
+                          </Text>
+                        </View>
+                      </TouchableHighlight>
+                    ) : null}
                     <ThumbList
                       paramsForFetch={{committees: this.data.id, limit: 3}}
                       translate={this.props.screenProps.translate}

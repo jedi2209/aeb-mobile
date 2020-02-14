@@ -46,6 +46,16 @@ const ThirdRoute = navigation => (
   </View>
 );
 
+const FourRoute = navigation => (
+  <View style={styles.body} key="committees33">
+    <ThumbList
+      paramsForFetch={{type: 33}}
+      type="committees"
+      navigation={navigation}
+    />
+  </View>
+);
+
 class CommitteesScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -80,19 +90,31 @@ class CommitteesScreen extends React.Component {
             <View>
               <View style={{backgroundColor: '#FAFAFA', paddingVertical: 14}}>
                 <Tabs
-                  tabTextStyle={{fontSize: 12}}
-                  activeTabTextStyle={{fontSize: 12}}
+                  tabTextStyle={{fontSize: 10}}
+                  activeTabTextStyle={{fontSize: 10}}
                   tabs={[
                     {
-                      head: this.props.screenProps.translate('cross_sectoral'),
+                      head: this.props.screenProps.translate(
+                        'CommiteesType.CrosSectoral'
+                      ),
                       route: FirstRoute(this.props.navigation)
                     },
                     {
-                      head: this.props.screenProps.translate('industrial'),
+                      head: this.props.screenProps.translate(
+                        'CommiteesType.Industrial'
+                      ),
                       route: SecondRoute(this.props.navigation)
                     },
                     {
-                      head: this.props.screenProps.translate('working_groups'),
+                      head: this.props.screenProps.translate(
+                        'CommiteesType.Regional'
+                      ),
+                      route: FourRoute(this.props.navigation)
+                    },
+                    {
+                      head: this.props.screenProps.translate(
+                        'CommiteesType.WorkingGroups'
+                      ),
                       route: ThirdRoute(this.props.navigation)
                     }
                   ]}

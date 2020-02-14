@@ -7,9 +7,12 @@
     "realeses": "Press Releases",
     "committees": "Сommittees",
     "committee_news": "Committee news",
-    "cross_sectoral": "CROSS-SECTORAL",
-    "industrial": "INDUSTRIAL",
-    "working_groups": "WORKING GROUPS",
+    "CommiteesType": {
+        "CrosSectoral": "CROSS-SECTORAL",
+        "Industrial": "INDUSTRIAL",
+        "WorkingGroups": "WORKING GROUPS",
+        "Regional": "REGIONAL"
+    },
     "upcoming_events": "Upcoming events",
     "upcoming_events_on": "Events on",
     "attendance_fees": "Attendance fees",
