@@ -1,7 +1,5 @@
-import React, {useEffect} from 'react';
-import {useStore} from 'effector-react';
+import React from 'react';
 import {theme, DeviceWidth} from '../core/themeProvider';
-import Icon from 'react-native-vector-icons/Ionicons';
 
 import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
@@ -40,21 +38,8 @@ const ThumbListData = [
 ];
 
 import {SafeAreaView, ScrollView, View, StyleSheet} from 'react-native';
-import {
-  onSubscribePressed,
-  $notifications
-} from '../features/notifications/Notifications.model';
 
 const PublicationsScreen = ({screenProps, navigation}) => {
-  const notifications = useStore($notifications);
-
-  useEffect(() => {
-    navigation.setParams({
-      notificationsEnabled: notifications.Publications
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [notifications]);
-
   return (
     <SafeAreaView style={{backgroundColor: theme.backgroundColor}}>
       <ScrollView
@@ -74,22 +59,11 @@ const PublicationsScreen = ({screenProps, navigation}) => {
 };
 
 PublicationsScreen.navigationOptions = ({navigation, screenProps}) => {
-  const {notificationsEnabled} = navigation.state.params || {};
   return {
     headerLeft: (
       <Header
         onPress={() => navigation.navigate('Menu')}
         title={screenProps.translate('publications')}
-      />
-    ),
-    headerRight: (
-      <Icon
-        name={
-          notificationsEnabled ? 'md-notifications' : 'md-notifications-off'
-        }
-        size={30}
-        style={styles.styleButton}
-        onPress={() => onSubscribePressed('Publications')}
       />
     ),
     headerStyle: [
@@ -106,11 +80,6 @@ const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: '#FAFAFA',
     width: DeviceWidth
-  },
-  styleButton: {
-    paddingRight: 18,
-    marginTop: -15,
-    paddingTop: 10
   },
   body: {
     //paddingLeft: 14

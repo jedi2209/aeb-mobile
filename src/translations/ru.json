@@ -7,9 +7,12 @@
     "realeses": "Пресс-релизы",
     "committees": "Комитеты",
     "committee_news": "Новости комитета",
-    "cross_sectoral": "МЕЖОТРАСЛЕВЫЕ",
-    "industrial": "ОТРАСЛЕВЫЕ",
-    "working_groups": "РАБОЧИЕ ГРУППЫ",
+    "CommiteesType": {
+        "CrosSectoral": "МЕЖОТРАСЛЕВЫЕ",
+        "Industrial": "ОТРАСЛЕВЫЕ",
+        "WorkingGroups": "РАБОЧИЕ ГРУППЫ",
+        "Regional": "РЕГИОНАЛЬНЫЕ"
+    },
     "upcoming_events": "Предстоящие события",
     "upcoming_events_on": "События на",
     "attendance_fees": "Стоимость",
@@ -87,7 +90,7 @@
             "PleaseAllowTitle": "Доступ к уведомлениями",
             "PleaseAllow": "Пожалуйста разрешите получение Push-уведомлений, чтобы получать сообщения об обновлениях раздела События.",
             "YouHaveSubscribedTitle": "Вы подписаны на получение Push-уведомлений!",
-            "YouHaveSubscribedDescription": "Теперь при получите оповещение при выходе событий!" 
+            "YouHaveSubscribedDescription": "Теперь при получите оповещение при анонсе новых событий!" 
         }
     },
     "profile": "Профиль",

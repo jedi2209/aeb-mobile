@@ -57,7 +57,7 @@ class ContactsScreen extends React.Component {
         data: responsedData,
         loading: false
       });
-    }, 1000);
+    }, 1500);
   };
 
   static navigationOptions = ({navigation, screenProps}) => {
@@ -130,12 +130,6 @@ class ContactsScreen extends React.Component {
                   }}>
                   {value.phone.map((data, i) => {
                     return (
-                      // <View
-                      //   key={'phone' + i}
-                      //   // style={{
-                      //   //   width: '100%'
-                      //   // }}
-                      // >
                       <Button
                         key={'phoneBt' + i}
                         useForeground={true}
