@@ -59,7 +59,10 @@ export default class AllArticlesScreen extends PureComponent {
 
   componentDidUpdate(nextProps) {
     // TODO: разобраться почему изменение табов вызывают ререндер
-    if (this.props.type === 'committees' || this.props.type === 'subcommittees') {
+    if (
+      this.props.type === 'committees' ||
+      this.props.type === 'subcommittees'
+    ) {
       return;
     }
 
@@ -254,13 +257,18 @@ export default class AllArticlesScreen extends PureComponent {
           style={{
             marginTop: 10,
             marginBottom: 20,
-            width: DeviceWidth - 14,
+            width: DeviceWidth,
             height: 50
             // display: 'flex',
             // alignContent: 'center',
             // alignItems: 'stretch'
           }}>
-          <View style={[theme.whiteButton, theme.cardShadow, {marginLeft: 14}]}>
+          <View
+            style={[
+              theme.whiteButton,
+              theme.cardShadow,
+              {marginHorizontal: 14}
+            ]}>
             <Text style={theme.whiteButtonText}>{translate('load_more')}</Text>
           </View>
         </TouchableOpacity>
@@ -283,7 +291,7 @@ export default class AllArticlesScreen extends PureComponent {
             key={`thumb-list-article-${item.id}`}
             data={item}
             width={DeviceWidth - 14}
-            padding={this.props.padding}
+            padding={this.props.extraPadding}
             height={200}
             BAR_SPACE={BAR_SPACE}
           />

@@ -107,7 +107,7 @@ class SubPublicationsScreen extends React.Component {
           <View>
             <View
               style={{
-                marginTop: Platform.OS === 'ios' ? 60 + 30 : 73 + 30
+                marginTop: Platform.OS === 'ios' ? 90 : 103
               }}>
               <ScrollView
                 contentInsetAdjustmentBehavior="automatic"
@@ -126,15 +126,14 @@ class SubPublicationsScreen extends React.Component {
                         style={[
                           styles.headerText,
                           {
-                            // 60 - ширина картинки 40 marin right у картинки
-                            // и 14 отсупы внутри и снаружи карточки
-                            width: DeviceWidth - 60 - 20 - 14 * 2
+                            width: DeviceWidth,
+                            paddingEnd: 150
                           }
                         ]}>
                         {this.data.name}
                       </Text>
                     </View>
-                    <Plate items={contacts} />
+                    <Plate items={contacts} style={{marginTop: 8}} />
                     {this.state.data.contacts.coordinator.name ? (
                       <TouchableHighlight
                         underlayColor="transparent"
@@ -185,7 +184,8 @@ class SubPublicationsScreen extends React.Component {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    height: '100%'
   },
   body: {
     backgroundColor: 'transparent',
@@ -201,8 +201,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingHorizontal: 14,
     marginHorizontal: 14,
-    paddingVertical: 20,
-    marginBottom: 20
+    paddingVertical: 20
   },
   headerText: {
     fontSize: 16,

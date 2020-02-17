@@ -66,32 +66,36 @@
             "SecondName": "Second Name",
             "SurName": "Last Name",
             "Phone": "Phone"
+        },
+        "SaveSuccess": {
+            "Title": "Saved!",
+            "Message": "Your profile data was successfully saved!"
         }
     },
     "Push": {
         "Publications": {
             "PleaseAllowTitle": "Push Notifications request",
             "PleaseAllow": "Please Allow Push Notifications in order to receive Publications updates",
-            "YouHaveSubscribedTitle": "You have been scubsribed!",
-            "YouHaveSubscribedDescription": "Now you get a push-message when new Publication is online"
+            "YouHaveSubscribedTitle": "You have been subscribed!",
+            "YouHaveSubscribedDescription": "Now you get a message when new Publication is online"
         },
         "News": {
             "PleaseAllowTitle": "Push Notifications request",
             "PleaseAllow": "Please Allow Push Notifications in order to receive News updates",
-            "YouHaveSubscribedTitle": "You have been scubsribed!",
-            "YouHaveSubscribedDescription": "Now you get a push-message when new News is online"
+            "YouHaveSubscribedTitle": "You have been subscribed!",
+            "YouHaveSubscribedDescription": "Now you get a message when new News is online"
         },
         "Releases": {
             "PleaseAllowTitle": "Push Notifications request",
             "PleaseAllow": "Please Allow Push Notifications in order to receive Releases updates",
-            "YouHaveSubscribedTitle": "You have been scubsribed!",
-            "YouHaveSubscribedDescription": "Now you get a push-message when new Releases is online" 
+            "YouHaveSubscribedTitle": "You have been subscribed!",
+            "YouHaveSubscribedDescription": "Now you get a message when new Releases is online" 
         },
         "Events": {
             "PleaseAllowTitle": "Push Notifications request",
             "PleaseAllow": "Please Allow Push Notifications in order to receive Events updates",
-            "YouHaveSubscribedTitle": "You have been scubsribed!",
-            "YouHaveSubscribedDescription": "Now you get a push-message when new Events is online" 
+            "YouHaveSubscribedTitle": "You have been subscribed!",
+            "YouHaveSubscribedDescription": "Now you get a message when new Event is online" 
         }
     },
     "profile": "Profile",

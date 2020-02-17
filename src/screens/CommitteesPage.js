@@ -107,7 +107,7 @@ class PublicationsScreen extends React.Component {
           <View>
             <View
               style={{
-                marginTop: Platform.OS === 'ios' ? 60 + 30 : 73 + 30
+                marginTop: Platform.OS === 'ios' ? 90 : 103
               }}>
               <ScrollView
                 contentInsetAdjustmentBehavior="automatic"
@@ -126,15 +126,14 @@ class PublicationsScreen extends React.Component {
                         style={[
                           styles.headerText,
                           {
-                            // 60 - ширина картинки 40 marin right у картинки
-                            // и 14 отсупы внутри и снаружи карточки
-                            width: DeviceWidth - 60 - 20 - 14 * 2
+                            width: DeviceWidth,
+                            paddingEnd: 150
                           }
                         ]}>
                         {this.data.name}
                       </Text>
                     </View>
-                    <Plate items={contacts} />
+                    <Plate items={contacts} style={{marginTop: 8}} />
                     {this.state.data.contacts.coordinator.name ? (
                       <TouchableHighlight
                         underlayColor="transparent"
@@ -152,13 +151,15 @@ class PublicationsScreen extends React.Component {
                             theme.cardBlock,
                             theme.cardShadow,
                             {
-                              width: DeviceWidth - 28,
                               marginHorizontal: 14,
-                              // marginVertical: 14,
                               padding: 14
                             }
                           ]}>
-                          <Text style={[styles.headerText, {flex: 1}]}>
+                          <Text
+                            style={[
+                              styles.headerText,
+                              {flex: 1, flexDirection: 'row'}
+                            ]}>
                             {this.props.screenProps.translate('coordinator')}
                           </Text>
                           <Text
@@ -172,14 +173,14 @@ class PublicationsScreen extends React.Component {
                         </View>
                       </TouchableHighlight>
                     ) : null}
-                    <View
-                      style={{
-                        backgroundColor: '#fff',
-                        marginVertical: 14,
-                        borderRadius: 8,
-                        marginHorizontal: 14
-                      }}>
-                      {this.data.sub_committee ? (
+                    {this.data.sub_committee ? (
+                      <View
+                        style={{
+                          backgroundColor: '#fff',
+                          marginVertical: 14,
+                          borderRadius: 8,
+                          marginHorizontal: 14
+                        }}>
                         <ThumbList
                           paramsForFetch={{committees: this.data.sub_committee}}
                           translate={this.props.screenProps.translate}
@@ -190,8 +191,8 @@ class PublicationsScreen extends React.Component {
                             'subcommittees'
                           )}
                         />
-                      ) : null}
-                    </View>
+                      </View>
+                    ) : null}
                     <ThumbList
                       paramsForFetch={{committees: this.data.id, limit: 3}}
                       translate={this.props.screenProps.translate}
@@ -228,7 +229,8 @@ class PublicationsScreen extends React.Component {
 
 const styles = StyleSheet.create({
   scrollView: {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    height: '100%'
   },
   body: {
     backgroundColor: 'transparent',
@@ -244,8 +246,7 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingHorizontal: 14,
     marginHorizontal: 14,
-    paddingVertical: 20,
-    marginBottom: 20
+    paddingVertical: 20
   },
   headerText: {
     fontSize: 16,
