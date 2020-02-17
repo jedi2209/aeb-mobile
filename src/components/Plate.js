@@ -15,7 +15,7 @@ class Plate extends React.Component {
   }
 
   onPress(link) {
-    console.log('link', link);
+    // console.log('link', link);
     Linking.openURL(link);
   }
 
