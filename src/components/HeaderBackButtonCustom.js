@@ -5,8 +5,14 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 class HeaderBackButtonCustom extends React.Component {
   render() {
+    const backLink = this.props.navigation.getParam('backLink', null);
     return (
-      <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+      <TouchableOpacity
+        onPress={() =>
+          backLink
+            ? this.props.navigation.navigate(backLink)
+            : this.props.navigation.goBack()
+        }>
         <View style={theme.goBackButton}>
           <Icon
             name="ios-arrow-back"
