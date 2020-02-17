@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   image: {
-    borderRadius: 4
+    borderRadius: 6
   },
   title: {
     fontSize: 20,

@@ -77,76 +77,74 @@ class ReleasesScreen extends React.Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.body}>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <View>
-            <View style={[this.props.style, styles.dropdown]}>
-              <RNPickerSelect
-                items={this.state.options}
-                placeholder={{
-                  label: this.props.screenProps.translate('all_press_releases')
-                }}
-                onValueChange={value => {
-                  if (Platform.OS === 'ios') {
-                    this.setState({
-                      filter: value
-                    });
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        style={styles.scrollView}>
+        <View>
+          <View style={[this.props.style, styles.dropdown]}>
+            <RNPickerSelect
+              items={this.state.options}
+              placeholder={{
+                label: this.props.screenProps.translate('all_press_releases')
+              }}
+              onValueChange={value => {
+                if (Platform.OS === 'ios') {
+                  this.setState({
+                    filter: value
+                  });
 
-                    return;
+                  return;
+                }
+                this.setState({
+                  filter: value,
+                  params: {
+                    [this.state.name]: value
                   }
-                  this.setState({
-                    filter: value,
-                    params: {
-                      [this.state.name]: value
-                    }
-                  });
-                }}
-                style={{
-                  ...pickerSelectStyles,
-                  iconContainer: {
-                    top: Platform.OS === 'ios' ? 0 : 2,
-                    right: 12
-                    // borderBottomWidth: 0,
-                    // shadowOpacity: 0.2,
-                    // shadowRadius: 15,
-                    // shadowColor: "#000000",
-                    // shadowOffset: {
-                    //   height: 2,
-                    //   width: 0
-                    // },
-                    // elevation: 5
+                });
+              }}
+              style={{
+                ...pickerSelectStyles,
+                iconContainer: {
+                  top: Platform.OS === 'ios' ? 0 : 2,
+                  right: 12
+                  // borderBottomWidth: 0,
+                  // shadowOpacity: 0.2,
+                  // shadowRadius: 15,
+                  // shadowColor: "#000000",
+                  // shadowOffset: {
+                  //   height: 2,
+                  //   width: 0
+                  // },
+                  // elevation: 5
+                }
+              }}
+              pickerProps={{
+                mode: 'dialog',
+                prompt: 'title'
+              }}
+              onDonePress={() => {
+                this.setState({
+                  params: {
+                    [this.state.name]: this.state.filter
                   }
-                }}
-                pickerProps={{
-                  mode: 'dialog',
-                  prompt: 'title'
-                }}
-                onDonePress={() => {
-                  this.setState({
-                    params: {
-                      [this.state.name]: this.state.filter
-                    }
-                  });
-                }}
-                value={this.state.filter}
-                useNativeAndroidPickerStyle={false}
-                doneText={this.props.screenProps.translate('done')}
-                textInputProps={{textAlign: 'left'}}
-                Icon={() => <ArrowDropdown style={{}} />}
-              />
-            </View>
-            <View>
-              <ThumbList
-                paramsForFetch={this.state.params}
-                screenProps={this.props.screenProps}
-                extraPadding="28"
-              />
-            </View>
+                });
+              }}
+              value={this.state.filter}
+              useNativeAndroidPickerStyle={false}
+              doneText={this.props.screenProps.translate('done')}
+              textInputProps={{textAlign: 'left'}}
+              Icon={() => <ArrowDropdown style={{}} />}
+            />
           </View>
-        </ScrollView>
-      </SafeAreaView>
+          <View>
+            <ThumbList
+              paramsForFetch={this.state.params}
+              screenProps={this.props.screenProps}
+              extraPadding="28"
+            />
+          </View>
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -185,7 +183,7 @@ const pickerSelectStyles = StyleSheet.create({
     paddingHorizontal: 10,
     borderWidth: 0,
     borderColor: '#ACB1C0',
-    borderRadius: 4,
+    borderRadius: 6,
     color: '#ACB1C0',
     paddingRight: 30 // to ensure the text is never behind the icon
   },

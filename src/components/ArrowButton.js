@@ -17,7 +17,7 @@ class ArrowButton extends React.Component {
 const style = StyleSheet.create({
   arrowBack: {
     backgroundColor: '#0E4F9F',
-    borderRadius: 4,
+    borderRadius: 6,
     alignItems: 'center',
     justifyContent: 'center'
   }

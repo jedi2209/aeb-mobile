@@ -27,7 +27,8 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  Linking
+  Linking,
+  StatusBar
 } from 'react-native';
 
 const HEADER_MAX_HEIGHT = 300;
@@ -63,7 +64,7 @@ const FirstRoute = (data, translate) => {
   return (
     <ScrollView>
       <View style={[styles.body, {paddingHorizontal: 14}]}>
-        <WebViewAutoHeight text={data.text} />
+        <WebViewAutoHeight text={`<div>${data.text}</div>`} />
       </View>
     </ScrollView>
   );
@@ -225,6 +226,7 @@ class EventScreen extends React.Component {
         style={{
           flex: 1
         }}>
+        <StatusBar barStyle="light-content" />
         <Image
           style={styles.backgroundImage}
           source={{

@@ -18,7 +18,8 @@ import {
   Animated,
   Platform,
   StyleSheet,
-  RefreshControl
+  RefreshControl,
+  StatusBar
 } from 'react-native';
 
 import {DeviceWidth, LoadingIndicator} from '../core/themeProvider';
@@ -105,8 +106,8 @@ class ArticleScreen extends React.Component {
           <Text style={styles.date}>
             {toUpperdate(moment(item.created * 1000).format('dddd, DD MMMM'))}
           </Text>
-          <WebViewAutoHeight text={item.descr} />
-          <WebViewAutoHeight text={item.text} />
+          <WebViewAutoHeight text={`<div>${item.descr}</div>`} />
+          <WebViewAutoHeight text={`<div>${item.text}</div>`} />
         </View>
       </SafeAreaView>
     );
@@ -147,6 +148,7 @@ class ArticleScreen extends React.Component {
 
     return (
       <View style={styles.fill}>
+        <StatusBar barStyle="light-content" />
         <Animated.ScrollView
           style={styles.fill}
           scrollEventThrottle={1}
@@ -264,7 +266,7 @@ const styles = StyleSheet.create({
     right: 0
   },
   title: {
-    fontSize: 30,
+    fontSize: 26,
     fontWeight: 'bold',
     color: '#fff',
     width: DeviceWidth,

@@ -41,20 +41,18 @@ import {SafeAreaView, ScrollView, View, StyleSheet} from 'react-native';
 
 const PublicationsScreen = ({screenProps, navigation}) => {
   return (
-    <SafeAreaView style={{backgroundColor: theme.backgroundColor}}>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollView}>
-        <View style={styles.body}>
-          <ThumbList
-            screenProps={screenProps}
-            data={ThumbListData}
-            type="publications"
-            extraPadding="28"
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={styles.scrollView}>
+      <View style={styles.body}>
+        <ThumbList
+          screenProps={screenProps}
+          data={ThumbListData}
+          type="publications"
+          extraPadding="28"
+        />
+      </View>
+    </ScrollView>
   );
 };
 
