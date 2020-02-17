@@ -257,7 +257,7 @@ export default class AllArticlesScreen extends PureComponent {
           style={{
             marginTop: 10,
             marginBottom: 20,
-            width: DeviceWidth,
+            width: '100%',
             height: 50
             // display: 'flex',
             // alignContent: 'center',
