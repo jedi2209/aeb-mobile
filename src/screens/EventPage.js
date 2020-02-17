@@ -63,7 +63,7 @@ const FirstRoute = (data, translate) => {
   return (
     <ScrollView>
       <View style={[styles.body, {paddingHorizontal: 14}]}>
-        <WebViewAutoHeight text={data.text} />
+        <WebViewAutoHeight text={`<div>${data.text}</div>`} />
       </View>
     </ScrollView>
   );

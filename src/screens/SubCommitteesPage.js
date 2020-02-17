@@ -70,7 +70,36 @@ class SubPublicationsScreen extends React.Component {
 
   render() {
     if (!this.state.data.id) {
-      return <ActivityIndicator />;
+      return (
+        <ImageBackground
+          source={require('../images/bg.png')}
+          style={[
+            styles.container,
+            {
+              top: -100,
+              position: 'relative',
+              marginBottom: -100,
+              minHeight: DeviceHeight + 100
+            }
+          ]}>
+          <View>
+            <View
+              style={{
+                marginTop: Platform.OS === 'ios' ? 90 : 103
+              }}>
+              <ScrollView
+                contentInsetAdjustmentBehavior="automatic"
+                style={styles.scrollView}>
+                <View style={{marginBottom: 100}}>
+                  <View style={styles.body}>
+                    <ActivityIndicator />
+                  </View>
+                </View>
+              </ScrollView>
+            </View>
+          </View>
+        </ImageBackground>
+      );
     } else {
       const contacts = [];
       if (this.state.data.contacts.chairman.name) {
