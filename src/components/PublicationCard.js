@@ -49,7 +49,7 @@ class PublicationsCard extends React.Component {
 
 const styles = StyleSheet.create({
   image: {
-    borderRadius: 4
+    borderRadius: 6
   },
   title: {
     fontSize: 17,

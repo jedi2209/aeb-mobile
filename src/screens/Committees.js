@@ -81,48 +81,45 @@ class CommitteesScreen extends React.Component {
 
   render() {
     return (
-      <View
-        style={[styles.container, {backgroundColor: theme.backgroundColor}]}>
-        <SafeAreaView>
-          <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
-            <View>
-              <View style={{backgroundColor: '#FAFAFA', paddingVertical: 14}}>
-                <Tabs
-                  tabTextStyle={{fontSize: 10}}
-                  activeTabTextStyle={{fontSize: 10}}
-                  tabs={[
-                    {
-                      head: this.props.screenProps.translate(
-                        'CommiteesType.CrosSectoral'
-                      ),
-                      route: FirstRoute(this.props.navigation)
-                    },
-                    {
-                      head: this.props.screenProps.translate(
-                        'CommiteesType.Industrial'
-                      ),
-                      route: SecondRoute(this.props.navigation)
-                    },
-                    {
-                      head: this.props.screenProps.translate(
-                        'CommiteesType.Regional'
-                      ),
-                      route: FourRoute(this.props.navigation)
-                    },
-                    {
-                      head: this.props.screenProps.translate(
-                        'CommiteesType.WorkingGroups'
-                      ),
-                      route: ThirdRoute(this.props.navigation)
-                    }
-                  ]}
-                />
-              </View>
+      <View style={[styles.container, {backgroundColor: '#fafafa'}]}>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}>
+          <View>
+            <View style={{backgroundColor: '#fafafa', paddingVertical: 14}}>
+              <Tabs
+                tabTextStyle={{fontSize: 10}}
+                activeTabTextStyle={{fontSize: 10}}
+                tabs={[
+                  {
+                    head: this.props.screenProps.translate(
+                      'CommiteesType.CrosSectoral'
+                    ),
+                    route: FirstRoute(this.props.navigation)
+                  },
+                  {
+                    head: this.props.screenProps.translate(
+                      'CommiteesType.Industrial'
+                    ),
+                    route: SecondRoute(this.props.navigation)
+                  },
+                  {
+                    head: this.props.screenProps.translate(
+                      'CommiteesType.Regional'
+                    ),
+                    route: FourRoute(this.props.navigation)
+                  },
+                  {
+                    head: this.props.screenProps.translate(
+                      'CommiteesType.WorkingGroups'
+                    ),
+                    route: ThirdRoute(this.props.navigation)
+                  }
+                ]}
+              />
             </View>
-          </ScrollView>
-        </SafeAreaView>
+          </View>
+        </ScrollView>
       </View>
     );
   }
@@ -134,7 +131,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   body: {
-    backgroundColor: '#FAFAFA',
     marginVertical: 10
   },
   container: {

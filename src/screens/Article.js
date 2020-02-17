@@ -18,7 +18,8 @@ import {
   Animated,
   Platform,
   StyleSheet,
-  RefreshControl
+  RefreshControl,
+  StatusBar
 } from 'react-native';
 
 import {DeviceWidth, LoadingIndicator} from '../core/themeProvider';
@@ -147,6 +148,7 @@ class ArticleScreen extends React.Component {
 
     return (
       <View style={styles.fill}>
+        <StatusBar barStyle="light-content" />
         <Animated.ScrollView
           style={styles.fill}
           scrollEventThrottle={1}
