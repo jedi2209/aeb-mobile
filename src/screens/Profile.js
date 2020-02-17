@@ -20,6 +20,9 @@ import {useStore} from 'effector-react';
 
 import {onPressSignOut} from './LoginScreen/LoginScreen.model';
 
+import HeaderBackButtonCustom from '../components/HeaderBackButtonCustom';
+import {theme} from '../core/themeProvider';
+
 export const Profile = props => {
   const session = useStore($session);
 
@@ -93,7 +96,7 @@ export const Profile = props => {
                     enablesReturnKeyAutomatically={true}
                     autoCompleteType={'username'}
                     returnKeyType={'done'}
-                    autoFocus={true}
+                    autoFocus={false}
                     onChangeText={text => setValues({...values, email: text})}
                   />
                 </View>
@@ -151,6 +154,18 @@ export const Profile = props => {
       </SafeAreaView>
     </ScrollView>
   );
+};
+
+Profile.navigationOptions = ({navigation, screenProps}) => {
+  return {
+    headerLeft: (
+      <HeaderBackButtonCustom
+        color="#024b9e"
+        navigation={navigation}
+      />
+    ),
+    headerStyle: [theme.headerStyle, theme.headerShadow]
+  };
 };
 
 const styles = StyleSheet.create({

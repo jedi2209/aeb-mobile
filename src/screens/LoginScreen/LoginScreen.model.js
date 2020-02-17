@@ -60,7 +60,9 @@ signInFx.fail.watch(err => {
   alert(err ? err.error : 'Что-то пошло не так, попробуйте снова');
 });
 
-signInFx.done.watch(() => NavigationService.navigate('Profile'));
+signInFx.done.watch(() =>
+  NavigationService.navigate('Profile', {backLink: 'News'})
+);
 signOutFx.done.watch(() => NavigationService.navigate('News'));
 
 $session.watch(store => console.log('>>>>>>>> store watch', store));
