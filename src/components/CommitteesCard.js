@@ -19,7 +19,7 @@ class CommitteesCard extends React.Component {
             styles.slide,
             {
               // 14 это отсупы
-              width: this.props.deviceWidth - 28 - this.props.BAR_SPACE
+              width: this.props.deviceWidth - 28 - this.props.BAR_SPACE,
             },
             this.props.style
           ]}>

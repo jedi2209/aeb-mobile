@@ -8,7 +8,8 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   SafeAreaView,
-  ScrollView
+  ScrollView,
+  Alert
 } from 'react-native';
 
 import AsyncStorage from '@react-native-community/async-storage';
@@ -130,7 +131,16 @@ export const Profile = props => {
                     JSON.stringify(userData)
                   );
 
-                  alert('Сохранено успешно');
+                  Alert.alert(
+                    props.screenProps.translate('Profile.SaveSuccess.Title'),
+                    props.screenProps.translate('Profile.SaveSuccess.Message'),
+                    [
+                      {
+                        text: props.screenProps.translate('Button.OK')
+                      }
+                    ],
+                    {cancelable: false}
+                  );
                 }}>
                 <Text style={[styles.buttonText, {textTransform: 'uppercase'}]}>
                   {props.screenProps.translate('edit')}
@@ -159,10 +169,7 @@ export const Profile = props => {
 Profile.navigationOptions = ({navigation, screenProps}) => {
   return {
     headerLeft: (
-      <HeaderBackButtonCustom
-        color="#024b9e"
-        navigation={navigation}
-      />
+      <HeaderBackButtonCustom color="#024b9e" navigation={navigation} />
     ),
     headerStyle: [theme.headerStyle, theme.headerShadow]
   };

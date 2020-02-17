@@ -8,6 +8,7 @@ import {
   TouchableHighlight
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {theme} from '../core/themeProvider';
 
 class Plate extends React.Component {
   constructor(props) {
@@ -23,22 +24,31 @@ class Plate extends React.Component {
     return (
       <TouchableHighlight
         key={'platePress' + person.id}
-        onPress={person.email ? this.onPress(`mailto:${person.email}`) : null}>
+        underlayColor="transparent"
+        onPress={() => {
+          if (person.email) {
+            return this.onPress(`mailto:${person.email}`);
+          }
+          return false;
+        }}>
         <View
           key={'plateView' + person.id}
-          style={{
-            borderRadius: 8,
-            backgroundColor: '#fff',
-            paddingHorizontal: 12,
-            paddingTop: 15,
-            // paddingBottom: 10,
-            marginRight: 12,
-            height: 100,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
+          style={[
+            theme.cardBlock,
+            theme.cardShadow,
+            {
+              borderRadius: 8,
+              backgroundColor: '#fff',
+              paddingHorizontal: 12,
+              paddingTop: 15,
+              marginRight: 12,
+              height: 100,
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }
+          ]}>
           <Text
             style={{
               color: '#000008',
@@ -48,7 +58,12 @@ class Plate extends React.Component {
             }}>
             {person.name}
           </Text>
-          <Text style={{color: '#0E4F9F', fontSize: 11}}>
+          <Text
+            style={{
+              color: '#0E4F9F',
+              fontSize: 11,
+              textAlign: 'center'
+            }}>
             {person.position}
           </Text>
           <View
@@ -57,7 +72,8 @@ class Plate extends React.Component {
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              marginTop: 15
             }}>
             {person.email ? (
               <Icon style={styles.icon} name="ios-mail" size={38} />
@@ -73,12 +89,14 @@ class Plate extends React.Component {
     return (
       <ScrollView showsHorizontalScrollIndicator={false} horizontal>
         <View
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            paddingHorizontal: 16,
-            marginBottom: 8
-          }}>
+          style={[
+            this.props.style,
+            {
+              display: 'flex',
+              flexDirection: 'row',
+              paddingHorizontal: 14
+            }
+          ]}>
           {this.props.items.map(el => {
             if (el.name || el.position) {
               return this.renderPlate(el);

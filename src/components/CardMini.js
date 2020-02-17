@@ -38,7 +38,7 @@ const CardMini = props => {
       <View
         style={{
           // математика: cardWidth - ширина изображения - отступ изображения
-          width: cardWidth - 64 - 10 - (props.padding || 0 * 2)
+          width: cardWidth - 78 - (props.padding || 0)
         }}>
         <Text style={styles.title}>{data.name}</Text>
         <Text style={styles.date}>
