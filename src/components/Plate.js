@@ -33,53 +33,36 @@ class Plate extends React.Component {
         }}>
         <View
           key={'plateView' + person.id}
-          style={[
-            theme.cardBlock,
-            theme.cardShadow,
-            {
-              borderRadius: 8,
-              backgroundColor: '#fff',
-              paddingHorizontal: 12,
-              paddingTop: 15,
-              marginRight: 12,
-              height: 100,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center'
-            }
-          ]}>
-          <Text
-            style={{
-              color: '#000008',
-              fontSize: 16,
-              fontWeight: '500',
-              paddingBottom: 5
-            }}>
-            {person.name}
-          </Text>
-          <Text
-            style={{
-              color: '#0E4F9F',
-              fontSize: 11,
-              textAlign: 'center'
-            }}>
-            {person.position}
-          </Text>
-          <View
-            style={{
-              flex: 1,
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginTop: 15
-            }}>
-            {person.email ? (
+          style={[theme.cardBlock, theme.cardShadow, styles.plate]}>
+          {person.name ? (
+            <Text style={styles.plateTitle}>{person.name}</Text>
+          ) : null}
+          {person.company ? (
+            <Text
+              style={{
+                color: '#0E4F9F',
+                fontSize: 11,
+                textAlign: 'center'
+              }}>
+              {person.company}
+            </Text>
+          ) : null}
+          {person.position ? (
+            <Text style={styles.plateSubTitle}>{person.position}</Text>
+          ) : null}
+          {person.email ? (
+            <View
+              style={{
+                flex: 1,
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: 15
+              }}>
               <Icon style={styles.icon} name="ios-mail" size={38} />
-            ) : null}
-            {/* <Icon style={styles.icon} name="ios-phone-portrait" size={38} /> */}
-          </View>
+            </View>
+          ) : null}
         </View>
       </TouchableHighlight>
     );
@@ -109,6 +92,30 @@ class Plate extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  plate: {
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    paddingHorizontal: 12,
+    paddingTop: 15,
+    marginRight: 12,
+    height: 80,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  plateTitle: {
+    color: '#000008',
+    fontSize: 16,
+    fontWeight: '500',
+    paddingBottom: 5
+  },
+  plateSubTitle: {
+    color: '#000008',
+    fontSize: 12,
+    textAlign: 'center',
+    marginTop: 15
+  },
   icon: {
     marginHorizontal: 10,
     marginVertical: 5,
