@@ -29,6 +29,8 @@
     "registration": "Register",
     "open": "Open",
     "coordinator": "Coordinator",
+    "chairperson": "Chairperson",
+    "chairpersondeputy": "Deputy Chairperson",
     "events": "Events",
     "login": "Sign In",
     "logout": "Sign Out",

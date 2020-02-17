@@ -75,21 +75,23 @@ class PublicationsScreen extends React.Component {
       const contacts = [];
       if (this.state.data.contacts.chairman.name) {
         contacts.push({
-          position: this.state.data.contacts.chairman.position,
+          position: this.props.screenProps.translate('chairperson'),
           name:
             this.state.data.contacts.chairman.name +
             ' ' +
-            this.state.data.contacts.chairman.surname
+            this.state.data.contacts.chairman.surname,
+          company: this.state.data.contacts.chairman.company.name
         });
       }
       this.state.data.contacts.chairmanDeputy &&
         this.state.data.contacts.chairmanDeputy.map(el => {
           contacts.push({
-            id: el.id ? el.id : el.email,
+            id: el.id ? el.id : el.email ? el.email : el.phone,
             name: el.name + ' ' + el.surname,
-            position: el.position,
-            email: el.email,
-            phone: el.phone
+            position: this.props.screenProps.translate('chairpersondeputy'),
+            company: el.company.name
+            // email: el.email,
+            // phone: el.phone
           });
         });
       return (
