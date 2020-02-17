@@ -69,15 +69,22 @@ class Plate extends React.Component {
   }
 
   render() {
+    let onlyTwo = false;
+    if (this.props.items.length === 2) {
+      onlyTwo = true;
+    }
     return (
       <ScrollView showsHorizontalScrollIndicator={false} horizontal>
         <View
           style={[
             this.props.style,
             {
+              width: '100%',
               display: 'flex',
               flexDirection: 'row',
-              paddingHorizontal: 14
+              paddingHorizontal: 14,
+              alignItems: 'center',
+              justifyContent: 'space-between',
             }
           ]}>
           {this.props.items.map(el => {
