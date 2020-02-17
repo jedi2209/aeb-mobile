@@ -59,7 +59,7 @@ export default class AllArticlesScreen extends PureComponent {
 
   componentDidUpdate(nextProps) {
     // TODO: разобраться почему изменение табов вызывают ререндер
-    if (this.props.type === 'committees') {
+    if (this.props.type === 'committees' || this.props.type === 'subcommittees') {
       return;
     }
 
@@ -89,6 +89,7 @@ export default class AllArticlesScreen extends PureComponent {
           responsedData = await this.api.getPublications(page, paramsForFetch);
           break;
         case 'committees':
+        case 'subcommittees':
           responsedData = await this.api.getCommittees(page, paramsForFetch);
           break;
         default:
@@ -148,7 +149,28 @@ export default class AllArticlesScreen extends PureComponent {
           responsedData = await this.api.getPublications(page, paramsForFetch);
           break;
         case 'committees':
-          responsedData = await this.api.getCommittees(page, paramsForFetch);
+        case 'subcommittees':
+          if (Array.isArray(paramsForFetch.committees)) {
+            let items = [].concat(paramsForFetch.committees);
+            items = await Promise.all(
+              items.map(async el => {
+                const item = await this.api.getCommitteeItem(el);
+                return item.items[0];
+              })
+            );
+
+            responsedData = {
+              items,
+              pagination: {
+                total: 1,
+                pages: {current: 1, prev: null, next: null, total: 1}
+              }
+            };
+
+            console.log('my responsedData >>>>>', responsedData);
+          } else {
+            responsedData = await this.api.getCommittees(page, paramsForFetch);
+          }
           break;
         default:
           responsedData = await this.api.getReleases(page, paramsForFetch);
@@ -298,19 +320,19 @@ export default class AllArticlesScreen extends PureComponent {
     );
   };
 
-  _renderCardCommittee = item => {
-    return (
-      // eslint-disable-next-line react-native/no-inline-styles
-      <CommitteesCard
-        extraPadding={this.props.extraPadding}
-        data={item}
-        height={200}
-        deviceWidth={DeviceWidth}
-        BAR_SPACE={0}
-        style={{marginTop: 10}}
-      />
-    );
-  };
+  // _renderCardCommittee = item => {
+  //   return (
+  //     // eslint-disable-next-line react-native/no-inline-styles
+  //     <CommitteesCard
+  //       extraPadding={this.props.extraPadding}
+  //       data={item}
+  //       height={200}
+  //       deviceWidth={DeviceWidth}
+  //       BAR_SPACE={0}
+  //       style={{marginTop: 10}}
+  //     />
+  //   );
+  // };
 
   _renderReleasesCards(item) {
     return (
@@ -397,6 +419,26 @@ export default class AllArticlesScreen extends PureComponent {
           />
         );
         break;
+      case 'subcommittees':
+        component = (
+          <CommitteesCard
+            extraPadding={this.props.extraPadding}
+            data={item}
+            height={200}
+            deviceWidth={
+              this.props.DeviceWidth ? this.props.DeviceWidth : DeviceWidth
+            }
+            BAR_SPACE={0}
+            style={{marginTop: 0}}
+            onPress={() => {
+              navigation.navigate('SubCommitteesPage', {
+                itemId: item.id,
+                otherParam: item
+              });
+            }}
+          />
+        );
+        break;
       default:
         component = this._renderReleasesCards(item);
     }
@@ -416,7 +458,8 @@ export default class AllArticlesScreen extends PureComponent {
               // eslint-disable-next-line react-native/no-inline-styles
               {
                 paddingHorizontal: this.props.padding,
-                marginLeft: 14
+                marginLeft: 14,
+                marginBottom: 14
               }
             ]}
             text={title}

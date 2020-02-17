@@ -8,6 +8,7 @@ import ReleasesScreen from './screens/Releases';
 import PublicationsScreen from './screens/Publications';
 import CommitteesScreen from './screens/Committees';
 import CommitteesPage from './screens/CommitteesPage';
+import SubCommitteesPage from './screens/SubCommitteesPage';
 import EventsScreen from './screens/Events';
 import EventPage from './screens/EventPage';
 import ContactsScreen from './screens/Contacts';
@@ -99,6 +100,7 @@ const MainNavigator = createStackNavigator(
     Article: {screen: ArticleScreen},
     Event: {screen: EventPage},
     CommitteesPage: {screen: CommitteesPage},
+    SubCommitteesPage: {screen: SubCommitteesPage},
     Releases: {screen: ReleasesScreen},
     Publications: {screen: PublicationsScreen},
     Committees: {screen: CommitteesScreen},
