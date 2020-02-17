@@ -86,7 +86,7 @@ class PublicationsScreen extends React.Component {
           <View>
             <View
               style={{
-                marginTop: Platform.OS === 'ios' ? 90 : 103
+                marginTop: Platform.OS === 'ios' ? 100 : 90
               }}>
               <ScrollView
                 contentInsetAdjustmentBehavior="automatic"
@@ -138,7 +138,7 @@ class PublicationsScreen extends React.Component {
           <View>
             <View
               style={{
-                marginTop: Platform.OS === 'ios' ? 100 : 113
+                marginTop: Platform.OS === 'ios' ? 100 : 90
               }}>
               <ScrollView
                 contentInsetAdjustmentBehavior="automatic"
