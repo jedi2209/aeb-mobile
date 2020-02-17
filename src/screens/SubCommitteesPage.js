@@ -20,7 +20,7 @@ import {
 import {DeviceWidth, DeviceHeight} from '../core/themeProvider';
 import Plate from '../components/Plate';
 
-class PublicationsScreen extends React.Component {
+class SubPublicationsScreen extends React.Component {
   state = {
     data: [],
     loading: true,
@@ -172,49 +172,6 @@ class PublicationsScreen extends React.Component {
                         </View>
                       </TouchableHighlight>
                     ) : null}
-                    <View
-                      style={{
-                        backgroundColor: '#fff',
-                        marginVertical: 14,
-                        borderRadius: 8,
-                        marginHorizontal: 14
-                      }}>
-                      {this.data.sub_committee ? (
-                        <ThumbList
-                          paramsForFetch={{committees: this.data.sub_committee}}
-                          translate={this.props.screenProps.translate}
-                          navigation={this.props.navigation}
-                          DeviceWidth={DeviceWidth - 28}
-                          type="subcommittees"
-                          title={this.props.screenProps.translate(
-                            'subcommittees'
-                          )}
-                        />
-                      ) : null}
-                    </View>
-                    <ThumbList
-                      paramsForFetch={{committees: this.data.id, limit: 3}}
-                      translate={this.props.screenProps.translate}
-                      type="publications"
-                      extraPadding="28"
-                    />
-                    <View
-                      style={{
-                        backgroundColor: '#fff',
-                        marginTop: 14,
-                        borderRadius: 8,
-                        marginHorizontal: 14
-                      }}>
-                      <ThumbList
-                        paramsForFetch={{committees: this.data.id}}
-                        translate={this.props.screenProps.translate}
-                        navigation={this.props.navigation}
-                        type="newsCommitee"
-                        title={this.props.screenProps.translate(
-                          'committee_news'
-                        )}
-                      />
-                    </View>
                   </View>
                 </View>
               </ScrollView>
@@ -261,4 +218,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PublicationsScreen;
+export default SubPublicationsScreen;
