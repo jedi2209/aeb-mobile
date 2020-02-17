@@ -190,105 +190,103 @@ class EventsScreen extends React.Component {
 
   render() {
     return (
-        <SafeAreaView>
-          <ScrollView>
-            <Calendar
-              width={DeviceWidth}
-              markedDates={this.state.markedDates}
-              // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
-              // minDate={'2012-05-10'}
-              // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
-              // maxDate={'2012-05-30'}
-              // Handler which gets executed on day press. Default = undefined
-              onDayPress={day => {
-                // изначальные данные с сервера
-                const responsedData = this.state.responsedData;
-                const selectedDay = day.dateString;
+      <ScrollView>
+        <Calendar
+          width={DeviceWidth}
+          markedDates={this.state.markedDates}
+          // Minimum date that can be selected, dates before minDate will be grayed out. Default = undefined
+          // minDate={'2012-05-10'}
+          // Maximum date that can be selected, dates after maxDate will be grayed out. Default = undefined
+          // maxDate={'2012-05-30'}
+          // Handler which gets executed on day press. Default = undefined
+          onDayPress={day => {
+            // изначальные данные с сервера
+            const responsedData = this.state.responsedData;
+            const selectedDay = day.dateString;
 
-                if (!responsedData.includes(selectedDay)) {
-                  return;
-                }
+            if (!responsedData.includes(selectedDay)) {
+              return;
+            }
 
-                // снова их приводим к сооответсвующему объекту
-                const markedDates = responsedData
-                  ? responsedData.reduce((acc, item) => {
-                      acc[item] = {marked: true};
-                      return acc;
-                    }, {})
-                  : {};
+            // снова их приводим к сооответсвующему объекту
+            const markedDates = responsedData
+              ? responsedData.reduce((acc, item) => {
+                  acc[item] = {marked: true};
+                  return acc;
+                }, {})
+              : {};
 
-                // то что запишем в markedDates в итоге
-                const calculated = Object.assign(markedDates, {
-                  [selectedDay]: {selected: true}
-                });
+            // то что запишем в markedDates в итоге
+            const calculated = Object.assign(markedDates, {
+              [selectedDay]: {selected: true}
+            });
 
-                let params;
-                let title;
+            let params;
+            let title;
 
-                if (selectedDay === this.state.now) {
-                  params = {
-                    date_from: selectedDay
-                  };
-                  title = this.props.screenProps.translate('upcoming_events');
-                } else {
-                  params = {
-                    date_from: selectedDay,
-                    date_to: selectedDay
-                  };
+            if (selectedDay === this.state.now) {
+              params = {
+                date_from: selectedDay
+              };
+              title = this.props.screenProps.translate('upcoming_events');
+            } else {
+              params = {
+                date_from: selectedDay,
+                date_to: selectedDay
+              };
 
-                  title = `${this.props.screenProps.translate(
-                    'upcoming_events_on'
-                  )} ${Moment(selectedDay).format('DD MMMM YYYY')}`;
-                }
+              title = `${this.props.screenProps.translate(
+                'upcoming_events_on'
+              )} ${Moment(selectedDay).format('DD MMMM YYYY')}`;
+            }
 
-                this.setState({
-                  selected: selectedDay,
-                  markedDates: calculated,
-                  params,
-                  title
-                });
-              }}
-              // Handler which gets executed on day long press. Default = undefined
-              // onDayLongPress={day => {
-              //   alert('change date long', day);
-              // }}
-              // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
-              monthFormat={'MMMM yyyy'}
-              // Handler which gets executed when visible month changes in calendar. Default = undefined
-              onMonthChange={month => {
-                this._changeMonth(month);
-              }}
-              // Hide month navigation arrows. Default = false
-              // hideArrows={true}
-              // Replace default arrows with custom ones (direction can be 'left' or 'right')
-              // renderArrow={direction => <Arrow />}
-              // Do not show days of other months in month page. Default = false
-              hideExtraDays={true}
-              // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
-              // day from another month that is visible in calendar page. Default = false
-              // disableMonthChange={true}
-              // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
-              firstDay={1}
-              // Hide day names. Default = false
-              hideDayNames={true}
-              // Show week numbers to the left. Default = false
-              // showWeekNumbers={true}
-              // Handler which gets executed when press arrow icon left. It receive a callback can go back month
-              onPressArrowLeft={substractMonth => substractMonth()}
-              // Handler which gets executed when press arrow icon left. It receive a callback can go next month
-              onPressArrowRight={addMonth => addMonth()}
-            />
-            <View style={styles.body}>
-              <ThumbList
-                paramsForFetch={this.state.params}
-                translate={this.props.screenProps.translate}
-                navigation={this.props.navigation}
-                type="events"
-                title={this.state.title}
-              />
-            </View>
-          </ScrollView>
-        </SafeAreaView>
+            this.setState({
+              selected: selectedDay,
+              markedDates: calculated,
+              params,
+              title
+            });
+          }}
+          // Handler which gets executed on day long press. Default = undefined
+          // onDayLongPress={day => {
+          //   alert('change date long', day);
+          // }}
+          // Month format in calendar title. Formatting values: http://arshaw.com/xdate/#Formatting
+          monthFormat={'MMMM yyyy'}
+          // Handler which gets executed when visible month changes in calendar. Default = undefined
+          onMonthChange={month => {
+            this._changeMonth(month);
+          }}
+          // Hide month navigation arrows. Default = false
+          // hideArrows={true}
+          // Replace default arrows with custom ones (direction can be 'left' or 'right')
+          // renderArrow={direction => <Arrow />}
+          // Do not show days of other months in month page. Default = false
+          hideExtraDays={true}
+          // If hideArrows=false and hideExtraDays=false do not switch month when tapping on greyed out
+          // day from another month that is visible in calendar page. Default = false
+          // disableMonthChange={true}
+          // If firstDay=1 week starts from Monday. Note that dayNames and dayNamesShort should still start from Sunday.
+          firstDay={1}
+          // Hide day names. Default = false
+          hideDayNames={true}
+          // Show week numbers to the left. Default = false
+          // showWeekNumbers={true}
+          // Handler which gets executed when press arrow icon left. It receive a callback can go back month
+          onPressArrowLeft={substractMonth => substractMonth()}
+          // Handler which gets executed when press arrow icon left. It receive a callback can go next month
+          onPressArrowRight={addMonth => addMonth()}
+        />
+        <View style={styles.body}>
+          <ThumbList
+            paramsForFetch={this.state.params}
+            translate={this.props.screenProps.translate}
+            navigation={this.props.navigation}
+            type="events"
+            title={this.state.title}
+          />
+        </View>
+      </ScrollView>
     );
   }
 }
@@ -296,7 +294,8 @@ class EventsScreen extends React.Component {
 const styles = StyleSheet.create({
   body: {
     backgroundColor: '#fff',
-    paddingLeft: 14
+    paddingLeft: 14,
+    paddingBottom: 64
   }
 });
 

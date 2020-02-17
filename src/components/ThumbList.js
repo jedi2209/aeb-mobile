@@ -257,7 +257,7 @@ export default class AllArticlesScreen extends PureComponent {
           style={{
             marginTop: 10,
             marginBottom: 20,
-            width: DeviceWidth,
+            width: '100%',
             height: 50
             // display: 'flex',
             // alignContent: 'center',
@@ -474,7 +474,7 @@ export default class AllArticlesScreen extends PureComponent {
           />
         )}
         <FlatList
-          contentContainerStyle={styles.flatlist}
+          contentContainerStyle={[styles.flatlist, {paddingVertical: this.props.type === 'subcommittees' ? 8 : 0}]}
           numColumns={1}
           data={this.state.data}
           renderItem={({item}) => {
@@ -507,7 +507,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     height: '100%',
-    width: '100%'
+    width: '100%',
+    paddingVertical: 0
   },
   fllatlistview: {
     marginTop: 25,

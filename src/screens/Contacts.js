@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
   panelHandle: {
     width: 40,
     height: 8,
-    borderRadius: 4,
+    borderRadius: 6,
     backgroundColor: '#00000040',
     marginBottom: 10
   },

@@ -59,21 +59,19 @@ const NewsScreen = props => {
   const {screenProps, navigation} = props;
 
   return (
-    <SafeAreaView style={{backgroundColor: theme.backgroundColor}}>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View style={[{marginTop: 10}]}>
-          <CarouselArticles data={items} navigation={navigation} />
-        </View>
-        <View style={theme.body}>
-          <ThumbList
-            screenProps={screenProps}
-            type="news"
-            title={screenProps.translate('last_news')} // "Last news"
-            navigation={navigation}
-          />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <View style={[{marginTop: 10}]}>
+        <CarouselArticles data={items} navigation={navigation} />
+      </View>
+      <View style={theme.body}>
+        <ThumbList
+          screenProps={screenProps}
+          type="news"
+          title={screenProps.translate('last_news')} // "Last news"
+          navigation={navigation}
+        />
+      </View>
+    </ScrollView>
   );
 };
 
