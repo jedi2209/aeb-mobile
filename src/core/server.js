@@ -133,9 +133,6 @@ export const API = class AebApi {
         return acc + `&${param}=${paramsForFetch[param]}`;
       }, '');
 
-      console.log('params', params);
-      console.log(`${this._url}/events/list/?page=${page}${params}`);
-
       const response = await fetch(
         `${this._url}/events/list/?page=${page}${params}`,
         {
@@ -149,7 +146,6 @@ export const API = class AebApi {
       );
 
       const responseJson = await response.json();
-      console.log(responseJson);
 
       return {
         items: responseJson.data,
@@ -166,9 +162,6 @@ export const API = class AebApi {
         return acc + `&${param}=${paramsForFetch[param]}`;
       }, '');
 
-      console.log('params', params);
-      console.log(`${this._url}/publications/list/?page=${page}${params}`);
-
       const response = await fetch(
         `${this._url}/publications/list/?page=${page}${params}`,
         {
@@ -182,7 +175,6 @@ export const API = class AebApi {
       );
 
       const responseJson = await response.json();
-      console.log(responseJson);
 
       return {
         items: responseJson.data,
@@ -249,9 +241,6 @@ export const API = class AebApi {
         return acc + `&${param}=${paramsForFetch[param]}`;
       }, '');
 
-      console.log('params', params);
-      console.log(`${this._url}/press/list/?page=${page}${params}`);
-
       const response = await fetch(
         `${this._url}/press/list/?page=${page}${params}`,
         {
@@ -299,7 +288,6 @@ export const API = class AebApi {
 
       const responseJson = await response.json();
 
-      console.log(responseJson);
       return {
         items: responseJson.data,
         pagination: responseJson.info

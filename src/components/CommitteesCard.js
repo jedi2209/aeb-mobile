@@ -14,8 +14,9 @@ class CommitteesCard extends React.Component {
       <TouchableWithoutFeedback onPress={this.props.onPress}>
         <View
           style={[
-            styles.slide,
+            theme.cardBlock,
             theme.cardShadow,
+            styles.slide,
             {
               // 14 это отсупы
               width: this.props.deviceWidth - 28 - this.props.BAR_SPACE
@@ -44,9 +45,7 @@ const styles = StyleSheet.create({
   slide: {
     backgroundColor: '#fff',
     padding: 14,
-    marginLeft: 14,
-    flexDirection: 'row',
-    borderRadius: 4
+    marginLeft: 14
   },
   image: {
     borderRadius: 4
