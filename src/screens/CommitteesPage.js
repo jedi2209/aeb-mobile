@@ -2,7 +2,7 @@
 import React from 'react';
 import ThumbList from '../components/ThumbList';
 import {API} from '../core/server';
-import {ActivityIndicator} from 'react-native';
+import {ActivityIndicator, StatusBar} from 'react-native';
 import {theme} from '../core/themeProvider';
 
 import {
@@ -82,6 +82,7 @@ class PublicationsScreen extends React.Component {
               minHeight: DeviceHeight + 100
             }
           ]}>
+          <StatusBar barStyle="light-content" />
           <View>
             <View
               style={{
@@ -133,10 +134,11 @@ class PublicationsScreen extends React.Component {
               minHeight: DeviceHeight + 100
             }
           ]}>
+          <StatusBar barStyle="light-content" />
           <View>
             <View
               style={{
-                marginTop: Platform.OS === 'ios' ? 90 : 103
+                marginTop: Platform.OS === 'ios' ? 100 : 113
               }}>
               <ScrollView
                 contentInsetAdjustmentBehavior="automatic"
@@ -208,7 +210,7 @@ class PublicationsScreen extends React.Component {
                           backgroundColor: '#fff',
                           marginVertical: 14,
                           borderRadius: 8,
-                          marginHorizontal: 14
+                          marginHorizontal: 14,
                         }}>
                         <ThumbList
                           paramsForFetch={{committees: this.data.sub_committee}}

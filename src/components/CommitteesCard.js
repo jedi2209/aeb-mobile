@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     marginLeft: 14
   },
   image: {
-    borderRadius: 4
+    borderRadius: 6
   },
   title: {
     fontSize: 17,

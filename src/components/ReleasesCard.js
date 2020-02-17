@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     shadowOffset: {height: 1, width: 0}
   },
   image: {
-    borderRadius: 4,
+    borderRadius: 6,
     marginRight: 14
   },
   title: {

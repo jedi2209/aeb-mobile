@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   //   height: 32,
   //   marginTop: 2,
   //   marginBottom: 2,
-  //   borderRadius: 4,
+  //   borderRadius: 6,
   //   top: 0
   // },
   main: {
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     width: '96%',
     marginLeft: '2%',
     marginRight: '2%',
-    borderRadius: 4,
+    borderRadius: 6,
     position: 'relative'
   },
   tabInActive: {

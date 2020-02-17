@@ -2,7 +2,7 @@
 import React from 'react';
 import ThumbList from '../components/ThumbList';
 import {API} from '../core/server';
-import {ActivityIndicator} from 'react-native';
+import {ActivityIndicator, StatusBar} from 'react-native';
 import {theme} from '../core/themeProvider';
 
 import {
@@ -82,6 +82,7 @@ class SubPublicationsScreen extends React.Component {
               minHeight: DeviceHeight + 100
             }
           ]}>
+          <StatusBar barStyle="light-content" />
           <View>
             <View
               style={{

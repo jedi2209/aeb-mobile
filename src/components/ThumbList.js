@@ -507,7 +507,8 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     height: '100%',
-    width: '100%'
+    width: '100%',
+    paddingVertical: 8
   },
   fllatlistview: {
     marginTop: 25,

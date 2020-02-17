@@ -61,13 +61,13 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
-    borderRadius: 4
+    borderRadius: 6
   },
   image: {
     width: 64,
     height: 64,
     marginRight: 10,
-    borderRadius: 4
+    borderRadius: 6
   },
   title: {
     fontSize: 16,
