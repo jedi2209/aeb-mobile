@@ -21,7 +21,7 @@
     "additional_member": "Additional member",
     "non_member": "Non member",
     "select_an_item": "Select a subject",
-    "all_press_releases": "All Press Releases",
+    "all_press_releases": "All Press releases",
     "press": "Available for Press",
     "translation_avail": "RUS / ENG, Translation available",
     "about": "About",
@@ -37,7 +37,7 @@
     "News": "News",
     "Events": "Events",
     "Publications": "Publications",
-    "Releases": "Releases",
+    "Releases": "Press releases",
     "Committees": "Committees",
     "Contacts": "Contacts",
     "Settings": "Settings",
@@ -89,9 +89,9 @@
         },
         "Releases": {
             "PleaseAllowTitle": "Push Notifications request",
-            "PleaseAllow": "Please Allow Push Notifications in order to receive Releases updates",
+            "PleaseAllow": "Please Allow Push Notifications in order to receive Press releases updates",
             "YouHaveSubscribedTitle": "You have been subscribed!",
-            "YouHaveSubscribedDescription": "Now you get a message when new Releases is online" 
+            "YouHaveSubscribedDescription": "Now you get a message when new Press releases is online" 
         },
         "Events": {
             "PleaseAllowTitle": "Push Notifications request",
@@ -105,7 +105,7 @@
     "Notification": {
         "Publications": "Notifications about Publications",
         "News": "Notifications about News",
-        "Releases": "Notifications about Releases",
+        "Releases": "Notifications about Press releases",
         "Events": "Notifications about Events"
     },
     "CopyToClipboard": {
