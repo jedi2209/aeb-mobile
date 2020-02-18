@@ -141,18 +141,10 @@ const ThirdRoute = (data, extraPadding) => {
     return null;
   }
 
-  const styleLocal = StyleSheet.create({
-    flatlist: {
-      flexDirection: 'column',
-      height: '100%',
-      width: '100%'
-    }
-  });
   return (
     <View style={[styles.body]}>
       <View style={{marginTop: 20}}>
         <FlatList
-          contentContainerStyle={styleLocal.flatlist}
           numColumns={1}
           data={data.file}
           renderItem={({item}) => {
@@ -235,6 +227,8 @@ class EventScreen extends React.Component {
         });
       });
     }
+
+    console.log('>>> contacts', contacts);
 
     return (
       <View
