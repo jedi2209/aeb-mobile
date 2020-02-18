@@ -163,7 +163,7 @@ class SubPublicationsScreen extends React.Component {
                         {this.data.name}
                       </Text>
                     </View>
-                    <Plate items={contacts} style={{marginTop: 8}} />
+                    <Plate items={contacts} padd={8} style={{marginTop: 8}} />
                     {this.state.data.contacts.coordinator.name ? (
                       <TouchableHighlight
                         underlayColor="transparent"

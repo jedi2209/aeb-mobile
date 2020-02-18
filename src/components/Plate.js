@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {
   ScrollView,
@@ -7,6 +8,7 @@ import {
   Linking,
   TouchableHighlight
 } from 'react-native';
+import {DeviceWidth} from '../core/themeProvider';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {theme} from '../core/themeProvider';
 
@@ -16,11 +18,17 @@ class Plate extends React.Component {
   }
 
   onPress(link) {
-    // console.log('link', link);
     Linking.openURL(link);
   }
 
-  renderPlate(person) {
+  renderPlate(person, customViewForTwo, padd) {
+    const customViewStyle = StyleSheet.create({
+      plateView: {
+        // 12 это margin справа самого плейта и 8 паддинг на экранах
+        width: Math.round(DeviceWidth / 2) - 12 - (padd || 8),
+        paddingHorizontal: 2
+      }
+    });
     return (
       <TouchableHighlight
         key={'platePress' + person.id}
@@ -37,20 +45,45 @@ class Plate extends React.Component {
             theme.cardBlock,
             theme.cardShadow,
             styles.plate,
-            this.props.stylePlate
+            this.props.stylePlate,
+            customViewForTwo ? customViewStyle.plateView : {}
           ]}>
           {person.name ? (
-            <Text style={styles.plateTitle}>{person.name}</Text>
+            customViewForTwo ? (
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={[styles.plateTitle, {fontSize: 14}]}>
+                {person.name}
+              </Text>
+            ) : (
+              <Text style={[styles.plateTitle, {fontSize: 16}]}>
+                {person.name}
+              </Text>
+            )
           ) : null}
           {person.company ? (
-            <Text
-              style={{
-                color: '#0E4F9F',
-                fontSize: 11,
-                textAlign: 'center'
-              }}>
-              {person.company}
-            </Text>
+            customViewForTwo ? (
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={{
+                  color: '#0E4F9F',
+                  fontSize: 11,
+                  textAlign: 'center'
+                }}>
+                {person.company}
+              </Text>
+            ) : (
+              <Text
+                style={{
+                  color: '#0E4F9F',
+                  fontSize: 11,
+                  textAlign: 'center'
+                }}>
+                {person.company}
+              </Text>
+            )
           ) : null}
           {person.position ? (
             <Text style={styles.plateSubTitle}>{person.position}</Text>
@@ -74,9 +107,9 @@ class Plate extends React.Component {
   }
 
   render() {
-    let onlyTwo = false;
+    let customViewForTwo = false;
     if (this.props.items.length === 2) {
-      onlyTwo = true;
+      customViewForTwo = true;
     }
     return (
       <ScrollView showsHorizontalScrollIndicator={false} horizontal>
@@ -88,13 +121,13 @@ class Plate extends React.Component {
               flexDirection: 'row',
               paddingHorizontal: 14,
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'space-between'
             },
             this.props.style
           ]}>
           {this.props.items.map(el => {
             if (el.name || el.position) {
-              return this.renderPlate(el);
+              return this.renderPlate(el, customViewForTwo, this.props.padd);
             }
           })}
         </View>
@@ -118,7 +151,6 @@ const styles = StyleSheet.create({
   },
   plateTitle: {
     color: '#000008',
-    fontSize: 16,
     fontWeight: '500',
     paddingBottom: 5
   },

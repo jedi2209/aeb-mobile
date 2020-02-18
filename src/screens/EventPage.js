@@ -317,6 +317,7 @@ class EventScreen extends React.Component {
               </View>
               <Plate
                 items={contacts}
+                padd={3}
                 style={{marginTop: 0, paddingHorizontal: 9}}
                 stylePlate={{height: 115}}
               />
