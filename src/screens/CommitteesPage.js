@@ -19,6 +19,7 @@ import {
 
 import {DeviceWidth, DeviceHeight} from '../core/themeProvider';
 import Plate from '../components/Plate';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class PublicationsScreen extends React.Component {
   state = {
@@ -185,7 +186,8 @@ class PublicationsScreen extends React.Component {
                             theme.cardShadow,
                             {
                               marginHorizontal: 14,
-                              padding: 14
+                              padding: 14,
+                              height: 49
                             }
                           ]}>
                           <Text
@@ -199,10 +201,16 @@ class PublicationsScreen extends React.Component {
                             style={{
                               fontSize: 16,
                               lineHeight: 20,
-                              fontFamily: 'SFUIDisplay-Regular'
+                              fontFamily: 'SFUIDisplay-Regular',
+                              marginRight: 10
                             }}>
                             {this.state.data.contacts.coordinator.name}
                           </Text>
+                          <Icon
+                            style={styles.iconCoordinator}
+                            name="ios-mail"
+                            size={25}
+                          />
                         </View>
                       </TouchableHighlight>
                     ) : null}
@@ -212,7 +220,7 @@ class PublicationsScreen extends React.Component {
                           backgroundColor: '#fff',
                           marginVertical: 14,
                           borderRadius: 8,
-                          marginHorizontal: 14,
+                          marginHorizontal: 14
                         }}>
                         <ThumbList
                           paramsForFetch={{committees: this.data.sub_committee}}
@@ -292,6 +300,9 @@ const styles = StyleSheet.create({
     height: 60,
     borderRadius: 80,
     marginRight: 14
+  },
+  iconCoordinator: {
+    marginTop: -1
   }
 });
 

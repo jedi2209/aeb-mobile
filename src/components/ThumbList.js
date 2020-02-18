@@ -139,6 +139,10 @@ export default class AllArticlesScreen extends PureComponent {
     let responsedData;
     let calc;
 
+    this.setState({
+      loading: true
+    });
+
     try {
       switch (this.props.type) {
         case 'news':
@@ -474,7 +478,10 @@ export default class AllArticlesScreen extends PureComponent {
           />
         )}
         <FlatList
-          contentContainerStyle={[styles.flatlist, {paddingVertical: this.props.type === 'subcommittees' ? 8 : 0}]}
+          contentContainerStyle={[
+            styles.flatlist,
+            {paddingVertical: this.props.type === 'subcommittees' ? 8 : 0}
+          ]}
           numColumns={1}
           data={this.state.data}
           renderItem={({item}) => {

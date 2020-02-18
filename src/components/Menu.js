@@ -8,7 +8,7 @@ let menuItems = [
   'News',
   'Events',
   'Publications',
-  'Press releases',
+  'Releases',
   'Committees',
   'Contacts',
   'Settings'
