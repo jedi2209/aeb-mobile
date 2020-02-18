@@ -5,7 +5,8 @@ import {
   StyleSheet,
   ScrollView,
   Platform,
-  NativeModules
+  NativeModules,
+  ActivityIndicator
 } from 'react-native';
 
 import {theme} from '../core/themeProvider';
@@ -127,7 +128,8 @@ class EventsScreen extends React.Component {
       markedDates: {},
       params: {
         date_from: Moment().format('YYYY-MM-DD')
-      }
+      },
+      loading: false
     };
   }
 
@@ -159,7 +161,8 @@ class EventsScreen extends React.Component {
       responsedData: data.responsedData,
       markedDates: Object.assign(data.markedDates, {
         [this.state.now]: {selected: true}
-      })
+      }),
+      loading: false
     });
   }
 
@@ -174,6 +177,7 @@ class EventsScreen extends React.Component {
       : {};
 
     return {
+      loading: false,
       responsedData: responsedData.items,
       markedDates
     };
@@ -184,7 +188,8 @@ class EventsScreen extends React.Component {
 
     this.setState({
       responsedData: data.responsedData,
-      markedDates: Object.assign(data.markedDates)
+      markedDates: Object.assign(data.markedDates),
+      loading: data.loading
     });
   };
 
@@ -231,18 +236,20 @@ class EventsScreen extends React.Component {
               title = this.props.screenProps.translate('upcoming_events');
             } else {
               params = {
-                date_from: selectedDay,
-                date_to: selectedDay
+                date_from: selectedDay
+                // date_to: selectedDay
               };
 
-              title = `${this.props.screenProps.translate(
-                'upcoming_events_on'
-              )} ${Moment(selectedDay).format('DD MMMM YYYY')}`;
+              // title = `${this.props.screenProps.translate(
+              //   'upcoming_events_on'
+              // )} ${Moment(selectedDay).format('DD MMMM YYYY')}`;
+              title = `${this.props.screenProps.translate('upcoming_events')}`;
             }
 
             this.setState({
               selected: selectedDay,
               markedDates: calculated,
+              loading: true,
               params,
               title
             });

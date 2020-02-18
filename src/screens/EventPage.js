@@ -13,6 +13,7 @@ import WebViewAutoHeight from '../components/WebViewAutoHeight';
 import {DeviceWidth} from '../core/themeProvider';
 import Tabs from '../components/Tabs';
 import HeaderBackButtonCustom from '../components/HeaderBackButtonCustom';
+import Plate from '../components/Plate';
 import {theme} from '../core/themeProvider';
 
 const BAR_SPACE = 14;
@@ -167,7 +168,7 @@ const ThirdRoute = (data, extraPadding) => {
             );
           }}
           keyExtractor={item => {
-            return item.name.toString();
+            return 'release' + item.name.toString();
           }}
         />
       </View>
@@ -220,6 +221,20 @@ class EventScreen extends React.Component {
     dateWithCupitalize = dateWithCupitalize.toString().split('');
     dateWithCupitalize[0] = dateWithCupitalize[0].toUpperCase();
     dateWithCupitalize = dateWithCupitalize.join('');
+
+    const contacts = [];
+    if (this.data.contacts) {
+      this.data.contacts.map(el => {
+        contacts.push({
+          id: el.name,
+          name: el.name,
+          // position: el.position,
+          company: el.position,
+          email: el.email,
+          phone: el.phone
+        });
+      });
+    }
 
     return (
       <View
@@ -306,6 +321,11 @@ class EventScreen extends React.Component {
                   </Text>
                 )}
               </View>
+              <Plate
+                items={contacts}
+                style={{marginTop: 0, paddingHorizontal: 9}}
+                stylePlate={{height: 115}}
+              />
               <Tabs
                 tabs={[
                   {

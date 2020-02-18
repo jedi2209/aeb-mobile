@@ -33,7 +33,12 @@ class Plate extends React.Component {
         }}>
         <View
           key={'plateView' + person.id}
-          style={[theme.cardBlock, theme.cardShadow, styles.plate]}>
+          style={[
+            theme.cardBlock,
+            theme.cardShadow,
+            styles.plate,
+            this.props.stylePlate
+          ]}>
           {person.name ? (
             <Text style={styles.plateTitle}>{person.name}</Text>
           ) : null}
@@ -58,7 +63,7 @@ class Plate extends React.Component {
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'center',
-                marginTop: 15
+                marginTop: 0
               }}>
               <Icon style={styles.icon} name="ios-mail" size={38} />
             </View>
@@ -77,7 +82,6 @@ class Plate extends React.Component {
       <ScrollView showsHorizontalScrollIndicator={false} horizontal>
         <View
           style={[
-            this.props.style,
             {
               width: '100%',
               display: 'flex',
@@ -85,7 +89,8 @@ class Plate extends React.Component {
               paddingHorizontal: 14,
               alignItems: 'center',
               justifyContent: 'space-between',
-            }
+            },
+            this.props.style
           ]}>
           {this.props.items.map(el => {
             if (el.name || el.position) {
