@@ -4,6 +4,16 @@ import {theme} from '../core/themeProvider';
 
 import {Text, TouchableOpacity, View} from 'react-native';
 
+let menuNames = [
+  'News',
+  'Events',
+  'Publications',
+  'Releases.menuTitle',
+  'Committees',
+  'Contacts',
+  'Settings'
+];
+
 let menuItems = [
   'News',
   'Events',
@@ -24,13 +34,15 @@ const Menu = props => {
         justifyContent: 'center'
       }}
       scrollEnabled={false}>
-      {menuItems.map(item => (
+      {menuItems.map((item, i) => (
         <TouchableOpacity
           key={item}
           onPress={() => {
             navigation.navigate(item);
           }}>
-          <Text style={[styles.link, theme.whiteLink]}>{translate(item)}</Text>
+          <Text style={[styles.link, theme.whiteLink]}>
+            {translate(menuNames[i])}
+          </Text>
         </TouchableOpacity>
       ))}
     </View>

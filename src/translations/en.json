@@ -37,7 +37,10 @@
     "News": "News",
     "Events": "Events",
     "Publications": "Publications",
-    "Releases": "Press releases",
+    "Releases": {
+        "menuTitle": "Press releases",
+        "NoData": "No press releases"
+    },
     "Committees": "Committees",
     "Contacts": "Contacts",
     "Settings": "Settings",
