@@ -37,7 +37,10 @@
     "News": "Новости",
     "Events": "Мероприятия",
     "Publications": "Публикации",
-    "Releases": "Пресс-релизы",
+    "Releases": {
+        "menuTitle": "Пресс-релизы",
+        "NoData": "Пресс-релизов нет"
+    },
     "Committees": "Комитеты",
     "Contacts": "Контакты",
     "Settings": "Настройки",

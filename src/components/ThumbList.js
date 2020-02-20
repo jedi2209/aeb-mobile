@@ -19,6 +19,7 @@ import {API} from '../core/server';
 import getRandomInt from '../lib/getRandomInt';
 
 import Title from '../components/Title';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import ReleasesCard from '../components/ReleasesCard';
 import PublicationCard from '../components/PublicationCard';
@@ -262,9 +263,6 @@ export default class AllArticlesScreen extends PureComponent {
             marginBottom: 20,
             width: '100%',
             height: 50
-            // display: 'flex',
-            // alignContent: 'center',
-            // alignItems: 'stretch'
           }}>
           <View
             style={[
@@ -330,20 +328,6 @@ export default class AllArticlesScreen extends PureComponent {
       />
     );
   };
-
-  // _renderCardCommittee = item => {
-  //   return (
-  //     // eslint-disable-next-line react-native/no-inline-styles
-  //     <CommitteesCard
-  //       extraPadding={this.props.extraPadding}
-  //       data={item}
-  //       height={200}
-  //       deviceWidth={DeviceWidth}
-  //       BAR_SPACE={0}
-  //       style={{marginTop: 10}}
-  //     />
-  //   );
-  // };
 
   _renderReleasesCards(item) {
     return (
@@ -459,6 +443,9 @@ export default class AllArticlesScreen extends PureComponent {
 
   render() {
     const {title} = this.props;
+    const translate =
+      (this.props.screenProps && this.props.screenProps.translate) ||
+      this.props.translate;
 
     return !this.state.loading ? (
       <View>
@@ -476,34 +463,51 @@ export default class AllArticlesScreen extends PureComponent {
             text={title}
           />
         )}
-        <FlatList
-          contentContainerStyle={[
-            styles.flatlist,
-            {paddingVertical: this.props.type === 'subcommittees' ? 8 : 0}
-          ]}
-          ItemSeparatorComponent={() =>
-            this.props.type === 'news' ? (
-              <Divider
-                style={{backgroundColor: '#D7D8DA', marginHorizontal: 15}}
-              />
-            ) : null
-          }
-          numColumns={1}
-          data={this.state.data}
-          renderItem={({item}) => {
-            return (
-              <View style={styles.flatlistview}>{this._renderCard(item)}</View>
-            );
-          }}
-          keyExtractor={item => {
-            return (item.id || item.created).toString() + getRandomInt(1, 1000);
-          }}
-          ListFooterComponent={this._renderFooter}
-          onRefresh={this._handleRefresh}
-          refreshing={this.state.refreshing}
-          onScroll={this._scrolled}
-          initialNumToRender={3}
-        />
+        {!this.state.data.length ? (
+          <View style={styles.NoDataView}>
+            <Icon
+              style={styles.NoDataIcon}
+              name="ios-information-circle-outline"
+              size={45}
+            />
+            <Text style={styles.NoDataText}>
+              {translate('Releases.NoData')}
+            </Text>
+          </View>
+        ) : (
+          <FlatList
+            contentContainerStyle={[
+              styles.flatlist,
+              {paddingVertical: this.props.type === 'subcommittees' ? 8 : 0}
+            ]}
+            ItemSeparatorComponent={() =>
+              this.props.type === 'news' ? (
+                <Divider
+                  style={{backgroundColor: '#D7D8DA', marginHorizontal: 15}}
+                />
+              ) : null
+            }
+            numColumns={1}
+            data={this.state.data}
+            renderItem={({item}) => {
+              return (
+                <View style={styles.flatlistview}>
+                  {this._renderCard(item)}
+                </View>
+              );
+            }}
+            keyExtractor={item => {
+              return (
+                (item.id || item.created).toString() + getRandomInt(1, 1000)
+              );
+            }}
+            ListFooterComponent={this._renderFooter}
+            onRefresh={this._handleRefresh}
+            refreshing={this.state.refreshing}
+            onScroll={this._scrolled}
+            initialNumToRender={3}
+          />
+        )}
       </View>
     ) : (
       <LoadingIndicator />
@@ -515,6 +519,24 @@ const styles = StyleSheet.create({
   card: {
     marginTop: 10,
     marginLeft: 14
+  },
+  NoDataView: {
+    width: '100%',
+    marginHorizontal: '20%',
+    marginTop: 25,
+    flex: 1,
+    flexDirection: 'row',
+    textAlign: 'center',
+    alignItems: 'center',
+    alignContent: 'center'
+  },
+  NoDataText: {
+    fontSize: 18,
+    marginLeft: 20,
+    color: '#0E4F9F'
+  },
+  NoDataIcon: {
+    color: '#0E4F9F'
   },
   flatlist: {
     flex: 1,
