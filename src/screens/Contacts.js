@@ -99,7 +99,7 @@ class ContactsScreen extends React.Component {
               type="outline"
               // title={value}
               titleStyle={theme.whiteButtonText}
-              containerStyle={{width: '20%'}}
+              containerStyle={{width: '30%', paddingHorizontal: 20}}
               buttonStyle={theme.whiteButton}
               onPress={() => {
                 return this._onPressButton(`mailto:${value}`);
@@ -111,7 +111,8 @@ class ContactsScreen extends React.Component {
           style={{
             width: '100%',
             flex: 1,
-            paddingTop: 10
+            paddingTop: 10,
+            paddingHorizontal: 20,
           }}>
           {items.phone.map(value => {
             return (
@@ -122,7 +123,8 @@ class ContactsScreen extends React.Component {
                   width: '100%',
                   marginBottom: 5,
                   marginRight: '2%',
-                  marginLeft: 0
+                  marginLeft: 0,
+                  borderRadius: 5,
                 }}>
                 <View
                   style={{
@@ -152,7 +154,6 @@ class ContactsScreen extends React.Component {
                           );
                         }}
                       />
-                      // </View>
                     );
                   })}
                   {value.fax.map((data, i) => {
@@ -251,14 +252,20 @@ class ContactsScreen extends React.Component {
 
 const styles = StyleSheet.create({
   containerMap: {
-    ...StyleSheet.absoluteFillObject,
-    height: DeviceHeight,
-    width: DeviceWidth,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+    position: 'absolute'
   },
   map: {
-    ...StyleSheet.absoluteFillObject
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0
   },
   pageTitle: {
     marginBottom: 20
@@ -276,7 +283,6 @@ const styles = StyleSheet.create({
   },
   panel: {
     height: 930,
-    padding: 20,
     backgroundColor: '#ffffff'
   },
   header: {
@@ -299,13 +305,15 @@ const styles = StyleSheet.create({
   panelTitle: {
     fontSize: 20,
     width: DeviceWidth,
-    marginBottom: 10
+    marginBottom: 10,
+    paddingHorizontal: 20
   },
   panelSubtitle: {
     fontSize: 12,
     color: 'gray',
     width: DeviceWidth,
-    marginBottom: 10
+    marginBottom: 10,
+    paddingHorizontal: 20
   },
   panelButton: {
     padding: 20,
