@@ -235,7 +235,7 @@ export const API = class AebApi {
   async getReleases(page, paramsForFetch = {}) {
     try {
       const params = Object.keys(paramsForFetch).reduce((acc, param) => {
-        if (paramsForFetch[param] === null) {
+        if (!paramsForFetch[param]) {
           return acc;
         }
         return acc + `&${param}=${paramsForFetch[param]}`;
