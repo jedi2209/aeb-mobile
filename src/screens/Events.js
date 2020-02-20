@@ -273,6 +273,21 @@ class EventsScreen extends React.Component {
           onPressArrowLeft={substractMonth => substractMonth()}
           // Handler which gets executed when press arrow icon left. It receive a callback can go next month
           onPressArrowRight={addMonth => addMonth()}
+          theme={{
+            textSectionTitleColor: '#b6c1cd',
+            selectedDayBackgroundColor: '#0E4F9F',
+            selectedDayTextColor: '#ffffff',
+            todayTextColor: '#0E4F9F',
+            dayTextColor: '#2d4150',
+            textDisabledColor: '#d9e1e8',
+            dotColor: '#0E4F9F',
+            selectedDotColor: '#ffffff',
+            arrowColor: '#0E4F9F',
+            monthTextColor: '#0E4F9F',
+            indicatorColor: '#0E4F9F',
+            textMonthFontWeight: '400',
+            textMonthFontSize: 19
+          }}
         />
         <View style={styles.body}>
           <ThumbList
@@ -281,9 +296,10 @@ class EventsScreen extends React.Component {
             translate={this.props.screenProps.translate}
             navigation={this.props.navigation}
             type="events"
-            incomingTitle={this.props.screenProps.translate(
-              'upcoming_events_on'
-            )}
+            incomingTitle={
+              this.props.screenProps.translate('upcoming_events_on') +
+              Moment(this.state.selected).format('DD MMMM YYYY')
+            }
             upcomingTitle={this.props.screenProps.translate('upcoming_events')}
           />
         </View>
