@@ -24,6 +24,7 @@ import ReleasesCard from '../components/ReleasesCard';
 import PublicationCard from '../components/PublicationCard';
 import CommitteesCard from '../components/CommitteesCard';
 import Card from '../components/CardMini';
+import {Divider} from 'react-native-elements';
 
 const BAR_SPACE = 14;
 
@@ -480,6 +481,11 @@ export default class AllArticlesScreen extends PureComponent {
             styles.flatlist,
             {paddingVertical: this.props.type === 'subcommittees' ? 8 : 0}
           ]}
+          ItemSeparatorComponent={() => (
+            <Divider
+              style={{backgroundColor: '#D7D8DA', marginHorizontal: 15}}
+            />
+          )}
           numColumns={1}
           data={this.state.data}
           renderItem={({item}) => {
