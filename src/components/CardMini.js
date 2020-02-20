@@ -8,7 +8,7 @@ const DEFAULT_IMAGE =
 const PADDING = 14;
 
 const CardMini = props => {
-  const {data, locale} = props;
+  const {data, locale, translate} = props;
   const cardWidth = props.width - PADDING * 2;
   moment.locale(locale);
 
@@ -44,7 +44,7 @@ const CardMini = props => {
         <Text style={styles.date}>
           {toUpperdate(
             moment((data.created || data.date) * 1000).format(
-              'dddd, DD MMMM YYYY'
+              translate ? translate('const.timeFormat') : 'dddd, DD MMMM YYYY'
             )
           )}
         </Text>
@@ -55,13 +55,15 @@ const CardMini = props => {
 
 const styles = StyleSheet.create({
   slide: {
-    borderBottomColor: '#D7D8DA',
-    borderBottomWidth: 1,
-    borderStyle: 'solid',
     paddingBottom: 10,
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
     borderRadius: 6
+  },
+  slideBorder: {
+    borderBottomColor: '#D7D8DA',
+    borderBottomWidth: 1,
+    borderStyle: 'solid'
   },
   image: {
     width: 64,
