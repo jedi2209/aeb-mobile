@@ -15,7 +15,7 @@
     },
     "subcommittees": "Подкомитеты и рабочие группы",
     "upcoming_events": "Предстоящие события",
-    "upcoming_events_on": "События сегодня",
+    "upcoming_events_on": "События ",
     "attendance_fees": "Стоимость",
     "assigned_member": "Assigned member",
     "additional_member": "Additional member",
@@ -111,5 +111,8 @@
     "CopyToClipboard": {
         "Title": "Скопировано!",
         "Fax": "Номер факса скопирован"
+    },
+    "const": {
+        "timeFormat": "dddd, DD MMMM YYYY в HH:mm"
     }
 }
