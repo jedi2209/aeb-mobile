@@ -3,6 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
+    "build": "npm run android-release; npm run iphone-release;",
     "start": "react-native start",
     "postinstall": "cd ./ios; pod update; pod install; cd ../; npx jetify;",
     "test": "jest",
