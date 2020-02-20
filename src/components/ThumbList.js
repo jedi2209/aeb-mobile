@@ -173,8 +173,6 @@ export default class AllArticlesScreen extends PureComponent {
                 pages: {current: 1, prev: null, next: null, total: 1}
               }
             };
-
-            console.log('my responsedData >>>>>', responsedData);
           } else {
             responsedData = await this.api.getCommittees(page, paramsForFetch);
           }

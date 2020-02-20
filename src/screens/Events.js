@@ -13,7 +13,7 @@ import {theme} from '../core/themeProvider';
 import {API} from '../core/server';
 
 import Header from '../components/Header';
-import ThumbList from '../components/ThumbList';
+import ThumbList from '../components/EventsThumbList';
 import Moment from 'moment/min/moment-with-locales';
 
 import {Calendar} from 'react-native-calendars';
@@ -121,7 +121,6 @@ class EventsScreen extends React.Component {
     Moment.locale(this.props.screenProps.locale);
 
     this.state = {
-      title: this.props.screenProps.translate('upcoming_events'),
       now: Moment().format('YYYY-MM-DD'),
       responsedData: [],
       selected: Moment().format('YYYY-MM-DD'),
@@ -227,31 +226,22 @@ class EventsScreen extends React.Component {
             });
 
             let params;
-            let title;
 
             if (selectedDay === this.state.now) {
               params = {
                 date_from: selectedDay
               };
-              title = this.props.screenProps.translate('upcoming_events');
             } else {
               params = {
                 date_from: selectedDay
-                // date_to: selectedDay
               };
-
-              // title = `${this.props.screenProps.translate(
-              //   'upcoming_events_on'
-              // )} ${Moment(selectedDay).format('DD MMMM YYYY')}`;
-              title = `${this.props.screenProps.translate('upcoming_events')}`;
             }
 
             this.setState({
               selected: selectedDay,
               markedDates: calculated,
               loading: true,
-              params,
-              title
+              params
             });
           }}
           // Handler which gets executed on day long press. Default = undefined
@@ -286,11 +276,15 @@ class EventsScreen extends React.Component {
         />
         <View style={styles.body}>
           <ThumbList
+            selectedDay={this.state.selected}
             paramsForFetch={this.state.params}
             translate={this.props.screenProps.translate}
             navigation={this.props.navigation}
             type="events"
-            title={this.state.title}
+            incomingTitle={this.props.screenProps.translate(
+              'upcoming_events_on'
+            )}
+            upcomingTitle={this.props.screenProps.translate('upcoming_events')}
           />
         </View>
       </ScrollView>
