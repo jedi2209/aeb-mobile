@@ -24,6 +24,7 @@ import ReleasesCard from '../components/ReleasesCard';
 import PublicationCard from '../components/PublicationCard';
 import CommitteesCard from '../components/CommitteesCard';
 import Card from '../components/CardMini';
+import {Divider} from 'react-native-elements';
 
 const BAR_SPACE = 14;
 
@@ -214,6 +215,9 @@ export default class AllArticlesScreen extends PureComponent {
   };
 
   _renderCard = item => {
+    const translate =
+      (this.props.screenProps && this.props.screenProps.translate) ||
+      this.props.translate;
     return (
       <TouchableWithoutFeedback
         style={[theme.cardShadow, theme.cardBlock]}
@@ -232,6 +236,7 @@ export default class AllArticlesScreen extends PureComponent {
             height={200}
             deviceWidth={DeviceWidth}
             BAR_SPACE={BAR_SPACE}
+            translate={translate}
           />
         </View>
       </TouchableWithoutFeedback>
@@ -262,6 +267,11 @@ export default class AllArticlesScreen extends PureComponent {
           )}
           <FlatList
             contentContainerStyle={[styles.flatlist]}
+            ItemSeparatorComponent={() => (
+              <Divider
+                style={{backgroundColor: '#D7D8DA', marginHorizontal: 15}}
+              />
+            )}
             numColumns={1}
             initialNumToRender={3}
             data={this.state.incomingEvents}
@@ -291,6 +301,11 @@ export default class AllArticlesScreen extends PureComponent {
           )}
           <FlatList
             contentContainerStyle={[styles.flatlist]}
+            ItemSeparatorComponent={() => (
+              <Divider
+                style={{backgroundColor: '#D7D8DA', marginHorizontal: 15}}
+              />
+            )}
             numColumns={1}
             initialNumToRender={3}
             data={this.state.upcomingEvents}
