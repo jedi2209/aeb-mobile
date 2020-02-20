@@ -249,6 +249,10 @@ export default class AllArticlesScreen extends PureComponent {
       (this.props.screenProps && this.props.screenProps.translate) ||
       this.props.translate;
 
+    if (this.state.loading) {
+      return <LoadingIndicator />;
+    }
+
     if (this.state.fullList) {
       return null;
     }
@@ -447,7 +451,7 @@ export default class AllArticlesScreen extends PureComponent {
       (this.props.screenProps && this.props.screenProps.translate) ||
       this.props.translate;
 
-    return !this.state.loading ? (
+    return (
       <View>
         {title && this.state.data.length > 0 && (
           <Title
@@ -463,7 +467,7 @@ export default class AllArticlesScreen extends PureComponent {
             text={title}
           />
         )}
-        {!this.state.data.length ? (
+        {!this.state.data.length && !this.props.type ? (
           <View style={styles.NoDataView}>
             <Icon
               style={styles.NoDataIcon}
@@ -471,7 +475,7 @@ export default class AllArticlesScreen extends PureComponent {
               size={45}
             />
             <Text style={styles.NoDataText}>
-              {translate('Releases.NoData')}
+              {translate ? translate('Releases.NoData') : ''}
             </Text>
           </View>
         ) : (
@@ -509,8 +513,6 @@ export default class AllArticlesScreen extends PureComponent {
           />
         )}
       </View>
-    ) : (
-      <LoadingIndicator />
     );
   }
 }
