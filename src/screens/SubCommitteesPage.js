@@ -19,6 +19,7 @@ import {
 
 import {DeviceWidth, DeviceHeight} from '../core/themeProvider';
 import Plate from '../components/Plate';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 class SubPublicationsScreen extends React.Component {
   state = {
@@ -105,21 +106,23 @@ class SubPublicationsScreen extends React.Component {
       const contacts = [];
       if (this.state.data.contacts.chairman.name) {
         contacts.push({
-          position: this.state.data.contacts.chairman.position,
+          position: this.props.screenProps.translate('chairperson'),
           name:
             this.state.data.contacts.chairman.name +
             ' ' +
-            this.state.data.contacts.chairman.surname
+            this.state.data.contacts.chairman.surname,
+          company: this.state.data.contacts.chairman.company.name
         });
       }
       this.state.data.contacts.chairmanDeputy &&
         this.state.data.contacts.chairmanDeputy.map(el => {
           contacts.push({
-            id: el.id ? el.id : el.email,
+            id: el.id ? el.id : el.email ? el.email : el.phone,
             name: el.name + ' ' + el.surname,
-            position: el.position,
-            email: el.email,
-            phone: el.phone
+            position: this.props.screenProps.translate('chairpersondeputy'),
+            company: el.company.name
+            // email: el.email,
+            // phone: el.phone
           });
         });
       return (
@@ -181,23 +184,32 @@ class SubPublicationsScreen extends React.Component {
                             theme.cardBlock,
                             theme.cardShadow,
                             {
-                              width: DeviceWidth - 28,
                               marginHorizontal: 14,
-                              // marginVertical: 14,
-                              padding: 14
+                              padding: 14,
+                              height: 49
                             }
                           ]}>
-                          <Text style={[styles.headerText, {flex: 1}]}>
+                          <Text
+                            style={[
+                              styles.headerText,
+                              {flex: 1, flexDirection: 'row'}
+                            ]}>
                             {this.props.screenProps.translate('coordinator')}
                           </Text>
                           <Text
                             style={{
                               fontSize: 16,
                               lineHeight: 20,
-                              fontFamily: 'SFUIDisplay-Regular'
+                              fontFamily: 'SFUIDisplay-Regular',
+                              marginRight: 10
                             }}>
                             {this.state.data.contacts.coordinator.name}
                           </Text>
+                          <Icon
+                            style={styles.iconCoordinator}
+                            name="ios-mail"
+                            size={25}
+                          />
                         </View>
                       </TouchableHighlight>
                     ) : null}
