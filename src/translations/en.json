@@ -113,6 +113,6 @@
         "Fax": "Fax number was successfully copied"
     },
     "const": {
-        "timeFormat": "dddd, DD MMMM YYYY at HH:mm"
+        "timeFormat": "dddd, DD MMMM YYYY \\a\\t HH:mm"
     },
 }
