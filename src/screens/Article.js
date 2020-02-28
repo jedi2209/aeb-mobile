@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     backgroundColor:
       'linear-gradient(180deg, rgba(0,0,0,0.19) 50%, rgba(0,0,0,0.50) 100%)',
     position: 'absolute',
-    top: -120,
+    top: -100,
     width: DeviceWidth,
     left: 0,
     right: 0
