@@ -249,7 +249,7 @@ class EventScreen extends React.Component {
           }}>
           <ScrollView>
             <View style={{height: HEADER_MAX_HEIGHT}}>
-              {this.data.registration.active && (
+              {this.data.registration.active && this.data.type === 'Open' ? (
                 <View
                   style={[
                     theme.badgeRed,
@@ -268,17 +268,19 @@ class EventScreen extends React.Component {
                     {this.translate('open')}
                   </Text>
                 </View>
-              )}
+              ) : null}
               <Text style={[styles.title]}>{this.data.name}</Text>
               <Text style={styles.date}>
                 {`${Moment(this.data.date * 1000).format(
                   'DD MMMM YYYY, HH:mm'
                 )}, ${dateWithCupitalize}`}
               </Text>
-              <Maps place={this.data.place} translate={this.translate} />
+              {this.data.place ? (
+                <Maps place={this.data.place} translate={this.translate} />
+              ) : null}
             </View>
             <View style={{backgroundColor: 'white'}}>
-              {this.data.registration.active ? (
+              {this.data.registration && this.data.registration.active ? (
                 <View
                   style={{
                     position: 'absolute',
@@ -297,7 +299,10 @@ class EventScreen extends React.Component {
                 ) : (
                   <Text
                     style={{
-                      height: this.data.registration.active ? 'auto' : 1
+                      height:
+                        this.data.registration && this.data.registration.active
+                          ? 'auto'
+                          : 1
                     }}>
                     &nbsp;
                   </Text>
@@ -309,7 +314,10 @@ class EventScreen extends React.Component {
                 ) : (
                   <Text
                     style={{
-                      height: this.data.registration.active ? 'auto' : 1
+                      height:
+                        this.data.registration && this.data.registration.active
+                          ? 'auto'
+                          : 1
                     }}>
                     &nbsp;
                   </Text>
