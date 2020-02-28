@@ -1,6 +1,6 @@
 {
   "name": "Aebrus",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "scripts": {
     "build": "npm run android-release; npm run iphone-release;",
