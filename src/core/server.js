@@ -220,9 +220,7 @@ export const API = class AebApi {
           'Content-Type': 'application/json'
         }
       });
-
       const responseJson = await response.json();
-
       return {
         items: responseJson.data,
         pagination: responseJson.info

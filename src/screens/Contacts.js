@@ -57,7 +57,7 @@ class ContactsScreen extends React.Component {
         data: responsedData,
         loading: false
       });
-    }, 1500);
+    }, 500);
   };
 
   static navigationOptions = ({navigation, screenProps}) => {
