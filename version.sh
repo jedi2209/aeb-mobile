@@ -12,6 +12,10 @@ PACKAGE_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $
 # BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "${INFOPLIST_DIR}")
 BUILD_NUMBER=0
 
+## Set Android version to 0
+echo "versionCode=${BUILD_NUMBER}" > $ANDROID_VERSION_FILE
+
+git add "${INFOPLIST_DIR}" "${INFOPLIST_ONESIGNAL_DIR}"
 
 ## Update plist with new values
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${PACKAGE_VERSION#*v}" "${INFOPLIST_DIR}"
@@ -19,9 +23,3 @@ BUILD_NUMBER=0
 
 /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString ${PACKAGE_VERSION#*v}" "${INFOPLIST_ONESIGNAL_DIR}"
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUMBER" "${INFOPLIST_ONESIGNAL_DIR}"
-
-
-## Set Android version to 0
-echo "versionCode=0" > $ANDROID_VERSION_FILE
-
-git add "${INFOPLIST_DIR}" "${INFOPLIST_ONESIGNAL_DIR}"
