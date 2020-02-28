@@ -222,10 +222,12 @@ export default class AllArticlesScreen extends PureComponent {
       <TouchableWithoutFeedback
         style={[theme.cardShadow, theme.cardBlock]}
         onPress={() => {
-          this.props.navigation.navigate('Event', {
-            itemId: item.id,
-            otherParam: item
-          });
+          if (item.iblock && item.iblock !== 14) {
+            this.props.navigation.navigate('Event', {
+              itemId: item.id,
+              otherParam: item
+            });
+          }
         }}>
         <View style={styles.card}>
           <Card

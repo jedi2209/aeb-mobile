@@ -309,7 +309,7 @@ class EventScreen extends React.Component {
                 )}
               </View>
               <View style={{marginLeft: 14}}>
-                {this.data.registration.press ? (
+                {this.data.registration && this.data.registration.press ? (
                   <Press text={this.translate('press')} />
                 ) : (
                   <Text
@@ -329,22 +329,24 @@ class EventScreen extends React.Component {
                 style={{marginTop: 0, paddingHorizontal: 9}}
                 stylePlate={{height: 115}}
               />
-              <Tabs
-                tabs={[
-                  {
-                    head: this.translate('about'),
-                    route: FirstRoute(this.data)
-                  },
-                  {
-                    head: this.translate('attendance_fees'),
-                    route: SecondRoute(this.data, this.translate)
-                  },
-                  {
-                    head: this.translate('files'),
-                    route: ThirdRoute(this.data, 28)
-                  }
-                ]}
-              />
+              {this.data.text || this.data.attendance || this.data.files ? (
+                <Tabs
+                  tabs={[
+                    {
+                      head: this.translate('about'),
+                      route: FirstRoute(this.data)
+                    },
+                    {
+                      head: this.translate('attendance_fees'),
+                      route: SecondRoute(this.data, this.translate)
+                    },
+                    {
+                      head: this.translate('files'),
+                      route: ThirdRoute(this.data, 28)
+                    }
+                  ]}
+                />
+              ) : null}
             </View>
           </ScrollView>
         </SafeAreaView>
