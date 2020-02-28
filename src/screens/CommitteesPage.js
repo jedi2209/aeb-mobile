@@ -104,7 +104,10 @@ class PublicationsScreen extends React.Component {
       );
     } else {
       const contacts = [];
-      if (this.state.data.contacts.chairman.name) {
+      if (
+        this.state.data.contacts.chairman &&
+        this.state.data.contacts.chairman.name
+      ) {
         contacts.push({
           position: this.props.screenProps.translate('chairperson'),
           name:
@@ -114,7 +117,7 @@ class PublicationsScreen extends React.Component {
           company: this.state.data.contacts.chairman.company.name
         });
       }
-      this.state.data.contacts.chairmanDeputy &&
+      if (this.state.data.contacts.chairmanDeputy) {
         this.state.data.contacts.chairmanDeputy.map(el => {
           contacts.push({
             id: el.id ? el.id : el.email ? el.email : el.phone,
@@ -125,6 +128,7 @@ class PublicationsScreen extends React.Component {
             // phone: el.phone
           });
         });
+      }
       return (
         <ImageBackground
           source={require('../images/bg.png')}
@@ -167,8 +171,11 @@ class PublicationsScreen extends React.Component {
                         {this.data.name}
                       </Text>
                     </View>
-                    <Plate items={contacts} padd={8} style={{marginTop: 8}} />
-                    {this.state.data.contacts.coordinator.name ? (
+                    {contacts.length ? (
+                      <Plate items={contacts} padd={8} style={{marginTop: 8}} />
+                    ) : null}
+                    {this.state.data.contacts.coordinator &&
+                    this.state.data.contacts.coordinator.name ? (
                       <TouchableHighlight
                         underlayColor="transparent"
                         onPress={() => {
@@ -302,7 +309,7 @@ const styles = StyleSheet.create({
     marginRight: 14
   },
   iconCoordinator: {
-    marginTop: -1
+    marginTop: -2
   }
 });
 

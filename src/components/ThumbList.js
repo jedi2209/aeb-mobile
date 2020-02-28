@@ -164,9 +164,17 @@ export default class AllArticlesScreen extends PureComponent {
             items = await Promise.all(
               items.map(async el => {
                 const item = await this.api.getCommitteeItem(el);
-                return item.items[0];
+                if (item.items) {
+                  return item.items[0];
+                } else {
+                  return null;
+                }
               })
             );
+
+            items = items.filter(el => {
+              return el != null;
+            });
 
             responsedData = {
               items,
@@ -450,7 +458,6 @@ export default class AllArticlesScreen extends PureComponent {
     const translate =
       (this.props.screenProps && this.props.screenProps.translate) ||
       this.props.translate;
-
     return (
       <View>
         {title && this.state.data.length > 0 && (
