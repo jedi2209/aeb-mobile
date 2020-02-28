@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, Linking} from 'react-native';
 import HTML from 'react-native-render-html';
 import {DeviceWidth} from '../core/themeProvider';
 
@@ -27,6 +27,9 @@ class WebViewAutoHeight extends Component {
           tagsStyles={tagsStyles}
           classesStyles={classesStyles}
           imagesMaxWidth={DeviceWidth}
+          onLinkPress={(evt, href) => {
+            return Linking.openURL(href);
+          }}
         />
       </ScrollView>
     );
