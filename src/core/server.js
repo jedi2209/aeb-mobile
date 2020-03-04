@@ -36,13 +36,13 @@ export const API = class AebApi {
       // }
 
       return {
-        name: responseJson.data.NAME,
-        id: responseJson.data.ID,
-        email: responseJson.data.EMAIL,
-        login: responseJson.data.LOGIN,
-        phone: responseJson.data.PERSONAL_MOBILE,
-        second_name: responseJson.data.SECOND_NAME,
-        last_name: responseJson.data.LAST_NAME
+        name: responseJson.data.NAME || '',
+        id: responseJson.data.ID || '',
+        email: responseJson.data.EMAIL || '',
+        login: responseJson.data.LOGIN || '',
+        phone: responseJson.data.PERSONAL_MOBILE || '',
+        second_name: responseJson.data.SECOND_NAME || '',
+        last_name: responseJson.data.LAST_NAME || ''
       };
     } catch (err) {
       console.log('>>>>>>>> login', err);

@@ -9,6 +9,7 @@ import {
   StyleSheet,
   Platform,
   NativeModules,
+  Linking,
   TouchableWithoutFeedback
 } from 'react-native';
 
@@ -223,10 +224,15 @@ export default class AllArticlesScreen extends PureComponent {
         style={[theme.cardShadow, theme.cardBlock]}
         onPress={() => {
           if (item.iblock && item.iblock !== 14) {
+            // если событие НЕ встреча комитета
             this.props.navigation.navigate('Event', {
               itemId: item.id,
               otherParam: item
             });
+          } else {
+            if (item.committee && item.committee.url) {
+              return Linking.openURL(item.committee.url);
+            }
           }
         }}>
         <View style={styles.card}>
