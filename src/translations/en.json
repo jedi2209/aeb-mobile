@@ -82,25 +82,25 @@
             "PleaseAllowTitle": "Push Notifications request",
             "PleaseAllow": "Please Allow Push Notifications in order to receive Publications updates",
             "YouHaveSubscribedTitle": "You have been subscribed!",
-            "YouHaveSubscribedDescription": "Now you get a message when new Publication is online"
+            "YouHaveSubscribedDescription": "Now you get a notification when new Publication is online"
         },
         "News": {
             "PleaseAllowTitle": "Push Notifications request",
             "PleaseAllow": "Please Allow Push Notifications in order to receive News updates",
             "YouHaveSubscribedTitle": "You have been subscribed!",
-            "YouHaveSubscribedDescription": "Now you get a message when new News is online"
+            "YouHaveSubscribedDescription": "Now you get a notification when new News is online"
         },
         "Releases": {
             "PleaseAllowTitle": "Push Notifications request",
             "PleaseAllow": "Please Allow Push Notifications in order to receive Press releases updates",
             "YouHaveSubscribedTitle": "You have been subscribed!",
-            "YouHaveSubscribedDescription": "Now you get a message when new Press releases is online" 
+            "YouHaveSubscribedDescription": "Now you get a notification when new Press releases is online" 
         },
         "Events": {
             "PleaseAllowTitle": "Push Notifications request",
             "PleaseAllow": "Please Allow Push Notifications in order to receive Events updates",
             "YouHaveSubscribedTitle": "You have been subscribed!",
-            "YouHaveSubscribedDescription": "Now you get a message when new Event is online" 
+            "YouHaveSubscribedDescription": "Now you get a notification when new Event is online" 
         }
     },
     "profile": "Profile",
