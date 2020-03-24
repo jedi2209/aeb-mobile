@@ -49,6 +49,15 @@ export const Settings = props => {
                 </View>
                 <View style={styles.field}>
                   <Text style={styles.label}>
+                    {props.screenProps.translate('Notification.NewsCovid')}
+                  </Text>
+                  <Switch
+                    onValueChange={() => onSubscribePressed('NewsCovid')}
+                    value={notifications.NewsCovid}
+                  />
+                </View>
+                <View style={styles.field}>
+                  <Text style={styles.label}>
                     {props.screenProps.translate('Notification.Publications')}
                   </Text>
                   <Switch
