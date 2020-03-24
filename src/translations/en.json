@@ -41,6 +41,9 @@
         "menuTitle": "Press releases",
         "NoData": "No press releases"
     },
+    "NewsCovid": {
+        "menuTitle": "COVID-19"
+    },
     "Committees": "Committees",
     "Contacts": "Contacts",
     "Settings": "Settings",
@@ -101,6 +104,12 @@
             "PleaseAllow": "Please Allow Push Notifications in order to receive Events updates",
             "YouHaveSubscribedTitle": "You have been subscribed!",
             "YouHaveSubscribedDescription": "Now you get a notification when new Event is online" 
+        },
+        "NewsCovid": {
+            "PleaseAllowTitle": "Push Notifications request",
+            "PleaseAllow": "Please Allow Push Notifications in order to receive updates about COVID-19",
+            "YouHaveSubscribedTitle": "You have been subscribed!",
+            "YouHaveSubscribedDescription": "Now you get a notification when new News about COVID-19 is online" 
         }
     },
     "profile": "Profile",
@@ -108,6 +117,7 @@
     "Notification": {
         "Publications": "Notifications about Publications",
         "News": "Notifications about News",
+        "NewsCovid": "Notifications about COVID-19",
         "Releases": "Notifications about Press releases",
         "Events": "Notifications about Events"
     },
@@ -116,6 +126,7 @@
         "Fax": "Fax number was successfully copied"
     },
     "const": {
-        "timeFormat": "dddd, DD MMMM YYYY \\a\\t HH:mm"
-    },
+        "timeFormat": "dddd, DD MMMM YYYY \\a\\t HH:mm",
+        "mainDomain": "https://aebrus.ru/en"
+    }
 }

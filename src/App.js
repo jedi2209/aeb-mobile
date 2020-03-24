@@ -36,7 +36,8 @@ import {
   NativeModules,
   View,
   Text,
-  ActivityIndicator
+  ActivityIndicator,
+  Linking
 } from 'react-native';
 import OneSignal from 'react-native-onesignal'; // Import package from node modules
 
@@ -220,6 +221,12 @@ export default class App extends React.Component {
         setTimeout(function() {
           NavigationService.navigate(type);
         }, 150);
+        break;
+      case 'NewsCovid':
+        let link =
+          translate('const.mainDomain') +
+          openResult.notification.payload.additionalData.link;
+        Linking.openURL(link);
         break;
     }
 
