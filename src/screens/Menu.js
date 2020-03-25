@@ -8,7 +8,9 @@ import {
   View,
   TouchableHighlight,
   Text,
-  Platform
+  Platform,
+  Linking,
+  Image
 } from 'react-native';
 
 import Menu from '../components/Menu';
@@ -53,6 +55,32 @@ const MenuScreen = ({navigation, navigate, screenProps}) => {
           </View>
         </TouchableHighlight>
       )}
+      <TouchableHighlight
+        onPress={() =>
+          Linking.openURL(
+            screenProps.translate('const.mainDomain') + '/news_covid19/'
+          )
+        }
+        style={[
+          theme.cardShadow,
+          {
+            width: '75%',
+            marginHorizontal: 20,
+            marginVertical: 10,
+            borderColor: '#afafaf',
+            borderWidth: 1,
+            borderRadius: 7
+          }
+        ]}>
+        <Image
+          source={require('../assets/covidbt.png')}
+          resizeMode="cover"
+          style={[
+            theme.cardShadow,
+            {width: '100%', height: 70, borderRadius: 6}
+          ]}
+        />
+      </TouchableHighlight>
       <Menu
         navigation={navigation}
         translate={screenProps.translate}
@@ -68,7 +96,7 @@ const style = StyleSheet.create({
     height: '100%',
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around'
   },
   goBack: {
     marginVertical: 24,
