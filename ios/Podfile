@@ -37,13 +37,10 @@ target 'Aebrus' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
   pod 'RNLocalize', :path => '../node_modules/react-native-localize'
 
-  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
-  pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 

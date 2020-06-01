@@ -83,6 +83,7 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode project.ext.version.build
         versionName project.ext.version.name
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -159,12 +160,10 @@ android.applicationVariants.all { variant ->
 }
 
 dependencies {
-    implementation project(':react-native-onesignal')
-    implementation project(':@react-native-community_async-storage')
     implementation project(':react-native-localize')
-    implementation project(':react-native-gesture-handler')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
+    implementation 'com.android.support:multidex:1.0.3'
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";
