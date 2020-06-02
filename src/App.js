@@ -202,24 +202,51 @@ export default class App extends React.Component {
 
   onOpenedPush(openResult) {
     const type = openResult.notification.payload.additionalData.type;
+    const locale = deviceLanguage.includes('ru') ? 'ru' : 'en';
     let id = 0;
     switch (type) {
       case 'Article':
         id = openResult.notification.payload.additionalData.id;
         setTimeout(function() {
           NavigationService.navigate(type, {
-            itemId: id
+            itemId: id,
+            locale: locale
           });
         }, 150);
         break;
       case 'Publications':
         setTimeout(function() {
-          NavigationService.navigate(type);
+          NavigationService.navigate(type, {
+            locale: locale
+          });
+        }, 150);
+        break;
+      case 'Events':
+        // if (item.iblock && item.iblock !== 14) {
+        //   // если событие НЕ встреча комитета
+        //   this.props.navigation.navigate('Event', {
+        //     itemId: item.id,
+        //     otherParam: item
+        //   });
+        // } else {
+        //   if (item.committee && item.committee.url) {
+        //     return Linking.openURL(item.committee.url);
+        //   }
+        // }
+        setTimeout(function() {
+          NavigationService.navigate(type, {
+            itemId: id,
+            locale: locale
+          });
         }, 150);
         break;
       case 'Releases':
+        const groupID = openResult.notification.payload.additionalData.groupID;
         setTimeout(function() {
-          NavigationService.navigate(type);
+          NavigationService.navigate(type, {
+            filter: groupID,
+            locale: locale
+          });
         }, 150);
         break;
       case 'NewsCovid':
