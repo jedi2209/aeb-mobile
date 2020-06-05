@@ -12,7 +12,7 @@
     "iphone": "react-native run-ios --simulator=\"iPhone 11\"",
     "iphonePro": "react-native run-ios --simulator=\"iPhone 11 Pro\"",
     "iphoneProMax": "react-native run-ios --simulator=\"iPhone 11 Pro Max\"",
-    "iphone-release": "fastlane ios beta;",
+    "iphone-release": "fastlane ios beta; rm Aebrus.app.dSYM.zip;",
     "react": "react-native start --reset-cache",
     "android": "cd ./android && ./gradlew clean && cd ../; open -a iTerm ./android/dev.sh & adb wait-for-device; sleep 10; react-native run-android",
     "android-release": "cd ./android && ./gradlew clean && cd ../; fastlane android internal;",

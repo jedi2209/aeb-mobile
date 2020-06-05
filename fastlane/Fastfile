@@ -18,12 +18,12 @@ platform :ios do
   desc "Prepare the iOS app for dev or build"
   lane :prepare do
     puts "SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER: #{ENV['SPACESHIP_2FA_SMS_DEFAULT_PHONE_NUMBER']}"
-    ensure_git_status_clean
-    # produce(
-    #     app_identifier: "com.atlant-m.OneSignalNotificationServiceExtension",
-    #     app_name: "atlant-m OneSignalNotificationServiceExtension",
-    #     skip_itc: true
-    # )
+    # ensure_git_status_clean
+    produce(
+        app_identifier: "com.aebrus.app.OneSignalNotificationServiceExtension",
+        app_name: "com.aebrus.app.OneSignalNotificationService",
+        skip_itc: true
+    )
   end
 
   desc "Push a new beta build to TestFlight"
@@ -31,19 +31,23 @@ platform :ios do
     get_certificates           # invokes cert
     get_provisioning_profile   # invokes sigh
     increment_build_number(
-        xcodeproj: "ios/Aebrus.xcodeproj"
+        xcodeproj: ENV['XCODE_PROJ']
     )
     build_app(
-      workspace: "ios/Aebrus.xcworkspace",
+      workspace: ENV['XCODE_WORKSPACE'],
       scheme: "Aebrus",
       export_method: "app-store",
       export_xcargs: "-allowProvisioningUpdates",
       export_options: {
      		provisioningProfiles: {
-            "com.aebrus.app" => "com.aebrus.app AppStore 1572205176",
+            "com.aebrus.app" => "com.aebrus.app AppStore 1583364804",
             "com.aebrus.app.OneSignalNotificationServiceExtension" => "com.aebrus.app.OneSignalNotificationService"
       		}
     	}
+    )
+    update_code_signing_settings(
+      path: ENV['XCODE_PROJ'],
+      use_automatic_signing: true
     )
     # Generate the changelog based on commit messages since your last tag
     changelog_from_git_commits(
@@ -64,7 +68,7 @@ platform :ios do
     )
     commit_version_bump(
         message: "Version Bump iOS",    # create a commit with a custom message
-        xcodeproj: "ios/Aebrus.xcodeproj"
+        xcodeproj: ENV['XCODE_PROJ']
     )
     add_git_tag(
         grouping: "builds",
@@ -118,7 +122,7 @@ platform :android do
       subtitle: "Upload is finish!",
       message: "Google Play beta version #{lane_context[SharedValues::VERSION_NUMBER]} (#{lane_context[SharedValues::BUILD_NUMBER]}) is ready!",
       app_icon: "https://www.zavarka-team.ru/logo.png",
-      content_image: "./ios/atlantm/Images.xcassets/AppIcon.appiconset/AppStore Icon.png"
+      content_image: "./ios/Aebrus/Images.xcassets/AppIcon.appiconset/iTunesArtwork@2x.png"
     )
     git_commit(
         path: ['./android/app/versioning/app_version.properties'],
