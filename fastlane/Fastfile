@@ -4,8 +4,12 @@ fastlane_require 'dotenv'
 
 before_all do
   Dotenv.overload '.env'
-  ensure_git_branch(
-    branch: 'master'
+  get_version_number(
+    xcodeproj: ENV['XCODE_PROJ'],
+    target: ENV['XCODE_TARGET']
+  )
+  get_build_number(
+    xcodeproj: ENV['XCODE_PROJ']
   )
   # git_pull
 end
@@ -98,16 +102,24 @@ platform :android do
         flags: "-PbuildType=release",
         print_command_output: true
     )
+    properties = property_file_read(file: ENV['ANDROID_PROPERTY'])
     puts "AABs: #{Actions.lane_context[SharedValues::GRADLE_ALL_AAB_OUTPUT_PATHS]}"
     puts "AAB: #{Actions.lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]}"
     upload_to_play_store(
         track: 'internal'
+    )
+    notification(
+      subtitle: "Upload is finish!",
+      message: "Google Play beta version #{lane_context[SharedValues::VERSION_NUMBER]} (#{lane_context[SharedValues::BUILD_NUMBER]}) is ready!",
+      app_icon: "https://www.zavarka-team.ru/logo.png",
+      content_image: "./ios/atlantm/Images.xcassets/AppIcon.appiconset/AppStore Icon.png"
     )
     git_commit(
         path: ['./android/app/versioning/app_version.properties'],
         message: 'Version Bump Android'
     )
     add_git_tag(
+        build_number: "#{lane_context[SharedValues::VERSION_NUMBER]}." + properties["versionCode"],
         grouping: "builds",
         prefix: "v"
     )
