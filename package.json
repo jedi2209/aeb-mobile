@@ -22,6 +22,9 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.11.0",
     "@sentry/react-native": "^1.4.1",
+    "appcenter": "^3.0.3",
+    "appcenter-analytics": "^3.0.3",
+    "appcenter-crashes": "^3.0.3",
     "effector": "^20.15.8",
     "effector-react": "^20.7.2",
     "i18n-js": "^3.7.0",
