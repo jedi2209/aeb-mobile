@@ -56,6 +56,12 @@ platform :ios do
         skip_waiting_for_build_processing: true,
         skip_submission: true
     )
+    notification(
+      subtitle: "Upload is finish!",
+      message: "iOS beta AppStore version #{lane_context[SharedValues::VERSION_NUMBER]} (#{lane_context[SharedValues::BUILD_NUMBER]})",
+      app_icon: "https://www.zavarka-team.ru/logo.png",
+      content_image: "./ios/Aebrus/Images.xcassets/AppIcon.appiconset/iTunesArtwork@2x.png"
+    )
     commit_version_bump(
         message: "Version Bump iOS",    # create a commit with a custom message
         xcodeproj: "ios/Aebrus.xcodeproj"
