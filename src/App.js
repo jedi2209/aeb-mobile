@@ -201,12 +201,16 @@ export default class App extends React.Component {
   }
 
   onOpenedPush(openResult) {
-    const type = openResult.notification.payload.additionalData.type;
+    const addData = openResult.notification.payload.additionalData || [];
+    const type = addData.type;
     const locale = deviceLanguage.includes('ru') ? 'ru' : 'en';
     let id = 0;
+    id = addData.id ? addData.id : 0;
+    if (typeof id === 'object' && id[locale]) {
+      id = id[locale];
+    }
     switch (type) {
       case 'Article':
-        id = openResult.notification.payload.additionalData.id;
         setTimeout(function() {
           NavigationService.navigate(type, {
             itemId: id,
@@ -217,6 +221,7 @@ export default class App extends React.Component {
       case 'Publications':
         setTimeout(function() {
           NavigationService.navigate(type, {
+            itemId: id,
             locale: locale
           });
         }, 150);
@@ -236,23 +241,24 @@ export default class App extends React.Component {
         setTimeout(function() {
           NavigationService.navigate(type, {
             itemId: id,
-            locale: locale
+            locale: locale,
           });
         }, 150);
         break;
       case 'Releases':
-        const groupID = openResult.notification.payload.additionalData.groupID;
+        const groupID = addData.groupID;
         setTimeout(function() {
           NavigationService.navigate(type, {
+            itemId: id,
+            locale: locale,
             filter: groupID,
-            locale: locale
           });
         }, 150);
         break;
       case 'NewsCovid':
         let link =
           translate('const.mainDomain') +
-          openResult.notification.payload.additionalData.link;
+          addData.link;
         Linking.openURL(link);
         break;
     }
