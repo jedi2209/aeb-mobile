@@ -1,6 +1,10 @@
 import React from 'react';
 import {useStore} from 'effector-react';
 
+import {theme} from './core/themeProvider';
+import Header from './components/Header';
+import HeaderBackButtonCustom from './components/HeaderBackButtonCustom';
+
 import NewsScreen from './screens/News';
 import MenuScreen from './screens/Menu';
 import ArticleScreen from './screens/Article';
@@ -16,7 +20,7 @@ import {Settings} from './screens/Settings';
 import {Profile} from './screens/Profile';
 
 import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import {createStackNavigator, HeaderTitle} from 'react-navigation-stack';
 
 import * as RNLocalize from 'react-native-localize';
 import i18n from 'i18n-js';
@@ -25,7 +29,7 @@ import memoize from 'lodash.memoize'; // Use for caching/memoize for better perf
 import SplashScreen from 'react-native-splash-screen';
 import {LoadingIndicator} from './core/themeProvider';
 
-import PushNotifications from './features/notifications/PushNotifications';
+import PushNotificationsClass from './features/notifications/PushNotifications';
 
 import * as Sentry from '@sentry/react-native';
 
@@ -39,18 +43,17 @@ import {
   ActivityIndicator,
   Linking
 } from 'react-native';
-import OneSignal from 'react-native-onesignal'; // Import package from node modules
 
 import NavigationService from './lib/navigation';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {LoginScreen} from './screens/LoginScreen/LoginScreen';
 import {$session} from './screens/LoginScreen/LoginScreen.model';
 
 if (__DEV__) {
-  import('./core/ReactotronConfig').then(() =>
-    console.log('Reactotron Configured')
-  );
+  // import('./core/ReactotronConfig').then(() =>
+  //   console.log('Reactotron Configured')
+  // );
 } else {
   Sentry.init({
     dsn: 'https://3b90574d17b84e10a8f5ab5cf0c49a65@sentry.io/2461509'
@@ -96,21 +99,243 @@ const persistenceKey = 'News';
 
 const MainNavigator = createStackNavigator(
   {
-    Home: {screen: NewsScreen},
-    News: {screen: NewsScreen},
-    Article: {screen: ArticleScreen},
-    Event: {screen: EventPage},
-    CommitteesPage: {screen: CommitteesPage},
-    SubCommitteesPage: {screen: SubCommitteesPage},
-    Releases: {screen: ReleasesScreen},
-    Publications: {screen: PublicationsScreen},
-    Committees: {screen: CommitteesScreen},
-    Events: {screen: EventsScreen},
-    Contacts: {screen: ContactsScreen},
-    Settings: {screen: Settings},
-    Profile: {screen: Profile},
+    News: {
+      screen: NewsScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: '',
+        headerStyle: [
+          theme.headerStyle,
+          theme.headerShadow,
+          {
+            height: 95
+          }
+        ]
+      }),
+    },
+    Article: {
+      screen: ArticleScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: '',
+        headerTransparent: true,
+        headerLeft: () => <HeaderBackButtonCustom navigation={navigation} />,
+        headerTintColor: '#fff',
+        headerStyle: {
+          backgroundColor: 'transparent',
+          shadowRadius: 0,
+          shadowOffset: {
+            height: 0
+          },
+          elevation: 0,
+          borderBottomWidth: 0,
+          shadowColor: 'transparent'
+        },
+        headerRightStyle: {
+          borderWidth: 0,
+          borderColor: 'transparent',
+          elevation: 0,
+          shadowColor: 'transparent'
+        }
+      })
+    },
+    Events: {
+      screen: EventsScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: '',
+        headerLeft: () => (
+          <Header
+            onPress={() => navigation.navigate('Menu')}
+            title={translate('events')}
+          />
+        ),
+        headerStyle: [
+          theme.headerStyle,
+          theme.headerShadow,
+          {
+            height: 95
+          }
+        ]
+      })
+    },
+    Event: {
+      screen: EventPage,
+      navigationOptions: ({ navigation }) => ({
+        title: '',
+        headerTransparent: true,
+        headerLeft: () => <HeaderBackButtonCustom navigation={navigation} />,
+        headerTintColor: '#fff',
+        headerStyle: {
+          backgroundColor: 'transparent',
+          shadowRadius: 0,
+          shadowOffset: {
+            height: 0
+          },
+          height: 95,
+          elevation: 0,
+          borderBottomWidth: 0,
+          shadowColor: 'transparent'
+        },
+        headerRightStyle: {
+          borderWidth: 0,
+          borderColor: 'transparent',
+          elevation: 0,
+          shadowColor: 'transparent'
+        }
+      })
+    },
+    CommitteesPage: {
+      screen: CommitteesPage,
+      navigationOptions: ({ navigation }) => ({
+        headerTintColor: '#fff',
+        title: '',
+        headerTransparent: true,
+        headerBackTitleStyle: {color: 'transparent'},
+        headerStyle: {
+          shadowRadius: 0,
+          shadowOffset: {
+            height: 0
+          },
+          elevation: 0,
+          borderBottomWidth: 0,
+        }
+      })
+    },
+    SubCommitteesPage: {
+      screen: SubCommitteesPage,
+      navigationOptions: ({ navigation }) => ({
+        headerTintColor: '#fff',
+        headerBackTitleStyle: {color: 'transparent'},
+        headerStyle: {
+          backgroundImage: './images/bg.png',
+          backgroundColor: 'transparent',
+          shadowRadius: 0,
+          shadowOffset: {
+            height: 0
+          },
+          elevation: 0,
+          borderBottomWidth: 0,
+          shadowColor: 'transparent'
+        }
+      })
+    },
+    Releases: {
+      screen: ReleasesScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: '',
+        headerLeft: () => (
+          <Header
+            onPress={() => navigation.navigate('Menu')}
+            title={translate('realeses')}
+          />
+        ),
+        headerStyle: [
+          theme.headerStyle,
+          theme.headerShadow,
+          {
+            height: 95
+          }
+        ]
+      })
+    },
+    Publications: {
+      screen: PublicationsScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: '',
+        headerLeft: () => (
+          <Header
+            onPress={() => navigation.navigate('Menu')}
+            title={translate('publications')}
+          />
+        ),
+        headerStyle: [
+          theme.headerStyle,
+          theme.headerShadow,
+          {
+            height: 95
+          }
+        ]
+      })
+    },
+    Committees: {
+      screen: CommitteesScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: '',
+        headerLeft: () => (
+          <Header
+            onPress={() => navigation.navigate('Menu')}
+            title={translate('committees')} //committees
+          />
+        ),
+        headerStyle: [
+          theme.headerStyle,
+          theme.headerShadow,
+          {
+            height: 95
+          }
+        ]
+      })
+    },
+    Contacts: {
+      screen: ContactsScreen,
+      navigationOptions: ({ navigation }) => ({
+        title: '',
+        headerLeft: () => (
+          <Header
+            screen="contacts"
+            onPress={() => navigation.navigate('Menu')}
+            title={translate('Contacts')}
+          />
+        ),
+        headerStyle: [
+          theme.headerStyle,
+          theme.headerShadow,
+          {
+            height: 95
+          }
+        ]
+      })
+    },
+    Settings: {
+      screen: Settings,
+      navigationOptions: ({ navigation }) => ({
+        title: '',
+        headerLeft: () => (
+          <HeaderBackButtonCustom color="#024b9e" navigation={navigation} />
+        ),
+        headerStyle: [theme.headerStyle, theme.headerShadow]
+      })
+    },
+    Profile: {
+      screen: Profile,
+      navigationOptions: ({ navigation }) => ({
+        title: '',
+        headerLeft: () => (
+          <HeaderBackButtonCustom color="#024b9e" navigation={navigation} />
+        ),
+        headerStyle: [theme.headerStyle, theme.headerShadow]
+      })
+    },
     LoginScreen: {
-      screen: LoginScreen
+      screen: LoginScreen,
+      navigationOptions: ({ navigation }) => ({
+        headerLeft: () => <HeaderBackButtonCustom navigation={navigation} />,
+        headerTintColor: '#0E4F9F',
+        headerStyle: {
+          backgroundColor: '#0E4F9F',
+          shadowRadius: 0,
+          shadowOffset: {
+            height: 0
+          },
+          elevation: 0,
+          borderBottomWidth: 0,
+          shadowColor: 'transparent'
+        },
+        headerRightStyle: {
+          borderWidth: 0,
+          borderColor: 'transparent',
+          elevation: 0,
+          shadowColor: 'transparent'
+        }
+      }),
     }
   },
   {
@@ -184,104 +409,15 @@ export default class App extends React.Component {
 
   componentDidMount() {
     RNLocalize.addEventListener('change', this.handleLocalizationChange);
-    OneSignal.init('829b3b43-bb6d-40fa-b82e-3305342bd57b', {
-      kOSSettingsKeyAutoPrompt: false
-    });
-    OneSignal.setSubscription(true);
-    OneSignal.enableVibrate(true);
-    OneSignal.enableSound(true);
-
-    OneSignal.addEventListener('received', this.onReceivedPush.bind(this));
-    OneSignal.addEventListener('ids', this.onIdsPush.bind(this));
-    OneSignal.addEventListener('opened', this.onOpenedPush.bind(this));
+    PushNotificationsClass.init();
 
     setTimeout(function() {
       SplashScreen.hide();
     }, 550);
   }
 
-  onOpenedPush(openResult) {
-    const addData = openResult.notification.payload.additionalData || [];
-    const type = addData.type;
-    const locale = deviceLanguage.includes('ru') ? 'ru' : 'en';
-    let id = 0;
-    id = addData.id ? addData.id : 0;
-    if (typeof id === 'object' && id[locale]) {
-      id = id[locale];
-    }
-    switch (type) {
-      case 'Article':
-        setTimeout(function() {
-          NavigationService.navigate(type, {
-            itemId: id,
-            locale: locale
-          });
-        }, 150);
-        break;
-      case 'Publications':
-        setTimeout(function() {
-          NavigationService.navigate(type, {
-            itemId: id,
-            locale: locale
-          });
-        }, 150);
-        break;
-      case 'Events':
-        // if (item.iblock && item.iblock !== 14) {
-        //   // если событие НЕ встреча комитета
-        //   this.props.navigation.navigate('Event', {
-        //     itemId: item.id,
-        //     otherParam: item
-        //   });
-        // } else {
-        //   if (item.committee && item.committee.url) {
-        //     return Linking.openURL(item.committee.url);
-        //   }
-        // }
-        setTimeout(function() {
-          NavigationService.navigate(type, {
-            itemId: id,
-            locale: locale,
-          });
-        }, 150);
-        break;
-      case 'Releases':
-        const groupID = addData.groupID;
-        setTimeout(function() {
-          NavigationService.navigate(type, {
-            itemId: id,
-            locale: locale,
-            filter: groupID,
-          });
-        }, 150);
-        break;
-      case 'NewsCovid':
-        let link =
-          translate('const.mainDomain') +
-          addData.link;
-        Linking.openURL(link);
-        break;
-    }
-
-    // console.log('Data: ', openResult.notification.payload.additionalData);
-    // console.log('isActive: ', openResult.notification.isAppInFocus);
-    // console.log('openResult: ', openResult);
-  }
-
-  onReceivedPush(notification) {
-    console.log('Notification received: ', notification);
-  }
-
-  onIdsPush(device) {
-    console.log('Device info: ', device);
-  }
-
   componentWillUnmount() {
     RNLocalize.removeEventListener('change', this.handleLocalizationChange);
-
-    OneSignal.removeEventListener('received', this.onReceivedPush.bind(this));
-    OneSignal.removeEventListener('opened', this.onIdsPush.bind(this));
-    OneSignal.removeEventListener('ids', this.onIdsPush.bind(this));
   }
 
   handleLocalizationChange = () => {

@@ -17,11 +17,13 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.4</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>44</string>
+	<string>45</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mailto</string>
@@ -38,12 +40,8 @@
 		<string>yandexmaps</string>
 		<string>kakaomap</string>
 	</array>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
 			<key>localhost</key>
@@ -53,47 +51,8 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSCalendarsUsageDescription</key>
-	<string>$(PRODUCT_NAME) need access to your calendar for AEB Events.</string>
-	<key>NSContactsUsageDescription</key>
-	<string>$(NSContactsUsageDescription)</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places and AEB Contacts.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places and AEB Contacts.</string>
-	<key>NSMainNibFile</key>
-	<string>LaunchScreen</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>SFUIDisplay-Black.otf</string>
-		<string>SFUIDisplay-Bold.otf</string>
-		<string>SFUIDisplay-Heavy.otf</string>
-		<string>SFUIDisplay-Light.otf</string>
-		<string>SFUIDisplay-Medium.otf</string>
-		<string>SFUIDisplay-Regular.otf</string>
-		<string>SFUIDisplay-Semibold.otf</string>
-		<string>SFUIDisplay-Thin.otf</string>
-		<string>SFUIDisplay-Ultralight.otf</string>
-		<string>AntDesign.ttf</string>
-		<string>Entypo.ttf</string>
-		<string>EvilIcons.ttf</string>
-		<string>Feather.ttf</string>
-		<string>FontAwesome.ttf</string>
-		<string>FontAwesome5_Brands.ttf</string>
-		<string>FontAwesome5_Regular.ttf</string>
-		<string>FontAwesome5_Solid.ttf</string>
-		<string>Foundation.ttf</string>
-		<string>Ionicons.ttf</string>
-		<string>MaterialIcons.ttf</string>
-		<string>MaterialCommunityIcons.ttf</string>
-		<string>SimpleLineIcons.ttf</string>
-		<string>Octicons.ttf</string>
-		<string>Zocial.ttf</string>
-	</array>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>remote-notification</string>
-	</array>
+	<string></string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -103,8 +62,45 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>$(PRODUCT_NAME) need access to your calendar for AEB Events.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>$(NSContactsUsageDescription)</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places and AEB Contacts.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>$(PRODUCT_NAME) need access to your location for route navigation to AEB Events places and AEB Contacts.</string>
+	<key>UIAppFonts</key>
+		<array>
+			<string>SFUIDisplay-Black.otf</string>
+			<string>SFUIDisplay-Bold.otf</string>
+			<string>SFUIDisplay-Heavy.otf</string>
+			<string>SFUIDisplay-Light.otf</string>
+			<string>SFUIDisplay-Medium.otf</string>
+			<string>SFUIDisplay-Regular.otf</string>
+			<string>SFUIDisplay-Semibold.otf</string>
+			<string>SFUIDisplay-Thin.otf</string>
+			<string>SFUIDisplay-Ultralight.otf</string>
+			<string>AntDesign.ttf</string>
+			<string>Entypo.ttf</string>
+			<string>EvilIcons.ttf</string>
+			<string>Feather.ttf</string>
+			<string>FontAwesome.ttf</string>
+			<string>FontAwesome5_Brands.ttf</string>
+			<string>FontAwesome5_Regular.ttf</string>
+			<string>FontAwesome5_Solid.ttf</string>
+			<string>Foundation.ttf</string>
+			<string>Ionicons.ttf</string>
+			<string>MaterialIcons.ttf</string>
+			<string>MaterialCommunityIcons.ttf</string>
+			<string>SimpleLineIcons.ttf</string>
+			<string>Octicons.ttf</string>
+			<string>Zocial.ttf</string>
+		</array>
 </dict>
 </plist>

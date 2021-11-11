@@ -12,7 +12,7 @@ import {
 
 import {theme} from '../core/themeProvider';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {api} from '../lib/api';
 
 import {TextInput} from '../components/Textinput';
@@ -91,26 +91,6 @@ export const Settings = props => {
       </SafeAreaView>
     </ScrollView>
   );
-};
-
-Settings.navigationOptions = ({navigation}) => {
-  return {
-    headerLeft: (
-      <HeaderBackButtonCustom color="#024b9e" navigation={navigation} />
-    ),
-    headerStyle: [theme.headerStyle, theme.headerShadow]
-    // headerTintColor: '#fff',
-    // headerStyle: {
-    //   backgroundColor: 'transparent',
-    //   shadowRadius: 0,
-    //   shadowOffset: {
-    //     height: 0
-    //   },
-    //   elevation: 0,
-    //   borderBottomWidth: 0,
-    //   shadowColor: 'transparent'
-    // }
-  };
 };
 
 const styles = StyleSheet.create({

@@ -1,7 +1,6 @@
 import React from 'react';
 import {theme, DeviceWidth} from '../core/themeProvider';
 
-import Header from '../components/Header';
 import ThumbList from '../components/ThumbList';
 
 const ThumbListData = [
@@ -54,24 +53,6 @@ const PublicationsScreen = ({screenProps, navigation}) => {
       </View>
     </ScrollView>
   );
-};
-
-PublicationsScreen.navigationOptions = ({navigation, screenProps}) => {
-  return {
-    headerLeft: (
-      <Header
-        onPress={() => navigation.navigate('Menu')}
-        title={screenProps.translate('publications')}
-      />
-    ),
-    headerStyle: [
-      theme.headerStyle,
-      theme.headerShadow,
-      {
-        height: 58
-      }
-    ]
-  };
 };
 
 const styles = StyleSheet.create({

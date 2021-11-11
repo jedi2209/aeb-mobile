@@ -1,5 +1,5 @@
 import {createDomain, forward} from 'effector';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import NavigationService from '../../lib/navigation';
 import {api} from '../../lib/api';

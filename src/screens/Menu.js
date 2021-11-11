@@ -72,14 +72,17 @@ const MenuScreen = ({navigation, navigate, screenProps}) => {
             borderRadius: 7
           }
         ]}>
+        <View
+          style={[
+          theme.cardShadow,
+          {width: '100%', height: 70, borderRadius: 6}
+        ]}>
         <Image
           source={require('../assets/covidbt.png')}
           resizeMode="cover"
-          style={[
-            theme.cardShadow,
-            {width: '100%', height: 70, borderRadius: 6}
-          ]}
+          style={{width: '100%', height: 70, borderRadius: 6}}
         />
+        </View>
       </TouchableHighlight>
       <Menu
         navigation={navigation}

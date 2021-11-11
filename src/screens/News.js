@@ -83,7 +83,7 @@ NewsScreen.navigationOptions = ({navigation, screenProps}) => {
   date[0] = date[0].toUpperCase();
 
   return {
-    headerLeft: (
+    headerLeft: () => (
       <Header
         screen="news"
         onPress={() => navigation.navigate('Menu')}
@@ -91,13 +91,6 @@ NewsScreen.navigationOptions = ({navigation, screenProps}) => {
         date={date}
       />
     ),
-    headerStyle: [
-      theme.headerStyle,
-      theme.headerShadow,
-      {
-        height: 75
-      }
-    ]
   };
 };
 
