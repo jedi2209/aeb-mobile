@@ -69,25 +69,7 @@ class ArticleScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
     const data = navigation.getParam('otherParam', {});
     return {
-      headerRight: <ShareButton data={data} />,
-      headerLeft: <HeaderBackButtonCustom navigation={navigation} />,
-      headerTintColor: '#fff',
-      headerStyle: {
-        backgroundColor: 'transparent',
-        shadowRadius: 0,
-        shadowOffset: {
-          height: 0
-        },
-        elevation: 0,
-        borderBottomWidth: 0,
-        shadowColor: 'transparent'
-      },
-      headerRightStyle: {
-        borderWidth: 0,
-        borderColor: 'transparent',
-        elevation: 0,
-        shadowColor: 'transparent'
-      }
+      headerRight: () => <ShareButton data={data} />,
     };
   };
 
@@ -106,8 +88,8 @@ class ArticleScreen extends React.Component {
           <Text style={styles.date}>
             {toUpperdate(moment(item.created * 1000).format('dddd, DD MMMM'))}
           </Text>
-          <WebViewAutoHeight text={`<div>${item.descr}</div>`} />
-          <WebViewAutoHeight text={`<div>${item.text}</div>`} />
+          <WebViewAutoHeight html={`<div>${item.descr}</div>`} />
+          <WebViewAutoHeight html={`<div>${item.text}</div>`} />
         </View>
       </SafeAreaView>
     );
@@ -271,7 +253,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     width: DeviceWidth,
     paddingHorizontal: 14,
-    paddingTop: 120
+    paddingTop: 220
   },
   scrollViewContent: {
     // iOS uses content inset, which acts like padding.

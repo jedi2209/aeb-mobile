@@ -60,25 +60,6 @@ class ContactsScreen extends React.Component {
     }, 500);
   };
 
-  static navigationOptions = ({navigation, screenProps}) => {
-    return {
-      headerLeft: (
-        <Header
-          screen="contacts"
-          onPress={() => navigation.navigate('Menu')}
-          title={screenProps.translate('Contacts')}
-        />
-      ),
-      headerStyle: [
-        theme.headerStyle,
-        theme.headerShadow,
-        {
-          height: 58
-        }
-      ]
-    };
-  };
-
   _onPressButton(link) {
     Linking.openURL(link);
   }

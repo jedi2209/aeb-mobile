@@ -1,24 +1,21 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-import groovy.json.JsonSlurper
-
 buildscript {
     ext {
-        buildToolsVersion = "28.0.3"
-        minSdkVersion = 16
-        compileSdkVersion = 28
-        targetSdkVersion = 28
-        playServicesVersion = "17.0.0"
-        androidMapsUtilsVersion = "0.6.2"
-        supportLibVersion = "28.0.0"
+        buildToolsVersion = "30.0.2"
+        minSdkVersion = 21
+        compileSdkVersion = 30
+        targetSdkVersion = 30
+        ndkVersion = "21.4.7075529"
     }
     repositories {
+        gradlePluginPortal()
         google()
-        jcenter()
+        mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.4.2")
-
+        classpath("com.android.tools.build:gradle:4.2.2")
+        classpath 'gradle.plugin.com.onesignal:onesignal-gradle-plugin:[0.12.10, 0.99.99]'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -26,6 +23,7 @@ buildscript {
 
 allprojects {
     repositories {
+        mavenCentral()
         mavenLocal()
         maven {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
@@ -37,71 +35,8 @@ allprojects {
         }
 
         google()
-        jcenter()
-        maven { url 'https://jitpack.io' }
+        maven { url 'https://www.jitpack.io' }
     }
 }
 
-def getVersionFile() {
-    return file('app/versioning/app_version.properties')
-}
-
-def getVersionProps() {
-    def versionPropsFile = getVersionFile()
-    def versionProps = new Properties()
-    versionProps.load(new FileInputStream(versionPropsFile))
-    return versionProps
-}
-
-def getNpmVersion() {
-    def inputFile = new File("$rootDir/../package.json")
-    def packageJson = new JsonSlurper().parseText(inputFile.text)
-    return packageJson["version"]
-}
-
-def getIncrementBuild() {
-    def versionCode = getVersionProps()['versionCode'].toInteger()
-    return versionCode
-}
-
-private void saveChanges(Integer versionCode) {
-    def versionProps = getVersionProps()
-    versionProps['versionCode'] = versionCode.toString()
-    versionProps.store(getVersionFile().newWriter(), null)
-}
-
-def getNpmVersionArray() { // major [0], minor [1], patch [2]
-    def (major, minor, patch) = getNpmVersion().tokenize('.')
-    return [Integer.parseInt(major), Integer.parseInt(minor), Integer.parseInt(patch)] as int[]
-}
-
-private String runCommands(String... commands) {
-    def process = new ProcessBuilder(commands).redirectErrorStream(true).sta
-    rt()
-    process.waitFor()
-    def result = ''
-    process.inputStream.eachLine { result += it + '\n' }
-    def errorResult = process.exitValue() == 0
-    if (!errorResult) {
-        throw new IllegalStateException(result)
-    }
-    return result
-}
-
-subprojects {
-    ext {
-        def npmVersion = getNpmVersionArray()
-        versionMajor = npmVersion[0]
-        versionMinor = npmVersion[1]
-        versionPatch = npmVersion[2]
-        versionBuild = getIncrementBuild()
-    }
-    afterEvaluate {project ->
-        if (project.hasProperty("android")) {
-            android {
-                compileSdkVersion rootProject.ext.compileSdkVersion
-                buildToolsVersion rootProject.ext.buildToolsVersion
-            }
-        }
-    }
-}
+apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
