@@ -29,7 +29,7 @@ import memoize from 'lodash.memoize'; // Use for caching/memoize for better perf
 import SplashScreen from 'react-native-splash-screen';
 import {LoadingIndicator} from './core/themeProvider';
 
-import PushNotifications from './features/notifications/PushNotifications';
+import PushNotificationsClass from './features/notifications/PushNotifications';
 
 import * as Sentry from '@sentry/react-native';
 
@@ -43,7 +43,6 @@ import {
   ActivityIndicator,
   Linking
 } from 'react-native';
-//import OneSignal from 'react-native-onesignal'; // Import package from node modules
 
 import NavigationService from './lib/navigation';
 
@@ -410,104 +409,15 @@ export default class App extends React.Component {
 
   componentDidMount() {
     RNLocalize.addEventListener('change', this.handleLocalizationChange);
-    // OneSignal.init('829b3b43-bb6d-40fa-b82e-3305342bd57b', {
-    //   kOSSettingsKeyAutoPrompt: false
-    // });
-    // OneSignal.setSubscription(true);
-    // OneSignal.enableVibrate(true);
-    // OneSignal.enableSound(true);
-
-    // OneSignal.addEventListener('received', this.onReceivedPush.bind(this));
-    // OneSignal.addEventListener('ids', this.onIdsPush.bind(this));
-    // OneSignal.addEventListener('opened', this.onOpenedPush.bind(this));
+    PushNotificationsClass.init();
 
     setTimeout(function() {
       SplashScreen.hide();
     }, 550);
   }
 
-  onOpenedPush(openResult) {
-    const addData = openResult.notification.payload.additionalData || [];
-    const type = addData.type;
-    const locale = deviceLanguage.includes('ru') ? 'ru' : 'en';
-    let id = 0;
-    id = addData.id ? addData.id : 0;
-    if (typeof id === 'object' && id[locale]) {
-      id = id[locale];
-    }
-    switch (type) {
-      case 'Article':
-        setTimeout(function() {
-          NavigationService.navigate(type, {
-            itemId: id,
-            locale: locale
-          });
-        }, 150);
-        break;
-      case 'Publications':
-        setTimeout(function() {
-          NavigationService.navigate(type, {
-            itemId: id,
-            locale: locale
-          });
-        }, 150);
-        break;
-      case 'Events':
-        // if (item.iblock && item.iblock !== 14) {
-        //   // если событие НЕ встреча комитета
-        //   this.props.navigation.navigate('Event', {
-        //     itemId: item.id,
-        //     otherParam: item
-        //   });
-        // } else {
-        //   if (item.committee && item.committee.url) {
-        //     return Linking.openURL(item.committee.url);
-        //   }
-        // }
-        setTimeout(function() {
-          NavigationService.navigate(type, {
-            itemId: id,
-            locale: locale,
-          });
-        }, 150);
-        break;
-      case 'Releases':
-        const groupID = addData.groupID;
-        setTimeout(function() {
-          NavigationService.navigate(type, {
-            itemId: id,
-            locale: locale,
-            filter: groupID,
-          });
-        }, 150);
-        break;
-      case 'NewsCovid':
-        let link =
-          translate('const.mainDomain') +
-          addData.link;
-        Linking.openURL(link);
-        break;
-    }
-
-    // console.log('Data: ', openResult.notification.payload.additionalData);
-    // console.log('isActive: ', openResult.notification.isAppInFocus);
-    // console.log('openResult: ', openResult);
-  }
-
-  onReceivedPush(notification) {
-    console.log('Notification received: ', notification);
-  }
-
-  onIdsPush(device) {
-    console.log('Device info: ', device);
-  }
-
   componentWillUnmount() {
     RNLocalize.removeEventListener('change', this.handleLocalizationChange);
-
-    // OneSignal.removeEventListener('received', this.onReceivedPush.bind(this));
-    // OneSignal.removeEventListener('opened', this.onIdsPush.bind(this));
-    // OneSignal.removeEventListener('ids', this.onIdsPush.bind(this));
   }
 
   handleLocalizationChange = () => {
