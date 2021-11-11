@@ -1,6 +1,6 @@
 import {createDomain, forward} from 'effector';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import PushNotificationsClass from './PushNotifications';
+import PushNotifications from './PushNotifications';
 import {Alert} from 'react-native';
 import {
   check,
@@ -33,9 +33,7 @@ notificationsDomain.onCreateStore(async store => {
 
 export const onSubscribePressed = notificationsDomain.event();
 export const $notifications = notificationsDomain.store({});
-
 const onAlertButtonPressed = notificationsDomain.event();
-const PushNotifications = new PushNotificationsClass();
 
 const subscribeFx = notificationsDomain.effect().use(async page => {
   const isEnabledNotifications = $notifications.getState()[page];
