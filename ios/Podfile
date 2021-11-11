@@ -29,11 +29,6 @@ target 'Aebrus' do
     :hermes_enabled => true
   )
 
-  target 'AebrusTests' do
-    inherit! :complete
-    # Pods for testing
-  end
-
   # Enables Flipper.
   #
   # Note that if you have use_frameworks! enabled, Flipper will not work and
@@ -44,4 +39,8 @@ target 'Aebrus' do
     react_native_post_install(installer)
     __apply_Xcode_12_5_M1_post_install_workaround(installer)
   end
+end
+
+target 'OneSignalNotificationServiceExtension' do
+  pod 'OneSignal', '>= 3.0', '< 4.0'
 end
