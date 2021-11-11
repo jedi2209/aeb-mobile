@@ -11,7 +11,7 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		3A1C35A2273D2490004A8DA1 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1C35A1273D2490004A8DA1 /* NotificationService.swift */; };
+		289490C10BF875E12B26890F /* libPods-Aebrus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C2EA5F31900C617BB921BD7 /* libPods-Aebrus.a */; };
 		3A1C35A6273D2490004A8DA1 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3A1C359F273D2490004A8DA1 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3A237922271F407F000F2FEA /* SFUIDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3A237919271F407F000F2FEA /* SFUIDisplay-Light.otf */; };
 		3A237923271F407F000F2FEA /* SFUIDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3A23791A271F407F000F2FEA /* SFUIDisplay-Black.otf */; };
@@ -22,9 +22,9 @@
 		3A237928271F407F000F2FEA /* SFUIDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3A23791F271F407F000F2FEA /* SFUIDisplay-Ultralight.otf */; };
 		3A237929271F407F000F2FEA /* SFUIDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3A237920271F407F000F2FEA /* SFUIDisplay-Bold.otf */; };
 		3A23792A271F407F000F2FEA /* SFUIDisplay-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3A237921271F407F000F2FEA /* SFUIDisplay-Heavy.otf */; };
-		4F3D69C0607E714DB15A9E1D /* libPods-Aebrus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F436E1DA37D9D3B9D3F8D94 /* libPods-Aebrus.a */; };
-		6E935626ACF3EA7B721C14C6 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EA1C7322ED379D3A20082FF5 /* libPods-OneSignalNotificationServiceExtension.a */; };
+		3AC987C5273D9A0C009F3A0D /* OneSignalNotificationServiceExtension in Resources */ = {isa = PBXBuildFile; fileRef = 3AC987C4273D9A0C009F3A0D /* OneSignalNotificationServiceExtension */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		BE3F1922DAA7A97554CFCACB /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B793E457A76FAC7EA7A856C1 /* libPods-OneSignalNotificationServiceExtension.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,17 +62,16 @@
 		00E356EE1AD99517003FC87E /* AebrusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AebrusTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* AebrusTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AebrusTests.m; sourceTree = "<group>"; };
+		04AB3CBA12FE1F11300031BB /* Pods-Aebrus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aebrus.release.xcconfig"; path = "Target Support Files/Pods-Aebrus/Pods-Aebrus.release.xcconfig"; sourceTree = "<group>"; };
+		0E0A4DEC54F2B56B464FA84F /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Aebrus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aebrus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Aebrus/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Aebrus/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Aebrus/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Aebrus/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Aebrus/main.m; sourceTree = "<group>"; };
-		1E82A71C7B544646496B583D /* Pods-Aebrus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aebrus.release.xcconfig"; path = "Target Support Files/Pods-Aebrus/Pods-Aebrus.release.xcconfig"; sourceTree = "<group>"; };
 		3A1C359A273D23E3004A8DA1 /* Aebrus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Aebrus.entitlements; path = Aebrus/Aebrus.entitlements; sourceTree = "<group>"; };
 		3A1C359F273D2490004A8DA1 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		3A1C35A1273D2490004A8DA1 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		3A1C35A3273D2490004A8DA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A237919271F407F000F2FEA /* SFUIDisplay-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Light.otf"; sourceTree = "<group>"; };
 		3A23791A271F407F000F2FEA /* SFUIDisplay-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Black.otf"; sourceTree = "<group>"; };
 		3A23791B271F407F000F2FEA /* SFUIDisplay-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Thin.otf"; sourceTree = "<group>"; };
@@ -82,12 +81,13 @@
 		3A23791F271F407F000F2FEA /* SFUIDisplay-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Ultralight.otf"; sourceTree = "<group>"; };
 		3A237920271F407F000F2FEA /* SFUIDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Bold.otf"; sourceTree = "<group>"; };
 		3A237921271F407F000F2FEA /* SFUIDisplay-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFUIDisplay-Heavy.otf"; sourceTree = "<group>"; };
-		5F4E0C3166F163FAB4C884D3 /* Pods-Aebrus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aebrus.debug.xcconfig"; path = "Target Support Files/Pods-Aebrus/Pods-Aebrus.debug.xcconfig"; sourceTree = "<group>"; };
-		65BE7CBF17053DEC6F2CF75B /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.debug.xcconfig"; sourceTree = "<group>"; };
-		7F436E1DA37D9D3B9D3F8D94 /* libPods-Aebrus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aebrus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3AC987C4273D9A0C009F3A0D /* OneSignalNotificationServiceExtension */ = {isa = PBXFileReference; lastKnownFileType = folder; path = OneSignalNotificationServiceExtension; sourceTree = "<group>"; };
+		3AC987C6273D9BC4009F3A0D /* libYogaKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libYogaKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FD1588E52813D9D96730110 /* Pods-Aebrus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aebrus.debug.xcconfig"; path = "Target Support Files/Pods-Aebrus/Pods-Aebrus.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Aebrus/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D02D3CF51C226CB8898A3A1E /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
-		EA1C7322ED379D3A20082FF5 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C2EA5F31900C617BB921BD7 /* libPods-Aebrus.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Aebrus.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE72D176E18F3E80E90EC572 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OneSignalNotificationServiceExtension.release.xcconfig"; path = "Target Support Files/Pods-OneSignalNotificationServiceExtension/Pods-OneSignalNotificationServiceExtension.release.xcconfig"; sourceTree = "<group>"; };
+		B793E457A76FAC7EA7A856C1 /* libPods-OneSignalNotificationServiceExtension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OneSignalNotificationServiceExtension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -103,7 +103,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F3D69C0607E714DB15A9E1D /* libPods-Aebrus.a in Frameworks */,
+				289490C10BF875E12B26890F /* libPods-Aebrus.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E935626ACF3EA7B721C14C6 /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
+				BE3F1922DAA7A97554CFCACB /* libPods-OneSignalNotificationServiceExtension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,20 +153,12 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3AC987C6273D9BC4009F3A0D /* libYogaKit.a */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				7F436E1DA37D9D3B9D3F8D94 /* libPods-Aebrus.a */,
-				EA1C7322ED379D3A20082FF5 /* libPods-OneSignalNotificationServiceExtension.a */,
+				9C2EA5F31900C617BB921BD7 /* libPods-Aebrus.a */,
+				B793E457A76FAC7EA7A856C1 /* libPods-OneSignalNotificationServiceExtension.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3A1C35A0273D2490004A8DA1 /* OneSignalNotificationServiceExtension */ = {
-			isa = PBXGroup;
-			children = (
-				3A1C35A1273D2490004A8DA1 /* NotificationService.swift */,
-				3A1C35A3273D2490004A8DA1 /* Info.plist */,
-			);
-			path = OneSignalNotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		3A23792D271F414A000F2FEA /* Fonts */ = {
@@ -198,7 +190,7 @@
 				13B07FAE1A68108700A75B9A /* Aebrus */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* AebrusTests */,
-				3A1C35A0273D2490004A8DA1 /* OneSignalNotificationServiceExtension */,
+				3AC987C4273D9A0C009F3A0D /* OneSignalNotificationServiceExtension */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				FA3D9CAC8525577BE514574E /* Pods */,
@@ -221,10 +213,10 @@
 		FA3D9CAC8525577BE514574E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5F4E0C3166F163FAB4C884D3 /* Pods-Aebrus.debug.xcconfig */,
-				1E82A71C7B544646496B583D /* Pods-Aebrus.release.xcconfig */,
-				65BE7CBF17053DEC6F2CF75B /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
-				D02D3CF51C226CB8898A3A1E /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
+				3FD1588E52813D9D96730110 /* Pods-Aebrus.debug.xcconfig */,
+				04AB3CBA12FE1F11300031BB /* Pods-Aebrus.release.xcconfig */,
+				0E0A4DEC54F2B56B464FA84F /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */,
+				AE72D176E18F3E80E90EC572 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -254,15 +246,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Aebrus" */;
 			buildPhases = (
-				CF19DDAB987ACF129738E18F /* [CP] Check Pods Manifest.lock */,
+				CD0D5B1034D02293D3B20625 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				E81E10322944413622E216F6 /* [CP] Embed Pods Frameworks */,
-				413333239AA4AFACAF858D8D /* [CP] Copy Pods Resources */,
 				3A1C35AA273D2490004A8DA1 /* Embed App Extensions */,
+				E4E6B58D6BD8EFE1FF65B069 /* [CP] Embed Pods Frameworks */,
+				F5C86EC9F0370A441504E458 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -278,7 +270,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A1C35A7273D2490004A8DA1 /* Build configuration list for PBXNativeTarget "OneSignalNotificationServiceExtension" */;
 			buildPhases = (
-				872E0FF36758FF9EE0D6873D /* [CP] Check Pods Manifest.lock */,
+				23FA0E6FDA51EADEF938EFA3 /* [CP] Check Pods Manifest.lock */,
 				3A1C359B273D2490004A8DA1 /* Sources */,
 				3A1C359C273D2490004A8DA1 /* Frameworks */,
 				3A1C359D273D2490004A8DA1 /* Resources */,
@@ -310,6 +302,7 @@
 					};
 					3A1C359E273D2490004A8DA1 = {
 						CreatedOnToolsVersion = 12.5.1;
+						LastSwiftMigration = 1250;
 					};
 				};
 			};
@@ -351,6 +344,7 @@
 				3A237925271F407F000F2FEA /* SFUIDisplay-Semibold.otf in Resources */,
 				3A237926271F407F000F2FEA /* SFUIDisplay-Medium.otf in Resources */,
 				3A237927271F407F000F2FEA /* SFUIDisplay-Regular.otf in Resources */,
+				3AC987C5273D9A0C009F3A0D /* OneSignalNotificationServiceExtension in Resources */,
 				3A237928271F407F000F2FEA /* SFUIDisplay-Ultralight.otf in Resources */,
 				3A237929271F407F000F2FEA /* SFUIDisplay-Bold.otf in Resources */,
 				3A23792A271F407F000F2FEA /* SFUIDisplay-Heavy.otf in Resources */,
@@ -383,24 +377,7 @@
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		413333239AA4AFACAF858D8D /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Aebrus/Pods-Aebrus-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Aebrus/Pods-Aebrus-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Aebrus/Pods-Aebrus-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		872E0FF36758FF9EE0D6873D /* [CP] Check Pods Manifest.lock */ = {
+		23FA0E6FDA51EADEF938EFA3 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -422,7 +399,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		CF19DDAB987ACF129738E18F /* [CP] Check Pods Manifest.lock */ = {
+		CD0D5B1034D02293D3B20625 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -444,7 +421,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E81E10322944413622E216F6 /* [CP] Embed Pods Frameworks */ = {
+		E4E6B58D6BD8EFE1FF65B069 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -459,6 +436,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Aebrus/Pods-Aebrus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5C86EC9F0370A441504E458 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Aebrus/Pods-Aebrus-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Aebrus/Pods-Aebrus-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Aebrus/Pods-Aebrus-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -504,7 +498,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A1C35A2273D2490004A8DA1 /* NotificationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,13 +522,14 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XXXX;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = AebrusTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -557,10 +551,11 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = XXXX;
 				INFOPLIST_FILE = AebrusTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -579,16 +574,18 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F4E0C3166F163FAB4C884D3 /* Pods-Aebrus.debug.xcconfig */;
+			baseConfigurationReference = 3FD1588E52813D9D96730110 /* Pods-Aebrus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Aebrus/Aebrus.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = XXXX;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Aebrus/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -601,6 +598,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aebrus.app;
 				PRODUCT_NAME = Aebrus;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -609,15 +607,17 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1E82A71C7B544646496B583D /* Pods-Aebrus.release.xcconfig */;
+			baseConfigurationReference = 04AB3CBA12FE1F11300031BB /* Pods-Aebrus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Aebrus/Aebrus.entitlements;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = XXXX;
 				INFOPLIST_FILE = Aebrus/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -630,6 +630,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aebrus.app;
 				PRODUCT_NAME = Aebrus;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -637,11 +638,12 @@
 		};
 		3A1C35A8273D2490004A8DA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65BE7CBF17053DEC6F2CF75B /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
+			baseConfigurationReference = 0E0A4DEC54F2B56B464FA84F /* Pods-OneSignalNotificationServiceExtension.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
@@ -650,12 +652,13 @@
 				DEVELOPMENT_TEAM = XXXX;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.2.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aebrus.app.OneSignalNotificationServiceExtension;
@@ -670,11 +673,12 @@
 		};
 		3A1C35A9273D2490004A8DA1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D02D3CF51C226CB8898A3A1E /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
+			baseConfigurationReference = AE72D176E18F3E80E90EC572 /* Pods-OneSignalNotificationServiceExtension.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
@@ -684,12 +688,13 @@
 				DEVELOPMENT_TEAM = XXXX;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = OneSignalNotificationServiceExtension/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.2.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aebrus.app.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -750,7 +755,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -809,7 +814,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
