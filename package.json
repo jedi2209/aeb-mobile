@@ -14,10 +14,10 @@
     "iphone": "react-native run-ios --simulator=\"iPhone 11\"",
     "iphonePro": "react-native run-ios --simulator=\"iPhone 11 Pro\"",
     "iphoneProMax": "react-native run-ios --simulator=\"iPhone 11 Pro Max\"",
-    "iphone-release": "fastlane ios beta; rm Aebrus.app.dSYM.zip;",
+    "iphone-release": "bundle exec fastlane ios beta; rm Aebrus.app.dSYM.zip;",
     "react": "react-native start --reset-cache",
-    "android-release": "cd ./android && ./gradlew clean && cd ../; fastlane android internal;",
-    "android-build": "cd ./android && ./gradlew clean && cd ../; fastlane android release; open ./android/app/build/outputs/apk/release;"
+    "android-release": "cd ./android && ./gradlew clean && cd ../; bundle exec fastlane android internal;",
+    "android-build": "cd ./android && ./gradlew clean && cd ../; bundle exec fastlane android release && open ./android/app/build/outputs/apk/release;"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.15.9",
