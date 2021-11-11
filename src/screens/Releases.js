@@ -29,24 +29,6 @@ class ReleasesScreen extends React.Component {
     };
   }
 
-  static navigationOptions = ({navigation, screenProps}) => {
-    return {
-      headerLeft: (
-        <Header
-          onPress={() => navigation.navigate('Menu')}
-          title={screenProps.translate('realeses')}
-        />
-      ),
-      headerStyle: [
-        theme.headerStyle,
-        theme.headerShadow,
-        {
-          height: 58
-        }
-      ]
-    };
-  };
-
   async componentDidMount() {
     const deviceLanguage =
       Platform.OS === 'ios'
@@ -105,7 +87,7 @@ class ReleasesScreen extends React.Component {
               style={{
                 ...pickerSelectStyles,
                 iconContainer: {
-                  top: Platform.OS === 'ios' ? 0 : 2,
+                  top: Platform.OS === 'ios' ? -2 : 2,
                   right: 12
                   // borderBottomWidth: 0,
                   // shadowOpacity: 0.2,
@@ -164,7 +146,7 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     backgroundColor: '#FAFAFA',
-    paddingVertical: Platform.OS === 'ios' ? 10 : 8,
+    paddingVertical: Platform.OS === 'ios' ? 12 : 8,
     paddingHorizontal: 14,
     alignItems: 'stretch',
     fontSize: 17,

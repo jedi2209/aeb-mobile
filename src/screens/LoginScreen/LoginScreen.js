@@ -89,7 +89,7 @@ export const LoginScreen = props => {
             </View>
           </TouchableWithoutFeedback>
         </ImageBackground>
-        <View style={{marginTop: 40}}>
+        <View style={{marginTop: 240}}>
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -108,42 +108,22 @@ export const LoginScreen = props => {
   );
 };
 
-LoginScreen.navigationOptions = ({navigation, screenProps}) => {
-  return {
-    headerLeft: <HeaderBackButtonCustom navigation={navigation} />,
-    headerTintColor: '#0E4F9F',
-    headerStyle: {
-      backgroundColor: '#0E4F9F',
-      shadowRadius: 0,
-      shadowOffset: {
-        height: 0
-      },
-      elevation: 0,
-      borderBottomWidth: 0,
-      shadowColor: 'transparent'
-    },
-    headerRightStyle: {
-      borderWidth: 0,
-      borderColor: 'transparent',
-      elevation: 0,
-      shadowColor: 'transparent'
-    }
-  };
-};
-
 const styles = StyleSheet.create({
   background: {
     width: '100%',
-    minHeight: 356
+    minHeight: 356,
+    position: 'relative',
   },
   inner: {
     paddingHorizontal: 30,
-    alignItems: 'center'
+    alignItems: 'center',
+    flex: 1,
   },
   logo: {
-    marginVertical: 40
+    marginTop: 0
   },
   container: {
+    marginTop: -80,
     borderRadius: 8,
     backgroundColor: '#fff',
     width: '100%',

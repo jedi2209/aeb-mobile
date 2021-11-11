@@ -65,7 +65,7 @@ const FirstRoute = (data, translate) => {
   return (
     <ScrollView>
       <View style={[styles.body, {paddingHorizontal: 14}]}>
-        <WebViewAutoHeight text={`<div>${data.text}</div>`} />
+        <WebViewAutoHeight html={`<div>${data.text}</div>`} />
       </View>
     </ScrollView>
   );
@@ -182,29 +182,11 @@ class EventScreen extends React.Component {
   static navigationOptions = ({navigation}) => {
     const data = navigation.getParam('otherParam', {});
     return {
-      headerRight: (
+      headerRight: () => (
         <Fragment>
           <ShareButton data={data} />
         </Fragment>
       ),
-      headerLeft: <HeaderBackButtonCustom navigation={navigation} />,
-      headerTintColor: '#fff',
-      headerStyle: {
-        backgroundColor: 'transparent',
-        shadowRadius: 0,
-        shadowOffset: {
-          height: 0
-        },
-        elevation: 0,
-        borderBottomWidth: 0,
-        shadowColor: 'transparent'
-      },
-      headerRightStyle: {
-        borderWidth: 0,
-        borderColor: 'transparent',
-        elevation: 0,
-        shadowColor: 'transparent'
-      }
     };
   };
 
@@ -233,7 +215,8 @@ class EventScreen extends React.Component {
     return (
       <View
         style={{
-          flex: 1
+          flex: 1,
+          paddingTop: 100,
         }}>
         <StatusBar barStyle="light-content" />
         <Image
@@ -368,7 +351,6 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     position: 'absolute',
-    top: -100,
     left: 0,
     right: 0,
     height: HEADER_MAX_HEIGHT + 100,

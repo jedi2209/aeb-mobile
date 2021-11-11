@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {ScrollView, Linking} from 'react-native';
 import HTML from 'react-native-render-html';
 import {DeviceWidth} from '../core/themeProvider';
@@ -17,23 +17,24 @@ const classesStyles = {
   divider: {marginRight: 10, width: 10}
 };
 
-class WebViewAutoHeight extends Component {
-  render() {
-    return (
-      // eslint-disable-next-line react-native/no-inline-styles
-      <ScrollView style={{flex: 1, marginTop: 20}}>
-        <HTML
-          html={this.props.text}
-          tagsStyles={tagsStyles}
-          classesStyles={classesStyles}
-          imagesMaxWidth={DeviceWidth}
-          onLinkPress={(evt, href) => {
-            return Linking.openURL(href);
-          }}
-        />
-      </ScrollView>
-    );
-  }
+export default WebViewAutoHeight = ({html}) => {
+  return (
+    // eslint-disable-next-line react-native/no-inline-styles
+    <ScrollView style={{flex: 1, marginTop: 20}}>
+      <HTML
+        contentWidth={DeviceWidth}
+        source={{html}}
+        tagsStyles={tagsStyles}
+        classesStyles={classesStyles}
+        imagesMaxWidth={DeviceWidth}
+        renderersProps={{
+          a:{
+            onPress: (evt, href) => {
+              return Linking.openURL(href);
+            }
+          }
+        }}
+      />
+    </ScrollView>
+  );
 }
-
-export default WebViewAutoHeight;
