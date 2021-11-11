@@ -1,5 +1,5 @@
 import {createDomain, forward} from 'effector';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import PushNotificationsClass from './PushNotifications';
 import {Alert} from 'react-native';
 import {

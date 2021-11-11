@@ -32,24 +32,6 @@ class SubPublicationsScreen extends React.Component {
 
   data = this.props.navigation.getParam('otherParam', {});
 
-  static navigationOptions = ({navigation, screenProps}) => {
-    return {
-      headerTintColor: '#fff',
-      headerBackTitleStyle: {color: 'transparent'},
-      headerStyle: {
-        backgroundImage: '../images/bg.png',
-        backgroundColor: 'transparent',
-        shadowRadius: 0,
-        shadowOffset: {
-          height: 0
-        },
-        elevation: 0,
-        borderBottomWidth: 0,
-        shadowColor: 'transparent'
-      }
-    };
-  };
-
   componentDidMount() {
     this.api = new API({lang: this.lang, platform: Platform.OS});
     this._fetchAllArticles();

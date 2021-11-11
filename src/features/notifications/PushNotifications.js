@@ -1,6 +1,6 @@
 import React from 'react';
-import OneSignal from 'react-native-onesignal'; // Import package from node modules
-import AsyncStorage from '@react-native-community/async-storage';
+//import OneSignal from 'react-native-onesignal'; // Import package from node modules
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default class PushNotifications {
   // componentDidMount() {
@@ -19,9 +19,9 @@ export default class PushNotifications {
   // }
   setSubscription(type, status) {
     if (status) {
-      OneSignal.sendTag('subscription' + type, status);
+      //OneSignal.sendTag('subscription' + type, status);
     } else {
-      OneSignal.deleteTag('subscription' + type);
+      //OneSignal.deleteTag('subscription' + type);
     }
   }
 }

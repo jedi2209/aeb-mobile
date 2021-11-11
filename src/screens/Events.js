@@ -132,24 +132,6 @@ class EventsScreen extends React.Component {
     };
   }
 
-  static navigationOptions = ({navigation, screenProps}) => {
-    return {
-      headerLeft: (
-        <Header
-          onPress={() => navigation.navigate('Menu')}
-          title={screenProps.translate('events')}
-        />
-      ),
-      headerStyle: [
-        theme.headerStyle,
-        theme.headerShadow,
-        {
-          height: 58
-        }
-      ]
-    };
-  };
-
   async componentDidMount() {
     this.api = new API({lang: this.lang, platform: Platform.OS});
 

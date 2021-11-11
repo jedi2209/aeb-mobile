@@ -61,24 +61,6 @@ class CommitteesScreen extends React.Component {
     super(props);
   }
 
-  static navigationOptions = ({navigation, screenProps}) => {
-    return {
-      headerLeft: (
-        <Header
-          onPress={() => navigation.navigate('Menu')}
-          title={screenProps.translate('committees')} //committees
-        />
-      ),
-      headerStyle: [
-        theme.headerStyle,
-        theme.headerShadow,
-        {
-          height: 58
-        }
-      ]
-    };
-  };
-
   render() {
     return (
       <View style={[styles.container, {backgroundColor: '#fafafa'}]}>
