@@ -4,19 +4,20 @@
 
 ### Development
 
-Для развёртывания окружения локальной разработки следует выполнить следующие команды:
+To set up the local development environment, execute the following commands:
 
-1. `git clone git@bitbucket.org:zavarkateam/aeb.git; cd aeb;`
+1. `git clone git@github.com:jedi2209/aeb-mobile.git; cd aeb;`
 2. `npm i; cd ios; pod update; pod install; cd ../;`
 
-После выполнения шагов далее для запуска приложения на эмуляторе следует использовать команды:
+After completing the steps above, use the following commands to launch the application on the emulator:
 
-- `npm run react;` - Рекомендуется выполнить в отдельном окне терминала для запуска JS-сборщика React.
+
+- `npm run react;` - It is recommended to run this in a separate terminal window to start the React JS bundler.
 
 ### iOS
-- `npm run iphone;` - для запуска приложения на эмуляторе iPhone 11
-- `npm run iphonePro;` - для запуска приложения на эмуляторе iPhone 11 Pro
-- `npm run iphoneProMax;` - для запуска приложения на эмуляторе iPhone 11 Pro Max
+- `npm run iphone;` - to launch the application on iPhone 11 emulator
+- `npm run iphonePro;` - to launch the application on iPhone 11 Pro emulator
+- `npm run iphoneProMax;` - to launch the application on iPhone 11 Pro Max emulator
 
 ### Android
-- `npm run android;` - для запуска приложения на эмуляторе Android
+- `npm run android;` - to launch the application on Android emulator
